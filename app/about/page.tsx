@@ -6,6 +6,24 @@ export const metadata: Metadata = {
     "MakeMyCV was built to help UAE job seekers create professional, ATS-friendly CVs without expensive career coaches or complicated tools.",
 };
 
+const values = [
+  {
+    icon: "\uD83C\uDDE6\uD83C\uDDEA",
+    title: "UAE First",
+    desc: "Every template, field, and default is optimized for Gulf hiring standards.",
+  },
+  {
+    icon: "\uD83D\uDD12",
+    title: "Privacy by Design",
+    desc: "Your CV data never leaves your browser. We don\u2019t store personal information.",
+  },
+  {
+    icon: "\uD83D\uDC9A",
+    title: "Always Free at Core",
+    desc: "The fundamental tool will always be free. We monetize Pro features, not basic access.",
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -57,28 +75,16 @@ export default function AboutPage() {
       <section className="bg-brand-light py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid gap-6 md:grid-cols-3">
-            {[
-              {
-                title: "UAE First",
-                desc: "Every template, field, and default is optimized for Gulf hiring standards.",
-              },
-              {
-                title: "Privacy by Design",
-                desc: "Your CV data never leaves your browser. We don\u2019t store personal information.",
-              },
-              {
-                title: "Always Free at Core",
-                desc: "The fundamental tool will always be free. We monetize Pro features, not basic access.",
-              },
-            ].map((v) => (
+            {values.map((v) => (
               <div
                 key={v.title}
-                className="rounded-xl border border-slate-200 bg-white p-6"
+                className="card-lift rounded-2xl p-8 text-center bg-white border border-slate-200 hover:border-blue-200 hover:shadow-card-blue"
               >
-                <h3 className="font-display text-lg font-bold text-slate-800">
-                  {v.title}
-                </h3>
-                <p className="mt-2 text-sm text-brand-muted">{v.desc}</p>
+                <div className="w-14 h-14 rounded-2xl btn-primary flex items-center justify-center text-2xl mx-auto mb-5">
+                  {v.icon}
+                </div>
+                <h3 className="font-bold text-xl text-slate-800 mb-3">{v.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
           </div>

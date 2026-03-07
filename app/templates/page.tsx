@@ -31,7 +31,7 @@ export default function TemplatesPage() {
           </h2>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {/* Classic */}
-            <div className="relative rounded-2xl border-2 border-slate-200 p-8 transition-all hover:border-blue-300 hover:shadow-xl">
+            <div className="relative rounded-3xl border-2 border-slate-200 bg-white p-8 card-lift">
               <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
                 FREE
               </span>
@@ -70,47 +70,53 @@ export default function TemplatesPage() {
                 href="https://app.makemycv.ae"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 block rounded-xl bg-brand-blue px-7 py-3.5 text-center font-bold text-white transition-all hover:bg-blue-700"
+                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
               >
                 Use This Template &rarr;
               </a>
             </div>
 
             {/* Modern */}
-            <div className="relative rounded-2xl border-2 border-slate-200 p-8 transition-all hover:border-blue-300 hover:shadow-xl">
-              <span className="absolute right-4 top-4 rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-brand-blue">
+            <div
+              className="relative rounded-3xl border-2 border-[#2563eb] p-8 card-lift"
+              style={{
+                background: 'linear-gradient(135deg, #0f172a 0%, #1a1040 100%)',
+                boxShadow: '0 0 60px rgba(37,99,235,0.2)',
+              }}
+            >
+              <span className="absolute right-4 top-4 rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-400">
                 PRO
               </span>
               {/* Thumbnail */}
-              <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-emerald-50 to-white p-4">
-                <div className="h-4 w-16 rounded bg-emerald-200" />
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="h-4 w-16 rounded bg-blue-400/30" />
                 <div className="mt-3 grid grid-cols-[2fr_1fr] gap-2">
                   <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-slate-200" />
-                    <div className="h-2 w-5/6 rounded bg-slate-200" />
+                    <div className="h-2 w-full rounded bg-white/20" />
+                    <div className="h-2 w-5/6 rounded bg-white/15" />
                   </div>
                   <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-emerald-100" />
-                    <div className="h-2 w-4/6 rounded bg-emerald-100" />
+                    <div className="h-2 w-full rounded bg-blue-400/20" />
+                    <div className="h-2 w-4/6 rounded bg-blue-400/15" />
                   </div>
                 </div>
               </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-slate-800">
+              <h3 className="mt-6 font-display text-2xl font-bold text-white">
                 Modern
               </h3>
-              <p className="mt-2 text-sm text-brand-muted">
+              <p className="mt-2 text-sm text-slate-300">
                 Two-column design with a sidebar. Ideal for creative, tech, and
                 marketing roles where visual presentation matters.
               </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-                <li>&#10003; Two-column sidebar layout</li>
-                <li>&#10003; Skills visualization</li>
-                <li>&#10003; Profile photo support</li>
-                <li>&#10003; ATS-safe design</li>
+              <ul className="mt-4 space-y-1.5 text-sm text-slate-300">
+                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Two-column sidebar layout</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Skills visualization</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Profile photo support</li>
+                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> ATS-safe design</li>
               </ul>
               <a
                 href="/pricing"
-                className="mt-6 block rounded-xl bg-brand-blue px-7 py-3.5 text-center font-bold text-white transition-all hover:bg-blue-700"
+                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
               >
                 Unlock with Pro &rarr;
               </a>
@@ -143,22 +149,22 @@ export default function TemplatesPage() {
               </p>
             </div>
             <div className="grid gap-4">
-              <div className="rounded-xl border border-red-200 bg-red-50 p-5">
-                <p className="text-sm font-bold text-red-700">
-                  &#10060; Rejected by ATS
+              <div className="rounded-2xl p-6 border-2 border-red-100 bg-red-50">
+                <p className="font-bold text-red-600 mb-3 flex items-center gap-2">
+                  <span>&#10060;</span> Rejected by ATS
                 </p>
-                <ul className="mt-2 space-y-1 text-xs text-red-600">
+                <ul className="space-y-1 text-xs text-red-600">
                   <li>&bull; Tables and multi-column layouts</li>
                   <li>&bull; Graphics, icons, and logos</li>
                   <li>&bull; Unusual or decorative fonts</li>
                   <li>&bull; Missing section headers</li>
                 </ul>
               </div>
-              <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
-                <p className="text-sm font-bold text-emerald-700">
-                  &#9989; Passes ATS
+              <div className="rounded-2xl p-6 border-2 border-green-100 bg-green-50">
+                <p className="font-bold text-green-600 mb-3 flex items-center gap-2">
+                  <span>&#9989;</span> Passes ATS
                 </p>
-                <ul className="mt-2 space-y-1 text-xs text-emerald-600">
+                <ul className="space-y-1 text-xs text-green-600">
                   <li>&bull; Clean text formatting</li>
                   <li>&bull; Standard section headers</li>
                   <li>&bull; Keyword-friendly structure</li>

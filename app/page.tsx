@@ -8,8 +8,19 @@ export default function HomePage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative min-h-screen bg-brand-navy">
-        <div className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:py-32">
+      <section className="relative min-h-screen dot-grid noise-overlay overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%)' }}>
+        {/* Blue orb top right */}
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)'
+          }} />
+        {/* Indigo orb bottom left */}
+        <div className="absolute bottom-[-150px] left-[-100px] w-[400px] h-[400px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(79,70,229,0.12) 0%, transparent 70%)'
+          }} />
+
+        <div className="relative mx-auto flex max-w-6xl flex-col-reverse items-center gap-12 px-6 py-20 lg:flex-row lg:py-32">
           {/* Left */}
           <div className="flex-[3] text-center lg:text-left">
             <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-blue-400">
@@ -18,7 +29,8 @@ export default function HomePage() {
             <h1 className="font-display text-5xl font-extrabold leading-tight text-white md:text-7xl">
               Get Hired
               <br />
-              <span className="text-brand-blue">in the UAE.</span>
+              <span className="text-brand-blue">in the </span>
+              <span className="gradient-text">UAE.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-lg text-xl text-slate-300 lg:mx-0">
               Build a professional, ATS-friendly CV in under 5 minutes. No
@@ -29,26 +41,32 @@ export default function HomePage() {
                 href="https://app.makemycv.ae"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-xl bg-brand-blue px-8 py-4 text-lg font-bold text-white transition-all hover:bg-blue-700"
+                className="btn-primary text-white font-bold text-lg px-8 py-4 rounded-2xl"
               >
                 Build My CV Free &rarr;
               </a>
               <a
                 href="/templates"
-                className="rounded-xl border border-slate-600 px-8 py-4 text-lg text-slate-300 transition-all hover:border-slate-400"
+                className="rounded-xl border border-slate-600 px-8 py-4 text-lg text-slate-300 transition-all duration-300 hover:bg-white/10"
               >
                 See Templates
               </a>
             </div>
-            <p className="mt-8 text-sm text-slate-500">
-              &#10003; Free &middot; &#10003; No sign-up &middot; &#10003; PDF
-              in 5 minutes &middot; &#10003; ATS-optimized
-            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
+              {['\u2713 Free', '\u2713 No sign-up', '\u2713 PDF in 5 mins', '\u2713 ATS-optimized'].map(item => (
+                <span key={item} className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-slate-300 border border-white/10">
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Right — CV mockup */}
           <div className="hidden flex-[2] lg:block">
-            <div className="rounded-2xl bg-white p-8 shadow-2xl">
+            <div
+              className="rounded-2xl bg-white p-8 animate-float"
+              style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)' }}
+            >
               <div className="border-b border-slate-200 pb-3">
                 <p className="text-lg font-bold text-slate-900">
                   SARAH AL-RASHIDI
@@ -116,13 +134,13 @@ export default function HomePage() {
       </section>
 
       {/* ── PROBLEM / SOLUTION ── */}
-      <section className="bg-white py-12 md:py-20">
+      <section className="bg-slate-50 py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center font-display text-3xl font-bold text-slate-800 md:text-4xl">
             Most UAE CVs Get Rejected Before a Human Reads Them
           </h2>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            <div className="text-center">
+            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
               <p className="text-4xl">&#10060;</p>
               <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
                 ATS Systems Reject 75% of CVs
@@ -133,7 +151,7 @@ export default function HomePage() {
                 manager.
               </p>
             </div>
-            <div className="text-center">
+            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
               <p className="text-4xl">&#128553;</p>
               <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
                 Word Templates Look Unprofessional
@@ -144,7 +162,7 @@ export default function HomePage() {
                 every week.
               </p>
             </div>
-            <div className="text-center">
+            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
               <p className="text-4xl">&#9989;</p>
               <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
                 MakeMyCV Fixes Both Problems
@@ -181,9 +199,12 @@ export default function HomePage() {
                 title: "Download & Apply",
                 desc: "Export as PDF or Word. Your CV is ready to send to recruiters in Dubai, Abu Dhabi, or anywhere in the GCC.",
               },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue text-lg font-bold text-white">
+            ].map((item, i) => (
+              <div key={item.step} className="relative text-center">
+                {i < 2 && (
+                  <div className="hidden md:block absolute top-6 left-[60%] w-[80%] h-[2px] border-t-2 border-dashed border-blue-200" />
+                )}
+                <div className="w-12 h-12 rounded-2xl btn-primary flex items-center justify-center text-white font-bold text-lg mx-auto mb-4">
                   {item.step}
                 </div>
                 <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
@@ -198,7 +219,7 @@ export default function HomePage() {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-xl bg-brand-blue px-7 py-3.5 font-bold text-white transition-all hover:bg-blue-700"
+              className="inline-block btn-primary rounded-xl px-7 py-3.5 font-bold text-white"
             >
               Start Now — It&apos;s Free &rarr;
             </a>
@@ -247,13 +268,15 @@ export default function HomePage() {
             ].map((f) => (
               <div
                 key={f.title}
-                className="rounded-xl border border-slate-200 p-6 transition-all hover:border-blue-200 hover:shadow-md"
+                className="card-lift rounded-2xl border border-slate-200 bg-white p-6 hover:border-blue-200 hover:shadow-card-blue group"
               >
-                <p className="text-3xl">{f.icon}</p>
-                <h3 className="mt-3 font-display text-base font-bold text-slate-800">
+                <div className="w-10 h-10 rounded-xl btn-primary flex items-center justify-center text-white text-lg mb-4">
+                  {f.icon}
+                </div>
+                <h3 className="font-bold text-slate-800 mb-2">
                   {f.title}
                 </h3>
-                <p className="mt-1 text-sm text-brand-muted">{f.desc}</p>
+                <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -261,12 +284,12 @@ export default function HomePage() {
       </section>
 
       {/* ── SOCIAL PROOF ── */}
-      <section className="bg-brand-light py-12 md:py-20">
+      <section className="dot-grid py-12 md:py-20" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%)' }}>
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800 md:text-4xl">
+          <h2 className="text-center font-display text-3xl font-bold text-white md:text-4xl">
             Trusted by UAE Job Seekers
           </h2>
-          <p className="mt-2 text-center text-sm text-brand-muted">
+          <p className="mt-2 text-center text-sm text-slate-400">
             From fresh graduates to senior managers
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -292,19 +315,17 @@ export default function HomePage() {
             ].map((t) => (
               <div
                 key={t.name}
-                className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                className="glass-card rounded-2xl p-6 card-lift"
               >
-                <p className="text-sm text-yellow-500">
-                  &#9733;&#9733;&#9733;&#9733;&#9733;
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-700">
+                <div className="gradient-text text-lg mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p className="text-slate-300 text-sm leading-relaxed italic mb-4">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div className="mt-4 border-t border-slate-100 pt-3">
-                  <p className="text-sm font-semibold text-slate-800">
+                <div>
+                  <p className="text-white font-semibold text-sm">
                     {t.name}
                   </p>
-                  <p className="text-xs text-brand-muted">{t.role}</p>
+                  <p className="text-slate-500 text-xs mt-0.5">{t.role}</p>
                 </div>
               </div>
             ))}
@@ -313,8 +334,19 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section className="bg-brand-navy py-12 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+      <section className="relative overflow-hidden py-12 md:py-20" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%)' }}>
+        {/* Blue orb top right */}
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%)'
+          }} />
+        {/* Indigo orb bottom left */}
+        <div className="absolute bottom-[-150px] left-[-100px] w-[400px] h-[400px] rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(79,70,229,0.12) 0%, transparent 70%)'
+          }} />
+
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-display text-4xl font-extrabold text-white md:text-5xl">
             Your next job in the UAE
             <br />
@@ -328,7 +360,8 @@ export default function HomePage() {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-2xl bg-brand-blue px-10 py-5 text-xl font-bold text-white transition-all hover:bg-blue-700"
+              className="inline-block btn-primary text-white font-bold text-xl px-12 py-6 rounded-2xl"
+              style={{ boxShadow: '0 8px 60px rgba(37,99,235,0.5)' }}
             >
               Build My CV Now &rarr;
             </a>

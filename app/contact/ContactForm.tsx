@@ -2,21 +2,55 @@
 
 import { useState } from "react";
 
+type FormState = "idle" | "submitting" | "success" | "error";
+
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-brand-blue focus:ring-2 focus:ring-blue-100 transition-all";
+  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none focus:border-[#2563eb] focus:ring-4 focus:ring-blue-100 transition-all";
 const labelClass =
   "block mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-slate-500";
 
 export const ContactForm = () => {
-  const [sent, setSent] = useState(false);
+  const [formState, setFormState] = useState<FormState>("idle");
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "General Question",
+    message: "",
+  });
 
-  if (sent) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState("submitting");
+    try {
+      const res = await fetch("https://formspree.io/f/mqeykryy", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setFormState("success");
+        setForm({
+          name: "",
+          email: "",
+          subject: "General Question",
+          message: "",
+        });
+      } else {
+        setFormState("error");
+      }
+    } catch {
+      setFormState("error");
+    }
+  };
+
+  if (formState === "success") {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-        <p className="text-lg font-bold text-emerald-700">
-          &#10003; Message sent!
-        </p>
-        <p className="mt-2 text-sm text-emerald-600">
+      <div className="rounded-2xl bg-green-50 border border-green-200 p-8 text-center">
+        <div className="text-4xl mb-3">&#9989;</div>
+        <h3 className="font-bold text-green-800 text-xl mb-2">
+          Message Sent!
+        </h3>
+        <p className="text-green-700 text-sm">
           We&apos;ll reply within 24 hours.
         </p>
       </div>
@@ -24,13 +58,12 @@ export const ContactForm = () => {
   }
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        setSent(true);
-      }}
-      className="space-y-5"
-    >
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {formState === "error" && (
+        <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">
+          Something went wrong. Please try again or email us directly at hello@makemycv.ae.
+        </div>
+      )}
       <div>
         <label className={labelClass}>Name *</label>
         <input
@@ -38,6 +71,8 @@ export const ContactForm = () => {
           required
           placeholder="Your full name"
           className={inputClass}
+          value={form.name}
+          onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
       </div>
       <div>
@@ -47,14 +82,17 @@ export const ContactForm = () => {
           required
           placeholder="you@email.com"
           className={inputClass}
+          value={form.email}
+          onChange={(e) => setForm({ ...form, email: e.target.value })}
         />
       </div>
       <div>
         <label className={labelClass}>Subject</label>
-        <select className={inputClass} defaultValue="">
-          <option value="" disabled>
-            Select a topic
-          </option>
+        <select
+          className={inputClass}
+          value={form.subject}
+          onChange={(e) => setForm({ ...form, subject: e.target.value })}
+        >
           <option>General Question</option>
           <option>Bug Report</option>
           <option>Feature Request</option>
@@ -69,13 +107,16 @@ export const ContactForm = () => {
           rows={5}
           placeholder="How can we help?"
           className={inputClass}
+          value={form.message}
+          onChange={(e) => setForm({ ...form, message: e.target.value })}
         />
       </div>
       <button
         type="submit"
-        className="w-full rounded-xl bg-brand-blue px-7 py-3.5 font-bold text-white transition-all hover:bg-blue-700"
+        disabled={formState === "submitting"}
+        className="btn-primary w-full text-white font-bold py-4 rounded-2xl text-base disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        Send Message &rarr;
+        {formState === "submitting" ? "Sending..." : "Send Message \u2192"}
       </button>
     </form>
   );
