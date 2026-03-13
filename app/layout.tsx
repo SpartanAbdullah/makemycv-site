@@ -1,4 +1,5 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
+import Script from "next/script";
 import { Sora, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -21,7 +22,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://makemycv.ae"),
   title: {
-    default: "MakeMyCV — Free CV Builder for UAE Jobs",
+    default: "MakeMyCV â€” Free CV Builder for UAE Jobs",
     template: "%s | MakeMyCV",
   },
   description:
@@ -41,14 +42,14 @@ export const metadata: Metadata = {
     locale: "en_AE",
     url: "https://makemycv.ae",
     siteName: "MakeMyCV",
-    title: "MakeMyCV — Free CV Builder for UAE Jobs",
+    title: "MakeMyCV â€” Free CV Builder for UAE Jobs",
     description:
       "ATS-friendly CV builder for Dubai & UAE. Free, instant PDF, no account needed.",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MakeMyCV — Free CV Builder for UAE Jobs",
+    title: "MakeMyCV â€” Free CV Builder for UAE Jobs",
     description:
       "ATS-friendly CVs for UAE jobs. Free, fast, no sign-up.",
     images: ["/og-image.png"],
@@ -72,6 +73,19 @@ export default function RootLayout({
       <body
         className={`${sora.variable} ${inter.variable} antialiased bg-white`}
       >
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-8MWPD87FJH"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8MWPD87FJH');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
