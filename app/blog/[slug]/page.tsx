@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { getPostBySlug, getAllPosts, getRelatedPosts, formatDate } from '@/lib/blog'
 import { MDXContent } from '@/lib/mdx'
+import { AuthorBlock } from '@/components/blog/AuthorBlock'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -24,6 +25,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `https://makemycv.ae/blog/${post.slugPath}`,
       type: 'article',
       publishedTime: post.date,
+      images: [
+        {
+          url: post.coverImage ?? '/og-image.png',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage ?? '/og-image.png'],
     },
   }
 }
@@ -72,7 +87,9 @@ export default async function PostPage({ params }: Props) {
           </p>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400">
-            <span>By {post.author}</span>
+            <Link href="/author/makemycv-team" className="hover:text-blue-400 transition-colors">
+              By {post.author}
+            </Link>
             <span>&middot;</span>
             <span>{formatDate(post.date)}</span>
             <span>&middot;</span>
@@ -80,6 +97,20 @@ export default async function PostPage({ params }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Cover image */}
+      <div className="max-w-4xl mx-auto px-6 -mt-8 relative z-20">
+        <div className="rounded-2xl overflow-hidden shadow-2xl">
+          <img
+            src={post.coverImage ?? '/og-image.png'}
+            alt={post.title}
+            width={1200}
+            height={630}
+            className="w-full h-auto object-cover"
+            loading="eager"
+          />
+        </div>
+      </div>
 
       {/* Content + Sidebar */}
       <section className="max-w-6xl mx-auto px-6 py-16">
@@ -101,6 +132,9 @@ export default async function PostPage({ params }: Props) {
                 ))}
               </div>
             )}
+
+            {/* Author block */}
+            <AuthorBlock />
           </article>
 
           {/* Sticky sidebar */}

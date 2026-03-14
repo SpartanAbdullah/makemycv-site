@@ -27,13 +27,15 @@ export function PostCard({ post }: { post: Post }) {
       className="group flex flex-col rounded-2xl border border-slate-200 bg-white overflow-hidden card-lift hover:border-blue-200"
     >
       {/* Cover image */}
-      <div className="relative h-48 w-full bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/10" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-5xl">
-            {categoryEmoji[post.category] ?? '\uD83D\uDCCA'}
-          </span>
-        </div>
+      <div className="relative h-48 w-full overflow-hidden flex-shrink-0 bg-slate-900">
+        <img
+          src={post.coverImage ?? '/og-image.png'}
+          alt={post.title}
+          width={600}
+          height={315}
+          className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
       </div>
 
       {/* Content */}

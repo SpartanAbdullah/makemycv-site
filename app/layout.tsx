@@ -54,7 +54,16 @@ export const metadata: Metadata = {
       "ATS-friendly CVs for UAE jobs. Free, fast, no sign-up.",
     images: ["/og-image.png"],
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",

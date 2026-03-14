@@ -20,9 +20,15 @@ export function FeaturedPostCard({ post }: { post: Post }) {
       className="group relative flex flex-col md:flex-row rounded-3xl overflow-hidden card-lift border border-slate-200 bg-white"
     >
       {/* Image side */}
-      <div className="relative md:w-2/5 h-56 md:h-auto bg-gradient-hero flex-shrink-0 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 dot-grid opacity-40" />
-        <span className="text-8xl relative z-10">{emoji}</span>
+      <div className="relative md:w-2/5 h-56 md:h-auto flex-shrink-0 overflow-hidden bg-slate-900">
+        <img
+          src={post.coverImage ?? '/og-image.png'}
+          alt={post.title}
+          width={600}
+          height={315}
+          className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
         <div className="absolute top-4 left-4">
           <span className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
             &#9733; Featured
