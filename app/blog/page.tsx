@@ -4,16 +4,29 @@ import { PostCard } from '@/components/blog/PostCard'
 import { FeaturedPostCard } from '@/components/blog/FeaturedPostCard'
 
 export const metadata: Metadata = {
-  title: 'Career & CV Blog — UAE Job Market Guides',
-  description:
-    'Expert guides on writing UAE CVs, passing ATS screening, ' +
-    'landing jobs in Dubai and Abu Dhabi. Free tips for Gulf job seekers.',
-  alternates: { canonical: 'https://makemycv.ae/blog' },
-  openGraph: {
-    title: 'MakeMyCV Blog — UAE Career & CV Guides',
-    description: 'Expert CV tips for Dubai and UAE job seekers.',
-    url: 'https://makemycv.ae/blog',
+  title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
+  description: 'Expert CV writing tips, ATS guides, and UAE job market advice from the team at MakeMyCV. Free resources for Dubai and Gulf job seekers.',
+  keywords: 'cv tips uae, dubai cv format, ats cv guide, uae job market, cv writing advice dubai',
+  alternates: {
+    canonical: 'https://makemycv.ae/blog',
   },
+  openGraph: {
+    title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
+    description: 'Expert CV writing tips, ATS guides, and UAE job market advice.',
+    url: 'https://makemycv.ae/blog',
+    siteName: 'MakeMyCV',
+    locale: 'en_AE',
+    type: 'website',
+    images: [
+      {
+        url: 'https://makemycv.ae/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'MakeMyCV Blog — UAE CV Tips',
+      },
+    ],
+  },
+  robots: { index: true, follow: true },
 }
 
 export default function BlogPage() {
@@ -23,6 +36,29 @@ export default function BlogPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://makemycv.ae"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://makemycv.ae/blog"
+              }
+            ]
+          })
+        }}
+      />
       {/* Hero */}
       <section className="relative bg-gradient-hero dot-grid py-20 md:py-28 overflow-hidden">
         <div
