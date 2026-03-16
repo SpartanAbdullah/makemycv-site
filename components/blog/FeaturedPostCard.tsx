@@ -21,14 +21,20 @@ export function FeaturedPostCard({ post }: { post: Post }) {
     >
       {/* Image side */}
       <div className="relative md:w-2/5 h-56 md:h-auto flex-shrink-0 overflow-hidden bg-slate-900">
-        <img
-          src={post.coverImage ?? '/og-image.png'}
-          alt={post.title}
-          width={600}
-          height={315}
-          className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+        {post.coverImage ? (
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            width={600}
+            height={315}
+            className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-5xl">{emoji}</span>
+          </div>
+        )}
         <div className="absolute top-4 left-4">
           <span className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
             &#9733; Featured

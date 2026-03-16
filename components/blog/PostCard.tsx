@@ -28,14 +28,20 @@ export function PostCard({ post }: { post: Post }) {
     >
       {/* Cover image */}
       <div className="relative h-48 w-full overflow-hidden flex-shrink-0 bg-slate-900">
-        <img
-          src={post.coverImage ?? '/og-image.png'}
-          alt={post.title}
-          width={600}
-          height={315}
-          className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
+        {post.coverImage ? (
+          <img
+            src={post.coverImage}
+            alt={post.title}
+            width={600}
+            height={315}
+            className="w-full h-full object-cover object-left-top transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-4xl">{categoryEmoji[post.category] ?? '\uD83D\uDCBC'}</span>
+          </div>
+        )}
       </div>
 
       {/* Content */}
