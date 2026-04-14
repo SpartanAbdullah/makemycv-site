@@ -2,31 +2,43 @@ import type { Metadata } from 'next'
 import { getAllPosts, getFeaturedPosts, categories } from '@/lib/blog'
 import { PostCard } from '@/components/blog/PostCard'
 import { FeaturedPostCard } from '@/components/blog/FeaturedPostCard'
+import {
+  SITE_NAME,
+  absoluteUrl,
+  canonicalUrl,
+  indexableRobots,
+} from '@/lib/seo'
 
 export const metadata: Metadata = {
   title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
   description: 'Expert CV writing tips, ATS guides, and UAE job market advice from the team at MakeMyCV. Free resources for Dubai and Gulf job seekers.',
   keywords: 'cv tips uae, dubai cv format, ats cv guide, uae job market, cv writing advice dubai',
   alternates: {
-    canonical: 'https://makemycv.ae/blog',
+    canonical: canonicalUrl('/blog'),
   },
   openGraph: {
     title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
     description: 'Expert CV writing tips, ATS guides, and UAE job market advice.',
-    url: 'https://makemycv.ae/blog',
-    siteName: 'MakeMyCV',
+    url: canonicalUrl('/blog'),
+    siteName: SITE_NAME,
     locale: 'en_AE',
     type: 'website',
     images: [
       {
-        url: 'https://makemycv.ae/og-image.png',
+        url: absoluteUrl('/og-image.png'),
         width: 1200,
         height: 630,
-        alt: 'MakeMyCV Blog — UAE CV Tips',
+        alt: 'MakeMyCV Blog - UAE CV Tips',
       },
     ],
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
+    description: 'Expert CV writing tips, ATS guides, and UAE job market advice.',
+    images: [absoluteUrl('/og-image.png')],
+  },
+  robots: indexableRobots,
 }
 
 export default function BlogPage() {
@@ -47,13 +59,13 @@ export default function BlogPage() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://makemycv.ae"
+                "item": canonicalUrl("/")
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://makemycv.ae/blog"
+                "item": canonicalUrl("/blog")
               }
             ]
           })

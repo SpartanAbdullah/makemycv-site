@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/:path*",
+        has: [{ type: "host", value: "makemycv.ae" }],
+        destination: "https://www.makemycv.ae/:path*",
+        permanent: true,
+      },
+      {
         source: '/sitemap_index.xml',
         destination: '/sitemap.xml',
         permanent: true,

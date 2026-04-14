@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 import { PricingCards } from "./PricingCards";
 
-export const metadata: Metadata = {
-  title: "Pricing — Free & Pro Plans",
+export const metadata = buildPageMetadata({
+  title: "Pricing - Free and Pro Plans",
   description:
-    "MakeMyCV is free to use. Upgrade to Pro for premium templates, unlimited exports, and no watermark. AED 29/month.",
-};
+    "See the current MakeMyCV plan options, including the free builder and the upcoming Pro plan.",
+  path: "/pricing",
+  index: false,
+});
 
 export default function PricingPage() {
   return (

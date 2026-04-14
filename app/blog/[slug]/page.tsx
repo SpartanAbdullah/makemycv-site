@@ -4,6 +4,14 @@ import Link from 'next/link'
 import { getPostBySlug, getAllPosts, getRelatedPosts, formatDate } from '@/lib/blog'
 import { MDXContent } from '@/lib/mdx'
 import { AuthorBlock } from '@/components/blog/AuthorBlock'
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  canonicalUrl,
+  indexableRobots,
+} from '@/lib/seo'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -16,22 +24,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
 
-  const ogImageUrl = `/blog/covers/${post.slugPath}.png`
-  const canonicalUrl = `https://makemycv.ae/blog/${post.slugPath}`
+  const ogImageUrl = post.coverImage ?? DEFAULT_OG_IMAGE
+  const postCanonicalUrl = canonicalUrl(`/blog/${post.slugPath}`)
 
   return {
     title: `${post.title} | MakeMyCV`,
     description: post.excerpt,
     keywords: post.tags.join(', '),
-    authors: [{ name: post.author, url: 'https://makemycv.ae' }],
+    authors: [{ name: post.author, url: SITE_URL }],
     alternates: {
-      canonical: canonicalUrl,
+      canonical: postCanonicalUrl,
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: canonicalUrl,
-      siteName: 'MakeMyCV',
+      url: postCanonicalUrl,
+      siteName: SITE_NAME,
       locale: 'en_AE',
       type: 'article',
       publishedTime: post.date,
@@ -39,7 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       tags: post.tags,
       images: [
         {
-          url: `https://makemycv.ae${ogImageUrl}`,
+          url: absoluteUrl(ogImageUrl),
           width: 1200,
           height: 630,
           alt: post.title,
@@ -50,20 +58,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       card: 'summary_large_image',
       title: post.title,
       description: post.excerpt,
-      images: [`https://makemycv.ae${ogImageUrl}`],
+      images: [absoluteUrl(ogImageUrl)],
       site: '@makemycvae',
       creator: '@makemycvae',
     },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
+    robots: indexableRobots,
   }
 }
 
@@ -98,25 +97,25 @@ export default async function PostPage({ params }: Props) {
             "dateModified": post.date,
             "author": {
               "@type": "Organization",
-              "name": "MakeMyCV",
-              "url": "https://makemycv.ae"
+              "name": SITE_NAME,
+              "url": SITE_URL
             },
             "publisher": {
               "@type": "Organization",
-              "name": "MakeMyCV",
-              "url": "https://makemycv.ae",
+              "name": SITE_NAME,
+              "url": SITE_URL,
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://makemycv.ae/logo.png"
+                "url": absoluteUrl("/apple-touch-icon.png")
               }
             },
             "mainEntityOfPage": {
               "@type": "WebPage",
-              "@id": `https://makemycv.ae/blog/${post.slugPath}`
+              "@id": canonicalUrl(`/blog/${post.slugPath}`)
             },
             "image": {
               "@type": "ImageObject",
-              "url": `https://makemycv.ae/blog/covers/${post.slugPath}.png`,
+              "url": absoluteUrl(post.coverImage ?? DEFAULT_OG_IMAGE),
               "width": 1200,
               "height": 630
             },
@@ -133,9 +132,9 @@ export default async function PostPage({ params }: Props) {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://makemycv.ae" },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://makemycv.ae/blog" },
-              { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://makemycv.ae/blog/${post.slugPath}` }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": canonicalUrl("/") },
+              { "@type": "ListItem", "position": 2, "name": "Blog", "item": canonicalUrl("/blog") },
+              { "@type": "ListItem", "position": 3, "name": post.title, "item": canonicalUrl(`/blog/${post.slugPath}`) }
             ]
           })
         }}

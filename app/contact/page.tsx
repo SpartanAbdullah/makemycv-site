@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 import { ContactForm } from "./ContactForm";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "Contact MakeMyCV",
   description:
-    "Get in touch with the MakeMyCV team. Questions, feedback, or partnership inquiries.",
-};
+    "Get in touch with the MakeMyCV team for questions, feedback, or partnership inquiries.",
+  path: "/contact",
+  index: false,
+});
 
 export default function ContactPage() {
   return (

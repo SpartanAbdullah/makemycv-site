@@ -1,18 +1,13 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getAllPosts, formatDate } from '@/lib/blog'
+import { buildPageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'MakeMyCV Team — UAE CV & Career Specialists',
+export const metadata = buildPageMetadata({
+  title: 'MakeMyCV Team - UAE CV and Career Specialists',
   description:
-    'The MakeMyCV editorial team writes practical, ATS-focused CV guides for UAE and Gulf job seekers. Based in Dubai, focused on what actually works in the Emirates job market.',
-  alternates: { canonical: 'https://makemycv.ae/author/makemycv-team' },
-  openGraph: {
-    title: 'MakeMyCV Team — UAE CV & Career Specialists',
-    description: 'Practical CV and career guides written for Dubai and UAE job seekers.',
-    url: 'https://makemycv.ae/author/makemycv-team',
-  },
-}
+    'The MakeMyCV editorial team writes practical, ATS-focused CV guides for UAE and Gulf job seekers.',
+  path: '/author/makemycv-team',
+})
 
 export default function AuthorPage() {
   const allPosts = getAllPosts().filter((p) => p.author === 'MakeMyCV Team')

@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "CV Templates for UAE Jobs",
+export const metadata = buildPageMetadata({
+  title: "ATS-Friendly CV Templates for UAE Jobs",
   description:
-    "ATS-friendly CV templates designed for Dubai and UAE job market. Classic and Modern styles. Free to use.",
-};
+    "Browse ATS-friendly CV templates built for Dubai and UAE hiring standards. Pick a clean format and create your CV in minutes.",
+  path: "/templates",
+});
 
 export default function TemplatesPage() {
   return (

@@ -3,6 +3,13 @@ import Script from "next/script";
 import { Sora, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+  absoluteUrl,
+  indexableRobots,
+} from "@/lib/seo";
 import "./globals.css";
 
 const sora = Sora({
@@ -20,10 +27,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://makemycv.ae"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "MakeMyCV â€” Free CV Builder for UAE Jobs",
-    template: "%s | MakeMyCV",
+    default: "Free CV Builder for UAE Jobs",
+    template: `%s | ${SITE_NAME}`,
   },
   description:
     "Build a professional, ATS-friendly CV in minutes. Free CV builder designed for Dubai, Abu Dhabi & UAE job market. No sign-up required.",
@@ -40,30 +47,28 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_AE",
-    url: "https://makemycv.ae",
-    siteName: "MakeMyCV",
-    title: "MakeMyCV â€” Free CV Builder for UAE Jobs",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: "Free CV Builder for UAE Jobs",
     description:
       "ATS-friendly CV builder for Dubai & UAE. Free, instant PDF, no account needed.",
-    images: [{ url: "/og-image.png", width: 1200, height: 630 }],
+    images: [
+      {
+        url: absoluteUrl(DEFAULT_OG_IMAGE),
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} homepage`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MakeMyCV â€” Free CV Builder for UAE Jobs",
+    title: "Free CV Builder for UAE Jobs",
     description:
       "ATS-friendly CVs for UAE jobs. Free, fast, no sign-up.",
-    images: ["/og-image.png"],
+    images: [absoluteUrl(DEFAULT_OG_IMAGE)],
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
+  robots: indexableRobots,
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -95,27 +100,6 @@ export default function RootLayout({
             gtag('config', 'G-8MWPD87FJH');
           `}
         </Script>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "SoftwareApplication",
-              name: "MakeMyCV",
-              applicationCategory: "BusinessApplication",
-              operatingSystem: "Web",
-              description:
-                "Free CV builder for UAE job seekers. ATS-optimized.",
-              url: "https://app.makemycv.ae",
-              offers: {
-                "@type": "Offer",
-                price: "0",
-                priceCurrency: "AED",
-              },
-              inLanguage: "en-AE",
-            }),
-          }}
-        />
         <Navbar />
         <main>{children}</main>
         <Footer />

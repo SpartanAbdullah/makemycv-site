@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildPageMetadata({
   title: "About MakeMyCV",
   description:
-    "MakeMyCV was built to help UAE job seekers create professional, ATS-friendly CVs without expensive career coaches or complicated tools.",
-};
+    "Learn why MakeMyCV was built for UAE job seekers and how it helps candidates create professional, ATS-friendly CVs for Dubai and GCC jobs.",
+  path: "/about",
+});
 
 const values = [
   {

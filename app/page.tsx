@@ -1,12 +1,79 @@
-import type { Metadata } from "next";
+import {
+  APP_URL,
+  ORGANIZATION_ID,
+  SITE_NAME,
+  SITE_URL,
+  WEBAPP_ID,
+  WEBSITE_ID,
+  absoluteUrl,
+  buildPageMetadata,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "MakeMyCV — Free CV Builder for UAE Jobs",
+export const metadata = buildPageMetadata({
+  title: "Free CV Builder for UAE Jobs",
+  description:
+    "Build a professional UAE CV in minutes with ATS-friendly formatting, instant PDF export, and templates designed for Dubai and UAE jobs.",
+  path: "/",
+});
+
+const homepageSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/apple-touch-icon.png"),
+      },
+      areaServed: "AE",
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: "en-AE",
+      publisher: {
+        "@id": ORGANIZATION_ID,
+      },
+    },
+    {
+      "@type": "WebApplication",
+      "@id": WEBAPP_ID,
+      name: SITE_NAME,
+      url: APP_URL,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description:
+        "Free CV builder for UAE job seekers with ATS-friendly formatting and PDF export.",
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "AED",
+      },
+      isPartOf: {
+        "@id": WEBSITE_ID,
+      },
+      publisher: {
+        "@id": ORGANIZATION_ID,
+      },
+      inLanguage: "en-AE",
+    },
+  ],
 };
 
 export default function HomePage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(homepageSchema),
+        }}
+      />
       {/* ── HERO ── */}
       <section className="relative min-h-screen dot-grid noise-overlay overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%)' }}>
         {/* Blue orb top right */}
