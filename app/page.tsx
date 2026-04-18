@@ -13,6 +13,7 @@ import { TemplateShowcase } from "@/components/home/TemplateShowcase";
 import { ProblemSolution } from "@/components/home/ProblemSolution";
 import { FeatureGrid } from "@/components/home/FeatureGrid";
 import { HowItWorks } from "@/components/home/HowItWorks";
+import { PricingStrip } from "@/components/home/PricingStrip";
 import { TrustSection } from "@/components/home/TrustSection";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
@@ -86,7 +87,7 @@ export default function HomePage() {
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
-      {/* TODO: Step 7 — PricingStrip goes here */}
+      <PricingStrip />
       <TrustSection />
       <FinalCTA />
     </>
