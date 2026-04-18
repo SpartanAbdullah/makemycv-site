@@ -1,4 +1,5 @@
 import { buildPageMetadata } from "@/lib/seo";
+import { Mail, MapPin } from "lucide-react";
 import { ContactForm } from "./ContactForm";
 
 export const metadata = buildPageMetadata({
@@ -34,12 +35,16 @@ export default function ContactPage() {
         {/* Info cards */}
         <div className="mx-auto mt-12 grid max-w-xl gap-4 px-6 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 p-5 text-center">
-            <p className="text-2xl">&#128231;</p>
+            <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <Mail size={20} />
+            </div>
             <p className="mt-2 text-sm font-semibold text-slate-800">Email</p>
             <p className="text-sm text-brand-muted">hello@makemycv.ae</p>
           </div>
           <div className="rounded-xl border border-slate-200 p-5 text-center">
-            <p className="text-2xl">&#127462;&#127466;</p>
+            <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+              <MapPin size={20} />
+            </div>
             <p className="mt-2 text-sm font-semibold text-slate-800">
               Based In
             </p>
