@@ -9,6 +9,7 @@ import {
   buildPageMetadata,
 } from "@/lib/seo";
 import { HeroSection } from "@/components/home/HeroSection";
+import { TemplateShowcase } from "@/components/home/TemplateShowcase";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata = buildPageMetadata({
@@ -77,8 +78,7 @@ export default function HomePage() {
         }}
       />
       <HeroSection />
-
-      {/* TODO: Step 4 — TemplateShowcase goes here */}
+      <TemplateShowcase />
 
       {/* ── PROBLEM / SOLUTION (legacy — replaced in Step 5) ── */}
       <section className="bg-slate-50 py-20 md:py-28">
