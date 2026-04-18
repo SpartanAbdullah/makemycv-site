@@ -103,6 +103,25 @@ export default function RootLayout({
             gtag('config', 'G-8MWPD87FJH');
           `}
         </Script>
+        {/* Delegate click listener: forwards [data-event] attributes to gtag */}
+        <Script id="data-event-dispatch" strategy="afterInteractive">
+          {`
+            document.addEventListener('click', function(e) {
+              var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
+              if (!el) return;
+              var eventName = el.getAttribute('data-event');
+              if (!eventName || typeof window.gtag !== 'function') return;
+              var params = {};
+              for (var i = 0; i < el.attributes.length; i++) {
+                var attr = el.attributes[i];
+                if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-event') {
+                  params[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
+                }
+              }
+              window.gtag('event', eventName, params);
+            }, { passive: true });
+          `}
+        </Script>
         <Navbar />
         <main>{children}</main>
         <Footer />

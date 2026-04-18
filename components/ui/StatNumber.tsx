@@ -42,10 +42,7 @@ export function StatNumber({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (prefersReducedMotion()) {
-      setDisplay(value);
-      return;
-    }
+    if (prefersReducedMotion()) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
