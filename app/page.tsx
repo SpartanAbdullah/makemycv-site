@@ -10,6 +10,9 @@ import {
 } from "@/lib/seo";
 import { HeroSection } from "@/components/home/HeroSection";
 import { TemplateShowcase } from "@/components/home/TemplateShowcase";
+import { ProblemSolution } from "@/components/home/ProblemSolution";
+import { FeatureGrid } from "@/components/home/FeatureGrid";
+import { HowItWorks } from "@/components/home/HowItWorks";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export const metadata = buildPageMetadata({
@@ -79,47 +82,11 @@ export default function HomePage() {
       />
       <HeroSection />
       <TemplateShowcase />
-
-      {/* ── PROBLEM / SOLUTION (legacy — replaced in Step 5) ── */}
-      <section className="bg-slate-50 py-20 md:py-28">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800 md:text-4xl">
-            Most UAE CVs Get Rejected Before a Human Reads Them
-          </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
-              <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
-                ATS Systems Reject 75% of CVs
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Most companies in Dubai use automated screening. If your CV
-                isn&apos;t formatted correctly, it never reaches a hiring
-                manager.
-              </p>
-            </div>
-            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
-              <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
-                Word Templates Look Unprofessional
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Generic CV templates don&apos;t reflect UAE hiring standards.
-                Recruiters in the Gulf see thousands of identical-looking CVs
-                every week.
-              </p>
-            </div>
-            <div className="card-lift rounded-2xl p-8 bg-white border border-slate-100 shadow-sm text-center">
-              <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
-                MakeMyCV Fixes Both Problems
-              </h3>
-              <p className="mt-2 text-sm text-slate-500">
-                Our builder formats your CV for ATS systems automatically —
-                while keeping it visually clean for human recruiters.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <ProblemSolution />
+      <FeatureGrid />
+      <HowItWorks />
+      {/* TODO: Step 6 — TrustSection goes here */}
+      {/* TODO: Step 7 — PricingStrip goes here */}
       <FinalCTA />
     </>
   );
