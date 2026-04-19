@@ -24,6 +24,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 0.9,
   },
   {
+    path: '/resume-checker',
+    sourceFile: 'app/resume-checker/page.tsx',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  },
+  {
     path: '/blog',
     sourceFile: 'app/blog/page.tsx',
     changeFrequency: 'weekly',
