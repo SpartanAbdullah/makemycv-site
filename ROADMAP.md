@@ -2,8 +2,12 @@
 
 Scope: `makemycv.ae` (this repo). App scope lives in the app repo.
 
+_Last updated: 2026-04-19_
+
 ## Shipped
 
+- [x] 2026-04-19 — Navbar ATS Checker CTA (outline style, before primary CTA, visible on all pages, active state on `/resume-checker`)
+- [x] 2026-04-19 — HowItWorks section redesign (dense 3-card layout with inline SVG step illustrations, tighter copy)
 - [x] 2026-04-19 — `/resume-checker` SEO landing page (editorial hero with SVG score visual, problem hook, 2x2 category grid, staggered how-it-works, pricing clarity, native-details FAQ, final CTA band — 5 CTAs with distinct framing, data-cta-location + data-event wired to GA4 dispatcher, SoftwareApplication + FAQPage + BreadcrumbList JSON-LD, sitemap entry)
 
 ## Next up
