@@ -1,6 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Script from "next/script";
-import { Sora, Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -12,17 +12,17 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const sora = Sora({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-sora",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const inter = Inter({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-inter",
+  weight: ["500", "600"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -83,9 +83,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://app.makemycv.ae" />
+      </head>
       <body
-        className={`${sora.variable} ${inter.variable} antialiased bg-white`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-white`}
       >
         <Script
           async
@@ -98,6 +101,25 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-8MWPD87FJH');
+          `}
+        </Script>
+        {/* Delegate click listener: forwards [data-event] attributes to gtag */}
+        <Script id="data-event-dispatch" strategy="afterInteractive">
+          {`
+            document.addEventListener('click', function(e) {
+              var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
+              if (!el) return;
+              var eventName = el.getAttribute('data-event');
+              if (!eventName || typeof window.gtag !== 'function') return;
+              var params = {};
+              for (var i = 0; i < el.attributes.length; i++) {
+                var attr = el.attributes[i];
+                if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-event') {
+                  params[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
+                }
+              }
+              window.gtag('event', eventName, params);
+            }, { passive: true });
           `}
         </Script>
         <Navbar />

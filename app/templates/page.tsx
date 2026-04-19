@@ -1,4 +1,5 @@
 import { buildPageMetadata } from "@/lib/seo";
+import { Check, CheckCircle2, XCircle } from "lucide-react";
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
@@ -62,10 +63,17 @@ export default function TemplatesPage() {
                 corporate roles in finance, operations, and government sectors.
               </p>
               <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-                <li>&#10003; Single column layout</li>
-                <li>&#10003; ATS-optimized structure</li>
-                <li>&#10003; Works for all industries</li>
-                <li>&#10003; PDF &amp; DOCX export</li>
+                {[
+                  "Single column layout",
+                  "ATS-optimized structure",
+                  "Works for all industries",
+                  "PDF & DOCX export",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check size={16} className="mt-0.5 shrink-0 text-emerald-500" strokeWidth={2.5} />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <a
                 href="https://app.makemycv.ae"
@@ -110,10 +118,17 @@ export default function TemplatesPage() {
                 marketing roles where visual presentation matters.
               </p>
               <ul className="mt-4 space-y-1.5 text-sm text-slate-300">
-                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Two-column sidebar layout</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Skills visualization</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> Profile photo support</li>
-                <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> ATS-safe design</li>
+                {[
+                  "Two-column sidebar layout",
+                  "Skills visualization",
+                  "Profile photo support",
+                  "ATS-safe design",
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <Check size={16} className="mt-0.5 shrink-0 text-blue-400" strokeWidth={2.5} />
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
               <a
                 href="/pricing"
@@ -152,7 +167,7 @@ export default function TemplatesPage() {
             <div className="grid gap-4">
               <div className="rounded-2xl p-6 border-2 border-red-100 bg-red-50">
                 <p className="font-bold text-red-600 mb-3 flex items-center gap-2">
-                  <span>&#10060;</span> Rejected by ATS
+                  <XCircle size={18} className="text-red-500" /> Rejected by ATS
                 </p>
                 <ul className="space-y-1 text-xs text-red-600">
                   <li>&bull; Tables and multi-column layouts</li>
@@ -163,7 +178,7 @@ export default function TemplatesPage() {
               </div>
               <div className="rounded-2xl p-6 border-2 border-green-100 bg-green-50">
                 <p className="font-bold text-green-600 mb-3 flex items-center gap-2">
-                  <span>&#9989;</span> Passes ATS
+                  <CheckCircle2 size={18} className="text-emerald-500" /> Passes ATS
                 </p>
                 <ul className="space-y-1 text-xs text-green-600">
                   <li>&bull; Clean text formatting</li>
