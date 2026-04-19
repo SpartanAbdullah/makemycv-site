@@ -64,15 +64,29 @@ export const Navbar = () => {
           })}
         </div>
 
-        {/* Desktop CTA */}
-        <a
-          href="https://app.makemycv.ae"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl md:inline-block"
-        >
-          Start Building Free &rarr;
-        </a>
+        {/* Desktop CTAs */}
+        <div className="hidden items-center gap-3 md:flex">
+          <Link
+            href="/resume-checker"
+            className={`inline-flex items-center rounded-xl border text-sm font-semibold px-5 py-2.5 transition-colors ${
+              pathname === "/resume-checker"
+                ? "border-brand-blue-dark bg-brand-blue/10 text-brand-blue-dark"
+                : "border-brand-blue bg-white text-brand-blue hover:bg-brand-blue/5 hover:border-brand-blue-dark"
+            }`}
+            data-cta-location="navbar-ats-checker"
+            data-event="navbar_ats_checker_click"
+          >
+            ATS Checker
+          </Link>
+          <a
+            href="https://app.makemycv.ae"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl"
+          >
+            Start Building Free &rarr;
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -112,11 +126,24 @@ export const Navbar = () => {
                 </Link>
               );
             })}
+            <Link
+              href="/resume-checker"
+              onClick={() => setMenuOpen(false)}
+              className={`mt-2 inline-flex items-center justify-center rounded-xl border px-5 py-2.5 text-center text-sm font-semibold transition-colors ${
+                pathname === "/resume-checker"
+                  ? "border-brand-blue-dark bg-brand-blue/10 text-brand-blue-dark"
+                  : "border-brand-blue bg-white text-brand-blue hover:bg-brand-blue/5"
+              }`}
+              data-cta-location="navbar-ats-checker"
+              data-event="navbar_ats_checker_click"
+            >
+              ATS Checker
+            </Link>
             <a
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 btn-primary rounded-xl px-5 py-2.5 text-center text-sm font-bold text-white"
+              className="btn-primary rounded-xl px-5 py-2.5 text-center text-sm font-bold text-white"
             >
               Start Building Free &rarr;
             </a>

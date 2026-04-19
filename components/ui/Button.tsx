@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 
-type Variant = "primary" | "ghost" | "text";
+type Variant = "primary" | "ghost" | "outline" | "text";
 type Size = "sm" | "md" | "lg";
 type Tone = "light" | "dark";
 
@@ -21,6 +21,10 @@ const variants: Record<Variant, (tone: Tone) => string> = {
     tone === "dark"
       ? "border border-white/20 text-white hover:bg-white/10"
       : "border border-line text-slate-800 hover:bg-paper-2",
+  outline: (tone) =>
+    tone === "dark"
+      ? "border border-blue-300/40 bg-white/5 text-blue-200 hover:bg-white/10 hover:border-blue-200/60"
+      : "border border-brand-blue bg-white text-brand-blue hover:bg-brand-blue/5 hover:border-brand-blue-dark",
   text: () =>
     "text-brand-blue hover:underline underline-offset-4 px-0 py-0 shadow-none",
 };
