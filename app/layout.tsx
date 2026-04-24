@@ -69,6 +69,10 @@ export const metadata: Metadata = {
     images: [absoluteUrl(DEFAULT_OG_IMAGE)],
   },
   robots: indexableRobots,
+  verification: {
+    // Google Search Console site verification — keep in place even after verified.
+    google: "4-GkL9sPp54uDmGNaKlzJfRKR1PSVXFxgZKvE_RukQQ",
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
