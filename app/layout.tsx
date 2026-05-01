@@ -90,8 +90,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="preconnect" href="https://app.makemycv.ae" />
-        {/* Google Tag Manager — fires as early as possible so GTM owns tag loading */}
-        <Script id="google-tag-manager" strategy="afterInteractive">
+        {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4. */}
+        <Script id="google-tag-manager" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -111,21 +111,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-8MWPD87FJH"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-8MWPD87FJH');
-          `}
-        </Script>
-        {/* Delegate click listener: forwards [data-event] attributes to gtag */}
-        <Script id="data-event-dispatch" strategy="afterInteractive">
+        {/* Delegate click listener: forwards [data-event] attributes to gtag (exposed by GTM's GA4 tag) */}
+        <Script id="data-event-dispatch" strategy="lazyOnload">
           {`
             document.addEventListener('click', function(e) {
               var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;

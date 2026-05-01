@@ -68,14 +68,14 @@ export const Navbar = () => {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/resume-checker"
-            className={`inline-flex items-center rounded-xl border text-sm font-semibold px-5 py-2.5 transition-colors ${
-              pathname === "/resume-checker"
-                ? "border-brand-blue-dark bg-brand-blue/10 text-brand-blue-dark"
-                : "border-brand-blue bg-white text-brand-blue hover:bg-brand-blue/5 hover:border-brand-blue-dark"
-            }`}
+            className="glow-border group relative inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
             data-cta-location="navbar-ats-checker"
             data-event="navbar_ats_checker_click"
           >
+            <span
+              aria-hidden="true"
+              className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]"
+            />
             ATS Checker
           </Link>
           <a
@@ -129,14 +129,14 @@ export const Navbar = () => {
             <Link
               href="/resume-checker"
               onClick={() => setMenuOpen(false)}
-              className={`mt-2 inline-flex items-center justify-center rounded-xl border px-5 py-2.5 text-center text-sm font-semibold transition-colors ${
-                pathname === "/resume-checker"
-                  ? "border-brand-blue-dark bg-brand-blue/10 text-brand-blue-dark"
-                  : "border-brand-blue bg-white text-brand-blue hover:bg-brand-blue/5"
-              }`}
+              className="glow-border mt-2 inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-slate-800"
               data-cta-location="navbar-ats-checker"
               data-event="navbar_ats_checker_click"
             >
+              <span
+                aria-hidden="true"
+                className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]"
+              />
               ATS Checker
             </Link>
             <a

@@ -112,3 +112,153 @@ body {
   transform: translateY(-6px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
+
+/* ── Neon AI border (Samsung Galaxy AI / Gemini-style) ─────────────── */
+@property --neon-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes neon-spin {
+  to {
+    --neon-angle: 360deg;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Glow border — dark pill with a thin cyan→blue gradient ring and a slow,
+   breathing outer halo. Brand-aligned, no rainbow, no spin. */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+  background-clip: padding-box;
+  border: 1.5px solid transparent;
+}
+
+/* The visible gradient ring (sits behind the button via -z-1). */
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  animation: glow-shift 6s ease-in-out infinite;
+}
+
+/* Soft outer halo that breathes opacity. */
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  filter: blur(8px);
+  opacity: 0.5;
+  animation:
+    glow-shift 6s ease-in-out infinite,
+    glow-pulse 3s ease-in-out infinite;
+}
+
+.glow-border:hover::after {
+  opacity: 0.85;
+}
+
+@keyframes glow-shift {
+  0%, 100% { background-position: 0% 0%; }
+  50%      { background-position: 100% 100%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before,
+  .glow-border::after {
+    animation: none;
+  }
+  .glow-border::after {
+    opacity: 0.5;
+  }
+}
+
+/* ── Scanner beam (resume-checker hero motif) ──────────────────────── */
+@keyframes scanner-sweep {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(130%);
+    opacity: 0;
+  }
+}
+
+.scanner-beam {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scanner-beam::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.08) 35%,
+    rgba(34, 211, 238, 0.22) 50%,
+    rgba(34, 211, 238, 0.08) 65%,
+    transparent 100%
+  );
+  animation: scanner-sweep 6s ease-in-out infinite;
+}
+
+.scanner-beam::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.6) 20%,
+    rgba(167, 139, 250, 0.7) 50%,
+    rgba(34, 211, 238, 0.6) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
+  animation: scanner-sweep 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanner-beam::before,
+  .scanner-beam::after {
+    animation: none;
+    display: none;
+  }
+}
