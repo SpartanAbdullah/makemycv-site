@@ -135,60 +135,66 @@ body {
   }
 }
 
-.neon-border {
+/* Glow border — dark pill with a thin cyan→blue gradient ring and a slow,
+   breathing outer halo. Brand-aligned, no rainbow, no spin. */
+.glow-border {
   position: relative;
   isolation: isolate;
-  background: white;
   background-clip: padding-box;
   border: 1.5px solid transparent;
 }
 
-.neon-border::before,
-.neon-border::after {
+/* The visible gradient ring (sits behind the button via -z-1). */
+.glow-border::before {
   content: "";
   position: absolute;
-  border-radius: inherit;
-  pointer-events: none;
-  background: conic-gradient(
-    from var(--neon-angle),
-    #06b6d4 0%,
-    #3b82f6 18%,
-    #8b5cf6 36%,
-    #ec4899 54%,
-    #06b6d4 72%,
-    #22d3ee 90%,
-    #06b6d4 100%
-  );
-}
-
-/* sharp gradient ring sitting just outside the button */
-.neon-border::before {
   inset: -1.5px;
   z-index: -1;
-  animation: neon-spin 3.5s linear infinite;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  animation: glow-shift 6s ease-in-out infinite;
 }
 
-/* soft outer halo */
-.neon-border::after {
-  inset: -7px;
+/* Soft outer halo that breathes opacity. */
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
   z-index: -2;
-  filter: blur(10px);
-  opacity: 0.7;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  filter: blur(8px);
+  opacity: 0.5;
   animation:
-    neon-spin 3.5s linear infinite,
-    neon-pulse 2.4s ease-in-out infinite;
+    glow-shift 6s ease-in-out infinite,
+    glow-pulse 3s ease-in-out infinite;
+}
+
+.glow-border:hover::after {
+  opacity: 0.85;
+}
+
+@keyframes glow-shift {
+  0%, 100% { background-position: 0% 0%; }
+  50%      { background-position: 100% 100%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .neon-border::before,
-  .neon-border::after {
+  .glow-border::before,
+  .glow-border::after {
     animation: none;
-    background: linear-gradient(
-      135deg,
-      #06b6d4 0%,
-      #3b82f6 50%,
-      #8b5cf6 100%
-    );
+  }
+  .glow-border::after {
+    opacity: 0.5;
   }
 }
 
