@@ -101,32 +101,41 @@ export default function ResumeCheckerPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* HERO — asymmetric 60/40 editorial layout */}
+      {/* HERO — distinct "scanner" identity vs. the navy home hero */}
       <section
         className="relative overflow-hidden text-white"
         style={{
           background:
-            "linear-gradient(135deg, #0a0f1e 0%, #111827 50%, #0a0f1e 100%)",
+            "radial-gradient(ellipse 90% 70% at 30% 0%, #1e1b4b 0%, transparent 60%)," +
+            "radial-gradient(ellipse 70% 60% at 90% 100%, #134e4a 0%, transparent 65%)," +
+            "linear-gradient(180deg, #050714 0%, #0b0a23 100%)",
         }}
       >
-        <div className="hero-spotlight" aria-hidden="true" />
-        {/* subtle dot grid texture */}
+        {/* Animated scanner beam — gives this page a unique, "diagnostic" identity */}
+        <div className="scanner-beam" aria-hidden="true" />
+
+        {/* fine grid texture */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.12]"
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
           style={{
             backgroundImage:
-              "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
+              "linear-gradient(rgba(34,211,238,0.12) 1px, transparent 1px)," +
+              "linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+            maskImage:
+              "radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%)",
           }}
         />
 
         <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-20 md:py-28 lg:grid-cols-5 lg:gap-10">
           {/* Left copy — 60% */}
           <div className="lg:col-span-3">
-            <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              Free · UAE-focused
+            <p className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-300">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
+              ATS Diagnostic · UAE-focused · Free
             </p>
 
             <h1
@@ -139,7 +148,14 @@ export default function ResumeCheckerPage() {
             >
               Is your CV going to pass
               <br />
-              the <span className="text-blue-400">UAE ATS</span> —
+              the{" "}
+              <span
+                className="bg-gradient-to-r from-cyan-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
+                style={{ backgroundSize: "200% 100%" }}
+              >
+                UAE ATS
+              </span>{" "}
+              —
               <br />
               or get filtered out?
             </h1>
