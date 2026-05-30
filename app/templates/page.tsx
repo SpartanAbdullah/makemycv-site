@@ -85,8 +85,8 @@ export default function TemplatesPage() {
                 boxShadow: '0 0 60px rgba(37,99,235,0.2)',
               }}
             >
-              <span className="absolute right-4 top-4 rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-400">
-                PRO
+              <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                FREE
               </span>
               {/* Thumbnail */}
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -116,10 +116,12 @@ export default function TemplatesPage() {
                 <li className="flex items-start gap-2"><span className="text-blue-400">&#10003;</span> ATS-safe design</li>
               </ul>
               <a
-                href="/pricing"
+                href="https://app.makemycv.ae"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
               >
-                Unlock with Pro &rarr;
+                Use This Template &rarr;
               </a>
             </div>
           </div>

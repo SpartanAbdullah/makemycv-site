@@ -20,8 +20,8 @@ const values = [
   },
   {
     icon: "\uD83D\uDC9A",
-    title: "Always Free at Core",
-    desc: "The fundamental tool will always be free. We monetize Pro features, not basic access.",
+    title: "Free, Always",
+    desc: "MakeMyCV is fully free. We accept voluntary tips from people who find it useful \u2014 never a paywall.",
   },
 ];
 
