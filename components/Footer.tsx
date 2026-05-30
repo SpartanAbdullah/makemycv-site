@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Heart, MapPin } from "lucide-react";
 
 const pageLinks = [
   { href: "/", label: "Home" },
@@ -81,11 +82,12 @@ export const Footer = () => (
       />
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-slate-600 sm:flex-row">
         <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
-        <span className="text-xs text-slate-600 flex items-center gap-1">
-          Made with{' '}
-          <span className="text-red-500">&#10084;&#65039;</span>
-          {' '}in{' '}
-          <span className="flag-emoji text-base">&#127462;&#127466;</span>
+        <span className="text-xs text-slate-600 flex items-center gap-1.5">
+          Made with
+          <Heart size={14} className="text-red-500 fill-red-500" />
+          in
+          <MapPin size={14} className="text-blue-400" />
+          UAE
         </span>
       </div>
     </div>

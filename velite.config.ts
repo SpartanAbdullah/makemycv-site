@@ -33,6 +33,26 @@ const posts = defineCollection({
   })),
 })
 
+const templates = defineCollection({
+  name: 'Template',
+  pattern: 'templates/**/*.mdx',
+  schema: s.object({
+    name: s.string().max(50),
+    slug: s.slug('templates').optional(),
+    positioning: s.string().max(120),
+    tags: s.array(s.string()).default([]),
+    thumbnail: s.string().default(''),
+    accent: s.enum(['blue', 'emerald', 'amber', 'slate', 'indigo']).default('blue'),
+    order: s.number().default(100),
+    pro: s.boolean().default(false),
+    published: s.boolean().default(true),
+  })
+  .transform((data, { meta }) => ({
+    ...data,
+    slug: data.slug ?? meta.path.split(/[\\/]/).pop()!.replace(/\.mdx$/, ''),
+  })),
+})
+
 export default defineConfig({
   root: 'content',
   output: {
@@ -42,7 +62,7 @@ export default defineConfig({
     name: '[name]-[hash:6].[ext]',
     clean: true,
   },
-  collections: { posts },
+  collections: { posts, templates },
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],

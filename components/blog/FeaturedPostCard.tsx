@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Star } from 'lucide-react'
 import type { Post } from '@/lib/blog'
 import { formatDate } from '@/lib/blog'
 
@@ -36,8 +37,9 @@ export function FeaturedPostCard({ post }: { post: Post }) {
           </div>
         )}
         <div className="absolute top-4 left-4">
-          <span className="bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
-            &#9733; Featured
+          <span className="inline-flex items-center gap-1 bg-[#2563eb] text-white text-xs font-bold px-3 py-1 rounded-full">
+            <Star size={12} className="fill-white" />
+            Featured
           </span>
         </div>
       </div>

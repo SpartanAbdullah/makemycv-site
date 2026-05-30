@@ -64,15 +64,29 @@ export const Navbar = () => {
           })}
         </div>
 
-        {/* Desktop CTA */}
-        <a
-          href="https://app.makemycv.ae"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl md:inline-block"
-        >
-          Start Building Free &rarr;
-        </a>
+        {/* Desktop CTAs */}
+        <div className="hidden items-center gap-3 md:flex">
+          <Link
+            href="/resume-checker"
+            className="glow-border group relative inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+            data-cta-location="navbar-ats-checker"
+            data-event="navbar_ats_checker_click"
+          >
+            <span
+              aria-hidden="true"
+              className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]"
+            />
+            ATS Checker
+          </Link>
+          <a
+            href="https://app.makemycv.ae"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-white text-sm font-bold px-5 py-2.5 rounded-xl"
+          >
+            Start Building Free &rarr;
+          </a>
+        </div>
 
         {/* Mobile hamburger */}
         <button
@@ -112,11 +126,24 @@ export const Navbar = () => {
                 </Link>
               );
             })}
+            <Link
+              href="/resume-checker"
+              onClick={() => setMenuOpen(false)}
+              className="glow-border mt-2 inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-slate-800"
+              data-cta-location="navbar-ats-checker"
+              data-event="navbar_ats_checker_click"
+            >
+              <span
+                aria-hidden="true"
+                className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]"
+              />
+              ATS Checker
+            </Link>
             <a
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 btn-primary rounded-xl px-5 py-2.5 text-center text-sm font-bold text-white"
+              className="btn-primary rounded-xl px-5 py-2.5 text-center text-sm font-bold text-white"
             >
               Start Building Free &rarr;
             </a>

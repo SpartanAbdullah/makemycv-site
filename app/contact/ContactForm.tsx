@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle2 } from "lucide-react";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
@@ -46,7 +47,7 @@ export const ContactForm = () => {
   if (formState === "success") {
     return (
       <div className="rounded-2xl bg-green-50 border border-green-200 p-8 text-center">
-        <div className="text-4xl mb-3">&#9989;</div>
+        <CheckCircle2 size={48} className="text-emerald-500 mx-auto mb-3" strokeWidth={2} />
         <h3 className="font-bold text-green-800 text-xl mb-2">
           Message Sent!
         </h3>

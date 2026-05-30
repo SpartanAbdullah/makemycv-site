@@ -1,6 +1,8 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Script from "next/script";
-import { Sora, Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import {
@@ -12,17 +14,17 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const sora = Sora({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-sora",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const inter = Inter({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-inter",
+  weight: ["500", "600"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -69,6 +71,10 @@ export const metadata: Metadata = {
     images: [absoluteUrl(DEFAULT_OG_IMAGE)],
   },
   robots: indexableRobots,
+  verification: {
+    // Google Search Console site verification — keep in place even after verified.
+    google: "4-GkL9sPp54uDmGNaKlzJfRKR1PSVXFxgZKvE_RukQQ",
+  },
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon-16x16.png",
@@ -83,26 +89,54 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sora.variable} ${inter.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://app.makemycv.ae" />
+        {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4. */}
+        <Script id="google-tag-manager" strategy="lazyOnload">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5H2LMVJT');`}
+        </Script>
+      </head>
       <body
-        className={`${sora.variable} ${inter.variable} antialiased bg-white`}
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-white`}
       >
-        <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-8MWPD87FJH"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
+        {/* Google Tag Manager (noscript) — must be immediately after opening <body> */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5H2LMVJT"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* Delegate click listener: forwards [data-event] attributes to gtag (exposed by GTM's GA4 tag) */}
+        <Script id="data-event-dispatch" strategy="lazyOnload">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-8MWPD87FJH');
+            document.addEventListener('click', function(e) {
+              var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
+              if (!el) return;
+              var eventName = el.getAttribute('data-event');
+              if (!eventName || typeof window.gtag !== 'function') return;
+              var params = {};
+              for (var i = 0; i < el.attributes.length; i++) {
+                var attr = el.attributes[i];
+                if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-event') {
+                  params[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
+                }
+              }
+              window.gtag('event', eventName, params);
+            }, { passive: true });
           `}
         </Script>
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

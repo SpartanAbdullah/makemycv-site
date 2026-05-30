@@ -2,33 +2,53 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
+  /* ── Brand ───────────────────────────────────────────────────────── */
+  --color-brand-blue: #2563eb;
+  --color-brand-blue-dark: #1d4ed8;
+  --color-brand-ink: #0a0f1e;
+  --color-brand-deep: #111827;
+
+  /* Legacy aliases (kept for existing pages — do not use in new code) */
   --color-brand-navy: #0a0f1e;
   --color-brand-navy-2: #0f172a;
-  --color-brand-blue: #2563eb;
   --color-brand-indigo: #4f46e5;
   --color-brand-light: #f8fafc;
   --color-brand-muted: #64748b;
   --color-brand-border: #e2e8f0;
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-sora);
 
+  /* ── Accents ─────────────────────────────────────────────────────── */
+  --color-accent-cyan: #06b6d4;
+
+  /* ── Paper / surfaces ────────────────────────────────────────────── */
+  --color-paper: #ffffff;
+  --color-paper-2: #f8fafc;
+
+  /* ── Line ────────────────────────────────────────────────────────── */
+  --color-line: #e2e8f0;
+
+  /* ── Fonts ───────────────────────────────────────────────────────── */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* ── Shadows ─────────────────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm-soft: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-md-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg-soft: 0 16px 48px rgba(15, 23, 42, 0.08);
+  --shadow-cta: 0 6px 20px rgba(37, 99, 235, 0.35);
+  --shadow-cta-hover: 0 10px 28px rgba(37, 99, 235, 0.45);
+
+  /* Legacy shadow aliases */
   --shadow-blue-glow: 0 0 40px rgba(37, 99, 235, 0.15);
   --shadow-blue-glow-lg: 0 0 60px rgba(37, 99, 235, 0.25);
   --shadow-card-hover: 0 20px 60px rgba(0, 0, 0, 0.12);
   --shadow-card-blue: 0 8px 32px rgba(37, 99, 235, 0.12);
 
-  --animate-fade-up: fadeUp 0.6s ease-out forwards;
-  --animate-float: float 6s ease-in-out infinite;
-}
-
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  /* ── Letter spacing ──────────────────────────────────────────────── */
+  --tracking-eyebrow: 0.12em;
+  --tracking-tight-2: -0.02em;
+  --tracking-tight-1-5: -0.015em;
 }
 
 body {
@@ -37,21 +57,37 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Dot grid pattern for hero sections */
+/* ── Hero spotlight (replaces the old two orbs) ────────────────────── */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 40%,
+    rgba(37, 99, 235, 0.18) 0%,
+    transparent 70%
+  );
+}
+
+/* ── Dot grid pattern (kept — subtle texture, no animation) ────────── */
 .dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.06) 1px,
+    transparent 1px
+  );
   background-size: 28px 28px;
 }
 
-/* Glassmorphism card */
+/* ── Glass card (kept — used by Card variant="glass") ──────────────── */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* Gradient text */
+/* ── Legacy (kept for untouched pages: about, contact, blog) ───────── */
 .gradient-text {
   background: linear-gradient(135deg, #2563eb 0%, #818cf8 100%);
   -webkit-background-clip: text;
@@ -59,7 +95,6 @@ body {
   background-clip: text;
 }
 
-/* Button gradient with glow */
 .btn-primary {
   background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
   box-shadow: 0 4px 24px rgba(37, 99, 235, 0.35);
@@ -70,7 +105,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Card lift on hover */
 .card-lift {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -79,24 +113,152 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-/* Noise texture overlay */
-.noise-overlay::before {
-  content: '';
+/* ── Neon AI border (Samsung Galaxy AI / Gemini-style) ─────────────── */
+@property --neon-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes neon-spin {
+  to {
+    --neon-angle: 360deg;
+  }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.95;
+  }
+}
+
+/* Glow border — dark pill with a thin cyan→blue gradient ring and a slow,
+   breathing outer halo. Brand-aligned, no rainbow, no spin. */
+.glow-border {
+  position: relative;
+  isolation: isolate;
+  background-clip: padding-box;
+  border: 1.5px solid transparent;
+}
+
+/* The visible gradient ring (sits behind the button via -z-1). */
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  animation: glow-shift 6s ease-in-out infinite;
+}
+
+/* Soft outer halo that breathes opacity. */
+.glow-border::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  z-index: -2;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #6366f1 100%);
+  background-size: 200% 200%;
+  filter: blur(8px);
+  opacity: 0.5;
+  animation:
+    glow-shift 6s ease-in-out infinite,
+    glow-pulse 3s ease-in-out infinite;
+}
+
+.glow-border:hover::after {
+  opacity: 0.85;
+}
+
+@keyframes glow-shift {
+  0%, 100% { background-position: 0% 0%; }
+  50%      { background-position: 100% 100%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50%      { opacity: 0.75; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-border::before,
+  .glow-border::after {
+    animation: none;
+  }
+  .glow-border::after {
+    opacity: 0.5;
+  }
+}
+
+/* ── Scanner beam (resume-checker hero motif) ──────────────────────── */
+@keyframes scanner-sweep {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(130%);
+    opacity: 0;
+  }
+}
+
+.scanner-beam {
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
-  opacity: 0.4;
+  overflow: hidden;
 }
 
-/* Gradient hero background */
-.bg-gradient-hero {
-  background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%);
+.scanner-beam::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.08) 35%,
+    rgba(34, 211, 238, 0.22) 50%,
+    rgba(34, 211, 238, 0.08) 65%,
+    transparent 100%
+  );
+  animation: scanner-sweep 6s ease-in-out infinite;
 }
 
-/* UAE flag emoji fix */
-.flag-emoji {
-  font-family: 'Apple Color Emoji', 'Segoe UI Emoji',
-               'Noto Color Emoji', sans-serif;
-  font-style: normal;
+.scanner-beam::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.6) 20%,
+    rgba(167, 139, 250, 0.7) 50%,
+    rgba(34, 211, 238, 0.6) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.5);
+  animation: scanner-sweep 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanner-beam::before,
+  .scanner-beam::after {
+    animation: none;
+    display: none;
+  }
 }
