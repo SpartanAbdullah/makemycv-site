@@ -88,6 +88,10 @@ body {
 }
 
 /* ── Legacy (kept for untouched pages: about, contact, blog) ───────── */
+.bg-gradient-hero {
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%);
+}
+
 .gradient-text {
   background: linear-gradient(135deg, #2563eb 0%, #818cf8 100%);
   -webkit-background-clip: text;
