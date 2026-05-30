@@ -18,7 +18,7 @@ const steps = [
     n: 3,
     time: "~30 sec",
     title: "Download & apply.",
-    body: "Export as PDF, or unlock AI rewriting and watermark removal for $5.",
+    body: "Export as PDF or DOCX. Clean, no watermark, ready to send.",
   },
 ];
 

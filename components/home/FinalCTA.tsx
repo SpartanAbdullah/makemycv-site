@@ -17,8 +17,7 @@ export function FinalCTA() {
           Your next UAE job starts with the right CV.
         </h2>
         <p className="mt-5 text-lg text-slate-300 md:text-xl">
-          Free to build. $5 only if you love it enough to download without the
-          watermark.
+          Free to build. Free to download. No paywall, no account, no upsell.
         </p>
 
         <div className="mt-10">

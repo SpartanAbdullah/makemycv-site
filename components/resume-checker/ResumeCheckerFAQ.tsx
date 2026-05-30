@@ -1,7 +1,7 @@
 export const faqItems = [
   {
     q: "Is this actually free?",
-    a: "Yes — the full ATS check is free and every finding is visible. No email gate, no premium tier, no account needed. We make money only if you choose to buy a polished download from the MakeMyCV builder for a one-time $5.",
+    a: "Yes — the full ATS check is free and every finding is visible. No email gate, no paid tier, no account needed. The whole MakeMyCV builder is free too. If the tool helped you, you can leave a voluntary tip on the support page toward hosting and AI costs — entirely optional.",
   },
   {
     q: "What happens to my CV after I upload it?",

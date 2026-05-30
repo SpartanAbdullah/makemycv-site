@@ -54,8 +54,8 @@ export function WhatWeCheck() {
             </h2>
           </div>
           <p className="max-w-md text-[15px] leading-relaxed text-slate-600">
-            Four categories. ~60 individual checks. Every issue shown, no gated
-            premium report.
+            Four categories. ~60 individual checks. Every issue shown, every
+            finding visible — nothing held back.
           </p>
         </div>
 

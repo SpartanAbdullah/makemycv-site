@@ -29,10 +29,6 @@ const HowItWorks = dynamic(
   () => import("@/components/home/HowItWorks").then((m) => ({ default: m.HowItWorks })),
   { loading: () => <div style={{ minHeight: 500 }} /> },
 );
-const PricingStrip = dynamic(
-  () => import("@/components/home/PricingStrip").then((m) => ({ default: m.PricingStrip })),
-  { loading: () => <div style={{ minHeight: 400 }} /> },
-);
 const TrustSection = dynamic(
   () => import("@/components/home/TrustSection").then((m) => ({ default: m.TrustSection })),
   { loading: () => <div style={{ minHeight: 400 }} /> },
@@ -45,7 +41,7 @@ const FinalCTA = dynamic(
 export const metadata = buildPageMetadata({
   title: "Free CV Builder for UAE Jobs",
   description:
-    "Build a CV UAE recruiters actually open — ATS-clean, visa-ready, designed for Dubai, Abu Dhabi & GCC hiring. Free to build, no sign-up. $5 one-time download to remove watermark.",
+    "Build a CV UAE recruiters actually open — ATS-clean, visa-ready, designed for Dubai, Abu Dhabi & GCC hiring. Free, no sign-up, no paywall.",
   path: "/",
 });
 
@@ -112,7 +108,6 @@ export default function HomePage() {
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
-      <PricingStrip />
       <TrustSection />
       <FinalCTA />
     </>

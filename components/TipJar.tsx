@@ -77,19 +77,39 @@ export const TipJar = ({
   return (
     <div
       data-context={context}
-      className={`rounded-2xl border border-slate-200 bg-white card-lift ${
+      className={`relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card-blue card-lift ${
         isCompact ? "p-6" : "p-6 md:p-8"
       }`}
     >
-      <h3
-        className={`font-display font-bold text-slate-800 ${
-          isCompact ? "text-xl" : "text-2xl md:text-3xl"
-        }`}
-      >
-        {isCompact ? "Did this help?" : "Support a free tool"}
-      </h3>
+      {/* Accent bar (full variant only) */}
+      {!isCompact && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-1"
+          style={{
+            background:
+              "linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #2563eb 100%)",
+          }}
+        />
+      )}
+
+      <div className="flex items-baseline justify-between gap-3">
+        <h3
+          className={`font-display font-bold text-slate-900 ${
+            isCompact ? "text-xl" : "text-2xl md:text-3xl"
+          }`}
+        >
+          {isCompact ? "Did this help?" : "Support a free tool"}
+        </h3>
+        {!isCompact && (
+          <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#2563eb]">
+            Tip Jar
+          </span>
+        )}
+      </div>
       <p className="mt-2 text-sm text-brand-muted">
-        MakeMyCV is free. Tips help cover hosting and AI costs.
+        MakeMyCV is free. Tips help cover hosting and AI costs &mdash; nothing
+        more.
       </p>
 
       {/* Preset tiles */}
@@ -142,8 +162,10 @@ export const TipJar = ({
 
       {/* Emoji + message */}
       <div className="mt-6 text-center transition-all duration-200">
-        <div className="text-5xl leading-none">{emoji}</div>
-        <p className="mt-2 text-sm text-slate-600">{message}</p>
+        <div className={isCompact ? "text-5xl leading-none" : "text-6xl leading-none"}>
+          {emoji}
+        </div>
+        <p className="mt-3 text-sm font-medium text-slate-700">{message}</p>
       </div>
 
       {/* CTA */}
@@ -151,21 +173,19 @@ export const TipJar = ({
         type="button"
         onClick={handleTipClick}
         disabled={disabled}
-        className={`mt-6 block w-full rounded-xl px-6 py-3.5 text-center text-base font-bold text-white transition-all ${
-          disabled
-            ? "cursor-not-allowed bg-slate-300"
-            : "btn-primary"
-        }`}
+        className={`mt-6 block w-full rounded-xl text-center font-bold text-white transition-all ${
+          isCompact ? "px-6 py-3 text-base" : "px-6 py-4 text-lg"
+        } ${disabled ? "cursor-not-allowed bg-slate-300" : "btn-primary"}`}
       >
         {disabled
-          ? "Choose an amount above"
+          ? "Pick an amount to continue"
           : `Tip $${amount} via PayPal`}
       </button>
 
       {/* Reassurance */}
       <p className="mt-3 text-center text-xs text-slate-500">
         Secure via PayPal. No PayPal account needed &mdash; credit card works
-        too. After tipping, you can close that tab and come back here.
+        too.
       </p>
     </div>
   );

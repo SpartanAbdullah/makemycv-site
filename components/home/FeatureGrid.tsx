@@ -30,7 +30,7 @@ const features: Feature[] = [
   {
     icon: Download,
     title: "Instant PDF export",
-    body: "One click, clean PDF. Free download comes with a light watermark. Pro removes it for $5.",
+    body: "One click, clean PDF. No watermark. No paywall. Send it as soon as it downloads.",
   },
   {
     icon: Eye,
@@ -39,8 +39,8 @@ const features: Feature[] = [
   },
   {
     icon: Sparkles,
-    title: "AI rewriter (Pro)",
-    body: "Turns \u201Cresponsible for managing team\u201D into \u201CLed 8-person operations team, reduced fulfilment time 22%\u201D.",
+    title: "AI rewriter",
+    body: "Turns \u201Cresponsible for managing team\u201D into \u201CLed 8-person operations team, reduced fulfilment time 22%\u201D. Free, rate-limited per IP.",
   },
   {
     icon: Lock,

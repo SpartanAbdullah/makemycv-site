@@ -122,7 +122,7 @@ const steps: Step[] = [
   {
     num: "02",
     title: "You review the full report",
-    body: "Severity-ranked. Fix-first list. No premium gate — every finding is visible.",
+    body: "Severity-ranked. Fix-first list. Every finding visible — nothing hidden behind an upgrade.",
     detail: "Optionally import the parsed data into the builder and fix everything in one pass.",
     Visual: ReviewVisual,
   },
