@@ -38,14 +38,8 @@ export function TemplateShowcase() {
             >
               {/* Thumbnail well — paper-on-desk effect */}
               <div className="relative bg-gradient-to-b from-slate-100 to-slate-50 p-6 pb-3">
-                <span
-                  className={`absolute right-3 top-3 z-10 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-eyebrow ${
-                    t.pro
-                      ? "bg-slate-900 text-white"
-                      : "bg-emerald-100 text-emerald-700"
-                  }`}
-                >
-                  {t.pro ? "Pro" : "Free"}
+                <span className="absolute right-3 top-3 z-10 rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-eyebrow text-emerald-700">
+                  Free
                 </span>
 
                 <div className="relative mx-auto max-w-[320px]">

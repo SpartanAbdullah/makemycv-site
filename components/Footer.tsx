@@ -32,6 +32,23 @@ export const Footer = () => (
           <br />
           Free, fast, ATS-friendly.
         </p>
+        <p className="mt-4 text-xs text-slate-500">
+          Contact:{" "}
+          <a
+            href="mailto:hello@makemycv.ae"
+            className="text-slate-400 transition-colors hover:text-blue-400"
+          >
+            hello@makemycv.ae
+          </a>
+        </p>
+        <p className="mt-2 text-xs text-slate-500">
+          <Link
+            href="/support"
+            className="transition-colors hover:text-blue-400"
+          >
+            Built by Abdullah in Dubai.
+          </Link>
+        </p>
       </div>
 
       {/* Quick Links */}

@@ -1,22 +1,27 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { buildPageMetadata } from "@/lib/seo";
+import { canonicalUrl } from "@/lib/seo";
 
-export const metadata = buildPageMetadata({
+export const metadata: Metadata = {
   title: "Thank you",
   description: "Thank you for supporting MakeMyCV.",
-  path: "/thanks",
-  index: false,
-});
+  alternates: { canonical: canonicalUrl("/thanks") },
+  robots: { index: false, follow: false },
+};
 
 export default function ThanksPage() {
   return (
-    <section className="min-h-[60vh] bg-brand-navy py-20 md:py-28">
+    <section className="min-h-[60vh] bg-brand-navy dot-grid py-20 md:py-28">
       <div className="mx-auto max-w-2xl px-6 text-center">
         <h1 className="font-display text-5xl font-extrabold text-white md:text-6xl">
           Thank you &#x1F64F;
         </h1>
         <p className="mt-6 text-lg text-slate-300">
-          Your support keeps MakeMyCV free for everyone.
+          Really &mdash; thank you. Your tip keeps MakeMyCV free for everyone.
+        </p>
+        <p className="mt-4 text-base italic text-slate-400">
+          If you have a moment, sharing the tool with someone job-hunting in
+          the UAE helps just as much as a tip. &mdash; Abdullah
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
