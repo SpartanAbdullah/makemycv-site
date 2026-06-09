@@ -1,8 +1,9 @@
 import dynamic from "next/dynamic";
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { softwareApplicationSchema } from "@/lib/seo-schema";
+import { faqPageSchema, softwareApplicationSchema } from "@/lib/seo-schema";
 import { HeroSection } from "@/components/home/HeroSection";
+import { homepageFaqs, HomepageFAQ } from "@/components/home/FAQ";
 
 // Below-the-fold sections — split into separate chunks to keep initial payload lean.
 // ssr:true (default) preserves SEO; sized skeletons prevent CLS during load.
@@ -45,16 +46,22 @@ const homepageSchema = {
   "@graph": [softwareApplicationSchema()],
 };
 
+// FAQPage mirrors the visible Q/As in <HomepageFAQ />. Both source from
+// `homepageFaqs` so the schema cannot drift from what users see.
+const homepageFaqSchema = faqPageSchema(homepageFaqs);
+
 export default function HomePage() {
   return (
     <>
       <JsonLd data={homepageSchema} />
+      <JsonLd data={homepageFaqSchema} />
       <HeroSection />
       <TemplateShowcase />
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
       <TrustSection />
+      <HomepageFAQ />
       <FinalCTA />
     </>
   );
