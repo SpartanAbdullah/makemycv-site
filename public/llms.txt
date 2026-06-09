@@ -1,0 +1,22 @@
+# MakeMyCV
+
+> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: visa status, nationality, Emirates ID, driving licence, and ATS parsers used by UAE banks, telcos, and DIFC firms.
+
+## Core pages
+- [Home](https://www.makemycv.ae/): What MakeMyCV is, who it's for, and why UAE CVs need ATS-clean formatting.
+- [Templates](https://www.makemycv.ae/templates): ATS-safe CV templates — Classic (finance/corporate), Executive (C-suite), Graduate (first job).
+- [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
+- [Build a CV (app)](https://app.makemycv.ae): The free builder tool.
+
+## Guides (blog)
+- [How UAE Recruiters Judge Your CV in 7 Seconds](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.
+- [How to Get a Job in Dubai (2026)](https://www.makemycv.ae/blog/how-to-get-a-job-in-dubai-2026): Step-by-step from CV to visa to job portals.
+- [Professional Summary Examples for UAE CVs](https://www.makemycv.ae/blog/professional-summary-examples-uae-cv): Ready-to-use summary examples by industry.
+- [Dubai CV vs Abu Dhabi CV](https://www.makemycv.ae/blog/dubai-cv-vs-abu-dhabi-cv): Formatting, tone, and content differences between the two markets.
+- [ATS CV Checklist for the UAE](https://www.makemycv.ae/blog/ats-cv-checklist-uae): 10-point checklist for passing UAE ATS filters.
+- [How to Write a CV as an Expat in the UAE](https://www.makemycv.ae/blog/expat-cv-uae-guide): What to add/remove for the UAE market by nationality.
+- [CV for Freshers in the UAE](https://www.makemycv.ae/blog/cv-for-freshers-uae): Writing a first CV with no experience.
+
+## About
+- [About MakeMyCV](https://www.makemycv.ae/about): Who built it and why.
+- [Contact](https://www.makemycv.ae/contact): hello@makemycv.ae
