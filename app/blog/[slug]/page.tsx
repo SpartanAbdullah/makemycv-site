@@ -30,7 +30,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const modifiedTime = post.dateModified ?? post.date
 
   return {
-    title: `${post.title} | MakeMyCV`,
+    // Layout's metadata.title.template appends " | MakeMyCV" — don't double it.
+    title: post.title,
     description: post.excerpt,
     keywords: post.tags.join(', '),
     authors: [{ name: post.author, url: canonicalUrl('/about') }],

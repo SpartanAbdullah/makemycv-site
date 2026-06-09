@@ -12,7 +12,8 @@ import {
 } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
+  // Layout template appends " | MakeMyCV" — don't include it here.
+  title: 'CV Tips & UAE Career Advice',
   description: 'Expert CV writing tips, ATS guides, and UAE job market advice from the team at MakeMyCV. Free resources for Dubai and Gulf job seekers.',
   keywords: 'cv tips uae, dubai cv format, ats cv guide, uae job market, cv writing advice dubai',
   alternates: {

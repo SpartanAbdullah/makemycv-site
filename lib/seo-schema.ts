@@ -150,18 +150,34 @@ export function breadcrumbSchema(items: ReadonlyArray<BreadcrumbItem>) {
  *
  * Consumers wrap this in <JsonLd data={postSchema(post)} />.
  */
+/**
+ * Normalize whatever Velite hands us (Date, ISO string, etc) to a clean
+ * YYYY-MM-DD that matches the spec's schema examples. Engines accept both
+ * formats but date-only avoids leaking a meaningless 00:00:00.000Z time.
+ */
+function toIsoDate(value: unknown): string {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+  if (typeof value === "string") {
+    return value.slice(0, 10);
+  }
+  return new Date(String(value)).toISOString().slice(0, 10);
+}
+
 export function postSchema(post: Post) {
   const postPath = `/blog/${post.slugPath}`;
   const postUrl = canonicalUrl(postPath);
   const imageUrl = absoluteUrl(post.coverImage ?? DEFAULT_OG_IMAGE);
-  const dateModified = post.dateModified ?? post.date;
+  const datePublished = toIsoDate(post.date);
+  const dateModified = toIsoDate(post.dateModified ?? post.date);
 
   const article: Record<string, unknown> = {
     "@type": "Article",
     "@id": `${postUrl}#article`,
     headline: post.title,
     description: post.excerpt,
-    datePublished: post.date,
+    datePublished,
     dateModified,
     author: {
       "@type": "Person",

@@ -28,7 +28,7 @@ export const metadata = {
     path: "/resume-checker",
     image: "/og/resume-checker.png",
   }),
-  title: "Free ATS Resume Checker for UAE Jobs | MakeMyCV",
+  // Layout template appends " | MakeMyCV" — keep title bare here.
   keywords: [
     "ATS checker UAE",
     "resume checker Dubai",
