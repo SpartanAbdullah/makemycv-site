@@ -12,6 +12,7 @@ import {
 } from "@/components/resume-checker/ResumeCheckerFAQ";
 import { FinalCTA } from "@/components/resume-checker/FinalCTA";
 import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
@@ -27,7 +28,7 @@ export const metadata = {
     path: "/resume-checker",
     image: "/og/resume-checker.png",
   }),
-  title: "Free ATS Resume Checker for UAE Jobs | MakeMyCV",
+  // Layout template appends " | MakeMyCV" — keep title bare here.
   keywords: [
     "ATS checker UAE",
     "resume checker Dubai",
@@ -88,18 +89,9 @@ const breadcrumbSchema = {
 export default function ResumeCheckerPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd data={softwareSchema} />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema} />
 
       {/* HERO — distinct "scanner" identity vs. the navy home hero */}
       <section
@@ -197,6 +189,35 @@ export default function ResumeCheckerPage() {
               <HeroVisual />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Answer-first definition — designed to be extractable verbatim by
+          AI answer engines. Names real UAE employers and the rejection rate
+          so the citation has UAE-specific information gain. */}
+      <section className="bg-paper py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+            What is an ATS?
+          </p>
+          <h2
+            className="mt-3 font-display font-bold text-slate-900 tracking-[-0.02em]"
+            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+          >
+            The software UAE employers use to filter your CV before a human sees it.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
+            An <strong>Applicant Tracking System (ATS)</strong> is the software
+            UAE employers &mdash; including <strong>Emaar</strong>,{" "}
+            <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}
+            <strong>ADNOC</strong>, <strong>Majid Al Futtaim</strong>, and
+            international banks across DIFC &mdash; use to filter CVs before a
+            recruiter sees them. Around <strong>75% of CVs are rejected at
+            this layer</strong>, almost always for formatting the parser
+            can&rsquo;t read (tables, columns, icons, image-based text). This
+            free checker runs your PDF against the same parsing logic and
+            flags every issue, in plain English, in about 30 seconds.
+          </p>
         </div>
       </section>
 

@@ -1,4 +1,9 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  breadcrumbSchema,
+  softwareApplicationSchema,
+} from "@/lib/seo-schema";
 import { Check, CheckCircle2, XCircle } from "lucide-react";
 
 export const metadata = buildPageMetadata({
@@ -8,9 +13,23 @@ export const metadata = buildPageMetadata({
   path: "/templates",
 });
 
+// SoftwareApplication so an AI agent landing on /templates resolves the
+// page to the builder it advertises; Breadcrumb for the entity graph.
+const templatesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [softwareApplicationSchema()],
+};
+
+const templatesBreadcrumb = breadcrumbSchema([
+  { name: "Home", item: canonicalUrl("/") },
+  { name: "Templates", item: canonicalUrl("/templates") },
+]);
+
 export default function TemplatesPage() {
   return (
     <>
+      <JsonLd data={templatesSchema} />
+      <JsonLd data={templatesBreadcrumb} />
       {/* Hero */}
       <section className="bg-brand-navy py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6 text-center">

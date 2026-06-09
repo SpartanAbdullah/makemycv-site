@@ -4,10 +4,11 @@ import Link from 'next/link'
 import { getPostBySlug, getAllPosts, getRelatedPosts, formatDate } from '@/lib/blog'
 import { MDXContent } from '@/lib/mdx'
 import { AuthorBlock } from '@/components/blog/AuthorBlock'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { postSchema } from '@/lib/seo-schema'
 import {
   DEFAULT_OG_IMAGE,
   SITE_NAME,
-  SITE_URL,
   absoluteUrl,
   canonicalUrl,
   indexableRobots,
@@ -26,12 +27,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const ogImageUrl = post.coverImage ?? DEFAULT_OG_IMAGE
   const postCanonicalUrl = canonicalUrl(`/blog/${post.slugPath}`)
+  const modifiedTime = post.dateModified ?? post.date
 
   return {
-    title: `${post.title} | MakeMyCV`,
+    // Layout's metadata.title.template appends " | MakeMyCV" — don't double it.
+    title: post.title,
     description: post.excerpt,
     keywords: post.tags.join(', '),
-    authors: [{ name: post.author, url: SITE_URL }],
+    authors: [{ name: post.author, url: canonicalUrl('/about') }],
     alternates: {
       canonical: postCanonicalUrl,
     },
@@ -43,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: 'en_AE',
       type: 'article',
       publishedTime: post.date,
+      modifiedTime,
       authors: [post.author],
       tags: post.tags,
       images: [
@@ -85,60 +89,10 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": post.title,
-            "description": post.excerpt,
-            "datePublished": post.date,
-            "dateModified": post.date,
-            "author": {
-              "@type": "Organization",
-              "name": SITE_NAME,
-              "url": SITE_URL
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": SITE_NAME,
-              "url": SITE_URL,
-              "logo": {
-                "@type": "ImageObject",
-                "url": absoluteUrl("/apple-touch-icon.png")
-              }
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": canonicalUrl(`/blog/${post.slugPath}`)
-            },
-            "image": {
-              "@type": "ImageObject",
-              "url": absoluteUrl(post.coverImage ?? DEFAULT_OG_IMAGE),
-              "width": 1200,
-              "height": 630
-            },
-            "keywords": post.tags.join(', '),
-            "articleSection": post.category,
-            "inLanguage": "en-AE"
-          })
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Home", "item": canonicalUrl("/") },
-              { "@type": "ListItem", "position": 2, "name": "Blog", "item": canonicalUrl("/blog") },
-              { "@type": "ListItem", "position": 3, "name": post.title, "item": canonicalUrl(`/blog/${post.slugPath}`) }
-            ]
-          })
-        }}
-      />
+      {/* Article + Person (author) + BreadcrumbList + (conditional) FAQPage —
+          all derived from the post's Velite frontmatter. Future posts
+          inherit this automatically. */}
+      <JsonLd data={postSchema(post)} />
       {/* Hero */}
       <section className="relative bg-gradient-hero dot-grid py-16 md:py-24 overflow-hidden">
         <div className="max-w-4xl mx-auto px-6 relative z-10">

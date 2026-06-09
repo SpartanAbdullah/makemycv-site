@@ -1,15 +1,9 @@
 import dynamic from "next/dynamic";
-import {
-  APP_URL,
-  ORGANIZATION_ID,
-  SITE_NAME,
-  SITE_URL,
-  WEBAPP_ID,
-  WEBSITE_ID,
-  absoluteUrl,
-  buildPageMetadata,
-} from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqPageSchema, softwareApplicationSchema } from "@/lib/seo-schema";
 import { HeroSection } from "@/components/home/HeroSection";
+import { homepageFaqs, HomepageFAQ } from "@/components/home/FAQ";
 
 // Below-the-fold sections — split into separate chunks to keep initial payload lean.
 // ssr:true (default) preserves SEO; sized skeletons prevent CLS during load.
@@ -45,70 +39,29 @@ export const metadata = buildPageMetadata({
   path: "/",
 });
 
+// Organization + WebSite are emitted site-wide from app/layout.tsx.
+// Homepage adds the SoftwareApplication entity (the builder) on top.
 const homepageSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": ORGANIZATION_ID,
-      name: SITE_NAME,
-      url: SITE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: absoluteUrl("/apple-touch-icon.png"),
-      },
-      areaServed: "AE",
-    },
-    {
-      "@type": "WebSite",
-      "@id": WEBSITE_ID,
-      url: SITE_URL,
-      name: SITE_NAME,
-      inLanguage: "en-AE",
-      publisher: {
-        "@id": ORGANIZATION_ID,
-      },
-    },
-    {
-      "@type": "WebApplication",
-      "@id": WEBAPP_ID,
-      name: SITE_NAME,
-      url: APP_URL,
-      applicationCategory: "BusinessApplication",
-      operatingSystem: "Web",
-      description:
-        "Free CV builder for UAE job seekers with ATS-friendly formatting and PDF export.",
-      offers: {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "AED",
-      },
-      isPartOf: {
-        "@id": WEBSITE_ID,
-      },
-      publisher: {
-        "@id": ORGANIZATION_ID,
-      },
-      inLanguage: "en-AE",
-    },
-  ],
+  "@graph": [softwareApplicationSchema()],
 };
+
+// FAQPage mirrors the visible Q/As in <HomepageFAQ />. Both source from
+// `homepageFaqs` so the schema cannot drift from what users see.
+const homepageFaqSchema = faqPageSchema(homepageFaqs);
 
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homepageSchema),
-        }}
-      />
+      <JsonLd data={homepageSchema} />
+      <JsonLd data={homepageFaqSchema} />
       <HeroSection />
       <TemplateShowcase />
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
       <TrustSection />
+      <HomepageFAQ />
       <FinalCTA />
     </>
   );

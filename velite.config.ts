@@ -11,6 +11,9 @@ const posts = defineCollection({
     slug: s.path(),
     excerpt: s.string().max(300),
     date: s.isodate(),
+    // Optional explicit freshness signal for evergreen posts re-edited
+    // after publish. Falls back to `date` in schema builders.
+    dateModified: s.isodate().optional(),
     author: s.string().default('MakeMyCV Team'),
     category: s.enum([
       'CV Tips',
@@ -25,6 +28,17 @@ const posts = defineCollection({
     featured: s.boolean().default(false),
     readingTime: s.number().optional(),
     published: s.boolean().default(true),
+    // Optional FAQ array. When present, becomes FAQPage schema. Only add
+    // here if the same Q/As are visible on the page — schema must mirror
+    // visible content.
+    faqs: s
+      .array(
+        s.object({
+          q: s.string().max(160),
+          a: s.string().max(800),
+        })
+      )
+      .default([]),
     body: s.mdx(),
   })
   .transform((data) => ({

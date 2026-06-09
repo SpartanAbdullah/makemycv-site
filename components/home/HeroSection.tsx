@@ -66,10 +66,9 @@ export function HeroSection() {
             <TrustChip icon={MapPin} label="UAE-specific fields" tone="dark" />
           </div>
 
-          {/* Micro-proof */}
+          {/* Freshness framing — verifiable product facts only. */}
           <p className="mt-6 text-sm text-slate-400">
-            Used by 12,400+ job seekers across Dubai, Abu Dhabi &amp; Sharjah
-            this year.
+            Built for the 2026 UAE hiring season. Free, ATS-clean, no sign-up.
           </p>
         </div>
 
