@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { getAllPosts, getFeaturedPosts, categories } from '@/lib/blog'
 import { PostCard } from '@/components/blog/PostCard'
 import { FeaturedPostCard } from '@/components/blog/FeaturedPostCard'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/seo-schema'
 import {
   SITE_NAME,
   absoluteUrl,
@@ -48,28 +50,11 @@ export default function BlogPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": canonicalUrl("/")
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Blog",
-                "item": canonicalUrl("/blog")
-              }
-            ]
-          })
-        }}
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', item: canonicalUrl('/') },
+          { name: 'Blog', item: canonicalUrl('/blog') },
+        ])}
       />
       {/* Hero */}
       <section className="relative bg-gradient-hero dot-grid py-20 md:py-28 overflow-hidden">

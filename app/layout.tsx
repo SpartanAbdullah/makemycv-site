@@ -5,6 +5,11 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/seo-schema";
 import {
   DEFAULT_OG_IMAGE,
   SITE_NAME,
@@ -92,6 +97,15 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="preconnect" href="https://app.makemycv.ae" />
+        {/* Site-wide entity graph — Organization + WebSite. Per-page schema
+            (Article, FAQPage, SoftwareApplication, BreadcrumbList) references
+            these by @id so engines resolve them to one entity. */}
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@graph": [organizationSchema(), websiteSchema()],
+          }}
+        />
         {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4. */}
         <Script id="google-tag-manager" strategy="lazyOnload">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

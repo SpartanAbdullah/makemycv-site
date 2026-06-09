@@ -12,6 +12,7 @@ import {
 } from "@/components/resume-checker/ResumeCheckerFAQ";
 import { FinalCTA } from "@/components/resume-checker/FinalCTA";
 import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
@@ -88,18 +89,9 @@ const breadcrumbSchema = {
 export default function ResumeCheckerPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <JsonLd data={softwareSchema} />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema} />
 
       {/* HERO — distinct "scanner" identity vs. the navy home hero */}
       <section
