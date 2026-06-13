@@ -44,7 +44,11 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const allPosts = getAllPosts()
   const featuredPosts = getFeaturedPosts()
-  const regularPosts = allPosts.filter((p) => !p.featured)
+  // Exclude only the posts actually shown in the Featured section (max 3),
+  // so featured posts beyond the top 3 still appear in "All Articles"
+  // instead of disappearing from the page entirely.
+  const featuredSlugs = new Set(featuredPosts.map((p) => p.slugPath))
+  const regularPosts = allPosts.filter((p) => !featuredSlugs.has(p.slugPath))
 
   return (
     <>
