@@ -11,6 +11,21 @@ This file tracks the current state of the marketing site and recent changes. Upd
 
 ## Change Log
 
+### 2026-06-13 — Consolidated duplicate format guide + 9 new draft posts
+
+**Consolidation:** `uae-cv-format-guide` (2025, 406w) fully superseded by `cv-format-uae-2026` (1410w). Set `published: false` + `featured: false` on the old post and added a permanent 301 in `next.config.ts` (`/blog/uae-cv-format-guide` → `/blog/cv-format-uae-2026`). Resolves the cannibalization flagged earlier.
+
+**New content:** Created 9 posts as drafts (`published: false`) from UAE CV keyword research, deduped (took best version of repeated intents) and noise-filtered (dropped unrelated "autism" PAA bleed; skipped intents already covered by existing posts). 3 pillars/BOFU + 6 supporting. Full list, publish dates (Tue/Thu, 2026-06-16 → 2026-07-14), and the publish-flip instructions are in `BLOG-CONTENT-SCHEDULE.md`. All cross-linked + `app.makemycv.ae` CTAs. Drafts validated against the Velite schema (categories, title≤100, excerpt≤300, links resolve). Blog now has 19 mdx files (10 live + 9 drafts).
+
+**Open follow-up:** drafts came in under the proposed Mix word ranges (pillars ~700–1090 vs 1400–1800); offer stands to expand the pillars.
+
+### 2026-06-13 — Refresh stale post dates (3 of 4)
+
+All 10 blog posts are `published: true` (0 drafts). Four carried 2025 dates and sorted to the bottom. Bumped three to recent 2026 dates: `ats-cv-checklist-uae` → 2026-06-06, `cv-for-freshers-uae` → 2026-06-03, `expat-cv-uae-guide` → 2026-06-10 (also updated its "(2025 Guide)" title, body "in 2025", and "Last updated: March 2025" footer to 2026).
+
+**Held back:** `uae-cv-format-guide` ("UAE CV Format 2025") was NOT bumped — it's a near-duplicate of `cv-format-uae-2026` ("CV Format UAE 2026"). Refreshing it to 2026 would create two competing same-year "complete CV format guide" posts (keyword cannibalization). OPEN DECISION: consolidate the two (301 redirect `uae-cv-format-guide` → `cv-format-uae-2026`) or re-angle `uae-cv-format-guide` to a distinct intent before refreshing.
+
+
 ### 2026-06-13 — Fix: blog page only showed 8 of 10 posts
 
 **Symptom:** After pushing new blog posts, the `/blog` page kept showing only 8 posts.

@@ -32,6 +32,14 @@ const nextConfig: NextConfig = {
         destination: '/sitemap.xml',
         permanent: true,
       },
+      {
+        // Consolidated the duplicate "UAE CV format" guides (2026-06): the 2025
+        // post is fully superseded by cv-format-uae-2026. 301 to preserve any
+        // inbound links/rankings and avoid keyword cannibalization.
+        source: '/blog/uae-cv-format-guide',
+        destination: '/blog/cv-format-uae-2026',
+        permanent: true,
+      },
     ];
   },
 };
