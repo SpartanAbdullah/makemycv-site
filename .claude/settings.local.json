@@ -13,7 +13,8 @@
       "Bash(curl -sf -o /tmp/home.html http://localhost:3000/)",
       "Bash(curl -sf -o /tmp/h.html http://localhost:3000/)",
       "Bash(curl -sf -o /tmp/rc.html http://localhost:3000/resume-checker)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git ls-files *)"
     ]
   }
 }
