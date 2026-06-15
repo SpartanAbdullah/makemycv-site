@@ -11,6 +11,26 @@ This file tracks the current state of the marketing site and recent changes. Upd
 
 ## Change Log
 
+### 2026-06-15 — JD Match launch + honesty/privacy + free (Ko-fi) pricing reframe
+
+Marketing-site refresh to showcase the builder's new features and align with the honest brand. **All changes are local on `preview` (uncommitted) — see `CHANGES-2026-06-15-jd-match.md` for the full rationale, risks, and the exact commit command (stage only the files below to avoid the CRLF churn).**
+
+**New flagship page `/jd-match`** (`app/jd-match/page.tsx` + `components/jd-match/`): hero with a green/amber **HeatmapPreview**, `JdMatchSteps` (heatmap → guided coach → tailor & download), `HonestMatching` (the wedge: AI declines rather than invents + smart alias matching + privacy), `JdMatchFAQ` (+exported items for FAQ schema), `JdMatchFinalCTA`. SoftwareApplication/FAQ/Breadcrumb JSON-LD. Added to `Navbar`, `Footer`, `sitemap.ts` (priority 0.95). CTAs land on the **builder** (`app.makemycv.ae`) by design — you build/import a CV first, then match.
+
+**Home** (`app/page.tsx`): hero reframed to lead with JD Match + honesty; added `JdMatchSection` (home teaser) and reused `HonestMatching`; `FeatureGrid` now covers import (PDF/DOCX, read in-browser), per-job tailoring, UAE-optimised, and **honest AI rewriting** (replaced the old invented-metrics "AI rewriter (Pro)" card); `HowItWorks` is now build/import → match → tailor & download.
+
+**Guardrail fixes (honest brand):** removed the debunked "75%" fear-myth (`ProblemSolution`, `resume-checker/FilterProblem`); reframed resume-checker pass/fail → "get found and ranked" (`resume-checker/page.tsx` hero + metadata); removed AI copy that fabricated metrics (`FeatureGrid`, pricing `faqItems`).
+
+**Pricing → free + Ko-fi tip** (the live model; `$5/download` is gone). Ko-fi `ko-fi.com/makemycv_ae` primary, PayPal `paypal.me/Abdullah2431` secondary, wording **"Tip"** (never donation). New `components/SupportTip.tsx` + new **`/support` page** (closes the app's existing broken link to `www.makemycv.ae/support`). Reframed `PricingStrip`, `FinalCTA`, `HowItWorks`, `/pricing` (hero, cards→free+tip, FAQ, JSON-LD single free offer, dropped Free-vs-Pro `ComparisonTable` from the page — file left unused), `resume-checker/PricingClarity` + `ResumeCheckerFAQ`, `about`, `contact` option, templates page "Unlock with Pro"→"Use This Template", `TemplateShowcase` badge→Free. **Kept the dormant `pro` data field** (velite schema + template MDX) for the future paid tier.
+
+**⚠️ Not verified in-session (mount-truncation gotcha):** `velite build`/`next build`/`tsc` could not run reliably — the sandbox's `node_modules` is Windows (esbuild binary mismatch) AND bash serves Edit-modified files truncated/null-padded, so an in-sandbox typecheck produces false syntax errors. New files read fine; edited files do not. On-disk files were verified correct via the editor. **Run `npm run build` locally before deploying.** Heatmap + Guided Coach copy is faithful to the product brief; eyeball the live `/jd-match` against the app UI.
+
+### 2026-06-15 — Conversion & presentation pass (home redesign)
+
+Follow-on to the JD Match launch, same day. Research-backed (see `STRATEGY-conversion-redesign.md`): studied CVToolsPro (strength = Before/After instant proof + airy premium look; weakness = subscription with auto-billing complaints) and the resume-builder category's #1 pain = "free to build, pay to download" bait-and-switch. Our wedge: genuinely free to download + UAE-native + honest AI.
+
+Changes (LOCAL on `preview`, uncommitted): hero proof visual swapped to the JD Match `HeatmapPreview` (was `CvPreviewCard`, now orphaned — kept); new `components/home/NoBaitBanner.tsx` (answers the paywall fear: free to build AND download) placed under the hero; new `components/home/BuiltForUAE.tsx`; **giant `MakeMyCV` footer wordmark** in `Footer.tsx` (aleads.co-style signature); navbar trimmed to JD Match/Templates/Pricing/Blog (About/Contact/Support live in footer); home sections reordered (hero → no-bait → JD Match → honest → problem → UAE → features → how → templates → proof → pricing → CTA). Decisions: polish within current navy/blue system; heatmap as hero proof; build full then review on preview. New components typecheck clean (scoped tsc exit 0); edited files verified via Read. Same build/commit caveat — run `npm run build` locally; commit command updated in `CHANGES-2026-06-15-jd-match.md`.
+
 ### 2026-06-13 — Consolidated duplicate format guide + 9 new draft posts
 
 **Consolidation:** `uae-cv-format-guide` (2025, 406w) fully superseded by `cv-format-uae-2026` (1410w). Set `published: false` + `featured: false` on the old post and added a permanent 301 in `next.config.ts` (`/blog/uae-cv-format-guide` → `/blog/cv-format-uae-2026`). Resolves the cannibalization flagged earlier.

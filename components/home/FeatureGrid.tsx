@@ -1,10 +1,10 @@
 import {
-  Download,
-  Eye,
   FileCheck2,
+  FileUp,
   Globe2,
   Lock,
   Sparkles,
+  Target,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,28 +24,28 @@ const features: Feature[] = [
   },
   {
     icon: Globe2,
-    title: "UAE-specific fields",
-    body: "Nationality, visa status, Emirates ID, driving licence, languages — all built-in, all optional.",
+    title: "UAE-optimised throughout",
+    body: "Emirate, visa status, nationality, attestation, languages — built in and optional, with UAE-aware examples and suggestions as you write.",
   },
   {
-    icon: Download,
-    title: "Instant PDF export",
-    body: "One click, clean PDF. Free download comes with a light watermark. Pro removes it for $5.",
+    icon: FileUp,
+    title: "Import your existing CV",
+    body: "Bring a PDF or DOCX and we read it in your browser \u2014 never uploaded. You review every field before it\u2019s added.",
   },
   {
-    icon: Eye,
-    title: "Live preview as you type",
-    body: "No \u201Chit save to see it\u201D. See every change the moment you type it.",
+    icon: Target,
+    title: "Tailor to each job",
+    body: "JD Match focuses your CV on one role and lets you download a tailored copy, while your master CV keeps everything.",
   },
   {
     icon: Sparkles,
-    title: "AI rewriter (Pro)",
-    body: "Turns \u201Cresponsible for managing team\u201D into \u201CLed 8-person operations team, reduced fulfilment time 22%\u201D.",
+    title: "Honest AI rewriting",
+    body: "Rewords what you actually did to surface a job\u2019s keywords. When it can\u2019t do that truthfully, it declines rather than invent.",
   },
   {
     icon: Lock,
     title: "Your data stays in your browser",
-    body: "No accounts, no uploads, no databases. Close the tab, it\u2019s gone.",
+    body: "No accounts, no CV uploads, no databases. Only the job text you paste is sent for analysis. Close the tab, it\u2019s gone.",
   },
 ];
 

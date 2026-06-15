@@ -5,7 +5,7 @@ const modes = [
     icon: Layers,
     title: "The ATS can't parse fancy layouts",
     body:
-      "Two-column templates, text boxes and embedded tables read as scrambled text to an ATS. Your real experience never makes it into the recruiter's search results.",
+      "Two-column templates, text boxes and embedded tables read as scrambled text to an ATS. Your real experience may not surface when a recruiter searches.",
   },
   {
     icon: MapPin,
@@ -30,13 +30,13 @@ export function FilterProblem() {
             The hiring reality
           </p>
           <h2 className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
-            Why 75% of UAE CVs get filtered out before a human reads them.
+            Why qualified UAE CVs get buried before a recruiter sees them.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-slate-600">
-            ENOC, Emaar, Majid Al Futtaim, ADCB and most DIFC firms run every
-            application through an applicant tracking system first. Your CV is
-            software-filtered long before a recruiter opens it — and three
-            specific issues kill most qualified candidates.
+            ENOC, Emaar, Majid Al Futtaim, ADCB and most DIFC firms sort every
+            application through an applicant tracking system first. If yours
+            isn&apos;t parsed cleanly and ranked well, it slips down the pile —
+            and three specific issues hold most qualified candidates back.
           </p>
         </div>
 
@@ -64,7 +64,7 @@ export function FilterProblem() {
         </div>
 
         <p className="mt-10 text-lg text-slate-700">
-          Our checker catches all three in 30 seconds.{" "}
+          Our checker catches all three in seconds.{" "}
           <a
             href="https://app.makemycv.ae/resume-checker"
             target="_blank"

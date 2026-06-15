@@ -5,12 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Home" },
+  { href: "/jd-match", label: "JD Match" },
   { href: "/templates", label: "Templates" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export const Navbar = () => {

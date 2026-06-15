@@ -5,20 +5,20 @@ const steps = [
   {
     n: 1,
     time: "~2 min",
-    title: "Fill in your details.",
-    body: "Paste from your old CV, or start fresh. We guide you field by field — visa status, experience, skills.",
+    title: "Build or import your CV.",
+    body: "Start fresh or import a PDF/DOCX — read in your browser, never uploaded. We guide you field by field, UAE fields included.",
   },
   {
     n: 2,
     time: "~1 min",
-    title: "Pick a template.",
-    body: "Classic, Modern, Executive, Graduate. Switch any time — your data stays.",
+    title: "Match it to the job.",
+    body: "Paste any job description. JD Match scores the fit and marks every requirement you cover or miss — green and amber, on the real ad.",
   },
   {
     n: 3,
-    time: "~30 sec",
-    title: "Download & apply.",
-    body: "Export as PDF, or unlock AI rewriting and watermark removal for $5.",
+    time: "~1 min",
+    title: "Tailor & download.",
+    body: "Close the gaps honestly, download a copy tailored to that role, and keep your full master CV intact.",
   },
 ];
 

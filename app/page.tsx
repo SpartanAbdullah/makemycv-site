@@ -10,12 +10,25 @@ import {
   buildPageMetadata,
 } from "@/lib/seo";
 import { HeroSection } from "@/components/home/HeroSection";
+import { NoBaitBanner } from "@/components/home/NoBaitBanner";
 
 // Below-the-fold sections — split into separate chunks to keep initial payload lean.
 // ssr:true (default) preserves SEO; sized skeletons prevent CLS during load.
+const JdMatchSection = dynamic(
+  () => import("@/components/home/JdMatchSection").then((m) => ({ default: m.JdMatchSection })),
+  { loading: () => <div style={{ minHeight: 600 }} /> },
+);
 const TemplateShowcase = dynamic(
   () => import("@/components/home/TemplateShowcase").then((m) => ({ default: m.TemplateShowcase })),
   { loading: () => <div className="bg-paper-2" style={{ minHeight: 720 }} /> },
+);
+const HonestMatching = dynamic(
+  () => import("@/components/jd-match/HonestMatching").then((m) => ({ default: m.HonestMatching })),
+  { loading: () => <div style={{ minHeight: 600 }} /> },
+);
+const BuiltForUAE = dynamic(
+  () => import("@/components/home/BuiltForUAE").then((m) => ({ default: m.BuiltForUAE })),
+  { loading: () => <div className="bg-paper-2" style={{ minHeight: 600 }} /> },
 );
 const ProblemSolution = dynamic(
   () => import("@/components/home/ProblemSolution").then((m) => ({ default: m.ProblemSolution })),
@@ -43,9 +56,9 @@ const FinalCTA = dynamic(
 );
 
 export const metadata = buildPageMetadata({
-  title: "Free CV Builder for UAE Jobs",
+  title: "Free CV Builder + JD Match for UAE Jobs",
   description:
-    "Build a CV UAE recruiters actually open — ATS-clean, visa-ready, designed for Dubai, Abu Dhabi & GCC hiring. Free to build, no sign-up. $5 one-time download to remove watermark.",
+    "Build an ATS-clean, visa-ready CV for Dubai, Abu Dhabi & GCC hiring — then paste any job description to see how you match, free and instant. Honest AI that never invents. Your CV stays in your browser. No sign-up.",
   path: "/",
 });
 
@@ -108,12 +121,16 @@ export default function HomePage() {
         }}
       />
       <HeroSection />
-      <TemplateShowcase />
+      <NoBaitBanner />
+      <JdMatchSection />
+      <HonestMatching />
       <ProblemSolution />
+      <BuiltForUAE />
       <FeatureGrid />
       <HowItWorks />
-      <PricingStrip />
+      <TemplateShowcase />
       <TrustSection />
+      <PricingStrip />
       <FinalCTA />
     </>
   );

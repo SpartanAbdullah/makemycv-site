@@ -23,7 +23,7 @@ export const metadata = {
   ...buildPageMetadata({
     title: "Free ATS Resume Checker for UAE Jobs",
     description:
-      "Instantly check if your CV passes Dubai, Abu Dhabi and GCC ATS filters. Free, no sign-up, results in 30 seconds. Built for the UAE job market.",
+      "See how your CV gets found and ranked by Dubai, Abu Dhabi and GCC hiring systems — every issue that holds it back, and how to fix it. Free, no sign-up. Built for the UAE job market.",
     path: "/resume-checker",
     image: "/og/resume-checker.png",
   }),
@@ -146,24 +146,22 @@ export default function ResumeCheckerPage() {
                 lineHeight: 1.02,
               }}
             >
-              Is your CV going to pass
+              How your CV gets
               <br />
-              the{" "}
               <span
                 className="bg-gradient-to-r from-cyan-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
                 style={{ backgroundSize: "200% 100%" }}
               >
-                UAE ATS
-              </span>{" "}
-              —
+                found &amp; ranked
+              </span>
               <br />
-              or get filtered out?
+              in the UAE.
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl">
-              Upload your PDF. In 30 seconds we&apos;ll show you exactly what
-              Dubai, Abu Dhabi and GCC applicant tracking systems do to your
-              CV — and every issue we&apos;d flag. Free. No sign-up.
+              Upload your PDF and see how Dubai, Abu Dhabi and GCC hiring
+              systems read it — every issue that holds it back, and how to fix
+              it so you get found and ranked. Free. No sign-up.
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">

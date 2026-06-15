@@ -14,11 +14,12 @@ export function PricingHero() {
           Pricing
         </p>
         <h1 className="mt-4 font-display text-4xl font-extrabold leading-[1.1] tracking-tight-2 text-white md:text-[56px]">
-          Pay once, when you&rsquo;re ready. Never a subscription.
+          It&rsquo;s free. All of it.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
-          Build and preview your CV free. Pay $5 only when you download the
-          final, watermark-free version.
+          Build, match and download your CV with no watermark, no sign-up and no
+          paywall. If it helps your job search, an optional tip keeps it free for
+          the next person.
         </p>
       </div>
     </section>

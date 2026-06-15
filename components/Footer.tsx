@@ -3,10 +3,12 @@ import { Heart, MapPin } from "lucide-react";
 
 const pageLinks = [
   { href: "/", label: "Home" },
+  { href: "/jd-match", label: "JD Match" },
   { href: "/templates", label: "Templates" },
   { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
+  { href: "/support", label: "Support" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -69,6 +71,16 @@ export const Footer = () => (
           No account needed. Takes 5 minutes.
         </p>
       </div>
+    </div>
+
+    {/* Giant brand wordmark — premium footer signature */}
+    <div className="relative overflow-hidden px-4" aria-hidden="true">
+      <span
+        className="block select-none whitespace-nowrap bg-gradient-to-b from-white/[0.13] to-white/[0.015] bg-clip-text text-center font-display font-extrabold leading-[0.8] tracking-tight-2 text-transparent"
+        style={{ fontSize: "clamp(3.25rem, 17vw, 13.5rem)" }}
+      >
+        MakeMyCV
+      </span>
     </div>
 
     {/* Bottom bar */}

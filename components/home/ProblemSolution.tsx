@@ -3,8 +3,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const problems = [
   {
-    title: "The ATS filter eats 75% before anyone reads them.",
-    body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software first. Fancy columns, headers, and icons break the parser. Your CV never reaches a human.",
+    title: "Recruiters search and rank — your CV has to be found.",
+    body: "ENOC, Emaar, Majid Al Futtaim, ADCB — major UAE employers sort applications with software before a person reads them. Broken columns, headers and icons confuse the parser, so a strong CV can rank low and get buried under hundreds of others.",
   },
   {
     title: "Generic templates scream \u201Cexpat import\u201D.",
@@ -12,7 +12,7 @@ const problems = [
   },
   {
     title: "Walls of text lose the 6-second scan.",
-    body: "UAE recruiters average 6.2 seconds on a first pass. If your impact isn\u2019t scannable in bullet points with numbers, you\u2019re filtered out before your degree is read.",
+    body: "UAE recruiters average 6.2 seconds on a first pass. If your impact isn\u2019t scannable in bullet points with numbers, your strengths get skimmed past before they land.",
   },
 ];
 

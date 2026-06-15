@@ -8,7 +8,7 @@ export function PricingClarity() {
         <h2 className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.05 }}>
           Free to check.
           <br />
-          <span className="text-brand-blue">$5 only if you want to fix it.</span>
+          <span className="text-brand-blue">Free to fix, too.</span>
         </h2>
 
         <div className="mt-8 space-y-5 text-lg leading-relaxed text-slate-700">
@@ -19,7 +19,7 @@ export function PricingClarity() {
             wall to see your score.
           </p>
           <p>
-            The $5 is optional: if you want us to import the parsed CV into the{" "}
+            Fixing it is free too: bring the parsed CV into the{" "}
             <a
               href="https://app.makemycv.ae"
               target="_blank"
@@ -28,8 +28,9 @@ export function PricingClarity() {
             >
               MakeMyCV builder
             </a>{" "}
-            and download a polished, ATS-clean version ready to send, it&apos;s a
-            one-time fee. No subscription. No account required to check.
+            and download a polished, ATS-clean version ready to send — no
+            watermark, no sign-up, no payment. If it helps, an optional tip keeps
+            it free for the next person.
           </p>
         </div>
 

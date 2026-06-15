@@ -2,23 +2,23 @@ export type FAQItem = { id: string; q: string; a: string };
 
 export const faqItems: FAQItem[] = [
   {
-    id: "one-time",
-    q: "Is this really a one-time payment?",
-    a: "Yes. $5 per final download. No subscription, no auto-renewal, no hidden fees. If you want to update your CV in 3 months, that\u2019s another $5 — or free if it\u2019s within 30 days of your last download.",
+    id: "really-free",
+    q: "Is it really free?",
+    a: "Yes. The builder, every template, JD Match, the resume checker, AI rewriting and PDF download are all free — no watermark, no sign-up, no paywall. If MakeMyCV helps your job search you can leave an optional tip, but nothing is gated behind it.",
   },
   {
-    id: "preview",
-    q: "Can I see my CV before I pay?",
-    a: "Yes. You build and preview for free. You only pay to remove the watermark on the final PDF.",
+    id: "catch",
+    q: "What’s the catch?",
+    a: "There isn’t one. MakeMyCV is built by a solo developer in Dubai and kept free. Optional tips via Ko-fi (or PayPal) help cover hosting and AI costs so the tools stay free for the next person.",
   },
   {
     id: "ai-rewrite",
-    q: "What does \u201CAI rewrite\u201D actually do?",
-    a: "It rewrites weak job descriptions into measurable, recruiter-friendly bullet points. Example: \u201CHandled customer queries\u201D \u2192 \u201CResolved 40+ customer queries daily with a 94% first-contact resolution rate.\u201D",
+    q: "What does the AI rewriting actually do?",
+    a: "It re-words an experience bullet you already wrote so a job’s keyword surfaces naturally — only when your experience genuinely backs it. If it can’t do that truthfully, it declines rather than invent a metric, tool, or certification. You review every suggestion before it’s applied.",
   },
   {
     id: "data",
     q: "Do you store my data?",
-    a: "No. Your CV lives in your browser. Nothing is uploaded to our servers until you click download — and even then we only store the payment record, not your CV content.",
+    a: "Your CV stays in your browser — it isn’t uploaded to our servers. For JD Match, only the job text you paste is sent for analysis, and it isn’t stored. Imported PDF/DOCX files are read locally on your device.",
   },
 ];

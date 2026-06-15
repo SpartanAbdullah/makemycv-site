@@ -21,7 +21,7 @@ const values = [
   {
     icon: "\uD83D\uDC9A",
     title: "Always Free at Core",
-    desc: "The fundamental tool will always be free. We monetize Pro features, not basic access.",
+    desc: "The tool is free to use — no ads, no paywall. It’s kept running by optional tips, not by gating features.",
   },
 ];
 

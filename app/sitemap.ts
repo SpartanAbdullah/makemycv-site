@@ -18,6 +18,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 1,
   },
   {
+    path: '/jd-match',
+    sourceFile: 'app/jd-match/page.tsx',
+    changeFrequency: 'weekly',
+    priority: 0.95,
+  },
+  {
     path: '/templates',
     sourceFile: 'app/templates/page.tsx',
     changeFrequency: 'monthly',
@@ -40,6 +46,12 @@ const staticRoutes: SitemapEntry[] = [
     sourceFile: 'app/about/page.tsx',
     changeFrequency: 'monthly',
     priority: 0.6,
+  },
+  {
+    path: '/support',
+    sourceFile: 'app/support/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.5,
   },
   {
     path: '/author/makemycv-team',

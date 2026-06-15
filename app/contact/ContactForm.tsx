@@ -98,7 +98,7 @@ export const ContactForm = () => {
           <option>Bug Report</option>
           <option>Feature Request</option>
           <option>Partnership</option>
-          <option>Pro Plan Info</option>
+          <option>Pricing &amp; tips</option>
         </select>
       </div>
       <div>

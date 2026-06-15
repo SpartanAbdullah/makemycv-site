@@ -1,7 +1,7 @@
-import { FileCheck2, MapPin, Shield, Zap } from "lucide-react";
+import { MapPin, ScanSearch, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TrustChip } from "@/components/ui/TrustChip";
-import { CvPreviewCard } from "./CvPreviewCard";
+import { HeatmapPreview } from "@/components/jd-match/HeatmapPreview";
 
 export function HeroSection() {
   return (
@@ -23,16 +23,14 @@ export function HeroSection() {
           </p>
 
           <h1 className="mt-5 font-display text-[44px] font-extrabold leading-[1.05] tracking-tight-2 text-white md:text-[64px] lg:text-[72px]">
-            Land the UAE job.
-            <br />
-            Start with a CV recruiters{" "}
-            <span className="text-blue-400">actually open.</span>
+            Match your CV to the{" "}
+            <span className="text-blue-400">UAE job</span> — before you apply.
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl lg:mx-0">
-            Recruiters in Dubai spend 6 seconds per CV. Ours are built to
-            survive that — ATS-clean, visa-ready, and designed for the Gulf
-            market. Free to build. No sign-up.
+            Build a recruiter-ready CV, then paste any job description to see how
+            well you match — free and instant. Our AI helps you tell the truth
+            better, never invent it. Your CV stays in your browser. No sign-up.
           </p>
 
           {/* CTAs */}
@@ -48,22 +46,22 @@ export function HeroSection() {
               Build My CV — Free
             </Button>
             <Button
-              href="/templates"
+              href="/jd-match"
               variant="ghost"
               tone="dark"
               size="lg"
-              data-event="home_hero_templates_click"
+              data-event="home_hero_jd_match_click"
             >
-              See Templates
+              See JD Match
             </Button>
           </div>
 
           {/* Trust chips */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-            <TrustChip icon={Shield} label="No sign-up" tone="dark" />
-            <TrustChip icon={Zap} label="Ready in 5 min" tone="dark" />
-            <TrustChip icon={FileCheck2} label="ATS-optimized" tone="dark" />
-            <TrustChip icon={MapPin} label="UAE-specific fields" tone="dark" />
+            <TrustChip icon={ScanSearch} label="Free JD match" tone="dark" />
+            <TrustChip icon={Shield} label="Honest AI — never invents" tone="dark" />
+            <TrustChip icon={Zap} label="No sign-up" tone="dark" />
+            <TrustChip icon={MapPin} label="UAE-optimised" tone="dark" />
           </div>
 
           {/* Micro-proof */}
@@ -73,10 +71,10 @@ export function HeroSection() {
           </p>
         </div>
 
-        {/* Right — CV preview (2/5) */}
+        {/* Right — JD Match heatmap proof (2/5) */}
         <div className="lg:col-span-2">
           <div className="mx-auto max-w-sm lg:max-w-none">
-            <CvPreviewCard />
+            <HeatmapPreview />
           </div>
         </div>
       </div>
