@@ -22,7 +22,7 @@ export function ProblemSolution() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           title="Why most CVs fail in the UAE."
-          subcopy="It\u2019s rarely about your experience. It\u2019s about how your CV is read — first by software, then by a recruiter with 40 other tabs open."
+          subcopy="It's rarely about your experience. It's about how your CV is read — first by software, then by a recruiter with 40 other tabs open."
         />
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">

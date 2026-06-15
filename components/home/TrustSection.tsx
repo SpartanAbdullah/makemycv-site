@@ -88,7 +88,7 @@ export function TrustSection() {
             value={6.2}
             decimals={1}
             suffix="s"
-            label="avg. recruiter scan time — we\u2019re built for it"
+            label="avg. recruiter scan time — we're built for it"
           />
           <Stat
             value={5}
@@ -154,7 +154,7 @@ export function TrustSection() {
                 consent) so the next person knows it works.
               </p>
               <a
-                href="/contact"
+                href="/share-your-story"
                 className="mt-4 text-xs font-semibold text-blue-400 hover:underline underline-offset-4"
               >
                 Send your story &rarr;

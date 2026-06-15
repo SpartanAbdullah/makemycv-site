@@ -28,7 +28,7 @@ export function HowItWorks() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           title="From blank page to PDF in 5 minutes."
-          subcopy="No account. No credit card. No \u201Cupgrade to continue\u201D popup at step 3."
+          subcopy="No account. No credit card. No "upgrade to continue" popup at step 3."
         />
 
         <div className="relative mt-14 grid gap-10 md:grid-cols-3 md:gap-6">

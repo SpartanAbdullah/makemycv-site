@@ -5,7 +5,15 @@
  */
 
 type Accent = "blue" | "emerald" | "amber" | "slate" | "indigo";
-type Variant = "classic" | "modern" | "executive" | "graduate" | "minimal";
+type Variant =
+  | "classic"
+  | "modern"
+  | "executive"
+  | "graduate"
+  | "minimal"
+  | "ats-clean"
+  | "exec-split"
+  | "corp-sidebar";
 
 const accents: Record<
   Accent,
@@ -65,6 +73,9 @@ export function TemplateThumbnail({ variant, accent = "slate" }: Props) {
         {variant === "graduate" && <GraduatePreview a={a} />}
         {variant === "minimal" && <MinimalPreview a={a} />}
         {variant === "modern" && <ModernPreview a={a} />}
+        {variant === "ats-clean" && <ATSCleanPreview />}
+        {variant === "exec-split" && <ExecSplitPreview a={a} />}
+        {variant === "corp-sidebar" && <CorpSidebarPreview a={a} />}
       </div>
     </div>
   );
@@ -375,6 +386,153 @@ function ModernPreview({ a }: { a: AccentObj }) {
           <p className="text-[7.5px] text-slate-500">Zayed University · 2019</p>
         </div>
       </main>
+    </div>
+  );
+}
+
+/* ── ATS Clean — monochrome, single-column, max parse ─────────────── */
+function ATSCleanPreview() {
+  return (
+    <div className="flex h-full flex-col px-4 py-4 text-slate-800">
+      <div className="text-center">
+        <h4 className="font-display text-[15px] font-bold tracking-tight text-slate-900">
+          KARIM NASSER
+        </h4>
+        <p className="mt-0.5 text-[8px] text-slate-500">
+          Dubai, UAE · karim.n@email.ae · +971 50 ··· ····
+        </p>
+      </div>
+
+      <div className="mt-2 h-[1.5px] w-full bg-slate-800" />
+
+      <p className="mt-2 text-[8.5px] font-bold uppercase tracking-wider text-slate-800">
+        Summary
+      </p>
+      <p className="text-[8.5px] leading-snug text-slate-600">
+        Supply chain analyst with 6 years across GCC logistics and procurement.
+      </p>
+
+      <p className="mt-2 text-[8.5px] font-bold uppercase tracking-wider text-slate-800">
+        Experience
+      </p>
+      <Role
+        title="Supply Chain Analyst"
+        org="DP World · Dubai"
+        dates="2021 — Present"
+      />
+      <Bullets
+        items={["Cut freight cost 14% across 5 lanes", "Owns S&OP for 2,000+ SKUs"]}
+      />
+
+      <p className="mt-2 text-[8.5px] font-bold uppercase tracking-wider text-slate-800">
+        Skills
+      </p>
+      <p className="text-[8.5px] text-slate-600">
+        SAP · Excel · Power BI · Incoterms · Forecasting
+      </p>
+    </div>
+  );
+}
+
+/* ── Executive Split — dark header band, two-column body ──────────── */
+function ExecSplitPreview({ a }: { a: AccentObj }) {
+  return (
+    <div className="flex h-full flex-col text-slate-800">
+      <div className={`${a.bg} px-4 py-3 text-white`}>
+        <h4 className="font-display text-[15px] font-bold leading-tight tracking-tight">
+          Yousef Rahman
+        </h4>
+        <p className="mt-0.5 text-[10px] font-medium opacity-90">
+          Director of Strategy
+        </p>
+        <p className="mt-0.5 text-[8px] opacity-75">Abu Dhabi · 15+ yrs · GCC</p>
+      </div>
+
+      <div className="grid flex-1 grid-cols-[1.6fr_1fr] gap-3 px-4 py-3">
+        <div>
+          <SectionLabel a={a}>Experience</SectionLabel>
+          <Role
+            title="Director of Strategy"
+            org="Mubadala · Abu Dhabi"
+            dates="2019 — Now"
+            tight
+          />
+          <Bullets
+            items={["Led $2B portfolio strategy", "Scaled 3 ventures to exit"]}
+          />
+          <SectionLabel a={a} className="mt-2">Education</SectionLabel>
+          <p className="text-[8.5px] text-slate-600">MBA — INSEAD</p>
+        </div>
+        <div>
+          <SectionLabel a={a}>Skills</SectionLabel>
+          <p className="text-[8px] leading-relaxed text-slate-600">
+            M&amp;A<br />
+            Corporate finance<br />
+            Board reporting
+          </p>
+          <SectionLabel a={a} className="mt-2">Languages</SectionLabel>
+          <p className="text-[8px] text-slate-600">Arabic · English</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Corporate — light main, dark right sidebar ───────────────────── */
+function CorpSidebarPreview({ a }: { a: AccentObj }) {
+  return (
+    <div className="grid h-full grid-cols-[62%_38%] text-slate-800">
+      <main className="flex flex-col px-3.5 py-4">
+        <h4 className="font-display text-[14px] font-bold leading-tight tracking-tight text-slate-900">
+          Huda Salem
+        </h4>
+        <p className={`text-[9px] font-semibold ${a.text}`}>
+          Management Consultant
+        </p>
+        <div className="mt-1.5 h-[1.5px] w-full bg-slate-800" />
+
+        <SectionLabel a={a} className="mt-2">Experience</SectionLabel>
+        <Role
+          title="Consultant"
+          org="PwC Middle East · Dubai"
+          dates="2020 — Now"
+          tight
+        />
+        <Bullets
+          items={["Advised 12 GCC banks on digital ops", "Led teams of up to 8"]}
+        />
+
+        <SectionLabel a={a} className="mt-2">Education</SectionLabel>
+        <p className="text-[8.5px] text-slate-600">BSc Economics — LSE</p>
+      </main>
+
+      <aside className="flex flex-col gap-2.5 bg-[#0F172A] px-3 py-4 text-white">
+        <div>
+          <p className="text-[8px] font-bold uppercase tracking-wider text-white/80">
+            Contact
+          </p>
+          <p className="mt-0.5 text-[7.5px] leading-relaxed text-white/60">
+            Dubai, UAE<br />
+            huda.s@email.ae
+          </p>
+        </div>
+        <div>
+          <p className="text-[8px] font-bold uppercase tracking-wider text-white/80">
+            Skills
+          </p>
+          <p className="mt-0.5 text-[7.5px] leading-relaxed text-white/60">
+            Strategy<br />
+            Financial modelling<br />
+            Stakeholder mgmt
+          </p>
+        </div>
+        <div>
+          <p className="text-[8px] font-bold uppercase tracking-wider text-white/80">
+            Languages
+          </p>
+          <p className="mt-0.5 text-[7.5px] text-white/60">Arabic · English</p>
+        </div>
+      </aside>
     </div>
   );
 }

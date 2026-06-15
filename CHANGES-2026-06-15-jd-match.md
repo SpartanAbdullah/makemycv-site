@@ -59,14 +59,16 @@ npm run build          # verify velite + next build pass
 
 # stage ONLY the real changes (avoids the CRLF churn on untouched files)
 git add \
-  app/jd-match app/support \
+  app/jd-match app/support app/share-your-story \
   components/jd-match components/SupportTip.tsx components/home/JdMatchSection.tsx \
+  lib/marketingTemplates.ts \
   app/page.tsx app/pricing/page.tsx app/resume-checker/page.tsx app/templates/page.tsx \
   app/about/page.tsx app/contact/ContactForm.tsx app/sitemap.ts \
   components/Navbar.tsx components/Footer.tsx \
   components/home/HeroSection.tsx components/home/FeatureGrid.tsx components/home/HowItWorks.tsx \
   components/home/ProblemSolution.tsx components/home/PricingStrip.tsx components/home/FinalCTA.tsx \
   components/home/TemplateShowcase.tsx components/home/NoBaitBanner.tsx components/home/BuiltForUAE.tsx \
+  components/home/TemplateThumbnail.tsx \
   components/pricing/PricingHero.tsx components/pricing/PricingCards.tsx components/pricing/faqItems.ts \
   components/resume-checker/FilterProblem.tsx components/resume-checker/PricingClarity.tsx \
   components/resume-checker/ResumeCheckerFAQ.tsx \

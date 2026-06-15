@@ -1,12 +1,16 @@
 import { buildPageMetadata } from "@/lib/seo";
-import { Check, CheckCircle2, XCircle } from "lucide-react";
+import { Check, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
+import { TemplateThumbnail } from "@/components/home/TemplateThumbnail";
+import { marketingTemplates } from "@/lib/marketingTemplates";
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
   description:
-    "Browse ATS-friendly CV templates built for Dubai and UAE hiring standards. Pick a clean format and create your CV in minutes.",
+    "Browse the CV templates built into MakeMyCV — ATS-safe and design-led layouts formatted for Dubai and UAE hiring. Free to use, no sign-up. Pick one and build your CV in minutes.",
   path: "/templates",
 });
+
+const APP_URL = "https://app.makemycv.ae";
 
 export default function TemplatesPage() {
   return (
@@ -15,130 +19,119 @@ export default function TemplatesPage() {
       <section className="bg-brand-navy py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6 text-center">
           <h1 className="font-display text-4xl font-extrabold text-white md:text-5xl">
-            Professional CV Templates
+            CV Templates
             <br />
-            <span className="text-brand-blue">for the UAE Job Market</span>
+            <span className="text-brand-blue">built for the UAE job market</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
-            Every template is ATS-tested and formatted to Gulf hiring standards.
+            Every template in the builder is ATS-tested and formatted to Gulf
+            hiring standards. All free — switch any time, your content stays.
           </p>
         </div>
       </section>
 
-      {/* Templates Grid */}
-      <section className="bg-white py-12 md:py-20">
+      {/* Templates gallery */}
+      <section className="bg-white py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800">
-            Choose Your Template
+          <h2 className="text-center font-display text-3xl font-bold text-slate-900">
+            Choose your template
           </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {/* Classic */}
-            <div className="relative rounded-3xl border-2 border-slate-200 bg-white p-8 card-lift">
-              <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                FREE
-              </span>
-              {/* Thumbnail */}
-              <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <div className="h-3 w-24 rounded bg-slate-300" />
-                    <div className="h-2 w-20 rounded bg-slate-200" />
-                  </div>
-                  <div className="space-y-1 text-right">
-                    <div className="h-2 w-16 rounded bg-slate-200" />
-                    <div className="h-2 w-12 rounded bg-slate-200" />
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2">
-                  <div className="h-2 w-16 rounded bg-slate-300" />
-                  <div className="h-2 w-full rounded bg-slate-200" />
-                  <div className="h-2 w-5/6 rounded bg-slate-200" />
-                </div>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-slate-800">
-                Classic
-              </h3>
-              <p className="mt-2 text-sm text-brand-muted">
-                Clean, structured, and trusted by UAE recruiters. Perfect for
-                corporate roles in finance, operations, and government sectors.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-                {[
-                  "Single column layout",
-                  "ATS-optimized structure",
-                  "Works for all industries",
-                  "PDF & DOCX export",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check size={16} className="mt-0.5 shrink-0 text-emerald-500" strokeWidth={2.5} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
-              >
-                Use This Template &rarr;
-              </a>
-            </div>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-slate-600">
+            These are the real templates inside the builder — preview them here,
+            then pick one and start writing.
+          </p>
 
-            {/* Modern */}
-            <div
-              className="relative rounded-3xl border-2 border-[#2563eb] p-8 card-lift"
-              style={{
-                background: 'linear-gradient(135deg, #0f172a 0%, #1a1040 100%)',
-                boxShadow: '0 0 60px rgba(37,99,235,0.2)',
-              }}
-            >
-              <span className="absolute right-4 top-4 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-semibold text-emerald-300">
-                FREE
-              </span>
-              {/* Thumbnail */}
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="h-4 w-16 rounded bg-blue-400/30" />
-                <div className="mt-3 grid grid-cols-[2fr_1fr] gap-2">
-                  <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-white/20" />
-                    <div className="h-2 w-5/6 rounded bg-white/15" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-blue-400/20" />
-                    <div className="h-2 w-4/6 rounded bg-blue-400/15" />
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {marketingTemplates.map((t) => (
+              <article
+                key={t.slug}
+                id={t.slug}
+                className="group flex h-full scroll-mt-24 flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg-soft"
+              >
+                {/* Preview well */}
+                <div className="relative bg-gradient-to-b from-slate-100 to-slate-50 p-6 pb-3">
+                  <span
+                    className={`absolute left-3 top-3 z-10 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-eyebrow ${
+                      t.badge === "ATS-safe"
+                        ? "bg-emerald-100 text-emerald-700"
+                        : "bg-blue-100 text-blue-700"
+                    }`}
+                  >
+                    {t.badge}
+                  </span>
+                  <span className="absolute right-3 top-3 z-10 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-eyebrow text-slate-600 ring-1 ring-slate-200">
+                    Free
+                  </span>
+
+                  <div className="relative mx-auto max-w-[320px]">
+                    <TemplateThumbnail variant={t.variant} accent={t.accent} />
+
+                    {/* Hover CTA (desktop) */}
+                    <div className="pointer-events-none absolute inset-0 hidden items-end justify-center rounded-xl bg-gradient-to-t from-slate-900/85 via-slate-900/30 to-transparent p-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:flex md:pointer-events-auto">
+                      <a
+                        href={APP_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-lg bg-brand-blue px-4 py-2 text-xs font-semibold text-white shadow-md hover:bg-brand-blue-dark"
+                        data-event="templates_card_click"
+                        data-template-id={t.slug}
+                      >
+                        Use This Template
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-white">
-                Modern
-              </h3>
-              <p className="mt-2 text-sm text-slate-300">
-                Two-column design with a sidebar. Ideal for creative, tech, and
-                marketing roles where visual presentation matters.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-300">
-                {[
-                  "Two-column sidebar layout",
-                  "Skills visualization",
-                  "Profile photo support",
-                  "ATS-safe design",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check size={16} className="mt-0.5 shrink-0 text-blue-400" strokeWidth={2.5} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
-              >
-                Use This Template &rarr;
-              </a>
-            </div>
+
+                {/* Body */}
+                <div className="flex flex-1 flex-col p-6">
+                  <h3 className="font-display text-lg font-bold text-slate-900">
+                    {t.name}
+                  </h3>
+                  <p className="mt-1.5 text-sm leading-snug text-slate-600">
+                    {t.positioning}
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {t.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-medium text-slate-700"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Mobile CTA */}
+                  <a
+                    href={APP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center justify-center gap-1 rounded-lg bg-brand-blue px-3 py-2.5 text-sm font-semibold text-white shadow-cta transition-colors hover:bg-brand-blue-dark md:hidden"
+                    data-event="templates_card_click_mobile"
+                    data-template-id={t.slug}
+                  >
+                    Use This Template
+                    <ArrowRight size={14} />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <a
+              href={APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 btn-primary rounded-xl px-8 py-4 text-base font-bold text-white"
+              data-event="templates_build_cta_click"
+            >
+              Build my CV — Free
+              <ArrowRight size={18} />
+            </a>
+            <p className="mt-3 text-sm text-slate-500">
+              No account. No watermark. No card.
+            </p>
           </div>
         </div>
       </section>
@@ -147,29 +140,31 @@ export default function TemplatesPage() {
       <section className="bg-brand-light py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center font-display text-3xl font-bold text-slate-800 md:text-4xl">
-            What is ATS and Why Does It Matter in UAE?
+            What is ATS and why does it matter in the UAE?
           </h2>
           <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
             <div className="text-sm leading-relaxed text-slate-700">
               <p>
                 Most large UAE employers — ADNOC, Emirates, Emaar, DEWA, and
                 international banks in DIFC — use Applicant Tracking Systems
-                (ATS) to filter CVs before a human ever sees them.
+                (ATS) to sort CVs before a recruiter reads them.
               </p>
               <p className="mt-4">
-                An ATS scans for keywords, proper formatting, and standard
-                section headers. If your CV uses tables, graphics, or unusual
-                fonts, it gets rejected automatically.
+                An ATS reads your text, structure and section headers. Tables,
+                graphics and unusual fonts can break the parse, so a strong CV
+                can rank low and get buried.
               </p>
               <p className="mt-4">
-                All MakeMyCV templates are built to pass ATS screening while
-                still looking professional to human recruiters.
+                Every MakeMyCV template is built to be parsed cleanly while
+                still looking professional to a human recruiter — and our
+                &quot;ATS-safe&quot; badge flags the single-column layouts that
+                travel best through online portals.
               </p>
             </div>
             <div className="grid gap-4">
               <div className="rounded-2xl p-6 border-2 border-red-100 bg-red-50">
                 <p className="font-bold text-red-600 mb-3 flex items-center gap-2">
-                  <XCircle size={18} className="text-red-500" /> Rejected by ATS
+                  <XCircle size={18} className="text-red-500" /> Confuses the ATS
                 </p>
                 <ul className="space-y-1 text-xs text-red-600">
                   <li>&bull; Tables and multi-column layouts</li>
@@ -180,7 +175,8 @@ export default function TemplatesPage() {
               </div>
               <div className="rounded-2xl p-6 border-2 border-green-100 bg-green-50">
                 <p className="font-bold text-green-600 mb-3 flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-emerald-500" /> Passes ATS
+                  <CheckCircle2 size={18} className="text-emerald-500" /> Parses
+                  cleanly
                 </p>
                 <ul className="space-y-1 text-xs text-green-600">
                   <li>&bull; Clean text formatting</li>

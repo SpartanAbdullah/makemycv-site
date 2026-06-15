@@ -1,24 +1,11 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getFeaturedTemplates } from "@/lib/templates";
+import { getFeaturedMarketingTemplates } from "@/lib/marketingTemplates";
 import { TemplateThumbnail } from "./TemplateThumbnail";
 
-type ThumbVariant = "classic" | "modern" | "executive" | "graduate" | "minimal";
-
-function getVariant(slug: string): ThumbVariant {
-  const known: ThumbVariant[] = [
-    "classic",
-    "modern",
-    "executive",
-    "graduate",
-    "minimal",
-  ];
-  return known.find((k) => k === slug) ?? "classic";
-}
-
 export function TemplateShowcase() {
-  const templates = getFeaturedTemplates(3);
+  const templates = getFeaturedMarketingTemplates(3);
   if (templates.length === 0) return null;
 
   return (
@@ -43,10 +30,7 @@ export function TemplateShowcase() {
                 </span>
 
                 <div className="relative mx-auto max-w-[320px]">
-                  <TemplateThumbnail
-                    variant={getVariant(t.slug)}
-                    accent={t.accent}
-                  />
+                  <TemplateThumbnail variant={t.variant} accent={t.accent} />
 
                   {/* Hover overlay (desktop) */}
                   <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 rounded-xl bg-gradient-to-t from-slate-900/85 via-slate-900/35 to-transparent p-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100 md:flex md:pointer-events-auto">
@@ -76,9 +60,13 @@ export function TemplateShowcase() {
                   <h3 className="font-display text-lg font-bold text-slate-900">
                     {t.name}
                   </h3>
-                  <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-medium text-emerald-600">
+                  <span
+                    className={`inline-flex shrink-0 items-center gap-1 text-[11px] font-medium ${
+                      t.badge === "ATS-safe" ? "text-emerald-600" : "text-blue-600"
+                    }`}
+                  >
                     <Check size={12} strokeWidth={3} />
-                    ATS-safe
+                    {t.badge}
                   </span>
                 </div>
                 <p className="mt-1.5 text-sm leading-snug text-slate-600">
