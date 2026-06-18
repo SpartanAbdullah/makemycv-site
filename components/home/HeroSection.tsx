@@ -66,8 +66,7 @@ export function HeroSection() {
 
           {/* Micro-proof */}
           <p className="mt-6 text-sm text-slate-400">
-            Used by 12,400+ job seekers across Dubai, Abu Dhabi &amp; Sharjah
-            this year.
+            Free to build and download — no watermark, no sign-up.
           </p>
         </div>
 

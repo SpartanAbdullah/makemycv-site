@@ -58,7 +58,7 @@ const FinalCTA = dynamic(
 export const metadata = buildPageMetadata({
   title: "Free CV Builder + JD Match for UAE Jobs",
   description:
-    "Build an ATS-clean, visa-ready CV for Dubai, Abu Dhabi & GCC hiring — then paste any job description to see how you match, free and instant. Honest AI that never invents. Your CV stays in your browser. No sign-up.",
+    "Free, ATS-clean CV builder for Dubai & UAE jobs. Build a visa-ready CV, then match it to any job description — instant, no sign-up.",
   path: "/",
 });
 
