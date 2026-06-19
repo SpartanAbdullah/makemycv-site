@@ -103,8 +103,7 @@ export default function JdMatchPage() {
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl lg:mx-0">
               Paste a job description and get an instant match score — plus a
               green/amber heatmap on the real job ad showing every requirement
-              you cover and every gap to close. Free. Your CV never leaves your
-              browser.
+              you cover and every gap to close. Free, with no sign-up.
             </p>
 
             <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
@@ -126,7 +125,7 @@ export default function JdMatchPage() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
               <TrustChip icon={ShieldCheck} label="Honest AI — never invents" tone="dark" />
-              <TrustChip icon={Lock} label="CV stays in your browser" tone="dark" />
+              <TrustChip icon={Lock} label="Draft saved in your browser" tone="dark" />
               <TrustChip icon={Highlighter} label="Heatmap on the real JD" tone="dark" />
             </div>
           </div>
@@ -135,6 +134,20 @@ export default function JdMatchPage() {
           <div>
             <HeatmapPreview />
           </div>
+        </div>
+      </section>
+
+      {/* Answer-first intro (BLUF) — directly answers the page's core question */}
+      <section className="border-b border-slate-200 bg-white py-12 md:py-14">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
+            To see how your CV matches a UAE job description, build or import
+            your CV, then paste the full job ad into JD Match. You get a match
+            score plus a green/amber heatmap that marks every requirement in the
+            job ad you already cover and every gap to close. Matching and any AI
+            rewrites run on our servers; your working CV draft stays in your
+            browser. The check is free and needs no sign-up.
+          </p>
         </div>
       </section>
 
