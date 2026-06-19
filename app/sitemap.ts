@@ -72,7 +72,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // blog listing and [slug] pages use, so drafts never reach the sitemap.
   const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: canonicalUrl(`/blog/${post.slugPath}`),
-    lastModified: new Date(post.date),
+    // Mirror the article metadata's freshness fallback so updated evergreen
+    // posts report their real dateModified, not just the original publish date.
+    lastModified: new Date(post.dateModified ?? post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
