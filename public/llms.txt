@@ -1,0 +1,20 @@
+# MakeMyCV
+
+> Free, ATS-friendly CV builder for the UAE job market.
+
+MakeMyCV is a free web app for building an ATS-clean, UAE-formatted CV and matching it against a specific job description. No account or payment is required to build and download a CV.
+
+Canonical URL: https://www.makemycv.ae
+
+## Key pages
+
+- [Home](https://www.makemycv.ae/): Build a UAE CV and check it against a job description.
+- [JD Match](https://www.makemycv.ae/jd-match): Paste a job description for a match score and a requirement-by-requirement heatmap of what your CV covers and misses.
+- [Resume Checker](https://www.makemycv.ae/resume-checker): Upload a PDF CV to see how UAE applicant tracking systems parse and rank it.
+- [Templates](https://www.makemycv.ae/templates): ATS-friendly CV templates formatted for UAE hiring.
+- [Blog](https://www.makemycv.ae/blog): Guides on UAE CV format, ATS, and the Dubai and Abu Dhabi job market.
+
+## Notes
+
+- Building and downloading a CV is free, with no sign-up or watermark.
+- JD Match and AI-improve send your text to the server for analysis.
