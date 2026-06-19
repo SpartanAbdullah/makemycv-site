@@ -37,7 +37,7 @@ export function FinalCTA() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-400">
           <span className="inline-flex items-center gap-1.5">
             <Lock size={14} className="text-blue-400" />
-            Your data stays in your browser
+            Your draft stays in your browser
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Zap size={14} className="text-blue-400" />

@@ -11,6 +11,7 @@ import {
 } from "@/lib/seo";
 import { HeroSection } from "@/components/home/HeroSection";
 import { NoBaitBanner } from "@/components/home/NoBaitBanner";
+import { HomeFAQ, faqItems as homeFaqItems } from "@/components/home/HomeFAQ";
 
 // Below-the-fold sections — split into separate chunks to keep initial payload lean.
 // ssr:true (default) preserves SEO; sized skeletons prevent CLS during load.
@@ -108,6 +109,22 @@ const homepageSchema = {
       },
       inLanguage: "en-AE",
     },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      inLanguage: "en-AE",
+      isPartOf: {
+        "@id": WEBSITE_ID,
+      },
+      mainEntity: homeFaqItems.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    },
   ],
 };
 
@@ -131,6 +148,7 @@ export default function HomePage() {
       <TemplateShowcase />
       <TrustSection />
       <PricingStrip />
+      <HomeFAQ />
       <FinalCTA />
     </>
   );

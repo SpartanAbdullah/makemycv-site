@@ -2,6 +2,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import { Check, CheckCircle2, XCircle, ArrowRight } from "lucide-react";
 import { TemplateThumbnail } from "@/components/home/TemplateThumbnail";
 import { marketingTemplates } from "@/lib/marketingTemplates";
+import { TemplatesFAQ, faqItems } from "@/components/templates/TemplatesFAQ";
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
@@ -12,9 +13,27 @@ export const metadata = buildPageMetadata({
 
 const APP_URL = "https://app.makemycv.ae";
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqItems.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
 export default function TemplatesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+
       {/* Hero */}
       <section className="bg-brand-navy py-16 md:py-24">
         <div className="mx-auto max-w-6xl px-6 text-center">
@@ -26,6 +45,21 @@ export default function TemplatesPage() {
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
             Every template in the builder is ATS-tested and formatted to Gulf
             hiring standards. All free — switch any time, your content stays.
+          </p>
+        </div>
+      </section>
+
+      {/* Answer-first opener — "What CV template should I use for UAE jobs?" */}
+      <section className="border-b border-slate-200 bg-white py-12 md:py-14">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
+            For most UAE jobs, choose a clean, single-column template marked
+            ATS-safe — it parses reliably through the applicant tracking systems
+            large Gulf employers use, so your CV reaches a recruiter intact. Keep
+            design-led, multi-column layouts for roles where a person reviews
+            your CV directly, such as creative or smaller-firm applications.
+            Every template below is free, UAE-formatted, and you can switch
+            layouts without losing your content.
           </p>
         </div>
       </section>
@@ -158,7 +192,7 @@ export default function TemplatesPage() {
                 Every MakeMyCV template is built to be parsed cleanly while
                 still looking professional to a human recruiter — and our
                 &quot;ATS-safe&quot; badge flags the single-column layouts that
-                travel best through online portals.
+                travel most reliably through online portals.
               </p>
             </div>
             <div className="grid gap-4">
@@ -189,6 +223,8 @@ export default function TemplatesPage() {
           </div>
         </div>
       </section>
+
+      <TemplatesFAQ />
     </>
   );
 }
