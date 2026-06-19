@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
 import { canonicalUrl } from '@/lib/seo'
+import { getAllPosts } from '@/lib/blog'
 
 type SitemapEntry = {
   path: string
@@ -59,19 +60,6 @@ function getLastModified(filePath: string): Date {
   return fs.statSync(path.join(process.cwd(), filePath)).mtime
 }
 
-function getBlogFiles(): Array<{ slug: string; filePath: string }> {
-  const contentDir = path.join(process.cwd(), 'content/blog')
-  if (!fs.existsSync(contentDir)) return []
-
-  return fs
-    .readdirSync(contentDir)
-    .filter(f => f.endsWith('.mdx') || f.endsWith('.md'))
-    .map(fileName => ({
-      slug: fileName.replace(/\.(mdx|md)$/, ''),
-      filePath: path.join(contentDir, fileName),
-    }))
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: canonicalUrl(route.path),
@@ -80,9 +68,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }))
 
-  const blogEntries: MetadataRoute.Sitemap = getBlogFiles().map(({ slug, filePath }) => ({
-    url: canonicalUrl(`/blog/${slug}`),
-    lastModified: fs.statSync(filePath).mtime,
+  // Only published posts — reuse getAllPosts(), the same published filter the
+  // blog listing and [slug] pages use, so drafts never reach the sitemap.
+  const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: canonicalUrl(`/blog/${post.slugPath}`),
+    // Mirror the article metadata's freshness fallback so updated evergreen
+    // posts report their real dateModified, not just the original publish date.
+    lastModified: new Date(post.dateModified ?? post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
