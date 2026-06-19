@@ -11,6 +11,7 @@ import {
 } from "@/lib/seo";
 import { HeroSection } from "@/components/home/HeroSection";
 import { NoBaitBanner } from "@/components/home/NoBaitBanner";
+import { HomeFAQ, faqItems as homeFaqItems } from "@/components/home/HomeFAQ";
 
 // Below-the-fold sections — split into separate chunks to keep initial payload lean.
 // ssr:true (default) preserves SEO; sized skeletons prevent CLS during load.
@@ -58,7 +59,7 @@ const FinalCTA = dynamic(
 export const metadata = buildPageMetadata({
   title: "Free CV Builder + JD Match for UAE Jobs",
   description:
-    "Build an ATS-clean, visa-ready CV for Dubai, Abu Dhabi & GCC hiring — then paste any job description to see how you match, free and instant. Honest AI that never invents. Your CV stays in your browser. No sign-up.",
+    "Free, ATS-clean CV builder for Dubai & UAE jobs. Build a visa-ready CV, then match it to any job description — instant, no sign-up.",
   path: "/",
 });
 
@@ -108,6 +109,22 @@ const homepageSchema = {
       },
       inLanguage: "en-AE",
     },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_URL}/#faq`,
+      inLanguage: "en-AE",
+      isPartOf: {
+        "@id": WEBSITE_ID,
+      },
+      mainEntity: homeFaqItems.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    },
   ],
 };
 
@@ -131,6 +148,7 @@ export default function HomePage() {
       <TemplateShowcase />
       <TrustSection />
       <PricingStrip />
+      <HomeFAQ />
       <FinalCTA />
     </>
   );

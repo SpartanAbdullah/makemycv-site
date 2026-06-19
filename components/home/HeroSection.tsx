@@ -30,7 +30,7 @@ export function HeroSection() {
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl lg:mx-0">
             Build a recruiter-ready CV, then paste any job description to see how
             well you match — free and instant. Our AI helps you tell the truth
-            better, never invent it. Your CV stays in your browser. No sign-up.
+            better, never invent it. Your draft stays in your browser. No sign-up.
           </p>
 
           {/* CTAs */}
@@ -66,8 +66,7 @@ export function HeroSection() {
 
           {/* Micro-proof */}
           <p className="mt-6 text-sm text-slate-400">
-            Used by 12,400+ job seekers across Dubai, Abu Dhabi &amp; Sharjah
-            this year.
+            Free to build and download — no watermark, no sign-up.
           </p>
         </div>
 

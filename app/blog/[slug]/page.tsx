@@ -90,15 +90,15 @@ export default async function PostPage({ params }: Props) {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Article",
+            "@type": "BlogPosting",
             "headline": post.title,
             "description": post.excerpt,
             "datePublished": post.date,
-            "dateModified": post.date,
+            "dateModified": post.updated,
             "author": {
               "@type": "Organization",
-              "name": SITE_NAME,
-              "url": SITE_URL
+              "name": post.author,
+              "url": canonicalUrl("/author/makemycv-team")
             },
             "publisher": {
               "@type": "Organization",
@@ -168,7 +168,17 @@ export default async function PostPage({ params }: Props) {
               By {post.author}
             </Link>
             <span>&middot;</span>
-            <span>{formatDate(post.date)}</span>
+            <span>
+              Published <time dateTime={post.date}>{formatDate(post.date)}</time>
+            </span>
+            {post.updated !== post.date && (
+              <>
+                <span>&middot;</span>
+                <span>
+                  Updated <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+                </span>
+              </>
+            )}
             <span>&middot;</span>
             <span>{post.readingTime ?? 5} min read</span>
           </div>

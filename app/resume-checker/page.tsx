@@ -198,6 +198,20 @@ export default function ResumeCheckerPage() {
         </div>
       </section>
 
+      {/* Answer-first intro (BLUF) — directly answers the page's core question */}
+      <section className="border-b border-line bg-white py-12 md:py-14">
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
+            To check whether your CV is ATS-ready for UAE jobs, upload it as a
+            PDF. The checker shows how Dubai, Abu Dhabi and GCC
+            applicant-tracking systems parse and rank it, flagging layout,
+            formatting, keyword and structure issues with a fix for each. Your
+            file is processed on our servers to produce the report and is
+            deleted after 24 hours. The check is free, with no sign-up.
+          </p>
+        </div>
+      </section>
+
       <FilterProblem />
       <WhatWeCheck />
       <HowItWorks />

@@ -13,8 +13,8 @@ export const faqItems: FAQItem[] = [
   },
   {
     id: "privacy",
-    q: "Does my CV get uploaded anywhere?",
-    a: "No. Your CV stays in your browser. Only the job text you paste is sent for analysis, and it isn't stored or logged. The matching between the job and your CV runs locally on your device.",
+    q: "Is my data private when I use JD Match?",
+    a: "Your working CV draft is saved in your browser's local storage, not in an account. When you run a match or use AI-improve, the relevant CV and job-description text is sent to our servers to generate the result — it's never shown to recruiters, sold, or used to train AI models. So the builder keeps your draft local, while the matching and rewriting happen server-side.",
   },
   {
     id: "honest",

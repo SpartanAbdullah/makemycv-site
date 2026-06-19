@@ -11,6 +11,7 @@ const posts = defineCollection({
     slug: s.path(),
     excerpt: s.string().max(300),
     date: s.isodate(),
+    updated: s.isodate().optional(),
     author: s.string().default('MakeMyCV Team'),
     category: s.enum([
       'CV Tips',
@@ -30,6 +31,9 @@ const posts = defineCollection({
   .transform((data) => ({
     ...data,
     slugPath: data.slug.replace('blog/', ''),
+    // dateModified falls back to the published date when no explicit `updated`
+    // is set — backfills every post honestly without fabricating revision dates.
+    updated: data.updated ?? data.date,
   })),
 })
 
