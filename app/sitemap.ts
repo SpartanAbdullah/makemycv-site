@@ -19,6 +19,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 1,
   },
   {
+    path: '/jd-match',
+    sourceFile: 'app/jd-match/page.tsx',
+    changeFrequency: 'weekly',
+    priority: 0.95,
+  },
+  {
     path: '/templates',
     sourceFile: 'app/templates/page.tsx',
     changeFrequency: 'monthly',
