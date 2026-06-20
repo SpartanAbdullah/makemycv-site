@@ -46,7 +46,7 @@ export const Navbar = () => {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -66,7 +66,7 @@ export const Navbar = () => {
         </div>
 
         {/* Desktop CTAs */}
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/resume-checker"
             className="glow-border group relative inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
@@ -93,7 +93,7 @@ export const Navbar = () => {
         <button
           type="button"
           onClick={() => setMenuOpen(!menuOpen)}
-          className="flex flex-col gap-1.5 md:hidden"
+          className="flex flex-col gap-1.5 lg:hidden"
           aria-label="Toggle menu"
         >
           <span
@@ -110,7 +110,7 @@ export const Navbar = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-brand-border bg-white/95 backdrop-blur-xl px-6 py-4 md:hidden">
+        <div className="border-t border-brand-border bg-white/95 backdrop-blur-xl px-6 py-4 lg:hidden">
           <div className="flex flex-col gap-3">
             {links.map((link) => {
               const isActive = pathname === link.href;
