@@ -27,6 +27,9 @@ const posts = defineCollection({
     coverImage: s.string().default('/blog/default-cover.png'),
     featured: s.boolean().default(false),
     readingTime: s.number().optional(),
+    // Computed reading time + word count from the post body (real, not faked).
+    // Surfaced on the blog index; falls back to explicit `readingTime` if set.
+    metadata: s.metadata(),
     published: s.boolean().default(true),
     // Optional FAQ array. When present, becomes FAQPage schema. Only add
     // here if the same Q/As are visible on the page — schema must mirror
