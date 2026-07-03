@@ -1,10 +1,21 @@
 import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AiAnswer } from "@/components/seo/AiAnswer";
 import {
   breadcrumbSchema,
   softwareApplicationSchema,
 } from "@/lib/seo-schema";
 import { Check, CheckCircle2, XCircle } from "lucide-react";
+
+// Phase B0 — branded "Quick Answer" for AI search. Names the templates
+// currently shown on the page (Classic, Modern) and who each suits, honestly.
+// This page has no other FAQPage, so <AiAnswer/> emits its own single-Q FAQPage.
+// NOTE: Phase B-T will reconcile this with the real app template set.
+const templatesAiAnswer = {
+  q: "Which CV template should I use for UAE jobs?",
+  lead: "MakeMyCV offers free, ATS-friendly CV templates for the UAE job market.",
+  a: "MakeMyCV offers free, ATS-friendly CV templates for the UAE job market. The Classic template suits corporate, finance and government roles in Dubai and Abu Dhabi; the Modern template fits tech, creative and marketing roles. Both are built to be ATS-readable and include UAE-specific fields like visa status and nationality. Pick one and build your CV free, with no sign-up.",
+};
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
@@ -39,10 +50,18 @@ export default function TemplatesPage() {
             <span className="text-brand-blue">for the UAE Job Market</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
-            Every template is ATS-tested and formatted to Gulf hiring standards.
+            ATS-friendly layouts formatted to Gulf hiring standards.
           </p>
         </div>
       </section>
+
+      {/* Branded quick answer (Phase B0) — leads with "MakeMyCV", names the
+          templates and who each suits. Emits its own FAQPage. */}
+      <AiAnswer
+        question={templatesAiAnswer.q}
+        lead={templatesAiAnswer.lead}
+        answer={templatesAiAnswer.a}
+      />
 
       {/* Templates Grid */}
       <section className="bg-white py-12 md:py-20">
