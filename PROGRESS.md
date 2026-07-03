@@ -55,6 +55,34 @@ deploy it site-wide with clean schema.
 
 ---
 
+## 2026-07-03 · Sessions B1 + B3 — Methodology depth + FAQ expansion ✅
+
+**Goal:** Out-depth JobXDubai's `/ats` page with crawlable, quotable substance on `/resume-checker`.
+
+**Changed**
+- **New** `components/resume-checker/AtsSystems.tsx` (B1) — dense, always-visible section:
+  - Question-shaped H2 "Which ATS systems UAE employers use — and how they read your CV."
+  - Self-referential intro naming MakeMyCV + "60+ UAE-tuned checks" by category + "deterministic … no
+    fixed ATS score" (honesty framing, mirrors Labeeb's "no risky guarantees").
+  - Server-rendered table of **Workday, Taleo, Greenhouse, iCIMS, Lever** — common UAE users + how each
+    tends to parse a CV (hedged tendencies, not fabricated guarantees).
+  - DO / DON'T two-column list.
+- `components/resume-checker/ResumeCheckerFAQ.tsx` (B3) — expanded `faqItems` 6 → **10**: added
+  "PDF or DOCX for UAE jobs", "is passing the ATS enough", "keywords without keyword-stuffing", "why do
+  different ATS systems score the same CV differently". Answers are self-contained (citation-ready) and
+  honest (no fixed-score promise).
+- `app/resume-checker/page.tsx` — render `<AtsSystems/>` between `WhatWeCheck` and `HowItWorks`. FAQPage
+  auto-includes the 4 new items (built from `faqItems`).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success ✅.
+- Server HTML (`.next/server/app/resume-checker.html`): methodology sentence, all 5 ATS names, "How it
+  tends to parse", DO/DON'T headings, and all 4 new FAQ answers present ✅.
+- Schema: still **1 FAQPage** on the page; **11 Question** entities (branded AiAnswer + 10 FAQ) ✅.
+- Dev-server DOM check confirmed the table + DO/DON'T render (status 200) ✅.
+
+---
+
 ## 2026-07-03 · Session 0 — Verify codebases ✅
 
 Verified the brief's table against git + file reads. Key drift (details in `PLAN.md §0`):

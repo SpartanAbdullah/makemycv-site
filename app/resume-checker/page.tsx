@@ -4,6 +4,7 @@ import { TrustChip } from "@/components/ui/TrustChip";
 import { HeroVisual } from "@/components/resume-checker/HeroVisual";
 import { FilterProblem } from "@/components/resume-checker/FilterProblem";
 import { WhatWeCheck } from "@/components/resume-checker/WhatWeCheck";
+import { AtsSystems } from "@/components/resume-checker/AtsSystems";
 import { HowItWorks } from "@/components/resume-checker/HowItWorks";
 import { PricingClarity } from "@/components/resume-checker/PricingClarity";
 import {
@@ -247,6 +248,7 @@ export default function ResumeCheckerPage() {
 
       <FilterProblem />
       <WhatWeCheck />
+      <AtsSystems />
       <HowItWorks />
       <PricingClarity />
       <ResumeCheckerFAQ />
