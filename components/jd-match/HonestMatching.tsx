@@ -77,7 +77,7 @@ export function HonestMatching() {
           <Pillar
             icon={Lock}
             title="Private by design"
-            body="Your CV never leaves your browser. Only the job text you paste is sent for analysis, and it isn&rsquo;t stored. Imported files are read locally, on your device."
+            body="Your working CV draft is saved in your browser, not an account. To run a match or an AI rewrite, the relevant CV and job text is sent to our servers to generate the result &mdash; never sold, never shown to recruiters, never used to train AI models."
           />
         </div>
       </div>

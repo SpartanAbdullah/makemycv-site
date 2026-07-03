@@ -55,6 +55,39 @@ deploy it site-wide with clean schema.
 
 ---
 
+## 2026-07-03 · Sessions B4 + B5 — HowTo schema + UAE prose + honesty fix ✅
+
+**Goal:** Add HowTo/enriched SoftwareApplication schema to the tool pages (B4) and tighten the UAE
+angle in prose (B5) — while catching any honesty regressions.
+
+**Changed**
+- `components/resume-checker/HowItWorks.tsx` — `export const steps` (+ section `id="how-it-works"`) so the
+  page can build HowTo from the same source as the visible steps.
+- `components/jd-match/JdMatchSteps.tsx` — `export const steps` (+ `id="how-jd-match-works"`); **B5:**
+  replaced the unverifiable "No other UAE builder reads the job ad back to you like this" closer with an
+  honest, UAE-entity-dense line naming DIFC banking / ADNOC / Emaar.
+- `components/jd-match/HonestMatching.tsx` — **B5 honesty fix (guardrail):** the "Private by design"
+  pillar said *"Your CV never leaves your browser. Only the job text you paste is sent"* — false for
+  JD-match/AI-improve, which send CV text server-side. Rewrote to: draft saved in browser; to run a match
+  or AI rewrite the relevant CV + job text is sent to our servers, never sold/shown/used to train. Now
+  consistent with the page's own FAQ + AiAnswer.
+- `app/resume-checker/page.tsx` — **B4:** enriched SoftwareApplication (`description`, `audience`=UAE/GCC
+  job seekers, `featureList`) + new `howToSchema` (name "How to check if your CV passes UAE ATS filters",
+  3 steps from `howItWorksSteps`, `totalTime PT1M`); render `<JsonLd data={howToSchema} />`.
+- `app/jd-match/page.tsx` — **B4:** same treatment; `howToSchema` "How to match your CV to a UAE job
+  description" (3 steps from `jdMatchSteps`, `totalTime PT5M`).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success ✅.
+- Schema (built HTML): resume-checker & jd-match each now carry **1 SoftwareApplication + 1 HowTo
+  (3 HowToSteps) + 1 FAQPage** ✅. HowTo step text sourced from the visible step arrays (mirrors content).
+- Honesty (built HTML): the false "CV never leaves your browser" string and the "No other UAE builder"
+  absolute are **gone (0 occurrences)**; corrected privacy copy + the DIFC/ADNOC/Emaar line present ✅.
+- **Adversarial review workflow** (4 independent lenses — honesty, schema-mirrors-content, extractability,
+  SSR/regression — each finding skeptic-verified): **0 findings, all lenses clean** ✅.
+
+---
+
 ## 2026-07-03 · Sessions B1 + B3 — Methodology depth + FAQ expansion ✅
 
 **Goal:** Out-depth JobXDubai's `/ats` page with crawlable, quotable substance on `/resume-checker`.

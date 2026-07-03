@@ -10,7 +10,9 @@ type Step = {
   points: string[];
 };
 
-const steps: Step[] = [
+// Exported so app/jd-match/page.tsx can build HowTo JSON-LD from the same
+// source as the visible steps — schema mirrors on-page content, can't drift.
+export const steps: Step[] = [
   {
     icon: Highlighter,
     tag: "Heatmap",
@@ -48,7 +50,7 @@ const steps: Step[] = [
 
 export function JdMatchSteps() {
   return (
-    <section className="bg-paper py-20 md:py-28">
+    <section id="how-jd-match-works" className="bg-paper py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           eyebrow="How JD Match works"
@@ -91,8 +93,10 @@ export function JdMatchSteps() {
         </div>
 
         <p className="mt-8 text-center text-sm text-slate-500">
-          No other UAE builder reads the job ad back to you like this — it&rsquo;s
-          the fastest way to see why an application isn&rsquo;t landing.
+          From DIFC banking roles to ADNOC and Emaar project teams, JD Match
+          reads the job ad back to you and shows exactly where your CV falls
+          short &mdash; the fastest way to see why an application isn&rsquo;t
+          landing.
         </p>
       </div>
     </section>

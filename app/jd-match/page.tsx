@@ -2,7 +2,7 @@ import { Highlighter, Lock, MapPin, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TrustChip } from "@/components/ui/TrustChip";
 import { HeatmapPreview } from "@/components/jd-match/HeatmapPreview";
-import { JdMatchSteps } from "@/components/jd-match/JdMatchSteps";
+import { JdMatchSteps, steps as jdMatchSteps } from "@/components/jd-match/JdMatchSteps";
 import { HonestMatching } from "@/components/jd-match/HonestMatching";
 import { JdMatchFAQ, faqItems } from "@/components/jd-match/JdMatchFAQ";
 import { JdMatchFinalCTA } from "@/components/jd-match/JdMatchFinalCTA";
@@ -46,6 +46,39 @@ const softwareSchema = {
   operatingSystem: "Web",
   url: APP_URL,
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
+  description:
+    "Free CV-to-job-description matcher for the UAE job market. Paste any Dubai, Abu Dhabi or GCC job ad and get a match score plus a green/amber requirement heatmap — with honest keyword matching that never invents experience. No sign-up.",
+  audience: {
+    "@type": "Audience",
+    audienceType: "Job seekers in the UAE and GCC",
+  },
+  featureList: [
+    "CV-to-job-description match score",
+    "Green/amber requirement heatmap",
+    "Honest keyword matching (never fabricates)",
+    "Per-role tailored CV download",
+    "UAE-tuned fields and examples",
+    "No sign-up",
+  ],
+};
+
+// HowTo mirrors the visible <JdMatchSteps /> (sourced from the same array), so
+// the schema can't drift from what's on the page. Strong signal for AI answer
+// engines summarising "how to match a CV to a UAE job description".
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to match your CV to a UAE job description",
+  description:
+    "Use MakeMyCV's free JD Match to see how your CV fits a UAE job: paste the job ad to get a green/amber requirement heatmap, close the highest-impact gaps first, then download a copy tailored to that role for jobs in Dubai, Abu Dhabi and across the GCC.",
+  totalTime: "PT5M",
+  step: jdMatchSteps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+    url: `${canonicalUrl("/jd-match")}#how-jd-match-works`,
+  })),
 };
 
 // The branded quick answer is the first FAQ entity, followed by the visible
@@ -82,6 +115,10 @@ export default function JdMatchPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <script
         type="application/ld+json"

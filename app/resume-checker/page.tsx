@@ -5,7 +5,7 @@ import { HeroVisual } from "@/components/resume-checker/HeroVisual";
 import { FilterProblem } from "@/components/resume-checker/FilterProblem";
 import { WhatWeCheck } from "@/components/resume-checker/WhatWeCheck";
 import { AtsSystems } from "@/components/resume-checker/AtsSystems";
-import { HowItWorks } from "@/components/resume-checker/HowItWorks";
+import { HowItWorks, steps as howItWorksSteps } from "@/components/resume-checker/HowItWorks";
 import { PricingClarity } from "@/components/resume-checker/PricingClarity";
 import {
   ResumeCheckerFAQ,
@@ -60,9 +60,43 @@ const softwareSchema = {
   operatingSystem: "Web",
   url: CHECKER_URL,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about 30 seconds.",
+  audience: {
+    "@type": "Audience",
+    audienceType: "Job seekers in the UAE and GCC",
+  },
+  featureList: [
+    "60+ UAE-tuned ATS checks",
+    "Visa status and nationality checks",
+    "Formatting and parseability report",
+    "Keyword and content feedback",
+    "No sign-up, no email gate",
+    "Results in about 30 seconds",
+  ],
   // TODO: enable aggregateRating when we have real, verifiable ratings to cite.
   // Do NOT ship fabricated ratings — SoftwareApplication rich results require
   // genuine review data per Google's structured-data guidelines.
+};
+
+// HowTo mirrors the visible <HowItWorks /> steps (sourced from the same array),
+// so the schema can't drift from what's on the page. HowTo rich results are
+// deprecated in Google SERPs, but the JSON-LD is still a strong signal for AI
+// answer engines summarising "how to check a CV for UAE ATS".
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to check if your CV passes UAE ATS filters",
+  description:
+    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 60+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
+  totalTime: "PT1M",
+  step: howItWorksSteps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+    url: `${canonicalUrl("/resume-checker")}#how-it-works`,
+  })),
 };
 
 // The branded quick answer is the first FAQ entity, followed by the visible
@@ -105,6 +139,7 @@ export default function ResumeCheckerPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />
+      <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumbSchema} />
 
