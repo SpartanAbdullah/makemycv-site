@@ -104,7 +104,9 @@ function ReviewVisual(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-const steps: Step[] = [
+// Exported so app/resume-checker/page.tsx can build HowTo JSON-LD from the same
+// source as the visible steps — schema mirrors on-page content, can't drift.
+export const steps: Step[] = [
   {
     num: "00",
     title: "Upload your PDF",
@@ -130,7 +132,7 @@ const steps: Step[] = [
 
 export function HowItWorks() {
   return (
-    <section className="relative bg-paper-2 py-20 md:py-28">
+    <section id="how-it-works" className="relative bg-paper-2 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">

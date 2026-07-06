@@ -2,11 +2,22 @@ import { Highlighter, Lock, MapPin, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TrustChip } from "@/components/ui/TrustChip";
 import { HeatmapPreview } from "@/components/jd-match/HeatmapPreview";
-import { JdMatchSteps } from "@/components/jd-match/JdMatchSteps";
+import { JdMatchSteps, steps as jdMatchSteps } from "@/components/jd-match/JdMatchSteps";
 import { HonestMatching } from "@/components/jd-match/HonestMatching";
 import { JdMatchFAQ, faqItems } from "@/components/jd-match/JdMatchFAQ";
 import { JdMatchFinalCTA } from "@/components/jd-match/JdMatchFinalCTA";
+import { AiAnswer } from "@/components/seo/AiAnswer";
 import { APP_URL, SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
+
+// Phase B0 — branded "Quick Answer" for AI search. Answers Q6 ("tool to check
+// if my CV matches a job description UAE"), leads with the brand name, ~63
+// words, and preserves the build/import/paste instruction from the old BLUF.
+// Folded into faqSchema below so the page ships one FAQPage entity.
+const jdAiAnswer = {
+  q: "How do I check if my CV matches a UAE job description?",
+  lead: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss.",
+  a: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss. Build or import your CV, paste the job ad, and close each gap. Built for Dubai, Abu Dhabi and GCC hiring, it never invents experience — your draft stays in your browser while matching runs server-side. Free, no sign-up.",
+};
 
 export const metadata = {
   ...buildPageMetadata({
@@ -35,16 +46,53 @@ const softwareSchema = {
   operatingSystem: "Web",
   url: APP_URL,
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
+  description:
+    "Free CV-to-job-description matcher for the UAE job market. Paste any Dubai, Abu Dhabi or GCC job ad and get a match score plus a green/amber requirement heatmap — with honest keyword matching that never invents experience. No sign-up.",
+  audience: {
+    "@type": "Audience",
+    audienceType: "Job seekers in the UAE and GCC",
+  },
+  featureList: [
+    "CV-to-job-description match score",
+    "Green/amber requirement heatmap",
+    "Honest keyword matching (never fabricates)",
+    "Per-role tailored CV download",
+    "UAE-tuned fields and examples",
+    "No sign-up",
+  ],
 };
 
+// HowTo mirrors the visible <JdMatchSteps /> (sourced from the same array), so
+// the schema can't drift from what's on the page. Strong signal for AI answer
+// engines summarising "how to match a CV to a UAE job description".
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to match your CV to a UAE job description",
+  description:
+    "Use MakeMyCV's free JD Match to see how your CV fits a UAE job: paste the job ad to get a green/amber requirement heatmap, close the highest-impact gaps first, then download a copy tailored to that role for jobs in Dubai, Abu Dhabi and across the GCC.",
+  totalTime: "PT5M",
+  step: jdMatchSteps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+    url: `${canonicalUrl("/jd-match")}#how-jd-match-works`,
+  })),
+};
+
+// The branded quick answer is the first FAQ entity, followed by the visible
+// <JdMatchFAQ /> items. All Q/A text is present in the server HTML.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: { "@type": "Answer", text: item.a },
-  })),
+  mainEntity: [{ q: jdAiAnswer.q, a: jdAiAnswer.a }, ...faqItems].map(
+    (item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    }),
+  ),
 };
 
 const breadcrumbSchema = {
@@ -67,6 +115,10 @@ export default function JdMatchPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
       />
       <script
         type="application/ld+json"
@@ -137,19 +189,16 @@ export default function JdMatchPage() {
         </div>
       </section>
 
-      {/* Answer-first intro (BLUF) — directly answers the page's core question */}
-      <section className="border-b border-slate-200 bg-white py-12 md:py-14">
-        <div className="mx-auto max-w-3xl px-6">
-          <p className="text-lg leading-relaxed text-slate-700 md:text-xl">
-            To see how your CV matches a UAE job description, build or import
-            your CV, then paste the full job ad into JD Match. You get a match
-            score plus a green/amber heatmap that marks every requirement in the
-            job ad you already cover and every gap to close. Matching and any AI
-            rewrites run on our servers; your working CV draft stays in your
-            browser. The check is free and needs no sign-up.
-          </p>
-        </div>
-      </section>
+      {/* Branded quick answer (Phase B0) — replaces the plain BLUF paragraph
+          with a boxed, schema-backed answer that leads with "MakeMyCV". Schema
+          folded into faqSchema above (emitSchema={false}). */}
+      <AiAnswer
+        question={jdAiAnswer.q}
+        lead={jdAiAnswer.lead}
+        answer={jdAiAnswer.a}
+        emitSchema={false}
+        className="bg-white py-12 md:py-14"
+      />
 
       <JdMatchSteps />
       <HonestMatching />

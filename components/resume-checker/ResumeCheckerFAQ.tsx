@@ -23,6 +23,22 @@ export const faqItems = [
     q: "Can I use this if I'm not in the UAE?",
     a: "You can — the ATS checks for parseability, structure and scannability are universal. The UAE-specific checks (visa status, nationality fields) will surface as suggestions you can safely ignore if you're applying elsewhere.",
   },
+  {
+    q: "Should I upload my CV as a PDF or DOCX for UAE jobs?",
+    a: "Use a text-based PDF (one you exported from a document, not a scan or screenshot). Modern applicant tracking systems used by UAE employers parse text-based PDFs reliably, and a PDF keeps your layout intact for the recruiter who reads it afterwards. A scanned or image-based PDF has no readable text, so the ATS sees a blank CV. This checker only accepts PDF.",
+  },
+  {
+    q: "Is passing the ATS enough to get the job?",
+    a: "No. Passing the ATS only means a human recruiter actually sees your CV — it's the first gate, not the finish line. After that, your content, relevance to the role, and how clearly you show impact decide the outcome. This checker fixes the formatting and keyword issues that get CVs filtered out before a person reads them; it doesn't assess whether you're the right hire.",
+  },
+  {
+    q: "How do I add keywords without keyword-stuffing?",
+    a: "Mirror the exact wording of the job ad only where it's genuinely true of your experience — job titles, tools, certifications and skills you actually have. Put them in context inside your bullet points, not in a hidden list or a wall of comma-separated terms. Stuffing keywords you can't back up gets flagged by recruiters and can't survive an interview, so the checker rewards relevant, in-context terms rather than raw density.",
+  },
+  {
+    q: "Why do different ATS systems score the same CV differently?",
+    a: "Because there is no single universal ATS score. Systems like Workday, Greenhouse, Lever, Taleo and iCIMS each parse and rank CVs with their own logic, and every employer configures the keywords and knockout rules for their specific role. That's why we don't promise a fixed score or a guaranteed pass — we flag the concrete parsing and content issues that hurt you across all of them, so your CV is readable whichever system an employer uses.",
+  },
 ];
 
 export function ResumeCheckerFAQ() {
