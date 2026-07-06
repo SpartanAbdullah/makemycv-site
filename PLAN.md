@@ -74,6 +74,9 @@ Status key: ✅ done · 🔜 next · ⏳ planned · 🔒 blocked/STOP-gate · �
 - **DoD (B):** AiAnswer + methodology + every FAQ answer + sector examples in `view-source`; Rich Results valid (FAQPage + HowTo + SoftwareApplication); Lighthouse SEO ≥ 95; gates green; no SSR regressions.
 
 ### Phase B-T — Fix `/templates` (real previews, not skeletons)
+> **PARKED (2026-07-06, Abdullah's call):** needs a dedicated slot + the real `makemycv-app` template
+> list + a preview-generation approach. The B0 AiAnswer + ATS explainer already improve the page; the
+> skeleton previews remain a known, deferred issue. Page stays indexed (in sitemap at 0.9).
 - **BT1** ⏳ — Enumerate templates that ACTUALLY exist in `makemycv-app` (single source of truth). Reconcile with the site's Velite `templates` collection (currently 5: classic/executive/graduate/minimal/modern). Show only real ones.
 - **BT2** ⏳ — Replace grey skeleton placeholders with real previews (ideally auto-generated from the app so they never drift).
 - **BT3** ⏳ — CTA deep-links into the builder with the template preselected (`?template=<slug>` the app reads).
@@ -82,7 +85,8 @@ Status key: ✅ done · 🔜 next · ⏳ planned · 🔒 blocked/STOP-gate · �
 - **DoD:** every shown template exists in the app; previews real; CTAs preselect + reach builder; no fake claims; AiAnswer + schema in `view-source`; gates green.
 
 ### Phase C — Free-tool authority magnets (calculators)
-- **C1** ⏳ Gratuity Calculator → **C2** ⏳ Notice Period → **C3** ⏳ Annual Leave / Leave Encashment.
+- **C1** ✅ **Gratuity Calculator** (`/gratuity-calculator`) — interactive client calc (pure logic in `components/tools/gratuity.ts`) + SSR method/worked-examples/FAQ + WebApplication/HowTo/FAQPage/Breadcrumb schema + AiAnswer + builder/ATS cross-links; added to sitemap (0.85) + footer. Rules verified vs u.ae/MOHRE (21/30-day, ÷30 daily wage, 1-yr min, 2-yr cap, basic-only, resignation parity under FDL 33/2021, DIFC-DEWS caveat). Correct on 3 live worked examples (0/12,600/52,000). Passed a 3-lens adversarial review (legal/calc/honesty) — 1 minor finding (daily-wage display rounding) found & fixed.
+- **C2** ⏳ Notice Period → **C3** ⏳ Annual Leave / Leave Encashment.
 - Each: working calc (client logic fine) + **server-rendered** shell & explanatory content (UAE Labour Law basis, worked examples) + FAQ + FAQ/HowTo schema + internal links to builder + ATS hub.
 - **DoD:** correct on 3 worked examples each; explanatory text in `view-source`; schema valid; cross-links; gates green.
 

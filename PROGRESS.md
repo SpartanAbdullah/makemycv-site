@@ -55,6 +55,47 @@ deploy it site-wide with clean schema.
 
 ---
 
+## 2026-07-06 · Session C1 — UAE Gratuity Calculator ✅
+
+**Goal:** Ship the first free-tool authority magnet (brief Phase C) — a UAE end-of-service gratuity
+calculator that's accurate, SSR/indexable, schema-rich, and cross-linked.
+
+**Decisions from Abdullah (this session):**
+- Sitemap: **submit as-is** — it's valid, all-`www`; the 2 blog posts not listed (`best-cv-writers-uae`,
+  `can-chatgpt-write-cv`) are `published: false` drafts, correctly excluded.
+- Point #3: the marketing tool pages already route CTAs to `app.makemycv.ae` — no change needed. The
+  "import vs build" popup idea is an **app-repo** (`makemycv-app`) enhancement — parked as a separate task.
+- Point #4: **Phase B-T (templates) parked** for a dedicated slot (marked in PLAN.md).
+
+**Changed (new files)**
+- `components/tools/gratuity.ts` — pure, SSR-safe, testable calc (`computeGratuity`, `formatAed`,
+  `formatAedPrecise`). Rules: <1yr → 0; daily wage = basic/30; 21 days/yr first 5, 30 days/yr after;
+  basic-only; 2-year cap; pro-rated. Verified against u.ae/MOHRE-aligned sources.
+- `components/tools/GratuityCalculator.tsx` — `"use client"` interactive island (salary/years/months →
+  live estimate + breakdown + cap notice + MOHRE/DEWS/Article-44 disclaimer).
+- `app/gratuity-calculator/page.tsx` — server page: metadata, AiAnswer (folded into FAQPage),
+  calculator island, SSR "how it's calculated" + 3 worked examples + 7-item FAQ, internal links to the
+  builder + `/resume-checker`. Schema: WebApplication + HowTo (5 steps) + FAQPage (8 Q) + Breadcrumb.
+- `app/sitemap.ts` — added `/gratuity-calculator` (priority 0.85). `components/Footer.tsx` — added
+  "ATS Checker" + "Gratuity Calculator" links (site-wide internal linking).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success (26 static pages) ✅.
+- **Accuracy:** live calculator correct on all 3 worked examples — 8mo/AED7,000 → **AED 0**; 3yr/AED6,000
+  → **AED 12,600**; 8yr/AED8,000 → **AED 52,000** (daily wage 266.67, 195 days) ✅.
+- Extractability: method text, both example results, DEWS caveat, branded lead all in server HTML ✅.
+- Schema (built HTML): WebApplication 1, HowTo 1 (5 steps), FAQPage 1 (8 Questions), Breadcrumb 1 ✅.
+- Sitemap includes the route (0.85); footer link renders site-wide; no console errors ✅.
+- **Adversarial review workflow** (legal-accuracy w/ web re-check + calc-correctness + honesty/schema, each
+  finding skeptic-verified): law implementation confirmed correct; **1 minor finding** — worked-example
+  daily wage "266.67" vs calculator's rounded "267". **Fixed** by adding `formatAedPrecise` (2 dp) for the
+  daily-wage row; re-verified live shows AED 266.67 with result still AED 52,000.
+
+**Unverified here:** live Rich Results Test (needs deployed URL — after merge). Legal accuracy is
+confirmed against public sources but the page correctly frames all figures as estimates + points to MOHRE.
+
+---
+
 ## 2026-07-03 · Sessions B4 + B5 — HowTo schema + UAE prose + honesty fix ✅
 
 **Goal:** Add HowTo/enriched SoftwareApplication schema to the tool pages (B4) and tighten the UAE

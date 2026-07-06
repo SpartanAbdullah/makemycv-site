@@ -37,6 +37,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 0.9,
   },
   {
+    path: '/gratuity-calculator',
+    sourceFile: 'app/gratuity-calculator/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  },
+  {
     path: '/blog',
     sourceFile: 'app/blog/page.tsx',
     changeFrequency: 'weekly',

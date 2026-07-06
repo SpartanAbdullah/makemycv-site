@@ -3,6 +3,8 @@ import { Heart, MapPin } from "lucide-react";
 
 const pageLinks = [
   { href: "/", label: "Home" },
+  { href: "/resume-checker", label: "ATS Checker" },
+  { href: "/gratuity-calculator", label: "Gratuity Calculator" },
   { href: "/templates", label: "Templates" },
   { href: "/support", label: "Support" },
   { href: "/blog", label: "Blog" },
