@@ -5,6 +5,40 @@ Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abd
 
 ---
 
+## 2026-07-07 · Session E2 — MOHRE CV format + adapt-Indian-CV posts ✅
+
+**Goal:** the two remaining content gaps — Q13 ("MOHRE CV format", owned by Labeeb/KudosWall) and Q16
+(adapt Indian CV; the original MDX never existed in this repo — written fresh).
+
+**Research first:** confirmed there is **no official MOHRE CV format** (competitors literally market
+"The Official MOHRE Guide" — our honest debunk is both truer and more citable). Verified from u.ae:
+MOHRE classifies occupations into **9 ISCO professional levels**; skilled work (levels 1–5) officially
+requires an **attested certificate higher than the secondary certificate** + **≥ AED 4,000/month**
+excluding commission.
+
+**Changed (new):**
+- `content/blog/mohre-cv-format-uae.mdx` — BLUF debunk ("no official format exists"), what MOHRE actually
+  regulates, the 9 levels + official skilled-work definition, what a UAE-ready CV needs instead, 5 FAQs
+  (frontmatter + visible body, mirrored); links to checker/format-guide/photo post/builder.
+- `content/blog/adapt-indian-cv-for-uae-jobs.mdx` — remove (declaration, father's name, mark-sheets…) /
+  add (visa status, availability, AED figures…) / change (length, objective→summary, photo) checklist +
+  ATS reality; 5 FAQs mirrored; links to checker/jd-match/photo/format posts.
+- Cover SVGs for both (house style).
+
+**Gates & tests:** `tsc` 0; build ✅; both prerendered; 1 Article + 1 FAQPage (5 Q) each; BLUF text and
+internal links verified in built HTML; **18 published posts, 18 unique, 0 duplicates**.
+
+**Adversarial review** (6 review agents: accuracy-with-web-recheck / honesty / schema per post, each
+finding skeptic-verified): **3 confirmed minors, all fixed** —
+1. + 2. (MOHRE post) the per-level education mapping (bachelor's 1–2 / diploma 3–4 / high-school 5) was
+   stated as official MOHRE rule, and "level 5 high-school = skilled" contradicted u.ae's definition →
+   rewrote to quote u.ae's exact skilled-work criteria and hedge the mapping as market practice (body +
+   FAQ + frontmatter kept mirrored; re-verified in HTML, old wording 0 occurrences).
+3. (Indian-CV post) ₹4 crore ≈ AED 1.8M used a stale exchange rate → corrected to ≈AED 1.5M + "check the
+   current rate" hedge.
+
+---
+
 ## 2026-07-07 · Session E3 (core) — Internal-linking mesh ✅
 
 **Goal:** complete the tools ⇄ calculators ⇄ examples mesh (JobXDubai's single-domain compounding).
