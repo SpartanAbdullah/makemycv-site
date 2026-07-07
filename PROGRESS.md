@@ -5,6 +5,20 @@ Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abd
 
 ---
 
+## 2026-07-07 · Session E3 (core) — Internal-linking mesh ✅
+
+**Goal:** complete the tools ⇄ calculators ⇄ examples mesh (JobXDubai's single-domain compounding).
+
+**Changed:** new `components/seo/CareerToolLinks.tsx` (server component, 4 links: cv-examples +
+3 calculators) rendered on `/resume-checker` (before FinalCTA) and `/jd-match`; gratuity page now also
+links the leave calculator; notice page now also links the leave calculator (both 4-card grids).
+
+**Verified:** `tsc` exit 0; build success; every expected href present exactly once in built HTML of
+resume-checker/jd-match/gratuity/notice; dev-server link check of 11 unique internal links across the
+two money pages — **0 broken**. Remaining for later: contextual in-body links from blog posts to tools.
+
+---
+
 ## 2026-07-07 · Session E1 — Publish remaining posts, dedupe against live ✅
 
 **Goal (Abdullah):** publish all remaining posts; guarantee no post exists twice — verified against the

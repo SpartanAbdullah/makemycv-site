@@ -274,9 +274,24 @@ export default function NoticePeriodCalculatorPage() {
         </div>
       </section>
 
-      {/* Internal links — gratuity + builder + ATS hub */}
+      {/* Internal links — sibling calculators + builder + ATS hub */}
       <section className="bg-paper py-14 md:py-16">
-        <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Link
+            href="/annual-leave-calculator"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+          >
+            <Calculator className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <span>
+              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+                Annual Leave Calculator{" "}
+                <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
+              </span>
+              <span className="mt-1 block text-sm text-slate-600">
+                Entitlement plus unused-leave payout.
+              </span>
+            </span>
+          </Link>
           <Link
             href="/gratuity-calculator"
             className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
