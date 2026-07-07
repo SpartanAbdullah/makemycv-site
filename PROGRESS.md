@@ -5,6 +5,16 @@ Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abd
 
 ---
 
+## 2026-07-07 · Session E3-tail — Blog → tools contextual links ✅
+
+Added natural in-body links from 6 existing posts to the new assets: `ats-cv-checklist-uae`
+(→ checker + examples), `how-to-get-a-job-in-dubai-2026` (→ checker, JD Match, notice + gratuity
+calculators), `expat-cv-uae-guide` (→ examples + checker), `cv-for-freshers-uae` (→ examples + checker),
+`professional-summary-examples-uae-cv` (→ examples), `uae-cv-format-guide` (→ checker).
+**13 of 18 published posts now link into the tools.** Gates green; links spot-verified in built HTML.
+
+---
+
 ## 2026-07-07 · Session E2 — MOHRE CV format + adapt-Indian-CV posts ✅
 
 **Goal:** the two remaining content gaps — Q13 ("MOHRE CV format", owned by Labeeb/KudosWall) and Q16
