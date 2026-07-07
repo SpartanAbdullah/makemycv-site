@@ -204,7 +204,7 @@ export default function JdMatchPage() {
       <JdMatchSteps />
       <HonestMatching />
       <JdMatchFAQ />
-      <CareerToolLinks />
+      <CareerToolLinks currentPath="/jd-match" />
       <JdMatchFinalCTA />
     </>
   );

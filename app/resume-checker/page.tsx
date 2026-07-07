@@ -288,7 +288,7 @@ export default function ResumeCheckerPage() {
       <HowItWorks />
       <PricingClarity />
       <ResumeCheckerFAQ />
-      <CareerToolLinks />
+      <CareerToolLinks currentPath="/resume-checker" />
       <FinalCTA />
     </>
   );

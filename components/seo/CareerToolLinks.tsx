@@ -1,12 +1,35 @@
 import Link from "next/link";
-import { ArrowRight, Banknote, ScanSearch, Timer, CalendarDays } from "lucide-react";
+import {
+  ArrowRight,
+  Banknote,
+  ScanSearch,
+  Timer,
+  CalendarDays,
+  FileSearch,
+  Highlighter,
+} from "lucide-react";
 
 /**
- * E3 — compact internal-linking strip: the free UAE career tools, cross-linked
- * from the money pages so authority flows tools ⇄ calculators ⇄ examples
- * (the JobXDubai single-domain compounding model). Server component, SSR links.
+ * E3/B2 — compact internal-linking strip: the free UAE career tools,
+ * cross-linked from the money pages so authority flows checker ⇄ JD match ⇄
+ * calculators ⇄ examples (the JobXDubai single-domain compounding model).
+ * Server component, SSR links. Pass `currentPath` so a page never links to
+ * itself — /resume-checker promotes JD Match and vice-versa (B2: two focused
+ * URLs, tightly hub-linked, instead of surrendering one to a canonical).
  */
 const tools = [
+  {
+    href: "/resume-checker",
+    icon: FileSearch,
+    title: "ATS Resume Checker",
+    blurb: "60+ UAE-tuned checks in ~30 seconds.",
+  },
+  {
+    href: "/jd-match",
+    icon: Highlighter,
+    title: "JD Match",
+    blurb: "Match your CV to any UAE job ad.",
+  },
   {
     href: "/cv-examples-uae",
     icon: ScanSearch,
@@ -33,15 +56,16 @@ const tools = [
   },
 ];
 
-export function CareerToolLinks() {
+export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
+  const visible = tools.filter((t) => t.href !== currentPath);
   return (
     <section className="bg-paper-2 py-14 md:py-16">
       <div className="mx-auto max-w-6xl px-6">
         <h2 className="font-display text-xl font-bold tracking-[-0.015em] text-slate-900 md:text-2xl">
           More free UAE career tools from MakeMyCV
         </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {tools.map((t) => (
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((t) => (
             <Link
               key={t.href}
               href={t.href}
