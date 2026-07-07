@@ -273,9 +273,24 @@ export default function GratuityCalculatorPage() {
         </div>
       </section>
 
-      {/* Internal links — builder + ATS hub cross-links */}
+      {/* Internal links — notice calculator + builder + ATS hub cross-links */}
       <section className="bg-paper py-14 md:py-16">
-        <div className="mx-auto grid max-w-3xl gap-4 px-6 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-3">
+          <Link
+            href="/notice-period-calculator"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+          >
+            <Calculator className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <span>
+              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+                Notice Period Calculator{" "}
+                <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
+              </span>
+              <span className="mt-1 block text-sm text-slate-600">
+                Leaving? Check your notice days and pay in lieu.
+              </span>
+            </span>
+          </Link>
           <a
             href={APP_URL}
             target="_blank"

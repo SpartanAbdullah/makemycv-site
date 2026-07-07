@@ -55,6 +55,70 @@ deploy it site-wide with clean schema.
 
 ---
 
+## 2026-07-07 · Sessions C2 + C3 — Notice Period & Annual Leave Calculators ✅
+
+**Goal:** Complete the calculator suite (brief Phase C) — notice period (C2) and annual leave /
+leave encashment (C3), same standard as C1: law verified first, SSR content, schema, adversarial review.
+
+**Law verified before coding (web, authoritative sources):**
+- **C2 (Articles 9 & 43, FDL 33/2021):** post-probation notice = contract figure clamped 30–90 days,
+  equal for resignation/termination; probation: 14 days (employer terminates), 30 days (resign → another
+  UAE employer), 14 days (resign → leaving UAE); pay in lieu = **full wage** (basic + allowances) ÷ 30 ×
+  unserved days — explicitly contrasted with gratuity's basic-only basis.
+- **C3 (Article 29 + Cabinet Resolution 1/2022 Art. 19):** 30 days/yr after 1 year; 2 days/month for
+  6–12 months; <6 months none yet; final-year fractions pro-rata (2.5/mo); on-leave pay = full wage but
+  end-of-service **encashment = basic ÷ 30 × unused days**; carry-forward up to half, encashable by
+  written agreement.
+
+**Changed (new files):** `components/tools/notice.ts` + `NoticePeriodCalculator.tsx` +
+`app/notice-period-calculator/page.tsx`; `components/tools/leave.ts` + `LeaveCalculator.tsx` (dual
+island: encashment + entitlement) + `app/annual-leave-calculator/page.tsx`. Wiring: both routes in
+`app/sitemap.ts` (0.85) + `components/Footer.tsx`; gratuity page now cross-links the notice calculator
+(3-card grid). Calculator-mesh completion deferred to E3.
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success (28 static pages) ✅ (run after each of C2/C3).
+- **C2 live-verified (4 cases):** 30d/12,000/serve0 → **AED 12,000**; 60d/9,000/serve45 → 15 unserved,
+  **AED 4,500**; probation-employer/6,000 → **14 days, AED 2,800**; contract 120 days → **clamped to 90**
+  with amber note ✅. SSR + schema: WebApplication 1, HowTo 1 (4 steps), FAQPage 1 (8 Q), Breadcrumb 1 ✅.
+- **C3 live-verified (5 cases):** 9,000/15d → **AED 4,500**; 12,000/30d → **AED 12,000**; 8 months →
+  **16 days**; 2y6m → **75 days** (60 + 15 pro-rata); 4 months → **0 days** with six-month explainer ✅.
+  SSR + schema: WebApplication 1, HowTo 1 (3 steps), FAQPage 1 (8 Q), Breadcrumb 1 ✅.
+- **C2 adversarial review** (legal w/ independent web re-check + calc + honesty/schema, skeptic-verified):
+  **0 findings** — journal inspected to confirm all three agents deliberately returned empty findings ✅.
+- **C3 adversarial review** (same 3-lens design; legal lens scrutinised the 2-days-per-month
+  interpretation and full-wage-vs-basic distinction): legal + honesty lenses **clean**; **1 confirmed
+  minor** — typing a negative "unused days" (bypassing the input's `min=0` via keyboard) showed a
+  self-contradictory "AED 0 … × -5 days". **Fixed** by requiring `unusedDays > 0` in the display gate;
+  re-verified live (negative input → prompt; 9,000/15 still → AED 4,500); gates re-run green.
+
+---
+
+## 2026-07-07 · Session B6 — UAE CV Examples page (before/after by sector) ✅
+
+**Goal:** Ship the Labeeb-pattern sector examples (brief §1b item 5 / B6) as a dedicated
+**`/cv-examples-uae`** page — keeps `/resume-checker` lean and targets the "CV examples UAE" query
+cluster currently owned by KudosWall/Pika/CV-Gulf.
+
+**Changed:** new `app/cv-examples-uae/page.tsx` — 6 sectors (banking & finance/DIFC, executive, tech,
+healthcare, oil & gas, sales & retail), each with a weak duty-bullet vs a strong quantified UAE-anchored
+rewrite (AED figures, scale, DIFC/DOH/ADNOC context) + a "why it works" line; prominent amber
+"illustrative, not client data" banner + matching FAQ answer; AiAnswer ("What does a strong CV bullet
+look like for UAE jobs?"); HowTo (4 steps: action verb → scale → quantify → honest UAE context);
+FAQPage (5 Q incl. AiAnswer) + Breadcrumb; cross-links to builder + `/resume-checker`. Wired into
+`app/sitemap.ts` (0.8) + footer ("UAE CV Examples").
+
+**Gates & tests:** `tsc` exit 0 ✅; build success ✅; all 6 sectors + 6 weak/strong pairs + disclaimer in
+server HTML; exactly 1 FAQPage ✅. **Adversarial review** (honesty / UAE-market plausibility — incl.
+checking DOH is the right Abu Dhabi regulator / schema): **0 confirmed**; 1 plausible — the builder
+cross-link said the AI rewriter "never invents facts" (absolute claim about generative AI). Softened to
+"designed not to invent facts — you review every suggestion"; re-verified in built HTML + dev server.
+
+**Note:** the calculator-mesh + linking `/resume-checker` → `/cv-examples-uae` lands with E3 (internal
+linking hub) to keep this commit scoped.
+
+---
+
 ## 2026-07-06 · Session C1 — UAE Gratuity Calculator ✅
 
 **Goal:** Ship the first free-tool authority magnet (brief Phase C) — a UAE end-of-service gratuity

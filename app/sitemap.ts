@@ -43,6 +43,24 @@ const staticRoutes: SitemapEntry[] = [
     priority: 0.85,
   },
   {
+    path: '/notice-period-calculator',
+    sourceFile: 'app/notice-period-calculator/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  },
+  {
+    path: '/annual-leave-calculator',
+    sourceFile: 'app/annual-leave-calculator/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  },
+  {
+    path: '/cv-examples-uae',
+    sourceFile: 'app/cv-examples-uae/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
     path: '/blog',
     sourceFile: 'app/blog/page.tsx',
     changeFrequency: 'weekly',
