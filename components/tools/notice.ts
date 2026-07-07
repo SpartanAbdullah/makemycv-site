@@ -84,3 +84,21 @@ export function computeNotice({
 
   return { requiredDays, clamped, dailyWage, unservedDays, payInLieu };
 }
+
+/**
+ * Last working day = notice start date + required notice days (calendar).
+ * Returns a formatted date string, or null when the input date is invalid.
+ * Pure: only uses the caller-provided date.
+ */
+export function lastWorkingDay(startIso: string, requiredDays: number): string | null {
+  const start = new Date(startIso);
+  if (Number.isNaN(start.getTime()) || !Number.isFinite(requiredDays)) return null;
+  const end = new Date(start);
+  end.setDate(end.getDate() + Math.max(0, Math.round(requiredDays)));
+  return end.toLocaleDateString("en-AE", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}

@@ -5,6 +5,79 @@ Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abd
 
 ---
 
+## 2026-07-08 · Session CALC-V2 — Calculator sharpening from real-user research ✅
+
+**Goal (Abdullah):** sharpen the calculators; test different scenarios/user types; research what people
+rant about on Reddit/forums re such calculators; solve those problems; stress-test until satisfied.
+
+**Research first (5-agent workflow: Reddit r/dubai + r/UAE + forums/Quora/Gulf News Ask-the-Law +
+competitor teardowns + legal edge cases → synthesized):** 17 prioritized pain points. Top: gross-vs-basic
+wrong input (inflates 40–60%), the repealed resignation-cuts myth (competitors still apply pre-2022 law),
+basic-vs-full wage whiplash across tools, DIFC/ADGM DEWS being silently wrong, settlement ≠ gratuity alone
+(Art. 53 14-day window unknown), no date-of-joining entry, unpaid-leave exclusion, no takeaway/copy,
+direction-of-money ambiguity on notice, no last-working-day date, part-time pro-rating missing,
+death-in-service wrong, under-1-year dead-end, silent cap, unadvertised no-email-gate trust.
+
+**Built (all 17 addressed):**
+- `gratuity.ts` v2: days precision, unpaid-leave exclusion, `deathInService` (no 1-yr minimum),
+  part-time ratio (cap applied before ratio), `computeDews` (5.83%/8.33%), `dateDiffSpan` (calendar-safe
+  incl. double-borrow + leap years). `notice.ts`: `lastWorkingDay(start, days)`.
+- `GratuityCalculator.tsx` v2: jurisdiction selector (mainland/JAFZA/DMCC vs DIFC vs ADGM → DEWS
+  contributions estimate + pre-Feb-2020 note), date-of-joining↔manual entry modes with derived tenure,
+  reason-for-leaving selector (myth-debunk green note; Art. 44 keep-gratuity note; death-in-service heirs
+  note), advanced unpaid-leave + part-time, cap callout w/ Art. 51(4), under-1-year rescue callout →
+  leave calculator, copy + print.
+- `BasicSalaryInput.tsx` (shared): basic-vs-gross helper — "I only know my gross" → gross × basic-% (default
+  50%, labelled estimate + payout-will-be-lower warning). Used by gratuity + leave encashment.
+- `NoticePeriodCalculator.tsx` v2: who-is-ending toggle → explicit "YOU owe / employer owes YOU" lines
+  (deductible-from-settlement note), optional notice-start date → calendar last working day, probation
+  notes (gratuity=0; Art. 9 recruitment-cost wrinkles), full-wage basis called out.
+- `LeaveCalculator.tsx` v2: BasicSalaryInput, days-already-taken → remaining + AED value,
+  cannot-be-forfeited note.
+- `CalculatorShared.tsx`: TrustBadge ("No sign-up · No email · No ads · Nothing stored"),
+  WageBasisExplainer (basic vs full by article), SettlementFooter (full-settlement checklist + Art. 53
+  14-day window + MOHRE 600 590 000) — mounted on all three pages.
+- `CopyBreakdownButton.tsx` + `copyText.ts`: article-cited breakdown; clipboard-API → execCommand →
+  visible selectable-textarea fallback (clipboard can be fully blocked in webviews — verified the
+  fallback renders the full correct breakdown).
+
+**Tested so far:**
+- Stress battery grown 64 → **99 cases, 99 passing** (day precision, unpaid exclusion, death, part-time
+  incl. cap-before-ratio, DEWS split, date math incl. Jan-31→Mar-1 double-borrow + leap years).
+- Live persona runs (dev server): 8y/8000 dates-mode → 52,000 + myth-debunk note; gross-mode 16,000@50% →
+  same; DIFC → **51,974** (matches hand calc); 8-months → 0 + rescue link; death@8mo → 3,733 + heirs
+  note; part-time 24/48 → 26,000; unpaid 60d → 50,667; notice: resign → "you owe 12,000", employer →
+  "owes you 8,000", full-served → neither, probation branches show 30/14 + notes, Aug-1+30 → Mon 31 Aug
+  2026; copy fallback verified.
+- `tsc` 0; `npm run build` ✅.
+
+**Adversarial review (12 agents, 3 lenses, skeptic-verified): 9 CONFIRMED findings — all fixed & re-verified:**
+1. **[MAJOR] ADGM wrongly treated like DIFC DEWS.** ADGM in fact KEPT standard lump-sum gratuity (its
+   Employment Regulations mirror 21/30 days); its savings scheme is an optional opt-in since 1 Apr 2025.
+   → ADGM now routes through the standard engine (52,000 on the 8y/8000 persona) with a
+   kept-gratuity + optional-scheme note; DEWS branch is DIFC-only. (Sources: ADGM Rulebook §61,
+   Addleshaw Goddard, yomly, pensionsmonitor.)
+2. FDL 33/2021 effective date is **2 Feb 2022**, not 1 Feb → fixed in all 3 places.
+3. DEWS copy-breakdown printed raw floats ("43.3333… months") → toFixed(1).
+4. Leave copy emitted "value: AED 0" line the UI suppresses → guarded with remaining > 0.
+5. ADGM shown DIFC-specific facts (5.83/8.33%, Feb-2020 note) → moot after #1; pre-2020 note DIFC-scoped.
+6. Death-in-service copy lacked the heirs line and appended the resignation-myth jab → reason-aware
+   buildBreakdown (death → heirs; misconduct → keep-gratuity; else myth note).
+7. Footnote asserted Art. 51 lump-sum mechanics under a DIFC DEWS result → jurisdiction-scoped.
+8. Gross-derived basic printed as firm figure in copy → "estimated from gross" annotation threaded from
+   BasicSalaryInput (gratuity + leave).
+9. Leave: taken > accrued showed non-reconciling "(75 accrued − 100 taken)" next to "0 days" → "(all X
+   accrued days already used.)" in UI and copy.
+
+**Also:** copy button hardened into `CopyBreakdownButton` (clipboard API → execCommand → visible
+selectable-textarea fallback) after discovering clipboard can be fully blocked; fallback verified to
+render the complete article-cited breakdown. `.claude/launch.json` autoPort added.
+
+**Final state:** tsc 0 · build ✅ · 99/99 stress cases · all personas re-verified post-fix (ADGM 52,000
+standard; DIFC 51,974 DEWS; date "2 Feb 2022"; death copy has heirs line, no myth jab). ✅ DONE
+
+---
+
 ## 2026-07-07 · Session E3-tail — Blog → tools contextual links ✅
 
 Added natural in-body links from 6 existing posts to the new assets: `ats-cv-checklist-uae`

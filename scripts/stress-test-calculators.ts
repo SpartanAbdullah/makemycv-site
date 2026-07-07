@@ -5,7 +5,11 @@
  * rules (21/30-day gratuity + 2yr cap; 30-90 notice clamp + /30 in-lieu;
  * 30-day/2-per-month leave + basic/30 encashment).
  */
-import { computeGratuity } from "../components/tools/gratuity";
+import {
+  computeGratuity,
+  computeDews,
+  dateDiffSpan,
+} from "../components/tools/gratuity";
 import { computeNotice } from "../components/tools/notice";
 import {
   computeLeaveEntitlement,
@@ -85,6 +89,78 @@ eq("G17 huge salary capped", g.gratuity, 24e9);
 g = computeGratuity({ basicSalary: 8000, years: 0, months: 25 }); // months > 11 (API-level)
 eq("G18 25 months eligible", g.eligible, true);
 eq("G18 amount", g.gratuity, Math.round((25 / 12) * 21 * (8000 / 30) * 100) / 100, 1);
+
+/* ─── GRATUITY v2 features ─── */
+// Day precision: 4y 7m 12d on 8000 basic → months = 55.4, years 4.61667
+g = computeGratuity({ basicSalary: 8000, years: 4, months: 7, days: 12 });
+eq("G19 days serviceMonths", g.serviceMonths, 55.4);
+eq("G19 totalDays", g.totalDays, (55.4 / 12) * 21, 0.01);
+eq("G19 amount", g.gratuity, (55.4 / 12) * 21 * (8000 / 30), 0.5);
+
+// Unpaid leave excluded: 8y minus 60 unpaid days → 94 months → 190 days pay
+g = computeGratuity({ basicSalary: 8000, years: 8, months: 0, unpaidLeaveDays: 60 });
+eq("G20 unpaid serviceMonths", g.serviceMonths, 94);
+eq("G20 totalDays", g.totalDays, 190, 0.01);
+eq("G20 amount", g.gratuity, 190 * (8000 / 30), 0.5);
+eq("G20 unpaidDaysExcluded", g.unpaidDaysExcluded, 60);
+
+// Unpaid leave pushing below 12 months → ineligible
+g = computeGratuity({ basicSalary: 8000, years: 1, months: 0, unpaidLeaveDays: 40 });
+eq("G21 unpaid below threshold ineligible", g.eligible, false);
+
+// Death in service under 1 year → still eligible, pro-rated
+g = computeGratuity({ basicSalary: 6000, years: 0, months: 8, deathInService: true });
+eq("G22 death eligible", g.eligible, true);
+eq("G22 amount", g.gratuity, (8 / 12) * 21 * 200, 0.5);
+
+// Death with zero service → ineligible
+eq("G23 death zero service", computeGratuity({ basicSalary: 6000, years: 0, months: 0, deathInService: true }).eligible, false);
+
+// Part-time 24h of 48h → ratio 0.5
+g = computeGratuity({ basicSalary: 8000, years: 8, months: 0, partTime: { weeklyHours: 24, fullTimeWeeklyHours: 48 } });
+eq("G24 partTime ratio", g.partTimeRatio, 0.5);
+eq("G24 amount", g.gratuity, 26000);
+
+// Part-time hours >= full-time clamps to 1
+g = computeGratuity({ basicSalary: 8000, years: 8, months: 0, partTime: { weeklyHours: 60, fullTimeWeeklyHours: 48 } });
+eq("G25 ratio clamp", g.partTimeRatio, 1);
+
+// Part-time with bad hours → ratio 1
+g = computeGratuity({ basicSalary: 8000, years: 8, months: 0, partTime: { weeklyHours: 0, fullTimeWeeklyHours: 48 } });
+eq("G26 bad hours ratio 1", g.partTimeRatio, 1);
+
+// Cap applies before part-time ratio: 40y exec at 0.5 → 240000 × 0.5
+g = computeGratuity({ basicSalary: 10000, years: 40, months: 0, partTime: { weeklyHours: 20, fullTimeWeeklyHours: 40 } });
+eq("G27 capped then ratio", g.gratuity, 120000);
+
+/* ─── DEWS ─── */
+let d = computeDews(10000, 36);
+eq("D1 36mo contributions", d.contributions, 20988, 0.5);
+d = computeDews(10000, 72);
+eq("D2 72mo split", d.first5Months, 60);
+eq("D2 beyond", d.beyond5Months, 12);
+eq("D2 contributions", d.contributions, 34980 + 9996, 0.5);
+eq("D3 zero salary", computeDews(0, 36).contributions, 0);
+eq("D4 negative months", computeDews(10000, -5).contributions, 0);
+
+/* ─── dateDiffSpan ─── */
+let s = dateDiffSpan("2020-01-15", "2024-08-27");
+eq("DT1 years", s!.years, 4);
+eq("DT1 months", s!.months, 7);
+eq("DT1 days", s!.days, 12);
+s = dateDiffSpan("2024-01-31", "2024-03-01"); // double borrow
+eq("DT2 years", s!.years, 0);
+eq("DT2 months", s!.months, 0);
+eq("DT2 days", s!.days, 30);
+s = dateDiffSpan("2020-02-29", "2021-02-28"); // leap start
+eq("DT3 years", s!.years, 0);
+eq("DT3 months", s!.months, 11);
+eq("DT3 days", s!.days, 30);
+eq("DT4 end before start null", dateDiffSpan("2024-05-01", "2024-04-01") === null, true);
+eq("DT5 same day null", dateDiffSpan("2024-05-01", "2024-05-01") === null, true);
+eq("DT6 invalid date null", dateDiffSpan("banana", "2024-05-01") === null, true);
+s = dateDiffSpan("2021-07-01", "2026-07-01"); // exactly 5 years
+eq("DT7 exact 5y", s!.years === 5 && s!.months === 0 && s!.days === 0, true);
 
 /* ─── NOTICE ─── */
 let n = computeNotice({ scenario: "standard", contractDays: 30, grossSalary: 12000, servedDays: 0 });

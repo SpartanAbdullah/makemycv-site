@@ -5,6 +5,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { LeaveCalculator } from "@/components/tools/LeaveCalculator";
+import {
+  TrustBadge,
+  WageBasisExplainer,
+  SettlementFooter,
+} from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
   title: "UAE Annual Leave & Leave Salary Calculator — Free",
@@ -170,9 +175,13 @@ export default function AnnualLeaveCalculatorPage() {
       {/* Calculator islands */}
       <section className="bg-paper pb-8">
         <div className="mx-auto max-w-5xl px-6">
+          <TrustBadge />
           <LeaveCalculator />
         </div>
       </section>
+
+      <WageBasisExplainer />
+      <SettlementFooter currentPath="/annual-leave-calculator" />
 
       {/* How it works — SSR, crawlable */}
       <section className="bg-paper py-16 md:py-20">

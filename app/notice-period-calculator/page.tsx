@@ -5,6 +5,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { NoticePeriodCalculator } from "@/components/tools/NoticePeriodCalculator";
+import {
+  TrustBadge,
+  WageBasisExplainer,
+  SettlementFooter,
+} from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
   title: "UAE Notice Period Calculator — Free, Under Labour Law",
@@ -178,9 +183,13 @@ export default function NoticePeriodCalculatorPage() {
       {/* Calculator island */}
       <section className="bg-paper pb-8">
         <div className="mx-auto max-w-3xl px-6">
+          <TrustBadge />
           <NoticePeriodCalculator />
         </div>
       </section>
+
+      <WageBasisExplainer />
+      <SettlementFooter currentPath="/notice-period-calculator" />
 
       {/* How it works — SSR, crawlable */}
       <section className="bg-paper py-16 md:py-20">

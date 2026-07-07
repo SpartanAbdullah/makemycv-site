@@ -5,6 +5,11 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { GratuityCalculator } from "@/components/tools/GratuityCalculator";
+import {
+  TrustBadge,
+  WageBasisExplainer,
+  SettlementFooter,
+} from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
   title: "UAE Gratuity Calculator — Free End-of-Service Estimate",
@@ -181,9 +186,13 @@ export default function GratuityCalculatorPage() {
       {/* Calculator island */}
       <section className="bg-paper pb-8">
         <div className="mx-auto max-w-3xl px-6">
+          <TrustBadge />
           <GratuityCalculator />
         </div>
       </section>
+
+      <WageBasisExplainer />
+      <SettlementFooter currentPath="/gratuity-calculator" />
 
       {/* How it's calculated — SSR, crawlable */}
       <section className="bg-paper py-16 md:py-20">
