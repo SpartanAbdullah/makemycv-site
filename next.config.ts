@@ -37,6 +37,19 @@ const nextConfig: NextConfig = {
         destination: '/support',
         permanent: true,
       },
+      // Old blog slugs (published briefly, then consolidated in 9350db9 and
+      // 404ing since). 301 to their successors so any lingering index entries
+      // and backlinks land on the live equivalents instead of a 404.
+      {
+        source: '/blog/chatgpt-write-cv-uae',
+        destination: '/blog/can-chatgpt-write-cv',
+        permanent: true,
+      },
+      {
+        source: '/blog/best-cv-for-uae-jobs',
+        destination: '/blog/best-cv-writers-uae',
+        permanent: true,
+      },
     ];
   },
 };

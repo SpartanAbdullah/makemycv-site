@@ -5,6 +5,39 @@ Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abd
 
 ---
 
+## 2026-07-07 · Session E1 — Publish remaining posts, dedupe against live ✅
+
+**Goal (Abdullah):** publish all remaining posts; guarantee no post exists twice — verified against the
+live website itself.
+
+**Live-state reconciliation first:**
+- Fetched live `/sitemap.xml`: 14 posts live. Three of them were `published: false` on this branch —
+  Abdullah's PR #15 ("post published") flipped them on `main` after the branch point. **Merged
+  `origin/main` into `beat-jobxdubai`** (clean; also brought the redesigned storyboard `HonestMatching`,
+  which retained our corrected privacy copy). Flags now match live.
+- Git archaeology: two old slugs (`best-cv-for-uae-jobs`, `chatgpt-write-cv-uae`) were published once
+  (2adc8b0), then consolidated into today's drafts (9350db9). Confirmed both **404 on the live site** —
+  so no live duplicates, but possibly stale index entries.
+
+**Changed:**
+- `content/blog/best-cv-writers-uae.mdx` — `published: true`; **fixed future date** 2026-07-18 → 2026-07-07
+  (honest freshness; was dated 11 days ahead).
+- `content/blog/can-chatgpt-write-cv.mdx` — `published: true` (dated 2026-07-04, fine).
+- `next.config.ts` — two 301s for the dead old slugs → their successors
+  (`/blog/chatgpt-write-cv-uae` → `/blog/can-chatgpt-write-cv`; `/blog/best-cv-for-uae-jobs` →
+  `/blog/best-cv-writers-uae`, whose unique "Do You Need a Paid CV Writer?" content it inherited).
+
+**Verified (dev server + built output):**
+- `tsc` exit 0; build success; both posts prerendered.
+- **Sitemap: 16 blog URLs, 16 unique, zero duplicates**; each new post exactly once; blog index shows one
+  card per post. Both posts carry Article + FAQPage schema (from `faqs` frontmatter, 4 Q&As each).
+- Both 301s resolve 200 at the correct destination posts.
+- **Not in repo:** `adapt-indian-cv-for-uae-jobs.mdx` (brief E1) never existed in this repo's history
+  (`git log --all` empty) — presumably lost with the deleted `preview` branch. Needs writing from
+  scratch (E2-style session) if still wanted.
+
+---
+
 ## 2026-07-03 · Session B0 — Reusable AiAnswer block ✅
 
 **Goal:** Build the reusable "Quick Answer for AI Search" block (brief B0 — highest leverage) and

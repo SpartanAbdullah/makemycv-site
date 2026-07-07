@@ -99,7 +99,7 @@ Status key: ✅ done · 🔜 next · ⏳ planned · 🔒 blocked/STOP-gate · �
 - 🔒 **STOP GATE 2** — live DNS/routing cutover.
 
 ### Phase E — Content + internal linking + off-site
-- **E1** ⏳ Publish `adapt-indian-cv-for-uae-jobs.mdx` (check whether it already exists on `main`; brief says it was stuck on `preview`).
+- **E1** ✅ (reinterpreted) — Published the two remaining drafts (`best-cv-writers-uae` w/ future-date fix, `can-chatgpt-write-cv`), deduped against the **live** sitemap (16 unique blog URLs, 0 duplicates), 301'd the two dead consolidated slugs to their successors. **Note:** `adapt-indian-cv-for-uae-jobs.mdx` never existed in this repo's git history — lost with the deleted `preview` branch; write fresh in an E2-style session if still wanted (Q16 audit target).
 - **E2** ⏳ "MOHRE CV format" page (BLUF + visible FAQ + schema).
 - **E3** ⏳ Internal-link tools ⇄ calculators ⇄ posts into a UAE-careers hub.
 - **E4** ⏳ Off-site tracker (`geo/03`, `geo/09`) — real participation only.
