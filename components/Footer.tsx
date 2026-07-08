@@ -3,6 +3,11 @@ import { Heart, MapPin } from "lucide-react";
 
 const pageLinks = [
   { href: "/", label: "Home" },
+  { href: "/resume-checker", label: "ATS Checker" },
+  { href: "/gratuity-calculator", label: "Gratuity Calculator" },
+  { href: "/notice-period-calculator", label: "Notice Period Calculator" },
+  { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
+  { href: "/cv-examples-uae", label: "UAE CV Examples" },
   { href: "/templates", label: "Templates" },
   { href: "/support", label: "Support" },
   { href: "/blog", label: "Blog" },

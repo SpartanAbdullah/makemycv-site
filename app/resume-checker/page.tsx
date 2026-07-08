@@ -15,6 +15,7 @@ import { FinalCTA } from "@/components/resume-checker/FinalCTA";
 import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
@@ -287,6 +288,7 @@ export default function ResumeCheckerPage() {
       <HowItWorks />
       <PricingClarity />
       <ResumeCheckerFAQ />
+      <CareerToolLinks currentPath="/resume-checker" />
       <FinalCTA />
     </>
   );

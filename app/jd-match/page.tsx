@@ -7,6 +7,7 @@ import { HonestMatching } from "@/components/jd-match/HonestMatching";
 import { JdMatchFAQ, faqItems } from "@/components/jd-match/JdMatchFAQ";
 import { JdMatchFinalCTA } from "@/components/jd-match/JdMatchFinalCTA";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 import { APP_URL, SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 
 // Phase B0 — branded "Quick Answer" for AI search. Answers Q6 ("tool to check
@@ -203,6 +204,7 @@ export default function JdMatchPage() {
       <JdMatchSteps />
       <HonestMatching />
       <JdMatchFAQ />
+      <CareerToolLinks currentPath="/jd-match" />
       <JdMatchFinalCTA />
     </>
   );
