@@ -121,8 +121,8 @@ export default function TemplatesPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-baseline justify-between gap-2">
-                  <h3 className="font-display text-2xl font-bold text-ink">
+                <div className="mt-6 flex flex-wrap items-baseline justify-between gap-2">
+                  <h3 className="shrink-0 font-display text-2xl font-bold text-ink">
                     {t.name}
                   </h3>
                   <div className="flex flex-wrap gap-1.5">
