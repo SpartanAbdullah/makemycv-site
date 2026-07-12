@@ -47,3 +47,20 @@ Sequencing: Path B (obtain UAE freelance permit, build commercial product proper
 - Full payments exploration: `makemycv-app/DECISION_LOG.md`
 
 ---
+
+## 2026-07-12 — UI Redesign Sprint 1: One Brand Across Marketing + Product
+
+### What changed
+Branch `ui/redesign-sprint-1` (both repos, unmerged). The marketing site dropped its electric-blue/dark-navy "AI SaaS" look (glow borders, scanner-beam-adjacent gradients, 6-card feature grid, numbered steps, empty testimonial slots) for the builder app's warm-paper Focus Flow language: paper `#FBFAF7`, ink `#0B0F0C`, UAE-green `#0E7C4A`, gold `#C49A48` for "Free"/highlight moments, Bricolage Grotesque display + Inter body.
+
+### Why
+A public comment called the site's design "what ChatGPT 3.5 would make." The redesign brief prescribed a teal-on-warm-white palette; the builder app already shipped exactly that philosophy (Focus Flow v3). Adopting the app's palette instead of inventing a third one makes marketing and product read as one brand — the strongest antidote to "looks generated".
+
+### Key decisions
+- **TrustSection removed** from home. The 3 empty "share your story" slots looked worse than no social proof. The hard rule stands: no fabricated counts, no placeholder testimonials (documented in `app/page.tsx`). When real consented stories land, add a simple quote block — no carousel.
+- **Template content aligned with the product.** Site advertised "Graduate" and "Minimal" templates that don't exist in the builder. `graduate.mdx` → `ats-clean.mdx` (the real template serving that audience), `minimal.mdx` deleted. Template previews are now real Playwright captures of the builder's output (`makemycv-app` `/preview/[templateId]` route + `scripts/capture-previews.js`), not HTML facsimiles — what you see is what you download.
+- **next/dynamic dropped for home sections.** They're static server components; code-splitting bought nothing and its suspense boundaries broke (permanently unresolved) once sections gained a client child (`Reveal`) in Next 16.1.
+- **Legacy pages untouched by design.** blog/checker/JD-match/about/contact keep their scoped dark heroes this sprint; shared tokens were repointed so their CTAs went emerald coherently. Full unification is sprint 2.
+
+### Merge notes
+`beat-jobxdubai` (GEO build) is 16+ commits ahead of main and touches Footer/internal links. Expect conflicts in `Footer.tsx`, `globals.css` and home components when both merge — resolve toward this sprint's skin, keep GEO's link mesh.
