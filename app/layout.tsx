@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
@@ -32,6 +32,19 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   display: "swap",
 });
+
+// Display face — same family the builder app uses, so marketing and product
+// share one typographic voice. Headings only; body stays Inter.
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+export const viewport = {
+  themeColor: "#fbfaf7",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -94,7 +107,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable}`}
+    >
       <head>
         <link rel="preconnect" href="https://app.makemycv.ae" />
         {/* Site-wide entity graph — Organization + WebSite. Per-page schema
@@ -116,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </Script>
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-white`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable} antialiased bg-paper`}
       >
         {/* Google Tag Manager (noscript) — must be immediately after opening <body> */}
         <noscript>
