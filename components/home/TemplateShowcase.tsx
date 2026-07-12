@@ -14,7 +14,7 @@ export function TemplateShowcase() {
         <SectionHeading
           eyebrow="Templates"
           title="Templates designed for UAE recruiters — not US LinkedIn influencers."
-          subcopy="Every template is ATS-parseable, Gulf-appropriate (photo field optional, visa status supported), and reviewed by recruiters hiring in the region."
+          subcopy="Every template is ATS-parseable, Gulf-appropriate, and works with or without a photo — you decide per application. Visa status and UAE Essentials supported throughout."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -80,10 +80,16 @@ export function TemplateShowcase() {
                   <h3 className="font-display text-lg font-bold text-ink">
                     {t.name}
                   </h3>
-                  <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-medium text-accent">
-                    <Check size={12} strokeWidth={3} />
-                    ATS-safe
-                  </span>
+                  {t.tags.includes("ATS-safe") ? (
+                    <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-medium text-accent">
+                      <Check size={12} strokeWidth={3} />
+                      ATS-Friendly
+                    </span>
+                  ) : (
+                    <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-medium text-ink-2">
+                      Design-led
+                    </span>
+                  )}
                 </div>
                 <p className="mt-1.5 text-sm leading-snug text-muted">
                   {t.positioning}
@@ -121,7 +127,7 @@ export function TemplateShowcase() {
             href="/templates"
             className="inline-flex items-center gap-1 text-sm font-semibold text-accent transition-colors duration-150 hover:text-accent-deep hover:underline underline-offset-4"
           >
-            Browse all templates
+            See all 10 templates
             <ArrowRight size={16} />
           </Link>
         </div>
