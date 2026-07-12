@@ -77,6 +77,13 @@ g = computeGratuity({ basicSalary: 6000, years: 25, months: 7 }); // just over c
 eq("G10 capApplied", g.capApplied, true);
 eq("G10 amount", g.gratuity, 144000);
 
+// ADGM: Employment Regulations 2024 removed the two-year cap (from 1 Apr 2025)
+g = computeGratuity({ basicSalary: 10000, years: 40, months: 0, capApplies: false });
+eq("G10a ADGM uncapped capApplied", g.capApplied, false);
+eq("G10a ADGM uncapped amount = gross", g.gratuity, 385000);
+g = computeGratuity({ basicSalary: 6000, years: 3, months: 0, capApplies: false });
+eq("G10b capApplies:false below cap unchanged", g.gratuity, 12600);
+
 // Hostile inputs
 eq("G11 zero salary", computeGratuity({ basicSalary: 0, years: 5, months: 0 }).eligible, false);
 eq("G12 negative salary", computeGratuity({ basicSalary: -5000, years: 5, months: 0 }).eligible, false);

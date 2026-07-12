@@ -252,6 +252,12 @@ export default function GratuityCalculatorPage() {
             schemes (e.g. DIFC&rsquo;s DEWS), domestic workers and Article 44
             dismissals can differ — confirm your exact entitlement with MOHRE.
           </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Legal basis last verified 12 July 2026 against Federal Decree-Law
+            33/2021 (consolidated — Arts. 29/43/51 unchanged by the 2022 and
+            2023 amendments), Cabinet Resolution 1/2022, and ADGM Employment
+            Regulations 2024 (cap removed from 1 Apr 2025).
+          </p>
         </div>
       </section>
 

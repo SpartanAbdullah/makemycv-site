@@ -253,6 +253,11 @@ export default function NoticePeriodCalculatorPage() {
             gross-misconduct dismissals and some free-zone contracts differ —
             confirm your exact position with MOHRE.
           </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Legal basis last verified 12 July 2026 against Federal Decree-Law
+            33/2021, Articles 9 &amp; 43 (unchanged by the 2022 and 2023
+            amendments).
+          </p>
         </div>
       </section>
 

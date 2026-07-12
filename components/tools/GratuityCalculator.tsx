@@ -83,6 +83,9 @@ export function GratuityCalculator() {
     days: d,
     unpaidLeaveDays: parseFloat(unpaidDays) || 0,
     deathInService: reason === "death",
+    // ADGM Employment Regulations 2024 (in force 1 Apr 2025) removed the
+    // two-year cap; mainland keeps it (Art. 51(6)).
+    capApplies: jurisdiction !== "adgm",
     partTime:
       partTime && myHours !== "" && ftHours !== ""
         ? {
@@ -123,7 +126,9 @@ export function GratuityCalculator() {
         `Years 1–5 @ 21 days/yr (Art. 51): ${result.first5Days.toFixed(1)} days`,
         `Beyond 5 years @ 30 days/yr (Art. 51): ${result.beyond5Days.toFixed(1)} days`,
         `Total: ${result.totalDays.toFixed(1)} days`,
-        `Cap at 2 years' basic (Art. 51(4)): ${result.capApplied ? `applied — capped at ${formatAed(result.cap)}` : "not reached"}`,
+        jurisdiction === "adgm"
+          ? "Cap: none — ADGM Employment Regulations 2024 removed the two-year cap (from 1 Apr 2025)"
+          : `Cap at two years' wage (Art. 51(6), applied to basic as entered): ${result.capApplied ? `applied — capped at ${formatAed(result.cap)}` : "not reached"}`,
       );
       if (result.partTimeRatio < 1)
         lines.push(
@@ -476,8 +481,9 @@ export function GratuityCalculator() {
             {result.capApplied && (
               <p className="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800">
                 Your raw entitlement ({formatAed(result.grossGratuity)}) exceeds
-                the legal maximum of two years&rsquo; basic salary, so it is
-                capped at {formatAed(result.cap)} (Art. 51(4)). Not a bug — the
+                the legal maximum of two years&rsquo; wage (Art. 51(6)), so it
+                is capped at {formatAed(result.cap)} — applied here against
+                your basic salary, the conservative reading. Not a bug — the
                 law stops it there.
               </p>
             )}
@@ -486,11 +492,24 @@ export function GratuityCalculator() {
               <p className="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
                 <strong>ADGM kept the standard lump-sum gratuity</strong> — its
                 Employment Regulations mirror the 21/30-day model, so the
-                figure above applies by default. Since 1 April 2025 ADGM
+                figure above applies by default. Two ADGM differences: the
+                Employment Regulations 2024 (in force 1 April 2025){" "}
+                <strong>removed the two-year cap</strong> — long service pays
+                out in full, and this calculator applies no cap for ADGM — and
                 employers may offer an <strong>optional</strong>{" "}
                 workplace-savings scheme as an alternative; if you actively
-                opted in, your benefit comes from that scheme&rsquo;s
-                statement instead of this formula.
+                opted in, your benefit comes from that scheme&rsquo;s statement
+                instead of this formula.
+              </p>
+            )}
+
+            {jurisdiction === "mainland" && (
+              <p className="mt-4 rounded-lg bg-paper-2 px-4 py-3 text-[13px] leading-relaxed text-slate-600">
+                One exception to know: if your employer enrolled you in
+                MOHRE&rsquo;s <strong>voluntary alternative end-of-service
+                savings scheme</strong>, gratuity stops accruing from the
+                enrolment date and that scheme pays instead — check with HR if
+                unsure.
               </p>
             )}
 
