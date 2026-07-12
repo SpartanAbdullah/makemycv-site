@@ -22,7 +22,11 @@ export const homepageFaqs = [
   },
   {
     q: "Should a UAE CV include visa status and nationality?",
-    a: "In the UAE, recruiters typically expect visa status and nationality on a CV, and often the Emirates ID and a driving licence flag — unlike Western markets where those would be inappropriate. MakeMyCV includes these as optional, off-by-default fields you can switch on per role.",
+    a: "In the UAE, recruiters typically expect visa status and nationality on a CV, and often the Emirates ID and a driving licence flag — unlike Western markets where those would be inappropriate. MakeMyCV groups these in a dedicated UAE Essentials step, as optional, off-by-default fields you can switch on per role.",
+  },
+  {
+    q: "Can I add a photo to my CV?",
+    a: "Yes — photos are common on UAE CVs, and MakeMyCV lets you upload one and switch it on or off per application. It's entirely your choice: every template works with or without a photo, and the Professional Photo template is designed around one.",
   },
 ] as const;
 

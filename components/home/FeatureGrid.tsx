@@ -9,7 +9,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const differentiators = [
   {
     claim: "Built for UAE applications — not adapted to them.",
-    body: "Nationality, visa status, Emirates ID, driving licence, notice period — fields Gulf recruiters expect and Western CV builders don't have. All built in, all optional, so your CV reads local from the first line.",
+    body: "The builder has a dedicated UAE Essentials step: nationality, visa status, Emirates ID, driving licence, notice period, availability — the fields Gulf recruiters expect and Western CV builders don't have. All built in, all optional, so your CV reads local from the first line. Photo included or not — that switch is yours too.",
   },
   {
     claim: "Structured to survive the ATS filter.",

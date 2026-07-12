@@ -31,7 +31,7 @@ export function ProblemSolution() {
           {problems.map((p) => (
             <article
               key={p.title}
-              className="flex h-full flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:border-line-strong hover:shadow-md-soft"
+              className="flex h-full flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:border-red-300 hover:shadow-[0_8px_24px_rgba(220,38,38,0.10)]"
             >
               <XCircle
                 size={24}

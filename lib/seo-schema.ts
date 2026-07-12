@@ -82,11 +82,12 @@ export function softwareApplicationSchema() {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Free ATS-optimized CV builder with UAE-specific fields (visa status, Emirates ID, nationality, driving licence). No sign-up, no paywall, data stays in the browser.",
+      "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, Emirates ID, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall, data stays in the browser.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
     featureList: [
       "ATS-parseable structure",
-      "UAE-specific fields",
+      "UAE Essentials step (visa status, Emirates ID, nationality, driving licence)",
+      "Optional photo — on or off per application",
       "Instant PDF/DOCX export",
       "Live preview",
       "AI bullet-point rewriter",
