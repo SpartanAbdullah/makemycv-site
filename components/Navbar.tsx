@@ -32,14 +32,16 @@ export const Navbar = () => {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-xs font-bold text-white">
-            M
-          </span>
-          <span className="font-display text-lg font-bold text-ink">
-            MakeMyCV
-          </span>
+        {/* Logo — same lockup as the builder app (source: makemycv-app/public/logos) */}
+        <Link href="/" className="flex items-center" aria-label="MakeMyCV — home">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logos/logo-horizontal.svg"
+            alt="makemycv.ae"
+            width={399}
+            height={100}
+            className="h-7 w-auto md:h-8"
+          />
         </Link>
 
         {/* Desktop links */}

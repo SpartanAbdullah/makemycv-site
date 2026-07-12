@@ -13,14 +13,16 @@ const pageLinks = [
 export const Footer = () => (
   <footer className="border-t border-white/10 bg-ink text-white">
     <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
-      {/* Brand */}
+      {/* Brand — white logo variant for dark backgrounds (same as the app) */}
       <div>
-        <div className="flex items-center gap-2">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-accent text-xs font-bold text-white">
-            M
-          </span>
-          <span className="font-display text-lg font-bold">MakeMyCV</span>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/logo-white.svg"
+          alt="makemycv.ae"
+          width={399}
+          height={100}
+          className="h-8 w-auto"
+        />
         <p className="mt-2 text-sm text-white/60">
           Built for UAE job seekers.
           <br />

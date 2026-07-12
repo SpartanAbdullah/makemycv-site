@@ -4,13 +4,13 @@ import {
   breadcrumbSchema,
   softwareApplicationSchema,
 } from "@/lib/seo-schema";
-import { Check, CheckCircle2, XCircle } from "lucide-react";
+import { CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
   description:
-    "Browse ATS-friendly CV templates built for Dubai and UAE hiring standards. Pick a clean format and create your CV in minutes.",
+    "Browse all 10 free CV templates built for Dubai and UAE hiring standards — ATS-friendly single-column layouts and design-led formats, with or without a photo.",
   path: "/templates",
 });
 
@@ -26,34 +26,16 @@ const templatesBreadcrumb = breadcrumbSchema([
   { name: "Templates", item: canonicalUrl("/templates") },
 ]);
 
-// Feature bullets per template — kept next to the data, not in MDX, so the
-// list stays curated alongside the layout it describes.
-const templateFeatures: Record<string, string[]> = {
-  classic: [
-    "Single-column layout trusted by UAE banks & DIFC firms",
-    "Visa status, nationality & Emirates ID fields",
-    "Works for all industries",
-    "PDF & DOCX export",
-  ],
-  executive: [
-    "Senior-weighted layout — leadership first",
-    "Full-height accent sidebar, still parser-safe",
-    "Built for 15+ year careers",
-    "PDF & DOCX export",
-  ],
-  modern: [
-    "Two-column sidebar with skills visualisation",
-    "Profile photo support (optional)",
-    "Ideal for creative, tech & marketing roles",
-    "ATS-safe despite the layout",
-  ],
-  "ats-clean": [
-    "Maximum-parse single column for job portals",
-    "Education & projects get top billing",
-    "Ideal for fresh graduates & career starters",
-    "PDF & DOCX export",
-  ],
-};
+/* Badge = the product's own honest signal (mirrors the builder registry):
+   single-column layouts are ATS-Friendly; sidebar/two-column layouts are
+   Design-led (better for direct email than portal uploads). */
+function badgeFor(tags: readonly string[]) {
+  if (tags.includes("ATS-safe"))
+    return { label: "ATS-Friendly", cls: "bg-accent-soft text-accent-deep" };
+  if (tags.includes("New"))
+    return { label: "New", cls: "bg-gold-soft text-gold-deep" };
+  return { label: "Design-led", cls: "bg-ink/75 text-white" };
+}
 
 export default function TemplatesPage() {
   const templates = getAllTemplates();
@@ -70,116 +52,99 @@ export default function TemplatesPage() {
             Templates
           </p>
           <h1 className="mt-4 font-display text-[36px] font-bold leading-[1.1] tracking-tight-2 text-ink md:text-[44px]">
-            Professional CV templates
+            All {templates.length} CV templates,
             <br />
-            <span className="text-accent">for the UAE job market.</span>
+            <span className="text-accent">built for the UAE job market.</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
-            Every template is ATS-tested and formatted to Gulf hiring
-            standards. These previews are real captures from the builder —
-            the same templates you download.
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
+            Real captures from the builder — the same templates you download,
+            all free, no watermark. Every one works with or without a photo:
+            upload once, switch it on or off per application.
+          </p>
+          <p className="mx-auto mt-3 max-w-2xl text-sm text-muted">
+            Single-column layouts carry the ATS-Friendly badge. Design-led
+            layouts shine when you email a recruiter directly.
           </p>
         </div>
       </section>
 
-      {/* Templates Grid */}
-      <section className="bg-paper-2 py-12 md:py-20">
+      {/* Templates Grid — preview-first, minimal chrome */}
+      <section className="bg-paper-2 py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-6">
           {/* Keeps the h1 > h2 > h3 outline (card names are h3s). */}
           <h2 className="sr-only">Choose your template</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {templates.map((t) => (
-              <article
-                key={t.slug}
-                id={t.slug}
-                className="relative flex flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-line-strong hover:shadow-lg-soft md:p-8 scroll-mt-24"
-              >
-                <span className="absolute right-4 top-4 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-gold-deep">
-                  Free
-                </span>
 
-                {/* Real screenshot in a document frame */}
-                <div className="border-b border-line bg-paper-2 -mx-6 -mt-6 rounded-t-xl p-6 md:-mx-8 md:-mt-8 md:p-8">
-                  <div
-                    className="mx-auto max-w-[340px] overflow-hidden rounded-lg bg-sheet ring-1 ring-line"
-                    style={{
-                      aspectRatio: "1 / 1.414",
-                      boxShadow: "var(--shadow-sheet)",
-                    }}
-                  >
-                    {t.thumbnail ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={t.thumbnail}
-                        alt={`${t.name} CV template — ${t.positioning}`}
-                        width={794}
-                        height={1123}
-                        loading="lazy"
-                        className="h-full w-full object-cover object-top"
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-paper-2" />
-                    )}
-                  </div>
-                </div>
-
-                <div className="mt-6 flex flex-wrap items-baseline justify-between gap-2">
-                  <h3 className="shrink-0 font-display text-2xl font-bold text-ink">
+          <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 xl:grid-cols-4">
+            {templates.map((t) => {
+              const badge = badgeFor(t.tags);
+              return (
+                <article
+                  key={t.slug}
+                  id={t.slug}
+                  className="group scroll-mt-24"
+                >
+                  <h3 className="mb-2 text-center font-display text-base font-bold text-ink">
                     {t.name}
                   </h3>
-                  <div className="flex flex-wrap gap-1.5">
-                    {t.tags.map((tag) => (
+
+                  <a
+                    href="https://app.makemycv.ae"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
+                    data-event="templates_page_use_template_click"
+                    data-template-id={t.slug}
+                    aria-label={`Use the ${t.name} template — opens the free builder`}
+                  >
+                    <div
+                      className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:ring-accent group-hover:shadow-lg-soft"
+                      style={{
+                        aspectRatio: "1 / 1.414",
+                        boxShadow: "var(--shadow-sheet)",
+                      }}
+                    >
+                      {t.thumbnail ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={t.thumbnail}
+                          alt={`${t.name} CV template — ${t.positioning}`}
+                          width={794}
+                          height={1123}
+                          loading="lazy"
+                          className="h-full w-full object-cover object-top"
+                        />
+                      ) : (
+                        <div className="h-full w-full bg-paper-2" />
+                      )}
+
+                      {/* Honest status badge (mirrors the builder) */}
                       <span
-                        key={tag}
-                        className="rounded-full bg-paper-2 px-2.5 py-0.5 text-[11px] font-medium text-ink-2"
+                        className={`absolute right-2 top-2 rounded-full px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] ${badge.cls}`}
                       >
-                        {tag}
+                        {badge.label}
                       </span>
-                    ))}
-                  </div>
-                </div>
-                <p className="mt-2 text-sm text-muted">{t.positioning}</p>
 
-                <ul className="mt-4 flex-1 space-y-1.5 text-sm text-ink-2">
-                  {(templateFeatures[t.slug] ?? []).map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <Check
-                        size={16}
-                        className="mt-0.5 shrink-0 text-accent"
-                        strokeWidth={2.5}
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                      {/* Export formats */}
+                      <span className="absolute bottom-2 left-2 rounded bg-ink/75 px-1.5 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
+                        PDF · DOCX
+                      </span>
 
-                <a
-                  href="https://app.makemycv.ae"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary mt-6 block rounded-xl px-7 py-3.5 text-center font-bold text-white"
-                  data-event="templates_page_use_template_click"
-                  data-template-id={t.slug}
-                >
-                  Use This Template &rarr;
-                </a>
-              </article>
-            ))}
+                      {/* Hover / focus CTA */}
+                      <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-150 group-hover:bg-ink/25 group-hover:opacity-100 group-focus-within:bg-ink/25 group-focus-within:opacity-100">
+                        <span className="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-md">
+                          Use This Template
+                        </span>
+                      </span>
+                    </div>
+                  </a>
+
+                  <p className="mx-auto mt-2 max-w-[26ch] text-center text-xs leading-snug text-muted">
+                    {t.positioning}
+                  </p>
+                </article>
+              );
+            })}
           </div>
-
-          <p className="mt-10 text-center text-sm text-muted">
-            Six more layouts — including photo and sidebar variants — are
-            available inside the{" "}
-            <a
-              href="https://app.makemycv.ae"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-accent transition-colors duration-150 hover:text-accent-deep hover:underline underline-offset-4"
-            >
-              free builder
-            </a>
-            . Your data carries over when you switch.
-          </p>
         </div>
       </section>
 
@@ -202,8 +167,11 @@ export default function TemplatesPage() {
                 fonts, it gets rejected automatically.
               </p>
               <p className="mt-4">
-                All MakeMyCV templates are built to pass ATS screening while
-                still looking professional to human recruiters.
+                That&apos;s why the badge on each template above matters:
+                single-column layouts are engineered to parse cleanly through
+                online portals, while design-led layouts are best sent
+                straight to a recruiter&apos;s inbox, where a human reads
+                first.
               </p>
             </div>
             <div className="grid gap-4">

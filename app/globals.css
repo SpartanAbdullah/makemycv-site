@@ -103,6 +103,13 @@ body {
     transition: none;
   }
 }
+/* Print must never inherit a scroll-gated hidden state. */
+@media print {
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 /* ── Hero spotlight (replaces the old two orbs) ────────────────────── */
 .hero-spotlight {
