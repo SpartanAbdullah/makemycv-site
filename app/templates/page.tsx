@@ -5,6 +5,7 @@ import {
   softwareApplicationSchema,
 } from "@/lib/seo-schema";
 import { Check, CheckCircle2, XCircle } from "lucide-react";
+import { getAllTemplates } from "@/lib/templates";
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
@@ -25,151 +26,169 @@ const templatesBreadcrumb = breadcrumbSchema([
   { name: "Templates", item: canonicalUrl("/templates") },
 ]);
 
+// Feature bullets per template — kept next to the data, not in MDX, so the
+// list stays curated alongside the layout it describes.
+const templateFeatures: Record<string, string[]> = {
+  classic: [
+    "Single-column layout trusted by UAE banks & DIFC firms",
+    "Visa status, nationality & Emirates ID fields",
+    "Works for all industries",
+    "PDF & DOCX export",
+  ],
+  executive: [
+    "Senior-weighted layout — leadership first",
+    "Full-height accent sidebar, still parser-safe",
+    "Built for 15+ year careers",
+    "PDF & DOCX export",
+  ],
+  modern: [
+    "Two-column sidebar with skills visualisation",
+    "Profile photo support (optional)",
+    "Ideal for creative, tech & marketing roles",
+    "ATS-safe despite the layout",
+  ],
+  "ats-clean": [
+    "Maximum-parse single column for job portals",
+    "Education & projects get top billing",
+    "Ideal for fresh graduates & career starters",
+    "PDF & DOCX export",
+  ],
+};
+
 export default function TemplatesPage() {
+  const templates = getAllTemplates();
+
   return (
     <>
       <JsonLd data={templatesSchema} />
       <JsonLd data={templatesBreadcrumb} />
+
       {/* Hero */}
-      <section className="bg-brand-navy py-16 md:py-24">
+      <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6 text-center">
-          <h1 className="font-display text-4xl font-extrabold text-white md:text-5xl">
-            Professional CV Templates
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            Templates
+          </p>
+          <h1 className="mt-4 font-display text-[36px] font-bold leading-[1.1] tracking-tight-2 text-ink md:text-[44px]">
+            Professional CV templates
             <br />
-            <span className="text-brand-blue">for the UAE Job Market</span>
+            <span className="text-accent">for the UAE job market.</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-400">
-            Every template is ATS-tested and formatted to Gulf hiring standards.
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
+            Every template is ATS-tested and formatted to Gulf hiring
+            standards. These previews are real exports from the builder — what
+            you see is what you download.
           </p>
         </div>
       </section>
 
       {/* Templates Grid */}
-      <section className="bg-white py-12 md:py-20">
+      <section className="bg-paper-2 py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800">
-            Choose Your Template
-          </h2>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {/* Classic */}
-            <div className="relative rounded-3xl border-2 border-slate-200 bg-white p-8 card-lift">
-              <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                FREE
-              </span>
-              {/* Thumbnail */}
-              <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-4">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <div className="h-3 w-24 rounded bg-slate-300" />
-                    <div className="h-2 w-20 rounded bg-slate-200" />
-                  </div>
-                  <div className="space-y-1 text-right">
-                    <div className="h-2 w-16 rounded bg-slate-200" />
-                    <div className="h-2 w-12 rounded bg-slate-200" />
-                  </div>
-                </div>
-                <div className="mt-4 space-y-2">
-                  <div className="h-2 w-16 rounded bg-slate-300" />
-                  <div className="h-2 w-full rounded bg-slate-200" />
-                  <div className="h-2 w-5/6 rounded bg-slate-200" />
-                </div>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-slate-800">
-                Classic
-              </h3>
-              <p className="mt-2 text-sm text-brand-muted">
-                Clean, structured, and trusted by UAE recruiters. Perfect for
-                corporate roles in finance, operations, and government sectors.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-600">
-                {[
-                  "Single column layout",
-                  "ATS-optimized structure",
-                  "Works for all industries",
-                  "PDF & DOCX export",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check size={16} className="mt-0.5 shrink-0 text-emerald-500" strokeWidth={2.5} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
+          <div className="grid gap-8 md:grid-cols-2">
+            {templates.map((t) => (
+              <article
+                key={t.slug}
+                id={t.slug}
+                className="relative flex flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-line-strong hover:shadow-lg-soft md:p-8 scroll-mt-24"
               >
-                Use This Template &rarr;
-              </a>
-            </div>
+                <span className="absolute right-4 top-4 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-[#8a6a25]">
+                  Free
+                </span>
 
-            {/* Modern */}
-            <div
-              className="relative rounded-3xl border-2 border-[#2563eb] p-8 card-lift"
-              style={{
-                background: 'linear-gradient(135deg, #0f172a 0%, #1a1040 100%)',
-                boxShadow: '0 0 60px rgba(37,99,235,0.2)',
-              }}
-            >
-              <span className="absolute right-4 top-4 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
-                FREE
-              </span>
-              {/* Thumbnail */}
-              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <div className="h-4 w-16 rounded bg-blue-400/30" />
-                <div className="mt-3 grid grid-cols-[2fr_1fr] gap-2">
-                  <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-white/20" />
-                    <div className="h-2 w-5/6 rounded bg-white/15" />
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-2 w-full rounded bg-blue-400/20" />
-                    <div className="h-2 w-4/6 rounded bg-blue-400/15" />
+                {/* Real screenshot in a document frame */}
+                <div className="border-b border-line bg-paper-2 -mx-6 -mt-6 rounded-t-xl p-6 md:-mx-8 md:-mt-8 md:p-8">
+                  <div
+                    className="mx-auto max-w-[340px] overflow-hidden rounded-lg bg-sheet ring-1 ring-line"
+                    style={{
+                      aspectRatio: "1 / 1.414",
+                      boxShadow: "var(--shadow-sheet)",
+                    }}
+                  >
+                    {t.thumbnail ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={t.thumbnail}
+                        alt={`${t.name} CV template — ${t.positioning}`}
+                        width={794}
+                        height={1123}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-paper-2" />
+                    )}
                   </div>
                 </div>
-              </div>
-              <h3 className="mt-6 font-display text-2xl font-bold text-white">
-                Modern
-              </h3>
-              <p className="mt-2 text-sm text-slate-300">
-                Two-column design with a sidebar. Ideal for creative, tech, and
-                marketing roles where visual presentation matters.
-              </p>
-              <ul className="mt-4 space-y-1.5 text-sm text-slate-300">
-                {[
-                  "Two-column sidebar layout",
-                  "Skills visualization",
-                  "Profile photo support",
-                  "ATS-safe design",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Check size={16} className="mt-0.5 shrink-0 text-blue-400" strokeWidth={2.5} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 block btn-primary rounded-xl px-7 py-3.5 text-center font-bold text-white"
-              >
-                Use This Template &rarr;
-              </a>
-            </div>
+
+                <div className="mt-6 flex items-baseline justify-between gap-2">
+                  <h3 className="font-display text-2xl font-bold text-ink">
+                    {t.name}
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {t.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-paper-2 px-2.5 py-0.5 text-[11px] font-medium text-ink-2"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-2 text-sm text-muted">{t.positioning}</p>
+
+                <ul className="mt-4 flex-1 space-y-1.5 text-sm text-ink-2">
+                  {(templateFeatures[t.slug] ?? []).map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <Check
+                        size={16}
+                        className="mt-0.5 shrink-0 text-accent"
+                        strokeWidth={2.5}
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a
+                  href="https://app.makemycv.ae"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary mt-6 block rounded-xl px-7 py-3.5 text-center font-bold text-white"
+                  data-event="templates_page_use_template_click"
+                  data-template-id={t.slug}
+                >
+                  Use This Template &rarr;
+                </a>
+              </article>
+            ))}
           </div>
+
+          <p className="mt-10 text-center text-sm text-muted">
+            Six more layouts — including photo and sidebar variants — are
+            available inside the{" "}
+            <a
+              href="https://app.makemycv.ae"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-accent transition-colors duration-150 hover:text-accent-deep hover:underline underline-offset-4"
+            >
+              free builder
+            </a>
+            . Your data carries over when you switch.
+          </p>
         </div>
       </section>
 
       {/* ATS Explainer */}
-      <section className="bg-brand-light py-12 md:py-20">
+      <section className="bg-paper py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800 md:text-4xl">
+          <h2 className="text-center font-display text-[28px] font-bold tracking-tight-2 text-ink md:text-[32px]">
             What is ATS and Why Does It Matter in UAE?
           </h2>
           <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
-            <div className="text-sm leading-relaxed text-slate-700">
+            <div className="text-sm leading-relaxed text-ink-2">
               <p>
                 Most large UAE employers — ADNOC, Emirates, Emaar, DEWA, and
                 international banks in DIFC — use Applicant Tracking Systems
@@ -186,22 +205,22 @@ export default function TemplatesPage() {
               </p>
             </div>
             <div className="grid gap-4">
-              <div className="rounded-2xl p-6 border-2 border-red-100 bg-red-50">
-                <p className="font-bold text-red-600 mb-3 flex items-center gap-2">
+              <div className="rounded-xl border border-red-200/70 bg-red-50/50 p-6">
+                <p className="mb-3 flex items-center gap-2 font-bold text-red-600">
                   <XCircle size={18} className="text-red-500" /> Rejected by ATS
                 </p>
-                <ul className="space-y-1 text-xs text-red-600">
+                <ul className="space-y-1 text-xs text-red-700/90">
                   <li>&bull; Tables and multi-column layouts</li>
                   <li>&bull; Graphics, icons, and logos</li>
                   <li>&bull; Unusual or decorative fonts</li>
                   <li>&bull; Missing section headers</li>
                 </ul>
               </div>
-              <div className="rounded-2xl p-6 border-2 border-green-100 bg-green-50">
-                <p className="font-bold text-green-600 mb-3 flex items-center gap-2">
-                  <CheckCircle2 size={18} className="text-emerald-500" /> Passes ATS
+              <div className="rounded-xl border border-accent/25 bg-accent-soft p-6">
+                <p className="mb-3 flex items-center gap-2 font-bold text-accent-deep">
+                  <CheckCircle2 size={18} className="text-accent" /> Passes ATS
                 </p>
-                <ul className="space-y-1 text-xs text-green-600">
+                <ul className="space-y-1 text-xs text-ink-2">
                   <li>&bull; Clean text formatting</li>
                   <li>&bull; Standard section headers</li>
                   <li>&bull; Keyword-friendly structure</li>

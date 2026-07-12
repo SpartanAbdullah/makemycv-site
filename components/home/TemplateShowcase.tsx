@@ -3,20 +3,6 @@ import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getFeaturedTemplates } from "@/lib/templates";
-import { TemplateThumbnail } from "./TemplateThumbnail";
-
-type ThumbVariant = "classic" | "modern" | "executive" | "graduate" | "minimal";
-
-function getVariant(slug: string): ThumbVariant {
-  const known: ThumbVariant[] = [
-    "classic",
-    "modern",
-    "executive",
-    "graduate",
-    "minimal",
-  ];
-  return known.find((k) => k === slug) ?? "classic";
-}
 
 export function TemplateShowcase() {
   const templates = getFeaturedTemplates(3);
@@ -44,10 +30,26 @@ export function TemplateShowcase() {
                 </span>
 
                 <div className="relative mx-auto max-w-[320px]">
-                  <TemplateThumbnail
-                    variant={getVariant(t.slug)}
-                    accent={t.accent}
-                  />
+                  {/* Real screenshot of the actual template, captured from
+                      the builder — not a mockup. */}
+                  <div
+                    className="overflow-hidden rounded-lg bg-sheet ring-1 ring-line"
+                    style={{ aspectRatio: "1 / 1.414", boxShadow: "var(--shadow-sheet)" }}
+                  >
+                    {t.thumbnail ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={t.thumbnail}
+                        alt={`${t.name} CV template preview — ${t.positioning}`}
+                        width={794}
+                        height={1123}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    ) : (
+                      <div className="h-full w-full bg-paper-2" />
+                    )}
+                  </div>
 
                   {/* Hover overlay (desktop) */}
                   <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 rounded-xl bg-gradient-to-t from-ink/85 via-ink/35 to-transparent p-4 opacity-0 transition-opacity duration-150 group-hover:opacity-100 md:flex md:pointer-events-auto">
