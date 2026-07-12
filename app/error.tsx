@@ -21,14 +21,14 @@ export default function Error({
       <div className="w-full max-w-md rounded-2xl border border-line bg-paper p-8 text-center shadow-lg-soft">
         <span
           aria-hidden
-          className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-2xl font-bold text-brand-blue"
+          className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-2xl font-bold text-accent"
         >
           !
         </span>
-        <h1 className="mt-4 text-xl font-semibold text-brand-ink">
+        <h1 className="mt-4 text-xl font-semibold text-ink">
           Something went wrong on our side
         </h1>
-        <p className="mt-2 text-sm leading-6 text-brand-muted">
+        <p className="mt-2 text-sm leading-6 text-muted">
           Sorry about that — it&apos;s us, not you. Trying again usually
           fixes it. The CV builder itself is unaffected.
         </p>
@@ -36,7 +36,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="rounded-full bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-cta"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 hover:bg-accent-deep"
           >
             Try again
           </button>

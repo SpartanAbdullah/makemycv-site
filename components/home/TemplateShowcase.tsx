@@ -25,7 +25,7 @@ export function TemplateShowcase() {
             >
               {/* Thumbnail well — paper-on-desk effect */}
               <div className="relative border-b border-line bg-paper-2 p-6 pb-3">
-                <span className="absolute right-3 top-3 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-[#8a6a25]">
+                <span className="absolute right-3 top-3 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-gold-deep">
                   Free
                 </span>
 
@@ -51,11 +51,12 @@ export function TemplateShowcase() {
                     )}
                   </div>
 
-                  {/* Hover overlay (desktop) */}
-                  <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 rounded-xl bg-gradient-to-t from-ink/85 via-ink/35 to-transparent p-4 opacity-0 transition-opacity duration-150 group-hover:opacity-100 md:flex md:pointer-events-auto">
+                  {/* Hover overlay (desktop) — also revealed on keyboard focus
+                      so the tab stops inside are never invisible. */}
+                  <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 rounded-xl bg-gradient-to-t from-ink/85 via-ink/35 to-transparent p-4 opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 md:flex md:pointer-events-auto">
                     <Link
                       href={`/templates#${t.slug}`}
-                      className="rounded-lg bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-md transition-colors duration-150 hover:bg-white"
+                      className="rounded-lg bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-md transition-colors duration-150 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
                     >
                       Preview
                     </Link>
@@ -63,7 +64,7 @@ export function TemplateShowcase() {
                       href="https://app.makemycv.ae"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-md transition-colors duration-150 hover:bg-accent-deep"
+                      className="rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-md transition-colors duration-150 hover:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
                       data-event="home_template_card_click"
                       data-template-id={t.slug}
                     >

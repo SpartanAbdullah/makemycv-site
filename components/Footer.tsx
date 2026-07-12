@@ -26,7 +26,7 @@ export const Footer = () => (
           <br />
           Free, fast, ATS-friendly.
         </p>
-        <p className="mt-4 text-xs text-white/45">
+        <p className="mt-4 text-xs text-white/50">
           Contact:{" "}
           <a
             href="mailto:hello@makemycv.ae"
@@ -35,7 +35,7 @@ export const Footer = () => (
             hello@makemycv.ae
           </a>
         </p>
-        <p className="mt-2 text-xs text-white/45">
+        <p className="mt-2 text-xs text-white/50">
           <Link
             href="/support"
             className="transition-colors duration-150 hover:text-gold-light"
@@ -47,7 +47,7 @@ export const Footer = () => (
 
       {/* Quick Links */}
       <div>
-        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Pages
         </p>
         <div className="flex flex-col gap-2">
@@ -65,7 +65,7 @@ export const Footer = () => (
 
       {/* App CTA */}
       <div>
-        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Build Your CV
         </p>
         <a
@@ -76,7 +76,7 @@ export const Footer = () => (
         >
           Start Free &rarr;
         </a>
-        <p className="mt-2 text-xs text-white/45">
+        <p className="mt-2 text-xs text-white/50">
           No account needed. Takes 5 minutes.
         </p>
       </div>
@@ -85,9 +85,9 @@ export const Footer = () => (
     {/* Bottom bar */}
     <div>
       <div className="mb-6 h-px bg-white/10" />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/40 sm:flex-row">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row">
         <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
-        <span className="flex items-center gap-1.5 text-xs text-white/40">
+        <span className="flex items-center gap-1.5 text-xs text-white/55">
           Made with
           <Heart size={14} className="fill-red-500 text-red-500" />
           in

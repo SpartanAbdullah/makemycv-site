@@ -76,8 +76,8 @@ export default function TemplatesPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
             Every template is ATS-tested and formatted to Gulf hiring
-            standards. These previews are real exports from the builder — what
-            you see is what you download.
+            standards. These previews are real captures from the builder —
+            the same templates you download.
           </p>
         </div>
       </section>
@@ -85,6 +85,8 @@ export default function TemplatesPage() {
       {/* Templates Grid */}
       <section className="bg-paper-2 py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
+          {/* Keeps the h1 > h2 > h3 outline (card names are h3s). */}
+          <h2 className="sr-only">Choose your template</h2>
           <div className="grid gap-8 md:grid-cols-2">
             {templates.map((t) => (
               <article
@@ -92,7 +94,7 @@ export default function TemplatesPage() {
                 id={t.slug}
                 className="relative flex flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:-translate-y-1 hover:border-line-strong hover:shadow-lg-soft md:p-8 scroll-mt-24"
               >
-                <span className="absolute right-4 top-4 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-[#8a6a25]">
+                <span className="absolute right-4 top-4 z-10 rounded-full bg-gold-soft px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-gold-deep">
                   Free
                 </span>
 

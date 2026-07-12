@@ -28,6 +28,7 @@
   --color-gold: #c49a48;
   --color-gold-light: #d4a95a;
   --color-gold-soft: #f6efe0;
+  --color-gold-deep: #7f611f; /* text on gold-soft — clears 4.5:1 */
 
   /* ── Line ────────────────────────────────────────────────────────── */
   --color-line: #e6e4dd;

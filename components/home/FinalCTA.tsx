@@ -30,7 +30,7 @@ export function FinalCTA() {
           </a>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/65">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/75">
           <span className="inline-flex items-center gap-1.5">
             <Lock size={14} className="text-gold-light" />
             Your data stays in your browser

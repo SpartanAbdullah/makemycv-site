@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 /**
  * One subtle fade-in per section (opacity + 10px rise, 0.3s).
@@ -9,6 +9,11 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * and is hidden *after* hydration, and only when it is genuinely below the
  * fold — so crawlers, no-JS visitors, and above-fold content never see a
  * hidden state. Honors prefers-reduced-motion.
+ *
+ * Implementation note: the reveal classes are applied straight to the DOM
+ * node (no React state) — this is an animation-only concern, avoids any
+ * re-render, and React never rewrites the className since nothing here
+ * triggers a render.
  */
 export function Reveal({
   children,
@@ -18,7 +23,6 @@ export function Reveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<"idle" | "hidden" | "shown">("idle");
 
   useEffect(() => {
     const el = ref.current;
@@ -28,32 +32,38 @@ export function Reveal({
     // Already (nearly) on screen — don't flash it out and back in.
     if (el.getBoundingClientRect().top < window.innerHeight * 0.9) return;
 
-    setState("hidden");
-    // Safety net: if the observer never fires (throttled/background renderers,
-    // embedded webviews), reveal anyway — content must never stay invisible.
-    const failsafe = window.setTimeout(() => setState("shown"), 2500);
+    el.classList.add("reveal-init");
+    const show = () => {
+      el.classList.add("reveal-in");
+      el.classList.remove("reveal-init");
+    };
+
+    // Safety net: if the observer NEVER fires (throttled/background
+    // renderers, embedded webviews), reveal anyway — content must never
+    // stay invisible. Any callback at all proves the observer is alive,
+    // so the first one (even a non-intersecting initial report) disarms
+    // the failsafe and the reveal then waits for real intersection.
+    const failsafe = window.setTimeout(show, 2500);
     const io = new IntersectionObserver(
       (entries) => {
+        window.clearTimeout(failsafe);
         if (entries.some((e) => e.isIntersecting)) {
-          window.clearTimeout(failsafe);
-          setState("shown");
+          show();
           io.disconnect();
         }
       },
       { rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
+
     return () => {
       window.clearTimeout(failsafe);
       io.disconnect();
     };
   }, []);
 
-  const cls =
-    state === "hidden" ? "reveal-init" : state === "shown" ? "reveal-in" : "";
-
   return (
-    <div ref={ref} className={`${cls} ${className}`.trim()}>
+    <div ref={ref} className={className}>
       {children}
     </div>
   );

@@ -92,6 +92,8 @@ export const Navbar = () => {
           onClick={() => setMenuOpen(!menuOpen)}
           className="flex flex-col gap-1.5 lg:hidden"
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
           <span
             className={`h-0.5 w-6 bg-ink-2 transition-transform ${menuOpen ? "translate-y-2 rotate-45" : ""}`}
@@ -107,7 +109,10 @@ export const Navbar = () => {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="border-t border-line bg-paper/95 px-6 py-4 backdrop-blur-xl lg:hidden">
+        <div
+          id="mobile-menu"
+          className="border-t border-line bg-paper/95 px-6 py-4 backdrop-blur-xl lg:hidden"
+        >
           <div className="flex flex-col gap-3">
             {links.map((link) => {
               const isActive = pathname === link.href;

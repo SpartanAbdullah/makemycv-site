@@ -62,7 +62,7 @@ export function HeroSection() {
             Free, no sign-up, no watermark. Your data never leaves your
             browser.
           </p>
-          <p className="mt-1.5 text-[13px] text-muted/80">
+          <p className="mt-1.5 text-[13px] text-muted">
             Built for the 2026 UAE hiring season.
           </p>
         </div>
@@ -71,7 +71,7 @@ export function HeroSection() {
         <div className="lg:col-span-2">
           <div className="mx-auto max-w-sm lg:max-w-none">
             <CvPreviewCard />
-            <p className="mt-4 text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted/80">
+            <p className="mt-4 text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted">
               The Classic template — ATS-safe, visa-ready
             </p>
           </div>

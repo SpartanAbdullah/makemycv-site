@@ -4,7 +4,7 @@
 
 ## Core pages
 - [Home](https://www.makemycv.ae/): What MakeMyCV is, who it's for, and why UAE CVs need ATS-clean formatting.
-- [Templates](https://www.makemycv.ae/templates): ATS-safe CV templates — Classic (finance/corporate), Executive (C-suite), Graduate (first job).
+- [Templates](https://www.makemycv.ae/templates): ATS-safe CV templates — Classic (finance/corporate), Executive (C-suite), Modern (creative/tech), ATS Clean (first job).
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool.
 
