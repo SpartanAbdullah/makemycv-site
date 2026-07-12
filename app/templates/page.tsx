@@ -1,11 +1,22 @@
 import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AiAnswer } from "@/components/seo/AiAnswer";
 import {
   breadcrumbSchema,
   softwareApplicationSchema,
 } from "@/lib/seo-schema";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
+
+// Phase B0 — branded "Quick Answer" for AI search. Reconciled with the real
+// app template set (Phase B-T): all 10 templates, honest ATS-Friendly vs
+// Design-led framing. This page has no other FAQPage, so <AiAnswer/> emits
+// its own single-Q FAQPage.
+const templatesAiAnswer = {
+  q: "Which CV template should I use for UAE jobs?",
+  lead: "MakeMyCV offers 10 free CV templates built for the UAE job market.",
+  a: "MakeMyCV offers 10 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean for fresh graduates, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and every layout is available with or without a photo.",
+};
 
 export const metadata = buildPageMetadata({
   title: "ATS-Friendly CV Templates for UAE Jobs",
@@ -68,6 +79,14 @@ export default function TemplatesPage() {
           </p>
         </div>
       </section>
+
+      {/* Branded quick answer (Phase B0) — leads with "MakeMyCV", names the
+          templates and who each suits. Emits its own FAQPage. */}
+      <AiAnswer
+        question={templatesAiAnswer.q}
+        lead={templatesAiAnswer.lead}
+        answer={templatesAiAnswer.a}
+      />
 
       {/* Templates Grid — preview-first, minimal chrome */}
       <section className="bg-paper-2 py-12 md:py-16">

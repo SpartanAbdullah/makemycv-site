@@ -1,0 +1,410 @@
+# PROGRESS — Beat JobXDubai (makemycv-site)
+
+Running log. Newest first. See `PLAN.md` for the session breakdown.
+Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abdullah's STOP gate.
+
+---
+
+## 2026-07-08 · Session CALC-V2 — Calculator sharpening from real-user research ✅
+
+**Goal (Abdullah):** sharpen the calculators; test different scenarios/user types; research what people
+rant about on Reddit/forums re such calculators; solve those problems; stress-test until satisfied.
+
+**Research first (5-agent workflow: Reddit r/dubai + r/UAE + forums/Quora/Gulf News Ask-the-Law +
+competitor teardowns + legal edge cases → synthesized):** 17 prioritized pain points. Top: gross-vs-basic
+wrong input (inflates 40–60%), the repealed resignation-cuts myth (competitors still apply pre-2022 law),
+basic-vs-full wage whiplash across tools, DIFC/ADGM DEWS being silently wrong, settlement ≠ gratuity alone
+(Art. 53 14-day window unknown), no date-of-joining entry, unpaid-leave exclusion, no takeaway/copy,
+direction-of-money ambiguity on notice, no last-working-day date, part-time pro-rating missing,
+death-in-service wrong, under-1-year dead-end, silent cap, unadvertised no-email-gate trust.
+
+**Built (all 17 addressed):**
+- `gratuity.ts` v2: days precision, unpaid-leave exclusion, `deathInService` (no 1-yr minimum),
+  part-time ratio (cap applied before ratio), `computeDews` (5.83%/8.33%), `dateDiffSpan` (calendar-safe
+  incl. double-borrow + leap years). `notice.ts`: `lastWorkingDay(start, days)`.
+- `GratuityCalculator.tsx` v2: jurisdiction selector (mainland/JAFZA/DMCC vs DIFC vs ADGM → DEWS
+  contributions estimate + pre-Feb-2020 note), date-of-joining↔manual entry modes with derived tenure,
+  reason-for-leaving selector (myth-debunk green note; Art. 44 keep-gratuity note; death-in-service heirs
+  note), advanced unpaid-leave + part-time, cap callout w/ Art. 51(4), under-1-year rescue callout →
+  leave calculator, copy + print.
+- `BasicSalaryInput.tsx` (shared): basic-vs-gross helper — "I only know my gross" → gross × basic-% (default
+  50%, labelled estimate + payout-will-be-lower warning). Used by gratuity + leave encashment.
+- `NoticePeriodCalculator.tsx` v2: who-is-ending toggle → explicit "YOU owe / employer owes YOU" lines
+  (deductible-from-settlement note), optional notice-start date → calendar last working day, probation
+  notes (gratuity=0; Art. 9 recruitment-cost wrinkles), full-wage basis called out.
+- `LeaveCalculator.tsx` v2: BasicSalaryInput, days-already-taken → remaining + AED value,
+  cannot-be-forfeited note.
+- `CalculatorShared.tsx`: TrustBadge ("No sign-up · No email · No ads · Nothing stored"),
+  WageBasisExplainer (basic vs full by article), SettlementFooter (full-settlement checklist + Art. 53
+  14-day window + MOHRE 600 590 000) — mounted on all three pages.
+- `CopyBreakdownButton.tsx` + `copyText.ts`: article-cited breakdown; clipboard-API → execCommand →
+  visible selectable-textarea fallback (clipboard can be fully blocked in webviews — verified the
+  fallback renders the full correct breakdown).
+
+**Tested so far:**
+- Stress battery grown 64 → **99 cases, 99 passing** (day precision, unpaid exclusion, death, part-time
+  incl. cap-before-ratio, DEWS split, date math incl. Jan-31→Mar-1 double-borrow + leap years).
+- Live persona runs (dev server): 8y/8000 dates-mode → 52,000 + myth-debunk note; gross-mode 16,000@50% →
+  same; DIFC → **51,974** (matches hand calc); 8-months → 0 + rescue link; death@8mo → 3,733 + heirs
+  note; part-time 24/48 → 26,000; unpaid 60d → 50,667; notice: resign → "you owe 12,000", employer →
+  "owes you 8,000", full-served → neither, probation branches show 30/14 + notes, Aug-1+30 → Mon 31 Aug
+  2026; copy fallback verified.
+- `tsc` 0; `npm run build` ✅.
+
+**Adversarial review (12 agents, 3 lenses, skeptic-verified): 9 CONFIRMED findings — all fixed & re-verified:**
+1. **[MAJOR] ADGM wrongly treated like DIFC DEWS.** ADGM in fact KEPT standard lump-sum gratuity (its
+   Employment Regulations mirror 21/30 days); its savings scheme is an optional opt-in since 1 Apr 2025.
+   → ADGM now routes through the standard engine (52,000 on the 8y/8000 persona) with a
+   kept-gratuity + optional-scheme note; DEWS branch is DIFC-only. (Sources: ADGM Rulebook §61,
+   Addleshaw Goddard, yomly, pensionsmonitor.)
+2. FDL 33/2021 effective date is **2 Feb 2022**, not 1 Feb → fixed in all 3 places.
+3. DEWS copy-breakdown printed raw floats ("43.3333… months") → toFixed(1).
+4. Leave copy emitted "value: AED 0" line the UI suppresses → guarded with remaining > 0.
+5. ADGM shown DIFC-specific facts (5.83/8.33%, Feb-2020 note) → moot after #1; pre-2020 note DIFC-scoped.
+6. Death-in-service copy lacked the heirs line and appended the resignation-myth jab → reason-aware
+   buildBreakdown (death → heirs; misconduct → keep-gratuity; else myth note).
+7. Footnote asserted Art. 51 lump-sum mechanics under a DIFC DEWS result → jurisdiction-scoped.
+8. Gross-derived basic printed as firm figure in copy → "estimated from gross" annotation threaded from
+   BasicSalaryInput (gratuity + leave).
+9. Leave: taken > accrued showed non-reconciling "(75 accrued − 100 taken)" next to "0 days" → "(all X
+   accrued days already used.)" in UI and copy.
+
+**Also:** copy button hardened into `CopyBreakdownButton` (clipboard API → execCommand → visible
+selectable-textarea fallback) after discovering clipboard can be fully blocked; fallback verified to
+render the complete article-cited breakdown. `.claude/launch.json` autoPort added.
+
+**Final state:** tsc 0 · build ✅ · 99/99 stress cases · all personas re-verified post-fix (ADGM 52,000
+standard; DIFC 51,974 DEWS; date "2 Feb 2022"; death copy has heirs line, no myth jab). ✅ DONE
+
+---
+
+## 2026-07-07 · Session E3-tail — Blog → tools contextual links ✅
+
+Added natural in-body links from 6 existing posts to the new assets: `ats-cv-checklist-uae`
+(→ checker + examples), `how-to-get-a-job-in-dubai-2026` (→ checker, JD Match, notice + gratuity
+calculators), `expat-cv-uae-guide` (→ examples + checker), `cv-for-freshers-uae` (→ examples + checker),
+`professional-summary-examples-uae-cv` (→ examples), `uae-cv-format-guide` (→ checker).
+**13 of 18 published posts now link into the tools.** Gates green; links spot-verified in built HTML.
+
+---
+
+## 2026-07-07 · Session E2 — MOHRE CV format + adapt-Indian-CV posts ✅
+
+**Goal:** the two remaining content gaps — Q13 ("MOHRE CV format", owned by Labeeb/KudosWall) and Q16
+(adapt Indian CV; the original MDX never existed in this repo — written fresh).
+
+**Research first:** confirmed there is **no official MOHRE CV format** (competitors literally market
+"The Official MOHRE Guide" — our honest debunk is both truer and more citable). Verified from u.ae:
+MOHRE classifies occupations into **9 ISCO professional levels**; skilled work (levels 1–5) officially
+requires an **attested certificate higher than the secondary certificate** + **≥ AED 4,000/month**
+excluding commission.
+
+**Changed (new):**
+- `content/blog/mohre-cv-format-uae.mdx` — BLUF debunk ("no official format exists"), what MOHRE actually
+  regulates, the 9 levels + official skilled-work definition, what a UAE-ready CV needs instead, 5 FAQs
+  (frontmatter + visible body, mirrored); links to checker/format-guide/photo post/builder.
+- `content/blog/adapt-indian-cv-for-uae-jobs.mdx` — remove (declaration, father's name, mark-sheets…) /
+  add (visa status, availability, AED figures…) / change (length, objective→summary, photo) checklist +
+  ATS reality; 5 FAQs mirrored; links to checker/jd-match/photo/format posts.
+- Cover SVGs for both (house style).
+
+**Gates & tests:** `tsc` 0; build ✅; both prerendered; 1 Article + 1 FAQPage (5 Q) each; BLUF text and
+internal links verified in built HTML; **18 published posts, 18 unique, 0 duplicates**.
+
+**Adversarial review** (6 review agents: accuracy-with-web-recheck / honesty / schema per post, each
+finding skeptic-verified): **3 confirmed minors, all fixed** —
+1. + 2. (MOHRE post) the per-level education mapping (bachelor's 1–2 / diploma 3–4 / high-school 5) was
+   stated as official MOHRE rule, and "level 5 high-school = skilled" contradicted u.ae's definition →
+   rewrote to quote u.ae's exact skilled-work criteria and hedge the mapping as market practice (body +
+   FAQ + frontmatter kept mirrored; re-verified in HTML, old wording 0 occurrences).
+3. (Indian-CV post) ₹4 crore ≈ AED 1.8M used a stale exchange rate → corrected to ≈AED 1.5M + "check the
+   current rate" hedge.
+
+---
+
+## 2026-07-07 · Session E3 (core) — Internal-linking mesh ✅
+
+**Goal:** complete the tools ⇄ calculators ⇄ examples mesh (JobXDubai's single-domain compounding).
+
+**Changed:** new `components/seo/CareerToolLinks.tsx` (server component, 4 links: cv-examples +
+3 calculators) rendered on `/resume-checker` (before FinalCTA) and `/jd-match`; gratuity page now also
+links the leave calculator; notice page now also links the leave calculator (both 4-card grids).
+
+**Verified:** `tsc` exit 0; build success; every expected href present exactly once in built HTML of
+resume-checker/jd-match/gratuity/notice; dev-server link check of 11 unique internal links across the
+two money pages — **0 broken**. Remaining for later: contextual in-body links from blog posts to tools.
+
+---
+
+## 2026-07-07 · Session E1 — Publish remaining posts, dedupe against live ✅
+
+**Goal (Abdullah):** publish all remaining posts; guarantee no post exists twice — verified against the
+live website itself.
+
+**Live-state reconciliation first:**
+- Fetched live `/sitemap.xml`: 14 posts live. Three of them were `published: false` on this branch —
+  Abdullah's PR #15 ("post published") flipped them on `main` after the branch point. **Merged
+  `origin/main` into `beat-jobxdubai`** (clean; also brought the redesigned storyboard `HonestMatching`,
+  which retained our corrected privacy copy). Flags now match live.
+- Git archaeology: two old slugs (`best-cv-for-uae-jobs`, `chatgpt-write-cv-uae`) were published once
+  (2adc8b0), then consolidated into today's drafts (9350db9). Confirmed both **404 on the live site** —
+  so no live duplicates, but possibly stale index entries.
+
+**Changed:**
+- `content/blog/best-cv-writers-uae.mdx` — `published: true`; **fixed future date** 2026-07-18 → 2026-07-07
+  (honest freshness; was dated 11 days ahead).
+- `content/blog/can-chatgpt-write-cv.mdx` — `published: true` (dated 2026-07-04, fine).
+- `next.config.ts` — two 301s for the dead old slugs → their successors
+  (`/blog/chatgpt-write-cv-uae` → `/blog/can-chatgpt-write-cv`; `/blog/best-cv-for-uae-jobs` →
+  `/blog/best-cv-writers-uae`, whose unique "Do You Need a Paid CV Writer?" content it inherited).
+
+**Verified (dev server + built output):**
+- `tsc` exit 0; build success; both posts prerendered.
+- **Sitemap: 16 blog URLs, 16 unique, zero duplicates**; each new post exactly once; blog index shows one
+  card per post. Both posts carry Article + FAQPage schema (from `faqs` frontmatter, 4 Q&As each).
+- Both 301s resolve 200 at the correct destination posts.
+- **Not in repo:** `adapt-indian-cv-for-uae-jobs.mdx` (brief E1) never existed in this repo's history
+  (`git log --all` empty) — presumably lost with the deleted `preview` branch. Needs writing from
+  scratch (E2-style session) if still wanted.
+
+---
+
+## 2026-07-03 · Session B0 — Reusable AiAnswer block ✅
+
+**Goal:** Build the reusable "Quick Answer for AI Search" block (brief B0 — highest leverage) and
+deploy it site-wide with clean schema.
+
+**Changed**
+- **New** `components/seo/AiAnswer.tsx` — server component. Pill label ("Quick Answer") +
+  question-shaped H2 + boxed answer that leads with a **bolded** "MakeMyCV…" clause. Optional
+  `emitSchema` (default true) emits a single-question `FAQPage` via existing `faqPageSchema()`.
+  Bolding is done by slicing `answer` on the `lead` prefix, so the schema text == visible text exactly.
+- `app/page.tsx` — AiAnswer after hero ("What is MakeMyCV?"); folded its Q/A as the first entity of
+  the existing homepage FAQPage (`emitSchema={false}`) → one FAQPage.
+- `app/resume-checker/page.tsx` — AiAnswer after hero ("What is the best free ATS CV checker for UAE
+  jobs?" → answers Q5), folded into the page FAQPage. Kept the existing "What is an ATS?" definitional
+  section below it.
+- `app/jd-match/page.tsx` — **replaced** the plain BLUF paragraph with the boxed AiAnswer ("How do I
+  check if my CV matches a UAE job description?" → answers Q6), preserving the build/import/paste
+  instruction; folded into the page FAQPage.
+- `app/templates/page.tsx` — AiAnswer after hero ("Which CV template should I use for UAE jobs?"),
+  emits its own FAQPage (page had none). Also softened hero copy "Every template is ATS-tested" →
+  "ATS-friendly layouts" (honesty; pre-empts BT4).
+
+**Design decisions**
+- **One FAQPage per page.** On the 3 pages that already had a FAQPage, AiAnswer runs `emitSchema={false}`
+  and the page folds the branded Q/A into its existing FAQPage as the first `mainEntity`. Avoids the
+  duplicate-FAQPage smell while still putting the branded answer in schema. Templates (no prior FAQPage)
+  emits its own.
+- Copy is factual, 40–65 words, entity/geo-dense, **honest about server-side processing** (JD-match/checker
+  send text server-side; only the builder draft is browser-local).
+
+**Gates & tests**
+- `npx tsc --noEmit` → **exit 0** ✅
+- `npm run build` → **success** ✅ (velite + next; 25/25 static pages).
+- Extractability (grep of `.next/server/app/*.html`): branded lead text present on all four pages
+  (`index`, `resume-checker`, `jd-match`, `templates`) ✅.
+- Schema: **exactly 1 FAQPage per page** on all four (0 duplicates); branded questions confirmed inside
+  the schema ✅.
+- Dev-server render check (`localhost:3000/resume-checker`): status 200, lead present, `Quick Answer`
+  label present, FAQPage count 1 ✅.
+- Computed-style check on the box: border-radius 24px, border `#e2e8f0` (--color-line), bg `#f8fafc`
+  (--color-paper-2), padding 40px, pill uppercase brand-blue `#2563eb`, answer opens with bold
+  "MakeMyCV provides a free ATS CV checker…" ✅.
+- **Unverified here:** live Rich Results Test (needs the deployed URL — do at A-verify / after merge).
+  Preview **screenshot** tool timed out (renderer hang, env-side); verified via DOM/computed-style
+  inspection + server-HTML greps instead.
+
+**Result:** B0 acceptance met. No SSR issues; no console errors.
+
+---
+
+## 2026-07-07 · Sessions C2 + C3 — Notice Period & Annual Leave Calculators ✅
+
+**Goal:** Complete the calculator suite (brief Phase C) — notice period (C2) and annual leave /
+leave encashment (C3), same standard as C1: law verified first, SSR content, schema, adversarial review.
+
+**Law verified before coding (web, authoritative sources):**
+- **C2 (Articles 9 & 43, FDL 33/2021):** post-probation notice = contract figure clamped 30–90 days,
+  equal for resignation/termination; probation: 14 days (employer terminates), 30 days (resign → another
+  UAE employer), 14 days (resign → leaving UAE); pay in lieu = **full wage** (basic + allowances) ÷ 30 ×
+  unserved days — explicitly contrasted with gratuity's basic-only basis.
+- **C3 (Article 29 + Cabinet Resolution 1/2022 Art. 19):** 30 days/yr after 1 year; 2 days/month for
+  6–12 months; <6 months none yet; final-year fractions pro-rata (2.5/mo); on-leave pay = full wage but
+  end-of-service **encashment = basic ÷ 30 × unused days**; carry-forward up to half, encashable by
+  written agreement.
+
+**Changed (new files):** `components/tools/notice.ts` + `NoticePeriodCalculator.tsx` +
+`app/notice-period-calculator/page.tsx`; `components/tools/leave.ts` + `LeaveCalculator.tsx` (dual
+island: encashment + entitlement) + `app/annual-leave-calculator/page.tsx`. Wiring: both routes in
+`app/sitemap.ts` (0.85) + `components/Footer.tsx`; gratuity page now cross-links the notice calculator
+(3-card grid). Calculator-mesh completion deferred to E3.
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success (28 static pages) ✅ (run after each of C2/C3).
+- **C2 live-verified (4 cases):** 30d/12,000/serve0 → **AED 12,000**; 60d/9,000/serve45 → 15 unserved,
+  **AED 4,500**; probation-employer/6,000 → **14 days, AED 2,800**; contract 120 days → **clamped to 90**
+  with amber note ✅. SSR + schema: WebApplication 1, HowTo 1 (4 steps), FAQPage 1 (8 Q), Breadcrumb 1 ✅.
+- **C3 live-verified (5 cases):** 9,000/15d → **AED 4,500**; 12,000/30d → **AED 12,000**; 8 months →
+  **16 days**; 2y6m → **75 days** (60 + 15 pro-rata); 4 months → **0 days** with six-month explainer ✅.
+  SSR + schema: WebApplication 1, HowTo 1 (3 steps), FAQPage 1 (8 Q), Breadcrumb 1 ✅.
+- **C2 adversarial review** (legal w/ independent web re-check + calc + honesty/schema, skeptic-verified):
+  **0 findings** — journal inspected to confirm all three agents deliberately returned empty findings ✅.
+- **C3 adversarial review** (same 3-lens design; legal lens scrutinised the 2-days-per-month
+  interpretation and full-wage-vs-basic distinction): legal + honesty lenses **clean**; **1 confirmed
+  minor** — typing a negative "unused days" (bypassing the input's `min=0` via keyboard) showed a
+  self-contradictory "AED 0 … × -5 days". **Fixed** by requiring `unusedDays > 0` in the display gate;
+  re-verified live (negative input → prompt; 9,000/15 still → AED 4,500); gates re-run green.
+
+---
+
+## 2026-07-07 · Session B6 — UAE CV Examples page (before/after by sector) ✅
+
+**Goal:** Ship the Labeeb-pattern sector examples (brief §1b item 5 / B6) as a dedicated
+**`/cv-examples-uae`** page — keeps `/resume-checker` lean and targets the "CV examples UAE" query
+cluster currently owned by KudosWall/Pika/CV-Gulf.
+
+**Changed:** new `app/cv-examples-uae/page.tsx` — 6 sectors (banking & finance/DIFC, executive, tech,
+healthcare, oil & gas, sales & retail), each with a weak duty-bullet vs a strong quantified UAE-anchored
+rewrite (AED figures, scale, DIFC/DOH/ADNOC context) + a "why it works" line; prominent amber
+"illustrative, not client data" banner + matching FAQ answer; AiAnswer ("What does a strong CV bullet
+look like for UAE jobs?"); HowTo (4 steps: action verb → scale → quantify → honest UAE context);
+FAQPage (5 Q incl. AiAnswer) + Breadcrumb; cross-links to builder + `/resume-checker`. Wired into
+`app/sitemap.ts` (0.8) + footer ("UAE CV Examples").
+
+**Gates & tests:** `tsc` exit 0 ✅; build success ✅; all 6 sectors + 6 weak/strong pairs + disclaimer in
+server HTML; exactly 1 FAQPage ✅. **Adversarial review** (honesty / UAE-market plausibility — incl.
+checking DOH is the right Abu Dhabi regulator / schema): **0 confirmed**; 1 plausible — the builder
+cross-link said the AI rewriter "never invents facts" (absolute claim about generative AI). Softened to
+"designed not to invent facts — you review every suggestion"; re-verified in built HTML + dev server.
+
+**Note:** the calculator-mesh + linking `/resume-checker` → `/cv-examples-uae` lands with E3 (internal
+linking hub) to keep this commit scoped.
+
+---
+
+## 2026-07-06 · Session C1 — UAE Gratuity Calculator ✅
+
+**Goal:** Ship the first free-tool authority magnet (brief Phase C) — a UAE end-of-service gratuity
+calculator that's accurate, SSR/indexable, schema-rich, and cross-linked.
+
+**Decisions from Abdullah (this session):**
+- Sitemap: **submit as-is** — it's valid, all-`www`; the 2 blog posts not listed (`best-cv-writers-uae`,
+  `can-chatgpt-write-cv`) are `published: false` drafts, correctly excluded.
+- Point #3: the marketing tool pages already route CTAs to `app.makemycv.ae` — no change needed. The
+  "import vs build" popup idea is an **app-repo** (`makemycv-app`) enhancement — parked as a separate task.
+- Point #4: **Phase B-T (templates) parked** for a dedicated slot (marked in PLAN.md).
+
+**Changed (new files)**
+- `components/tools/gratuity.ts` — pure, SSR-safe, testable calc (`computeGratuity`, `formatAed`,
+  `formatAedPrecise`). Rules: <1yr → 0; daily wage = basic/30; 21 days/yr first 5, 30 days/yr after;
+  basic-only; 2-year cap; pro-rated. Verified against u.ae/MOHRE-aligned sources.
+- `components/tools/GratuityCalculator.tsx` — `"use client"` interactive island (salary/years/months →
+  live estimate + breakdown + cap notice + MOHRE/DEWS/Article-44 disclaimer).
+- `app/gratuity-calculator/page.tsx` — server page: metadata, AiAnswer (folded into FAQPage),
+  calculator island, SSR "how it's calculated" + 3 worked examples + 7-item FAQ, internal links to the
+  builder + `/resume-checker`. Schema: WebApplication + HowTo (5 steps) + FAQPage (8 Q) + Breadcrumb.
+- `app/sitemap.ts` — added `/gratuity-calculator` (priority 0.85). `components/Footer.tsx` — added
+  "ATS Checker" + "Gratuity Calculator" links (site-wide internal linking).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success (26 static pages) ✅.
+- **Accuracy:** live calculator correct on all 3 worked examples — 8mo/AED7,000 → **AED 0**; 3yr/AED6,000
+  → **AED 12,600**; 8yr/AED8,000 → **AED 52,000** (daily wage 266.67, 195 days) ✅.
+- Extractability: method text, both example results, DEWS caveat, branded lead all in server HTML ✅.
+- Schema (built HTML): WebApplication 1, HowTo 1 (5 steps), FAQPage 1 (8 Questions), Breadcrumb 1 ✅.
+- Sitemap includes the route (0.85); footer link renders site-wide; no console errors ✅.
+- **Adversarial review workflow** (legal-accuracy w/ web re-check + calc-correctness + honesty/schema, each
+  finding skeptic-verified): law implementation confirmed correct; **1 minor finding** — worked-example
+  daily wage "266.67" vs calculator's rounded "267". **Fixed** by adding `formatAedPrecise` (2 dp) for the
+  daily-wage row; re-verified live shows AED 266.67 with result still AED 52,000.
+
+**Unverified here:** live Rich Results Test (needs deployed URL — after merge). Legal accuracy is
+confirmed against public sources but the page correctly frames all figures as estimates + points to MOHRE.
+
+---
+
+## 2026-07-03 · Sessions B4 + B5 — HowTo schema + UAE prose + honesty fix ✅
+
+**Goal:** Add HowTo/enriched SoftwareApplication schema to the tool pages (B4) and tighten the UAE
+angle in prose (B5) — while catching any honesty regressions.
+
+**Changed**
+- `components/resume-checker/HowItWorks.tsx` — `export const steps` (+ section `id="how-it-works"`) so the
+  page can build HowTo from the same source as the visible steps.
+- `components/jd-match/JdMatchSteps.tsx` — `export const steps` (+ `id="how-jd-match-works"`); **B5:**
+  replaced the unverifiable "No other UAE builder reads the job ad back to you like this" closer with an
+  honest, UAE-entity-dense line naming DIFC banking / ADNOC / Emaar.
+- `components/jd-match/HonestMatching.tsx` — **B5 honesty fix (guardrail):** the "Private by design"
+  pillar said *"Your CV never leaves your browser. Only the job text you paste is sent"* — false for
+  JD-match/AI-improve, which send CV text server-side. Rewrote to: draft saved in browser; to run a match
+  or AI rewrite the relevant CV + job text is sent to our servers, never sold/shown/used to train. Now
+  consistent with the page's own FAQ + AiAnswer.
+- `app/resume-checker/page.tsx` — **B4:** enriched SoftwareApplication (`description`, `audience`=UAE/GCC
+  job seekers, `featureList`) + new `howToSchema` (name "How to check if your CV passes UAE ATS filters",
+  3 steps from `howItWorksSteps`, `totalTime PT1M`); render `<JsonLd data={howToSchema} />`.
+- `app/jd-match/page.tsx` — **B4:** same treatment; `howToSchema` "How to match your CV to a UAE job
+  description" (3 steps from `jdMatchSteps`, `totalTime PT5M`).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success ✅.
+- Schema (built HTML): resume-checker & jd-match each now carry **1 SoftwareApplication + 1 HowTo
+  (3 HowToSteps) + 1 FAQPage** ✅. HowTo step text sourced from the visible step arrays (mirrors content).
+- Honesty (built HTML): the false "CV never leaves your browser" string and the "No other UAE builder"
+  absolute are **gone (0 occurrences)**; corrected privacy copy + the DIFC/ADNOC/Emaar line present ✅.
+- **Adversarial review workflow** (4 independent lenses — honesty, schema-mirrors-content, extractability,
+  SSR/regression — each finding skeptic-verified): **0 findings, all lenses clean** ✅.
+
+---
+
+## 2026-07-03 · Sessions B1 + B3 — Methodology depth + FAQ expansion ✅
+
+**Goal:** Out-depth JobXDubai's `/ats` page with crawlable, quotable substance on `/resume-checker`.
+
+**Changed**
+- **New** `components/resume-checker/AtsSystems.tsx` (B1) — dense, always-visible section:
+  - Question-shaped H2 "Which ATS systems UAE employers use — and how they read your CV."
+  - Self-referential intro naming MakeMyCV + "60+ UAE-tuned checks" by category + "deterministic … no
+    fixed ATS score" (honesty framing, mirrors Labeeb's "no risky guarantees").
+  - Server-rendered table of **Workday, Taleo, Greenhouse, iCIMS, Lever** — common UAE users + how each
+    tends to parse a CV (hedged tendencies, not fabricated guarantees).
+  - DO / DON'T two-column list.
+- `components/resume-checker/ResumeCheckerFAQ.tsx` (B3) — expanded `faqItems` 6 → **10**: added
+  "PDF or DOCX for UAE jobs", "is passing the ATS enough", "keywords without keyword-stuffing", "why do
+  different ATS systems score the same CV differently". Answers are self-contained (citation-ready) and
+  honest (no fixed-score promise).
+- `app/resume-checker/page.tsx` — render `<AtsSystems/>` between `WhatWeCheck` and `HowItWorks`. FAQPage
+  auto-includes the 4 new items (built from `faqItems`).
+
+**Gates & tests**
+- `npx tsc --noEmit` → exit 0 ✅ · `npm run build` → success ✅.
+- Server HTML (`.next/server/app/resume-checker.html`): methodology sentence, all 5 ATS names, "How it
+  tends to parse", DO/DON'T headings, and all 4 new FAQ answers present ✅.
+- Schema: still **1 FAQPage** on the page; **11 Question** entities (branded AiAnswer + 10 FAQ) ✅.
+- Dev-server DOM check confirmed the table + DO/DON'T render (status 200) ✅.
+
+---
+
+## 2026-07-03 · Session 0 — Verify codebases ✅
+
+Verified the brief's table against git + file reads. Key drift (details in `PLAN.md §0`):
+- **No `preview` branch** anywhere; `main` is production; `claude/*` branches stale.
+- **Phase-1 GEO work already on `main`** (answer-first blocks, FAQPage/SoftwareApplication/Breadcrumb
+  JSON-LD, SSR-present FAQ answers, `public/llms.txt`).
+- `geo/` reference docs live in the sibling `MakeMyCV – UAE CV Builder/geo/` folder, not this repo.
+- `makemycv-app` **is** on disk (sibling folder) — usable for BT1.
+- `/templates` still shows skeleton placeholders (Phase B-T target).
+- Solid reusable SEO infra already present (`lib/seo.ts`, `lib/seo-schema.ts`, `components/seo/JsonLd.tsx`).
+
+**Decision:** create working branch `beat-jobxdubai` off `main` (since `preview` no longer exists and
+`main` is now production per the newer brief). Reprioritized work to **B → B-T → C → D → E**; Phase A
+is mostly already live (only live-URL verification / sitemap resubmission remains, which needs Abdullah).
+
+---
+
+## Open items / needs-Abdullah
+- **A-verify:** confirm `main` == live; run Rich Results Test on live `/resume-checker` + `/jd-match`;
+  resubmit sitemap. Needs deployed-site access.
+- **STOP GATE 1:** no merge to `main` performed (by design).
+- **Preview screenshots** time out in this environment — using DOM/computed-style + server-HTML
+  verification instead.

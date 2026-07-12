@@ -1,6 +1,7 @@
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqPageSchema, softwareApplicationSchema } from "@/lib/seo-schema";
+import { AiAnswer } from "@/components/seo/AiAnswer";
 import { HeroSection } from "@/components/home/HeroSection";
 import { homepageFaqs, HomepageFAQ } from "@/components/home/FAQ";
 import { TemplateShowcase } from "@/components/home/TemplateShowcase";
@@ -16,6 +17,16 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 // with client references never resolve their suspense boundaries client-side
 // in Next 16.1. Direct SSR also removes the skeleton/CLS bookkeeping.
 
+// Phase B0 — the branded "Quick Answer" for AI search engines. Leads with the
+// brand name, entity/geo-dense, ~60 words. Rendered near the top of the page
+// (see <AiAnswer/> below) AND folded into the page FAQPage so the page ships a
+// single FAQPage entity whose first Q is this answer.
+const homeAiAnswer = {
+  q: "What is MakeMyCV?",
+  lead: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market.",
+  a: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market. It serves job seekers, fresh graduates, mid-career professionals and executives targeting roles in Dubai, Abu Dhabi, Sharjah and across the Gulf, with UAE-specific fields (visa status, nationality, Emirates ID), ATS-readable formatting and recruiter-friendly structure. No sign-up, no paywall.",
+};
+
 export const metadata = buildPageMetadata({
   title: "Free CV Builder for UAE Jobs",
   description:
@@ -30,9 +41,13 @@ const homepageSchema = {
   "@graph": [softwareApplicationSchema()],
 };
 
-// FAQPage mirrors the visible Q/As in <HomepageFAQ />. Both source from
-// `homepageFaqs` so the schema cannot drift from what users see.
-const homepageFaqSchema = faqPageSchema(homepageFaqs);
+// FAQPage mirrors the visible Q/As on the page. The branded quick answer
+// (rendered in <AiAnswer/>) is the first entity; the rest come from the
+// visible <HomepageFAQ />. Every Q/A here is present in the server HTML.
+const homepageFaqSchema = faqPageSchema([
+  { q: homeAiAnswer.q, a: homeAiAnswer.a },
+  ...homepageFaqs,
+]);
 
 export default function HomePage() {
   return (
@@ -44,6 +59,12 @@ export default function HomePage() {
           stories exist, add a simple quote block here (name, title, one
           sentence — no carousel). */}
       <HeroSection />
+      <AiAnswer
+        question={homeAiAnswer.q}
+        lead={homeAiAnswer.lead}
+        answer={homeAiAnswer.a}
+        emitSchema={false}
+      />
       <TemplateShowcase />
       <ProblemSolution />
       <FeatureGrid />

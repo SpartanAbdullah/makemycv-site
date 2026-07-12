@@ -8,6 +8,12 @@
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool.
 
+## Free tools
+- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity per UAE Labour Law (limited/unlimited contracts, resignation vs termination).
+- [Notice Period Calculator](https://www.makemycv.ae/notice-period-calculator): Notice period and last working day under UAE Labour Law.
+- [Annual Leave Calculator](https://www.makemycv.ae/annual-leave-calculator): Accrued annual leave days and leave salary in the UAE.
+- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Real example CVs by role and industry, formatted for UAE hiring.
+
 ## Guides (blog)
 - [How UAE Recruiters Judge Your CV in 7 Seconds](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.
 - [How to Get a Job in Dubai (2026)](https://www.makemycv.ae/blog/how-to-get-a-job-in-dubai-2026): Step-by-step from CV to visa to job portals.

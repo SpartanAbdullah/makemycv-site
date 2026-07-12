@@ -4,7 +4,8 @@ import { TrustChip } from "@/components/ui/TrustChip";
 import { HeroVisual } from "@/components/resume-checker/HeroVisual";
 import { FilterProblem } from "@/components/resume-checker/FilterProblem";
 import { WhatWeCheck } from "@/components/resume-checker/WhatWeCheck";
-import { HowItWorks } from "@/components/resume-checker/HowItWorks";
+import { AtsSystems } from "@/components/resume-checker/AtsSystems";
+import { HowItWorks, steps as howItWorksSteps } from "@/components/resume-checker/HowItWorks";
 import { PricingClarity } from "@/components/resume-checker/PricingClarity";
 import {
   ResumeCheckerFAQ,
@@ -13,12 +14,23 @@ import {
 import { FinalCTA } from "@/components/resume-checker/FinalCTA";
 import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { AiAnswer } from "@/components/seo/AiAnswer";
+import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
 // through the GA4 delegated dispatcher in app/layout.tsx.
 
 const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
+
+// Phase B0 — branded "Quick Answer" for AI search. Answers Q5 ("free ATS CV
+// checker UAE no sign up") directly, leads with the brand name, ~62 words.
+// Folded into the page FAQPage below so the page ships one FAQPage entity.
+const checkerAiAnswer = {
+  q: "What is the best free ATS CV checker for UAE jobs?",
+  lead: "MakeMyCV provides a free ATS CV checker built for the UAE job market.",
+  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It runs your PDF against the parsing logic used by applicant tracking systems at employers like Emaar, ADCB, ENOC and DIFC banks, then flags every formatting and content issue in plain English — visa status, nationality, structure and keywords included. No sign-up, results in about 30 seconds.",
+};
 
 export const metadata = {
   ...buildPageMetadata({
@@ -49,22 +61,60 @@ const softwareSchema = {
   operatingSystem: "Web",
   url: CHECKER_URL,
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  description:
+    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about 30 seconds.",
+  audience: {
+    "@type": "Audience",
+    audienceType: "Job seekers in the UAE and GCC",
+  },
+  featureList: [
+    "60+ UAE-tuned ATS checks",
+    "Visa status and nationality checks",
+    "Formatting and parseability report",
+    "Keyword and content feedback",
+    "No sign-up, no email gate",
+    "Results in about 30 seconds",
+  ],
   // TODO: enable aggregateRating when we have real, verifiable ratings to cite.
   // Do NOT ship fabricated ratings — SoftwareApplication rich results require
   // genuine review data per Google's structured-data guidelines.
 };
 
+// HowTo mirrors the visible <HowItWorks /> steps (sourced from the same array),
+// so the schema can't drift from what's on the page. HowTo rich results are
+// deprecated in Google SERPs, but the JSON-LD is still a strong signal for AI
+// answer engines summarising "how to check a CV for UAE ATS".
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to check if your CV passes UAE ATS filters",
+  description:
+    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 60+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
+  totalTime: "PT1M",
+  step: howItWorksSteps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.title,
+    text: s.body,
+    url: `${canonicalUrl("/resume-checker")}#how-it-works`,
+  })),
+};
+
+// The branded quick answer is the first FAQ entity, followed by the visible
+// <ResumeCheckerFAQ /> items. All Q/A text is present in the server HTML.
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: faqItems.map((item) => ({
-    "@type": "Question",
-    name: item.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.a,
-    },
-  })),
+  mainEntity: [{ q: checkerAiAnswer.q, a: checkerAiAnswer.a }, ...faqItems].map(
+    (item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    }),
+  ),
 };
 
 const breadcrumbSchema = {
@@ -90,6 +140,7 @@ export default function ResumeCheckerPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />
+      <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumbSchema} />
 
@@ -192,6 +243,16 @@ export default function ResumeCheckerPage() {
         </div>
       </section>
 
+      {/* Branded quick answer (Phase B0) — leads with "MakeMyCV" so any
+          extracted snippet carries the brand; directly answers "free ATS CV
+          checker UAE". Schema folded into faqSchema above. */}
+      <AiAnswer
+        question={checkerAiAnswer.q}
+        lead={checkerAiAnswer.lead}
+        answer={checkerAiAnswer.a}
+        emitSchema={false}
+      />
+
       {/* Answer-first definition — designed to be extractable verbatim by
           AI answer engines. Names real UAE employers and the rejection rate
           so the citation has UAE-specific information gain. */}
@@ -223,9 +284,11 @@ export default function ResumeCheckerPage() {
 
       <FilterProblem />
       <WhatWeCheck />
+      <AtsSystems />
       <HowItWorks />
       <PricingClarity />
       <ResumeCheckerFAQ />
+      <CareerToolLinks currentPath="/resume-checker" />
       <FinalCTA />
     </>
   );

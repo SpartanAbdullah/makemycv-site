@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Heart, MapPin } from "lucide-react";
 
+/* Two columns by intent: Pages = the site itself; Free Tools = the GEO
+   utility pages (kept out of Pages so the footer never reads as link soup). */
 const pageLinks = [
   { href: "/", label: "Home" },
   { href: "/templates", label: "Templates" },
@@ -10,9 +12,17 @@ const pageLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const toolLinks = [
+  { href: "/resume-checker", label: "ATS Checker" },
+  { href: "/gratuity-calculator", label: "Gratuity Calculator" },
+  { href: "/notice-period-calculator", label: "Notice Period Calculator" },
+  { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
+  { href: "/cv-examples-uae", label: "UAE CV Examples" },
+];
+
 export const Footer = () => (
   <footer className="border-t border-white/10 bg-ink text-white">
-    <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
+    <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-4">
       {/* Brand — white logo variant for dark backgrounds (same as the app) */}
       <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -54,6 +64,24 @@ export const Footer = () => (
         </p>
         <div className="flex flex-col gap-2">
           {pageLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/60 transition-colors duration-150 hover:text-gold-light"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Free tools (GEO utility pages) */}
+      <div>
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+          Free Tools
+        </p>
+        <div className="flex flex-col gap-2">
+          {toolLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
