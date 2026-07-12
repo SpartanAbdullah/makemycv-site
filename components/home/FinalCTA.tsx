@@ -5,7 +5,10 @@ export function FinalCTA() {
   return (
     <section className="bg-accent-deep text-white">
       <Reveal className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
-        <h2 className="font-display text-[32px] font-bold leading-[1.15] tracking-tight-2 md:text-[40px]">
+        <h2
+          className="font-display text-[32px] font-bold leading-[1.15] tracking-tight-2 md:text-[40px]"
+          style={{ textWrap: "balance" }}
+        >
           Your next UAE job starts with the right CV.
         </h2>
         <p className="mt-5 text-lg text-white/75">
