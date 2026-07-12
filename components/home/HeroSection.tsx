@@ -1,42 +1,43 @@
-import { FileCheck2, MapPin, Shield, Zap } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { TrustChip } from "@/components/ui/TrustChip";
 import { CvPreviewCard } from "./CvPreviewCard";
 
 export function HeroSection() {
   return (
-    <section
-      className="relative overflow-hidden text-white"
-      style={{
-        background:
-          "linear-gradient(135deg, #0a0f1e 0%, #111827 50%, #0a0f1e 100%)",
-      }}
-    >
-      <div className="hero-spotlight" aria-hidden="true" />
+    <section className="relative overflow-hidden bg-paper">
+      {/* Faint warm wash behind the document — the only decoration here. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 55% 45% at 78% 18%, rgba(14, 124, 74, 0.07) 0%, transparent 70%)",
+        }}
+      />
 
-      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-5">
+      <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-14 px-6 py-20 md:py-24 lg:grid-cols-5 lg:gap-10">
         {/* Left — copy block (3/5) */}
         <div className="text-center lg:col-span-3 lg:text-left">
-          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-blue-400">
-            <MapPin size={14} />
-            UAE-focused · Built for Dubai, Abu Dhabi &amp; GCC hiring
+          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <MapPin size={13} />
+            Built for Dubai, Abu Dhabi &amp; GCC hiring
           </p>
 
-          <h1 className="mt-5 font-display text-[44px] font-extrabold leading-[1.05] tracking-tight-2 text-white md:text-[64px] lg:text-[72px]">
+          <h1 className="mt-5 font-display text-[40px] font-bold leading-[1.06] tracking-tight-2 text-ink md:text-[52px] lg:text-[56px]">
             Land the UAE job.
             <br />
             Start with a CV recruiters{" "}
-            <span className="text-blue-400">actually open.</span>
+            <span className="text-accent">actually open.</span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl lg:mx-0">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted lg:mx-0">
             Recruiters in Dubai spend 6 seconds per CV. Ours are built to
             survive that — ATS-clean, visa-ready, and designed for the Gulf
-            market. Free to build. No sign-up.
+            market.
           </p>
 
-          {/* CTAs */}
-          <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+          {/* Single primary CTA; templates as a quiet secondary path. */}
+          <div className="mt-9 flex flex-col items-center gap-5 sm:flex-row lg:justify-start">
             <Button
               href="https://app.makemycv.ae"
               target="_blank"
@@ -47,35 +48,32 @@ export function HeroSection() {
             >
               Build My CV — Free
             </Button>
-            <Button
+            <a
               href="/templates"
-              variant="ghost"
-              tone="dark"
-              size="lg"
+              className="text-sm font-semibold text-ink-2 underline-offset-4 transition-colors duration-150 hover:text-accent hover:underline"
               data-event="home_hero_templates_click"
             >
-              See Templates
-            </Button>
+              or browse the templates first
+            </a>
           </div>
 
-          {/* Trust chips */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-            <TrustChip icon={Shield} label="No sign-up" tone="dark" />
-            <TrustChip icon={Zap} label="Ready in 5 min" tone="dark" />
-            <TrustChip icon={FileCheck2} label="ATS-optimized" tone="dark" />
-            <TrustChip icon={MapPin} label="UAE-specific fields" tone="dark" />
-          </div>
-
-          {/* Freshness framing — verifiable product facts only. */}
-          <p className="mt-6 text-sm text-slate-400">
-            Built for the 2026 UAE hiring season. Free, ATS-clean, no sign-up.
+          {/* Trust woven into copy — no badge strip. Verifiable facts only. */}
+          <p className="mt-7 text-sm leading-relaxed text-muted">
+            Free, no sign-up, no watermark. Your data never leaves your
+            browser.
+          </p>
+          <p className="mt-1.5 text-[13px] text-muted/80">
+            Built for the 2026 UAE hiring season.
           </p>
         </div>
 
-        {/* Right — CV preview (2/5) */}
+        {/* Right — the product itself: a filled CV document (2/5) */}
         <div className="lg:col-span-2">
           <div className="mx-auto max-w-sm lg:max-w-none">
             <CvPreviewCard />
+            <p className="mt-4 text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted/80">
+              The Classic template — ATS-safe, visa-ready
+            </p>
           </div>
         </div>
       </div>
