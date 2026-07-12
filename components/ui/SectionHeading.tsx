@@ -18,21 +18,21 @@ export function SectionHeading({
   className = "",
 }: Props) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
-  const titleColor = tone === "dark" ? "text-white" : "text-slate-900";
-  const subcopyColor = tone === "dark" ? "text-slate-300" : "text-slate-600";
-  const eyebrowColor = tone === "dark" ? "text-blue-400" : "text-brand-blue";
+  const titleColor = tone === "dark" ? "text-white" : "text-ink";
+  const subcopyColor = tone === "dark" ? "text-white/70" : "text-muted";
+  const eyebrowColor = tone === "dark" ? "text-gold-light" : "text-accent";
 
   return (
     <div className={`${alignClass} ${className}`.trim()}>
       {eyebrow && (
         <p
-          className={`text-xs font-semibold uppercase tracking-eyebrow ${eyebrowColor}`}
+          className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] ${eyebrowColor}`}
         >
           {eyebrow}
         </p>
       )}
       <h2
-        className={`font-display font-bold ${titleColor} text-[36px] md:text-[44px] leading-[1.15] tracking-tight-1-5 ${
+        className={`font-display font-bold ${titleColor} text-[28px] md:text-[32px] leading-[1.2] tracking-tight-2 ${
           eyebrow ? "mt-3" : ""
         }`}
       >
@@ -40,7 +40,7 @@ export function SectionHeading({
       </h2>
       {subcopy && (
         <p
-          className={`mt-4 text-lg md:text-xl leading-relaxed ${subcopyColor} max-w-2xl ${
+          className={`mt-4 text-base md:text-lg leading-relaxed ${subcopyColor} max-w-2xl ${
             align === "center" ? "mx-auto" : ""
           }`}
         >

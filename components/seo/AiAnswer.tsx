@@ -60,23 +60,23 @@ export function AiAnswer({
         <JsonLd data={faqPageSchema([{ q: question, a: answer }])} />
       )}
       <div className="mx-auto max-w-3xl px-6">
-        <div className="rounded-3xl border border-line bg-paper-2 p-8 shadow-xs md:p-10">
-          <p className="inline-flex items-center gap-2 rounded-full border border-brand-blue/25 bg-brand-blue/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-blue">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-blue" />
+        <div className="rounded-2xl border border-line bg-paper-2 p-8 shadow-xs md:p-10">
+          <p className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-soft px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-deep">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             {label}
           </p>
           <h2
-            className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]"
+            className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
             style={{ fontSize: "clamp(1.4rem, 2.4vw, 1.9rem)", lineHeight: 1.2 }}
           >
             {question}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-ink-2 md:text-lg">
             {rest === null ? (
               answer
             ) : (
               <>
-                <strong className="font-semibold text-slate-900">{lead}</strong>
+                <strong className="font-semibold text-ink">{lead}</strong>
                 {rest}
               </>
             )}

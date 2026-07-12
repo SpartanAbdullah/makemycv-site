@@ -1,80 +1,57 @@
-import {
-  Download,
-  Eye,
-  FileCheck2,
-  Globe2,
-  Lock,
-  Sparkles,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { IconBadge } from "@/components/ui/IconBadge";
 
-type Feature = {
-  icon: LucideIcon;
-  title: string;
-  body: string;
-};
-
-const features: Feature[] = [
+/**
+ * Three differentiators, full-width rows — not a 6-card SaaS grid.
+ * Each row: bold claim on the left, the substance on the right.
+ * Table-stakes features live in one quiet footnote line below.
+ */
+const differentiators = [
   {
-    icon: FileCheck2,
-    title: "ATS-parseable by default",
-    body: "Tested against the same parsers used by UAE banks, telcos, and DIFC firms. No broken columns. No lost formatting.",
+    claim: "Built for UAE applications — not adapted to them.",
+    body: "The builder has a dedicated UAE Essentials step: nationality, visa status, Emirates ID, driving licence, notice period, availability — the fields Gulf recruiters expect and Western CV builders don't have. All built in, all optional, so your CV reads local from the first line. Photo included or not — that switch is yours too.",
   },
   {
-    icon: Globe2,
-    title: "UAE-specific fields",
-    body: "Nationality, visa status, Emirates ID, driving licence, languages — all built-in, all optional.",
+    claim: "Structured to survive the ATS filter.",
+    body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software before a human reads anything. Our templates keep single-column, parser-safe structure so your CV arrives intact, and you can verify it with the free ATS checker.",
   },
   {
-    icon: Download,
-    title: "Instant PDF export",
-    body: "One click, clean PDF. No watermark. No paywall. Send it as soon as it downloads.",
-  },
-  {
-    icon: Eye,
-    title: "Live preview as you type",
-    body: "No \u201Chit save to see it\u201D. See every change the moment you type it.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI rewriter",
-    body: "Turns \u201Cresponsible for managing team\u201D into \u201CLed 8-person operations team, reduced fulfilment time 22%\u201D. Free, rate-limited per IP.",
-  },
-  {
-    icon: Lock,
-    title: "Your data stays in your browser",
-    body: "No accounts, no uploads, no databases. Close the tab, it\u2019s gone.",
+    claim: "Your CV never leaves your browser.",
+    body: "No account, no uploads, no database. Everything is built and stored on your device, and the PDF downloads straight from your browser. Close the tab and it's gone — nothing to leak, nothing to sell.",
   },
 ];
 
 export function FeatureGrid() {
   return (
     <section className="bg-paper-2 py-20 md:py-28">
-      <div className="mx-auto max-w-6xl px-6">
+      <Reveal className="mx-auto max-w-6xl px-6">
         <SectionHeading
+          eyebrow="Why MakeMyCV"
           title="Built around how UAE hiring actually works."
-          subcopy="Every feature exists because a recruiter, HR manager, or job seeker told us it mattered."
+          subcopy="Three things set it apart. Everything else — live preview, instant PDF — is just table stakes done properly."
         />
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
+        <div className="mt-14 divide-y divide-line border-y border-line">
+          {differentiators.map((d) => (
             <article
-              key={f.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md-soft"
+              key={d.claim}
+              className="grid gap-3 py-10 transition-colors duration-150 md:grid-cols-5 md:gap-10 md:py-12"
             >
-              <IconBadge icon={f.icon} tone="blue" />
-              <h3 className="mt-4 font-display text-base font-bold text-slate-900">
-                {f.title}
+              <h3 className="font-display text-xl font-bold leading-snug tracking-tight-1-5 text-ink md:col-span-2 md:text-2xl">
+                {d.claim}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                {f.body}
+              <p className="text-base leading-relaxed text-ink-2 md:col-span-3">
+                {d.body}
               </p>
             </article>
           ))}
         </div>
-      </div>
+
+        <p className="mt-8 text-center text-sm text-muted">
+          Also included: live preview as you type · instant PDF &amp; DOCX
+          export · free AI bullet rewriter · no watermark, ever.
+        </p>
+      </Reveal>
     </section>
   );
 }

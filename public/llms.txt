@@ -1,12 +1,18 @@
 # MakeMyCV
 
-> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: visa status, nationality, Emirates ID, driving licence, and ATS parsers used by UAE banks, telcos, and DIFC firms.
+> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: a dedicated "UAE Essentials" step covers visa status, nationality, Emirates ID, driving licence, notice period and availability, and every template works with or without a photo (user's choice per application). Templates are tested against the ATS parsers used by UAE banks, telcos, and DIFC firms.
 
 ## Core pages
 - [Home](https://www.makemycv.ae/): What MakeMyCV is, who it's for, and why UAE CVs need ATS-clean formatting.
-- [Templates](https://www.makemycv.ae/templates): ATS-safe CV templates — Classic (finance/corporate), Executive (C-suite), Graduate (first job).
+- [Templates](https://www.makemycv.ae/templates): All 10 free CV templates — ATS-Friendly single-column layouts (Classic, ATS Clean, Professional) and design-led sidebar/two-column formats (Executive, Modern, Executive Split, Corporate, Onyx, Sandstone, Professional Photo). Every layout is available with or without a photo.
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool.
+
+## Free tools
+- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity per UAE Labour Law (limited/unlimited contracts, resignation vs termination).
+- [Notice Period Calculator](https://www.makemycv.ae/notice-period-calculator): Notice period and last working day under UAE Labour Law.
+- [Annual Leave Calculator](https://www.makemycv.ae/annual-leave-calculator): Accrued annual leave days and leave salary in the UAE.
+- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Real example CVs by role and industry, formatted for UAE hiring.
 
 ## Guides (blog)
 - [How UAE Recruiters Judge Your CV in 7 Seconds](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.

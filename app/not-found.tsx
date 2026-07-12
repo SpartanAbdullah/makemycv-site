@@ -14,13 +14,13 @@ export default function NotFound() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
       <div className="w-full max-w-md rounded-2xl border border-line bg-paper p-8 text-center shadow-lg-soft">
-        <p className="font-mono text-sm font-semibold tracking-eyebrow text-brand-blue">
+        <p className="font-mono text-sm font-semibold tracking-eyebrow text-accent">
           404
         </p>
-        <h1 className="mt-2 text-xl font-semibold text-brand-ink">
+        <h1 className="mt-2 text-xl font-semibold text-ink">
           This page doesn&apos;t exist
         </h1>
-        <p className="mt-2 text-sm leading-6 text-brand-muted">
+        <p className="mt-2 text-sm leading-6 text-muted">
           The link may be old or mistyped — but everything you came for is
           still here.
         </p>
@@ -29,7 +29,7 @@ export default function NotFound() {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-cta"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 hover:bg-accent-deep"
           >
             Build My CV — Free
           </a>

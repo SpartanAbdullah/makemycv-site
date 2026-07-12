@@ -2,42 +2,65 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
-  /* ── Brand ───────────────────────────────────────────────────────── */
+  /* ════════════════════════════════════════════════════════════════════
+     Design system v2 — "Warm paper" (2026-07 redesign sprint).
+     Mirrors the builder app's Focus Flow palette so marketing and product
+     read as one brand: warm off-white paper, near-black ink, UAE-green
+     accent, gold reserved for "Free"/highlight moments.
+     ════════════════════════════════════════════════════════════════════ */
+
+  /* ── Ink (text) ──────────────────────────────────────────────────── */
+  --color-ink: #0b0f0c;
+  --color-ink-2: #3e463f;
+  --color-muted: #62685f;
+
+  /* ── Paper / surfaces ────────────────────────────────────────────── */
+  --color-paper: #fbfaf7;
+  --color-paper-2: #f4f1ea;
+  --color-sheet: #ffffff; /* actual documents (CV previews) stay pure white */
+
+  /* ── Accent — UAE green (same family as the builder app) ────────── */
+  --color-accent: #0e7c4a;
+  --color-accent-deep: #0a5c37;
+  --color-accent-soft: #e9f3ed;
+
+  /* ── Gold — badges, "Free" highlights, footer link hover ─────────── */
+  --color-gold: #c49a48;
+  --color-gold-light: #d4a95a;
+  --color-gold-soft: #f6efe0;
+  --color-gold-deep: #7f611f; /* text on gold-soft — clears 4.5:1 */
+
+  /* ── Line ────────────────────────────────────────────────────────── */
+  --color-line: #e6e4dd;
+  --color-line-strong: #d8d5cb;
+
+  /* ── Legacy brand tokens (older pages: blog, checker, JD match) ──── */
   --color-brand-blue: #2563eb;
   --color-brand-blue-dark: #1d4ed8;
   --color-brand-ink: #0a0f1e;
   --color-brand-deep: #111827;
-
-  /* Legacy aliases (kept for existing pages — do not use in new code) */
   --color-brand-navy: #0a0f1e;
   --color-brand-navy-2: #0f172a;
   --color-brand-indigo: #4f46e5;
   --color-brand-light: #f8fafc;
   --color-brand-muted: #64748b;
   --color-brand-border: #e2e8f0;
-
-  /* ── Accents ─────────────────────────────────────────────────────── */
   --color-accent-cyan: #06b6d4;
-
-  /* ── Paper / surfaces ────────────────────────────────────────────── */
-  --color-paper: #ffffff;
-  --color-paper-2: #f8fafc;
-
-  /* ── Line ────────────────────────────────────────────────────────── */
-  --color-line: #e2e8f0;
 
   /* ── Fonts ───────────────────────────────────────────────────────── */
   --font-sans: var(--font-inter);
-  --font-display: var(--font-inter);
+  --font-display: var(--font-bricolage);
   --font-mono: var(--font-jetbrains-mono);
 
-  /* ── Shadows ─────────────────────────────────────────────────────── */
-  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-sm-soft: 0 2px 6px rgba(15, 23, 42, 0.06);
-  --shadow-md-soft: 0 8px 24px rgba(15, 23, 42, 0.06);
-  --shadow-lg-soft: 0 16px 48px rgba(15, 23, 42, 0.08);
-  --shadow-cta: 0 6px 20px rgba(37, 99, 235, 0.35);
-  --shadow-cta-hover: 0 10px 28px rgba(37, 99, 235, 0.45);
+  /* ── Shadows (neutral, paper-like — no colored glows) ────────────── */
+  --shadow-xs: 0 1px 2px rgba(11, 15, 12, 0.05);
+  --shadow-sm-soft: 0 2px 6px rgba(11, 15, 12, 0.06);
+  --shadow-md-soft: 0 8px 24px rgba(11, 15, 12, 0.07);
+  --shadow-lg-soft: 0 16px 48px rgba(11, 15, 12, 0.08);
+  --shadow-cta: 0 4px 14px rgba(14, 124, 74, 0.25);
+  --shadow-cta-hover: 0 6px 20px rgba(14, 124, 74, 0.32);
+  /* A real document on a desk: tight contact shadow + soft ambient. */
+  --shadow-sheet: 0 1px 3px rgba(11, 15, 12, 0.08), 0 24px 48px rgba(11, 15, 12, 0.1);
 
   /* Legacy shadow aliases */
   --shadow-blue-glow: 0 0 40px rgba(37, 99, 235, 0.15);
@@ -52,9 +75,40 @@
 }
 
 body {
-  background: #ffffff;
-  color: #171717;
+  background: #fbfaf7;
+  color: #0b0f0c;
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+/* ── Scroll reveal (one subtle animation per section, JS-gated) ─────── */
+/* Hidden state is only ever applied by the Reveal client component after
+   hydration, so no-JS visitors and crawlers always see full content. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.3s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-in {
+    transition: none;
+  }
+}
+/* Print must never inherit a scroll-gated hidden state. */
+@media print {
+  .reveal-init {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── Hero spotlight (replaces the old two orbs) ────────────────────── */
@@ -99,14 +153,17 @@ body {
   background-clip: text;
 }
 
+/* Repointed to the v2 accent so legacy callers (blog, /templates, TipJar)
+   pick up the new brand without markup changes. */
 .btn-primary {
-  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
-  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.35);
-  transition: all 0.3s ease;
+  background: #0e7c4a;
+  box-shadow: 0 4px 14px rgba(14, 124, 74, 0.25);
+  transition: all 0.15s ease;
 }
 .btn-primary:hover {
-  box-shadow: 0 8px 40px rgba(37, 99, 235, 0.5);
-  transform: translateY(-2px);
+  background: #0a5c37;
+  box-shadow: 0 6px 20px rgba(14, 124, 74, 0.32);
+  transform: scale(1.02);
 }
 
 .card-lift {

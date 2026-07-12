@@ -1,13 +1,10 @@
 import Link from "next/link";
 import { Heart, MapPin } from "lucide-react";
 
+/* Two columns by intent: Pages = the site itself; Free Tools = the GEO
+   utility pages (kept out of Pages so the footer never reads as link soup). */
 const pageLinks = [
   { href: "/", label: "Home" },
-  { href: "/resume-checker", label: "ATS Checker" },
-  { href: "/gratuity-calculator", label: "Gratuity Calculator" },
-  { href: "/notice-period-calculator", label: "Notice Period Calculator" },
-  { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
-  { href: "/cv-examples-uae", label: "UAE CV Examples" },
   { href: "/templates", label: "Templates" },
   { href: "/support", label: "Support" },
   { href: "/blog", label: "Blog" },
@@ -15,41 +12,45 @@ const pageLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+const toolLinks = [
+  { href: "/resume-checker", label: "ATS Checker" },
+  { href: "/gratuity-calculator", label: "Gratuity Calculator" },
+  { href: "/notice-period-calculator", label: "Notice Period Calculator" },
+  { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
+  { href: "/cv-examples-uae", label: "UAE CV Examples" },
+];
+
 export const Footer = () => (
-  <footer
-    className="bg-brand-navy dot-grid text-white"
-    style={{ borderTop: '1px solid rgba(37,99,235,0.2)' }}
-  >
-    <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
-      {/* Brand */}
+  <footer className="border-t border-white/10 bg-ink text-white">
+    <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-4">
+      {/* Brand — white logo variant for dark backgrounds (same as the app) */}
       <div>
-        <div className="flex items-center gap-2">
-          <span
-            className="inline-flex h-7 w-7 items-center justify-center rounded-full btn-primary text-xs font-bold text-white"
-            style={{ boxShadow: '0 0 16px rgba(37,99,235,0.4)' }}
-          >
-            M
-          </span>
-          <span className="font-display text-lg font-bold">MakeMyCV</span>
-        </div>
-        <p className="mt-2 text-sm text-slate-400">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/logo-white.svg"
+          alt="makemycv.ae"
+          width={399}
+          height={100}
+          className="h-8 w-auto"
+        />
+        <p className="mt-2 text-sm text-white/60">
           Built for UAE job seekers.
           <br />
           Free, fast, ATS-friendly.
         </p>
-        <p className="mt-4 text-xs text-slate-500">
+        <p className="mt-4 text-xs text-white/50">
           Contact:{" "}
           <a
             href="mailto:hello@makemycv.ae"
-            className="text-slate-400 transition-colors hover:text-blue-400"
+            className="text-white/60 transition-colors duration-150 hover:text-gold-light"
           >
             hello@makemycv.ae
           </a>
         </p>
-        <p className="mt-2 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-white/50">
           <Link
             href="/support"
-            className="transition-colors hover:text-blue-400"
+            className="transition-colors duration-150 hover:text-gold-light"
           >
             Built by Abdullah in Dubai.
           </Link>
@@ -58,7 +59,7 @@ export const Footer = () => (
 
       {/* Quick Links */}
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Pages
         </p>
         <div className="flex flex-col gap-2">
@@ -66,7 +67,25 @@ export const Footer = () => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-slate-400 transition-colors hover:text-blue-400"
+              className="text-sm text-white/60 transition-colors duration-150 hover:text-gold-light"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Free tools (GEO utility pages) */}
+      <div>
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+          Free Tools
+        </p>
+        <div className="flex flex-col gap-2">
+          {toolLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-white/60 transition-colors duration-150 hover:text-gold-light"
             >
               {link.label}
             </Link>
@@ -76,18 +95,18 @@ export const Footer = () => (
 
       {/* App CTA */}
       <div>
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Build Your CV
         </p>
         <a
           href="https://app.makemycv.ae"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block btn-primary rounded-xl px-5 py-2.5 text-sm font-bold text-white"
+          className="btn-primary inline-block rounded-xl px-5 py-2.5 text-sm font-bold text-white"
         >
           Start Free &rarr;
         </a>
-        <p className="mt-2 text-xs text-slate-500">
+        <p className="mt-2 text-xs text-white/50">
           No account needed. Takes 5 minutes.
         </p>
       </div>
@@ -95,20 +114,14 @@ export const Footer = () => (
 
     {/* Bottom bar */}
     <div>
-      <div
-        style={{
-          height: 1,
-          background: 'linear-gradient(90deg, transparent, rgba(37,99,235,0.3), transparent)'
-        }}
-        className="mb-6"
-      />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-slate-600 sm:flex-row">
+      <div className="mb-6 h-px bg-white/10" />
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row">
         <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
-        <span className="text-xs text-slate-600 flex items-center gap-1.5">
+        <span className="flex items-center gap-1.5 text-xs text-white/55">
           Made with
-          <Heart size={14} className="text-red-500 fill-red-500" />
+          <Heart size={14} className="fill-red-500 text-red-500" />
           in
-          <MapPin size={14} className="text-blue-400" />
+          <MapPin size={14} className="text-gold-light" />
           UAE
         </span>
       </div>
