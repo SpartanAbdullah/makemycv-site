@@ -42,8 +42,10 @@ const bricolage = Bricolage_Grotesque({
   display: "swap",
 });
 
+// Matches the app + manifest (brand navy) so tab/PWA chrome is identical
+// on both surfaces.
 export const viewport = {
-  themeColor: "#fbfaf7",
+  themeColor: "#1B2A4A",
 };
 
 export const metadata: Metadata = {

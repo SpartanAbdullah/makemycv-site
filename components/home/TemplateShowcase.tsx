@@ -14,7 +14,7 @@ export function TemplateShowcase() {
         <SectionHeading
           eyebrow="Templates"
           title="Templates designed for UAE recruiters — not US LinkedIn influencers."
-          subcopy="Every template is ATS-parseable, Gulf-appropriate, and works with or without a photo — you decide per application. Visa status and UAE Essentials supported throughout."
+          subcopy="ATS-Friendly single-column layouts, plus design-led formats for direct-to-recruiter email — all Gulf-appropriate, all available with or without a photo. Visa status and UAE Essentials supported throughout."
         />
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

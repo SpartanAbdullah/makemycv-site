@@ -26,7 +26,7 @@ export const homepageFaqs = [
   },
   {
     q: "Can I add a photo to my CV?",
-    a: "Yes — photos are common on UAE CVs, and MakeMyCV lets you upload one and switch it on or off per application. It's entirely your choice: every template works with or without a photo, and the Professional Photo template is designed around one.",
+    a: "Yes — photos are common on UAE CVs, and MakeMyCV lets you upload one and choose per application whether it shows. It's entirely your call: every layout is available with or without a photo, and templates like Professional Photo, Onyx and Sandstone are designed around one.",
   },
 ] as const;
 

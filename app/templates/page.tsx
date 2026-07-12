@@ -58,12 +58,13 @@ export default function TemplatesPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
             Real captures from the builder — the same templates you download,
-            all free, no watermark. Every one works with or without a photo:
-            upload once, switch it on or off per application.
+            all free, no watermark. Every layout is available with or without
+            a photo: upload once, choose per application.
           </p>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted">
-            Single-column layouts carry the ATS-Friendly badge. Design-led
-            layouts shine when you email a recruiter directly.
+            Single-column layouts carry the ATS-Friendly badge, design-led
+            layouts shine when you email a recruiter directly, and the newest
+            additions are labelled New.
           </p>
         </div>
       </section>
