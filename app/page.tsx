@@ -2,6 +2,7 @@ import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqPageSchema, softwareApplicationSchema } from "@/lib/seo-schema";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 import { HeroSection } from "@/components/home/HeroSection";
 import { homepageFaqs, HomepageFAQ } from "@/components/home/FAQ";
 import { TemplateShowcase } from "@/components/home/TemplateShowcase";
@@ -69,6 +70,10 @@ export default function HomePage() {
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
+      {/* Free-tools discovery strip — the GEO landing pages (calculators,
+          checker, examples) get a visible home from the homepage, not just
+          the footer. Same component the tool pages use for cross-linking. */}
+      <CareerToolLinks currentPath="/" />
       <HomepageFAQ />
       <FinalCTA />
     </>

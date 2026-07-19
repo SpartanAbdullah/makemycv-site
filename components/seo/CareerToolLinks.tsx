@@ -61,7 +61,7 @@ export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
   return (
     <section className="bg-paper-2 py-14 md:py-16">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="font-display text-xl font-bold tracking-[-0.015em] text-slate-900 md:text-2xl">
+        <h2 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
           More free UAE career tools from MakeMyCV
         </h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -69,15 +69,15 @@ export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
             <Link
               key={t.href}
               href={t.href}
-              className="group flex items-start gap-3 rounded-2xl border border-line bg-white p-5 transition hover:border-brand-blue/40"
+              className="group flex items-start gap-3 rounded-xl border border-line bg-sheet p-5 transition-all duration-150 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md-soft"
             >
-              <t.icon className="mt-0.5 shrink-0 text-brand-blue" size={20} />
+              <t.icon className="mt-0.5 shrink-0 text-accent" size={20} />
               <span>
-                <span className="flex items-center gap-1 font-display text-[15px] font-bold text-slate-900">
+                <span className="flex items-center gap-1 font-display text-[15px] font-bold text-ink">
                   {t.title}
                   <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />
                 </span>
-                <span className="mt-0.5 block text-[13px] text-slate-600">
+                <span className="mt-0.5 block text-[13px] text-ink-2">
                   {t.blurb}
                 </span>
               </span>
