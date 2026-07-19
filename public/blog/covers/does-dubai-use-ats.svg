@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Do UAE Companies Use ATS — MakeMyCV.ae">
+  <defs>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0f1e"/>
+      <stop offset="1" stop-color="#0c1428"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <circle cx="1020" cy="120" r="150" fill="#2563eb" opacity="0.20" filter="url(#blur)"/>
+  <circle cx="1120" cy="520" r="170" fill="#10b981" opacity="0.12" filter="url(#blur)"/>
+  <circle cx="180" cy="560" r="120" fill="#2563eb" opacity="0.10" filter="url(#blur)"/>
+
+  <rect x="90" y="150" width="8" height="330" rx="4" fill="#2563eb"/>
+
+  <text x="130" y="205" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="3" fill="#3b82f6">UAE JOB MARKET</text>
+
+  <text x="130" y="285" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff">Do UAE Firms</text>
+  <text x="130" y="365" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="68" font-weight="800" fill="#ffffff">Use ATS?</text>
+
+  <rect x="130" y="410" width="380" height="3" rx="1.5" fill="#2a3550"/>
+
+  <text x="130" y="455" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="28" font-weight="500" fill="#9fb0cc">How Dubai recruiters screen CVs in 2026</text>
+
+  <text x="130" y="540" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="2" fill="#ffffff">MAKEMYCV.AE</text>
+  <text x="130" y="572" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="20" font-weight="500" fill="#6b7a99">makemycv.ae/blog</text>
+
+  <text x="1070" y="588" text-anchor="end" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="2" fill="#ffffff" opacity="0.08">MAKEMYCV.AE</text>
+</svg>
