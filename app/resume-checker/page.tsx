@@ -60,7 +60,9 @@ const softwareSchema = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   url: CHECKER_URL,
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  // AED for consistency with every other *Application node on the site
+  // (was USD, a stray from the original template).
+  offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
   description:
     "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about 30 seconds.",
   audience: {
@@ -75,9 +77,9 @@ const softwareSchema = {
     "No sign-up, no email gate",
     "Results in about 30 seconds",
   ],
-  // TODO: enable aggregateRating when we have real, verifiable ratings to cite.
-  // Do NOT ship fabricated ratings — SoftwareApplication rich results require
-  // genuine review data per Google's structured-data guidelines.
+  // No aggregateRating by design — the Rich Results Test's "optional" warning
+  // is expected. Only real, user-sourced, on-page-visible ratings may ever go
+  // here; policy in lib/seo-schema.ts (webApplicationSchema docblock).
 };
 
 // HowTo mirrors the visible <HowItWorks /> steps (sourced from the same array),

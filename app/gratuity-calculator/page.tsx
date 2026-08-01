@@ -100,6 +100,9 @@ const howToSchema = {
   ],
 };
 
+// No aggregateRating by design — the Rich Results Test's "optional" warning is
+// expected. Only real, user-sourced, on-page-visible ratings may ever go here;
+// policy in lib/seo-schema.ts (webApplicationSchema docblock).
 const webAppSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",

@@ -120,9 +120,21 @@ export function websiteSchema() {
 /**
  * WebApplication schema for the builder. Per the spec (§1.3) this is what
  * makes AI say "MakeMyCV.ae is a free CV builder for the UAE" instead of
- * guessing. We deliberately do NOT include aggregateRating — Google's
- * guidelines require real, verifiable review data, and fake ratings risk a
- * manual penalty.
+ * guessing.
+ *
+ * ── aggregateRating policy (applies to EVERY *Application node on the site) ──
+ * The Rich Results Test flags 'Missing field "aggregateRating" (optional)' on
+ * these nodes. That is expected and stays until we have real ratings:
+ * Google's software-app doc requires aggregateRating OR review for the
+ * star-enhanced rich result, but its review-snippet guidelines require that
+ * ratings be "sourced directly from users" (never editor-compiled, never
+ * imported from another platform) and that the rating is visible on the
+ * marked-up page itself. Violations are a manual-action offence — Google then
+ * ignores the page's structured data entirely, which would cost us the whole
+ * entity graph, not just stars. The markup is valid and feeds entity/AI
+ * understanding without a rating; the warning is cosmetic.
+ * When real first-party ratings exist (collected in-product AND rendered
+ * on-page), wire them here and on the per-tool nodes — see ROADMAP.md.
  *
  * WebApplication (not the broader SoftwareApplication) because the builder is
  * browser-only. Emitted site-wide from app/layout.tsx as the third node of the
