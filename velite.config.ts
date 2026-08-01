@@ -1,6 +1,5 @@
 import { defineConfig, defineCollection, s } from 'velite'
 import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkGfm from 'remark-gfm'
 
 const posts = defineCollection({
@@ -82,6 +81,13 @@ export default defineConfig({
   collections: { posts, templates },
   mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }]],
+    // rehypeSlug alone: it adds `id` to each heading so #deep-links keep working.
+    // rehypeAutolinkHeadings with behavior:'wrap' was REMOVED — it wrapped every
+    // heading's text in a self-referential <a>, and sanitisers that strip
+    // heading-level anchors (Medium's importer, and readability-style
+    // extractors generally) then dropped the heading entirely, flattening posts
+    // into wall-of-text with no h2/h3. Nothing in the app referenced these
+    // anchors. See Medium_Syndication_Playbook.
+    rehypePlugins: [rehypeSlug],
   },
 })
