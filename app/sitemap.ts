@@ -84,6 +84,12 @@ const staticRoutes: SitemapEntry[] = [
     changeFrequency: 'monthly',
     priority: 0.5,
   },
+  {
+    path: '/privacy',
+    sourceFile: 'app/privacy/page.tsx',
+    changeFrequency: 'yearly',
+    priority: 0.3,
+  },
 ]
 
 function getLastModified(filePath: string): Date {

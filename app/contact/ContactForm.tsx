@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -118,6 +119,21 @@ export const ContactForm = () => {
       >
         {formState === "submitting" ? "Sending..." : "Send Message \u2192"}
       </button>
+      {/* Consent notice \u2014 the details entered above go to Formspree and then
+          our inbox; the Privacy Policy's "Contact form" section is the page
+          this line points at. Keep the two in sync. */}
+      <p className="text-center text-xs leading-relaxed text-slate-500">
+        By clicking &ldquo;Send Message&rdquo;, you consent to us using the
+        details you&apos;ve entered to respond to your enquiry, as described in
+        our{" "}
+        <Link
+          href="/privacy"
+          className="font-semibold text-slate-600 underline underline-offset-2 hover:text-slate-800"
+        >
+          Privacy Policy
+        </Link>
+        .
+      </p>
     </form>
   );
 };

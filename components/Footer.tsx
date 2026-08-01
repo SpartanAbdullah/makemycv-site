@@ -116,7 +116,18 @@ export const Footer = () => (
     <div>
       <div className="mb-6 h-px bg-white/10" />
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row">
-        <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
+        <span className="flex items-center gap-3">
+          <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
+          <span aria-hidden="true" className="text-white/25">
+            ·
+          </span>
+          <Link
+            href="/privacy"
+            className="transition-colors duration-150 hover:text-gold-light"
+          >
+            Privacy Policy
+          </Link>
+        </span>
         <span className="flex items-center gap-1.5 text-xs text-white/55">
           Made with
           <Heart size={14} className="fill-red-500 text-red-500" />
