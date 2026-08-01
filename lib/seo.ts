@@ -8,11 +8,11 @@ export const SITE_NAME = "MakeMyCV.ae";
 export const SITE_URL = "https://www.makemycv.ae";
 export const APP_URL = "https://app.makemycv.ae";
 export const DEFAULT_OG_IMAGE = "/og-image.png";
-// Real 512x512 asset. The entity spec called for /logo-512.png, which does not
-// exist in this repo; this is the same artwork at the required dimensions.
-// A 404 here weakens the Organization node, so keep the file and the constant
-// in sync.
-export const ORG_LOGO = "/web-app-manifest-512x512.png";
+// The 512x512 logo the entity spec calls for, shipped in the 2026-08-02 brand
+// drop. A 404 here weakens the Organization node, so keep file and constant in
+// sync — /logo-512.png is the canonical copy, the manifest icons are duplicates
+// of the same artwork at the sizes each surface expects.
+export const ORG_LOGO = "/logo-512.png";
 export const ORG_LOGO_SIZE = 512;
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
