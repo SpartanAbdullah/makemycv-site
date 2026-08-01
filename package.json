@@ -6,7 +6,8 @@
     "dev": "velite dev & next dev",
     "build": "velite build && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "npx -y tsx scripts/stress-test-calculators.ts"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.19",

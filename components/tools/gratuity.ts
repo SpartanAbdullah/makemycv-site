@@ -11,7 +11,11 @@
  *   • Partial years are pro-rated; days count as 1/30 month (the same 30-day
  *     month convention the daily wage uses).
  *   • Days of unpaid absence are excluded from the service period.
- *   • Total gratuity is capped at 2 years' basic salary (Art. 51(4)).
+ *   • Total gratuity is capped at two years' WAGE (Art. 51(6) — 51(4) is the
+ *     unpaid-absence clause). Only basic salary is entered here, so we apply
+ *     24 × basic as the conservative bound; the statutory cap (full wage) can
+ *     only be higher. ADGM Employment Regulations 2024 (in force 1 Apr 2025)
+ *     REMOVED the cap for ADGM — callers pass capApplies:false there.
  *   • Since 2 Feb 2022 resignation and termination pay the SAME gratuity —
  *     the old 1/3–2/3 resignation reductions and the limited/unlimited
  *     contract split were repealed. We deliberately have no contract-type or
@@ -45,6 +49,9 @@ export type GratuityInput = {
   deathInService?: boolean;
   /** Part-time pro-rating (Cabinet Res. 1/2022). Both must be > 0; ratio is clamped to (0, 1]. */
   partTime?: { weeklyHours: number; fullTimeWeeklyHours: number };
+  /** Statutory two-year cap (Art. 51(6)). Default true. ADGM removed its cap
+   *  on 1 Apr 2025 (Employment Regulations 2024) — pass false there. */
+  capApplies?: boolean;
 };
 
 export type GratuityResult = {
@@ -80,6 +87,7 @@ export function computeGratuity({
   unpaidLeaveDays,
   deathInService = false,
   partTime,
+  capApplies = true,
 }: GratuityInput): GratuityResult {
   const safeSalary = safeNum(basicSalary);
   const safeYears = safeNum(years);
@@ -102,7 +110,7 @@ export function computeGratuity({
   }
 
   const dailyWage = safeSalary / 30;
-  const cap = safeSalary * 24; // two years' basic salary (Art. 51(4))
+  const cap = safeSalary * 24; // two years' wage cap (Art. 51(6)), applied to basic as entered
 
   // Under 1 year of continuous service → no entitlement, EXCEPT death in
   // service, where accrued gratuity is due to the heirs regardless of length.
@@ -132,7 +140,7 @@ export function computeGratuity({
   const totalDays = first5Days + beyond5Days;
 
   const grossGratuity = totalDays * dailyWage;
-  const capApplied = grossGratuity > cap;
+  const capApplied = capApplies && grossGratuity > cap;
   const capped = capApplied ? cap : grossGratuity;
   const gratuity = capped * partTimeRatio;
 

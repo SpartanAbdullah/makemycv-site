@@ -244,6 +244,11 @@ export default function AnnualLeaveCalculatorPage() {
             and free-zone rules can be more generous — confirm your exact
             figures with MOHRE.
           </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Legal basis last verified 12 July 2026 against Federal Decree-Law
+            33/2021, Article 29 and Cabinet Resolution 1/2022, Article 19
+            (unchanged by the 2022 and 2023 amendments).
+          </p>
         </div>
       </section>
 
