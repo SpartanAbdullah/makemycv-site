@@ -27,7 +27,9 @@ export const metadata = {
       "Paste any UAE job description and see how your CV matches it — a match score plus a green/amber heatmap of every requirement you cover or miss. Free, honest, private. Built for Dubai, Abu Dhabi & GCC hiring.",
     path: "/jd-match",
   }),
-  title: "JD Match — Free CV-vs-Job Description Check for UAE Jobs | MakeMyCV",
+  // No brand suffix here — the root layout's title template already appends
+  // "| MakeMyCV.ae". Hardcoding one rendered a doubled "| MakeMyCV | MakeMyCV.ae".
+  title: "JD Match — Free CV-vs-Job Description Check for UAE Jobs",
   keywords: [
     "JD match",
     "CV job match UAE",

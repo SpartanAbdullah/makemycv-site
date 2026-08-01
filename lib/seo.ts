@@ -1,12 +1,39 @@
 import type { Metadata } from "next";
 
-export const SITE_NAME = "MakeMyCV";
+// Canonical entity name. Must match LinkedIn, Crunchbase, Trustpilot, GBP and
+// every other owned profile verbatim — inconsistent name strings split the
+// entity and are what let makemycv.com/.fr absorb our brand signals.
+// "MakeMyCV" survives only as an alternateName in the Organization node.
+export const SITE_NAME = "MakeMyCV.ae";
 export const SITE_URL = "https://www.makemycv.ae";
 export const APP_URL = "https://app.makemycv.ae";
 export const DEFAULT_OG_IMAGE = "/og-image.png";
+// Real 512x512 asset. The entity spec called for /logo-512.png, which does not
+// exist in this repo; this is the same artwork at the required dimensions.
+// A 404 here weakens the Organization node, so keep the file and the constant
+// in sync.
+export const ORG_LOGO = "/web-app-manifest-512x512.png";
+export const ORG_LOGO_SIZE = 512;
 export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const WEBAPP_ID = `${SITE_URL}/#webapp`;
+export const LOGO_ID = `${SITE_URL}/#logo`;
+
+/**
+ * sameAs — the spine of the entity graph. Binds off-site profiles we own to
+ * this domain so engines resolve them to one organisation.
+ *
+ * HARD RULE: only profiles we own and control. Never add an unclaimed
+ * directory listing, and never reference any other makemycv.* property —
+ * a sameAs we don't control is an entity-merge risk.
+ *
+ * Claim order (each becomes another UAE-scoped citation):
+ * Google Business Profile > Crunchbase > Trustpilot > X/Instagram
+ * (@makemycvae) > Product Hunt > UAE directories.
+ */
+export const ORG_SAME_AS: readonly string[] = [
+  "https://www.linkedin.com/company/makemycv-ae",
+];
 
 function normalizePath(pathname: string): string {
   if (!pathname || pathname === "/") {

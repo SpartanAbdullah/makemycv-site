@@ -1,10 +1,7 @@
 import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
-import {
-  breadcrumbSchema,
-  softwareApplicationSchema,
-} from "@/lib/seo-schema";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
 
@@ -25,13 +22,9 @@ export const metadata = buildPageMetadata({
   path: "/templates",
 });
 
-// SoftwareApplication so an AI agent landing on /templates resolves the
-// page to the builder it advertises; Breadcrumb for the entity graph.
-const templatesSchema = {
-  "@context": "https://schema.org",
-  "@graph": [softwareApplicationSchema()],
-};
-
+// The builder's WebApplication node is emitted site-wide from app/layout.tsx,
+// so an AI agent landing here already resolves the page to the builder it
+// advertises. Only the Breadcrumb is page-specific.
 const templatesBreadcrumb = breadcrumbSchema([
   { name: "Home", item: canonicalUrl("/") },
   { name: "Templates", item: canonicalUrl("/templates") },
@@ -53,7 +46,6 @@ export default function TemplatesPage() {
 
   return (
     <>
-      <JsonLd data={templatesSchema} />
       <JsonLd data={templatesBreadcrumb} />
 
       {/* Hero */}

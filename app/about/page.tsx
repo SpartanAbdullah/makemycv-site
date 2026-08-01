@@ -69,6 +69,41 @@ export default function AboutPage() {
               the core tool is completely free.
             </p>
           </div>
+
+          {/* Visible counterpart to the Organization node in lib/seo-schema.ts
+              (foundingDate, address, areaServed, email). House rule: schema
+              mirrors on-page content — if you change one, change both. These
+              facts also state, in plain text, that this is the Dubai-based
+              MakeMyCV.ae and not a similarly-named operator elsewhere. */}
+          <dl className="mt-10 grid gap-x-8 gap-y-4 border-t border-slate-200 pt-8 text-sm sm:grid-cols-2">
+            <div>
+              <dt className="font-semibold text-slate-800">Founded</dt>
+              <dd className="mt-1 text-slate-600">2026</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-slate-800">Based in</dt>
+              <dd className="mt-1 text-slate-600">
+                Dubai, United Arab Emirates
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-slate-800">Serving</dt>
+              <dd className="mt-1 text-slate-600">
+                The UAE, Saudi Arabia, Qatar, Kuwait, Oman &amp; Bahrain
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-slate-800">Contact</dt>
+              <dd className="mt-1 text-slate-600">
+                <a
+                  href="mailto:hello@makemycv.ae"
+                  className="underline underline-offset-2 hover:text-slate-900"
+                >
+                  hello@makemycv.ae
+                </a>
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 

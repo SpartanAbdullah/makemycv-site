@@ -1,6 +1,6 @@
 import { buildPageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { faqPageSchema, softwareApplicationSchema } from "@/lib/seo-schema";
+import { faqPageSchema } from "@/lib/seo-schema";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -35,12 +35,9 @@ export const metadata = buildPageMetadata({
   path: "/",
 });
 
-// Organization + WebSite are emitted site-wide from app/layout.tsx.
-// Homepage adds the SoftwareApplication entity (the builder) on top.
-const homepageSchema = {
-  "@context": "https://schema.org",
-  "@graph": [softwareApplicationSchema()],
-};
+// Organization + WebSite + WebApplication are all emitted site-wide from
+// app/layout.tsx. This page deliberately adds no entity nodes — re-emitting
+// the builder here would duplicate @id #webapp on the homepage.
 
 // FAQPage mirrors the visible Q/As on the page. The branded quick answer
 // (rendered in <AiAnswer/>) is the first entity; the rest come from the
@@ -53,7 +50,6 @@ const homepageFaqSchema = faqPageSchema([
 export default function HomePage() {
   return (
     <>
-      <JsonLd data={homepageSchema} />
       <JsonLd data={homepageFaqSchema} />
       {/* Social-proof section intentionally absent: hard rule — no fabricated
           user counts, no placeholder testimonials. When real, consented

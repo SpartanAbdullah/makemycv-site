@@ -13,7 +13,11 @@ import type { Post } from "@/lib/blog";
 import {
   APP_URL,
   DEFAULT_OG_IMAGE,
+  LOGO_ID,
   ORGANIZATION_ID,
+  ORG_LOGO,
+  ORG_LOGO_SIZE,
+  ORG_SAME_AS,
   SITE_NAME,
   SITE_URL,
   WEBAPP_ID,
@@ -25,7 +29,29 @@ import {
 const AUTHOR_PAGE_PATH = "/author/makemycv-team";
 const ABOUT_PAGE_PATH = "/about";
 const CONTACT_EMAIL = "hello@makemycv.ae";
-const LOGO_URL = absoluteUrl("/apple-touch-icon.png");
+const LOGO_URL = absoluteUrl(ORG_LOGO);
+
+/**
+ * Canonical short description. Used verbatim in the Organization node and on
+ * every owned off-site profile — matching strings across surfaces is what
+ * makes engines resolve them to one entity.
+ */
+const ORG_DESCRIPTION =
+  "Free ATS-friendly CV builder made in Dubai for job seekers applying in the UAE and the wider GCC.";
+
+/**
+ * The disambiguation payload. A machine-readable claim that this organisation
+ * serves the UAE and the GCC — the territorial statement that separates this
+ * entity from the similarly-named European operators.
+ */
+const GCC_AREA_SERVED = [
+  "United Arab Emirates",
+  "Saudi Arabia",
+  "Qatar",
+  "Kuwait",
+  "Oman",
+  "Bahrain",
+].map((name) => ({ "@type": "Country", name }));
 
 /* ──────────────────────────────────────────────────────────────────── */
 /* Entity primitives                                                    */
@@ -36,14 +62,36 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": ORGANIZATION_ID,
     name: SITE_NAME,
+    // Keeps the pre-rename brand string attached to this entity instead of
+    // floating free for another makemycv.* property to claim.
+    alternateName: ["MakeMyCV", "MakeMyCV UAE"],
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
+      "@id": LOGO_ID,
       url: LOGO_URL,
+      width: ORG_LOGO_SIZE,
+      height: ORG_LOGO_SIZE,
+      caption: SITE_NAME,
     },
-    description:
-      "Free, ATS-clean CV builder designed for the UAE and GCC job market.",
-    areaServed: { "@type": "Country", name: "United Arab Emirates" },
+    image: { "@id": LOGO_ID },
+    description: ORG_DESCRIPTION,
+    foundingDate: "2026",
+    email: CONTACT_EMAIL,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Dubai",
+      addressCountry: "AE",
+    },
+    areaServed: GCC_AREA_SERVED,
+    knowsAbout: [
+      "CV writing for UAE jobs",
+      "ATS-friendly CV formatting",
+      "UAE CV format",
+      "Dubai CV format",
+      "GCC hiring standards",
+      "Visa status on a CV",
+    ],
     founder: { "@type": "Person", name: "Abdullah" },
     contactPoint: {
       "@type": "ContactPoint",
@@ -52,7 +100,10 @@ export function organizationSchema() {
       areaServed: "AE",
       availableLanguage: ["English", "Arabic"],
     },
-  } as const;
+    // Omitted entirely when empty — an empty sameAs is noise, and a sameAs
+    // pointing at a profile we don't control is an entity-merge risk.
+    ...(ORG_SAME_AS.length > 0 ? { sameAs: [...ORG_SAME_AS] } : {}),
+  };
 }
 
 export function websiteSchema() {
@@ -67,23 +118,34 @@ export function websiteSchema() {
 }
 
 /**
- * SoftwareApplication schema for the builder. Per the spec (§1.3) this is
- * what makes AI say "MakeMyCV is a free CV builder for the UAE" instead of
+ * WebApplication schema for the builder. Per the spec (§1.3) this is what
+ * makes AI say "MakeMyCV.ae is a free CV builder for the UAE" instead of
  * guessing. We deliberately do NOT include aggregateRating — Google's
  * guidelines require real, verifiable review data, and fake ratings risk a
  * manual penalty.
+ *
+ * WebApplication (not the broader SoftwareApplication) because the builder is
+ * browser-only. Emitted site-wide from app/layout.tsx as the third node of the
+ * entity graph — do NOT also emit it per-page, or pages carry a duplicate
+ * @id and the graph stops resolving to one entity.
  */
-export function softwareApplicationSchema() {
+export function webApplicationSchema() {
   return {
-    "@type": "SoftwareApplication",
+    "@type": "WebApplication",
     "@id": WEBAPP_ID,
-    name: SITE_NAME,
+    name: `${SITE_NAME} CV Builder`,
     url: APP_URL,
     applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
+    operatingSystem: "Web browser",
+    browserRequirements: "Requires JavaScript",
     description:
       "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, Emirates ID, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall, data stays in the browser.",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "AED",
+      availability: "https://schema.org/InStock",
+    },
     featureList: [
       "ATS-parseable structure",
       "UAE Essentials step (visa status, Emirates ID, nationality, driving licence)",

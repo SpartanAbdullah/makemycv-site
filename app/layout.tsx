@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   organizationSchema,
+  webApplicationSchema,
   websiteSchema,
 } from "@/lib/seo-schema";
 import {
@@ -123,13 +124,23 @@ export default function RootLayout({
     >
       <head>
         <link rel="preconnect" href="https://app.makemycv.ae" />
-        {/* Site-wide entity graph — Organization + WebSite. Per-page schema
-            (Article, FAQPage, SoftwareApplication, BreadcrumbList) references
-            these by @id so engines resolve them to one entity. */}
+        {/* Site-wide entity graph — Organization + WebSite + WebApplication,
+            cross-referenced by @id so engines resolve one connected entity
+            rather than three floating objects. Per-page schema (Article,
+            FAQPage, BreadcrumbList) references these by @id.
+
+            The Organization node carries the disambiguation payload:
+            address (Dubai/AE), areaServed (UAE + GCC) and sameAs. That is what
+            distinguishes this entity from the similarly-named European
+            makemycv.* properties at the machine-readable level. */}
         <JsonLd
           data={{
             "@context": "https://schema.org",
-            "@graph": [organizationSchema(), websiteSchema()],
+            "@graph": [
+              organizationSchema(),
+              websiteSchema(),
+              webApplicationSchema(),
+            ],
           }}
         />
         {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4. */}
