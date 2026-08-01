@@ -47,6 +47,14 @@ const faqs = [
     a: "No — resignation is a unilateral right; it does not need the employer's approval. They can require you to serve the contractual notice (or agree payment in lieu), but they cannot reject the resignation itself or hold you beyond the notice period.",
   },
   {
+    q: "Can I withdraw my resignation after submitting it?",
+    a: "Only if your employer agrees. Once submitted in writing, the resignation takes effect and the notice period runs from that date — the employer is not obliged to accept a withdrawal. Treat the letter as final and don't hand it in until you are certain.",
+  },
+  {
+    q: "Can I ever resign without serving notice?",
+    a: "Only in the narrow cases of Article 45 — for example the employer failing to meet core legal or contractual obligations, or assault at work — where the law lets a worker leave without notice while keeping end-of-service rights. Some grounds require notifying MOHRE first, so call 600 590 000 for guidance before acting. In every normal case, unserved notice days are compensated to the employer.",
+  },
+  {
     q: "Is this generator free, and where does my letter go?",
     a: "Completely free, no sign-up. The letter is assembled entirely in your browser — nothing you type is sent to a server or stored by us, which you can also verify in our privacy policy.",
   },
