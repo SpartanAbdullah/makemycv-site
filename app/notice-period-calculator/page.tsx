@@ -185,6 +185,21 @@ export default function NoticePeriodCalculatorPage() {
         <div className="mx-auto max-w-3xl px-6">
           <TrustBadge />
           <NoticePeriodCalculator />
+          {/* Next step in the resigning journey — the letter itself. */}
+          <Link
+            href="/resignation-letter-generator"
+            className="group mt-4 flex items-center justify-between gap-3 rounded-2xl border border-line bg-paper-2 px-5 py-4 transition hover:border-brand-blue/40"
+          >
+            <span className="text-sm leading-relaxed text-slate-700">
+              <strong className="text-slate-900">Resigning?</strong> Generate a
+              labour-law-compliant resignation letter with this notice period
+              built in — free, in your browser.
+            </span>
+            <ArrowRight
+              size={18}
+              className="shrink-0 text-brand-blue transition group-hover:translate-x-0.5"
+            />
+          </Link>
         </div>
       </section>
 

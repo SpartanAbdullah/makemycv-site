@@ -6,6 +6,7 @@ import {
   Timer,
   CalendarDays,
   FileSearch,
+  FileSignature,
   Highlighter,
 } from "lucide-react";
 
@@ -53,6 +54,12 @@ const tools = [
     icon: CalendarDays,
     title: "Annual Leave Calculator",
     blurb: "Entitlement and unused-leave payout.",
+  },
+  {
+    href: "/resignation-letter-generator",
+    icon: FileSignature,
+    title: "Resignation Letter Generator",
+    blurb: "A compliant letter in under a minute.",
   },
 ];
 

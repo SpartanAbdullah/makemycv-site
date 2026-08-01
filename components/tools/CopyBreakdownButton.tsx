@@ -10,7 +10,14 @@ import { copyText } from "@/components/tools/copyText";
  * made productive: the breakdown appears in a selectable textarea the user
  * can copy manually — the feature degrades, it never dead-ends.
  */
-export function CopyBreakdownButton({ getText }: { getText: () => string }) {
+export function CopyBreakdownButton({
+  getText,
+  label = "Copy breakdown",
+}: {
+  getText: () => string;
+  /** Button label; defaults to the calculators' "Copy breakdown". */
+  label?: string;
+}) {
   const [copied, setCopied] = useState(false);
   const [fallbackText, setFallbackText] = useState<string | null>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -42,7 +49,7 @@ export function CopyBreakdownButton({ getText }: { getText: () => string }) {
         className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-blue/50"
       >
         {copied ? <Check size={15} className="text-emerald-600" /> : <Copy size={15} />}
-        {copied ? "Copied" : "Copy breakdown"}
+        {copied ? "Copied" : label}
       </button>
       {fallbackText !== null && (
         <div className="w-full">

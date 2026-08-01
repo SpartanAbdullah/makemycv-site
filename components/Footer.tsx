@@ -17,6 +17,7 @@ const toolLinks = [
   { href: "/gratuity-calculator", label: "Gratuity Calculator" },
   { href: "/notice-period-calculator", label: "Notice Period Calculator" },
   { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
+  { href: "/resignation-letter-generator", label: "Resignation Letter Generator" },
   { href: "/cv-examples-uae", label: "UAE CV Examples" },
 ];
 
