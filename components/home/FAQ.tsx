@@ -18,7 +18,7 @@ export const homepageFaqs = [
   },
   {
     q: "Will my CV pass ATS filters used by UAE employers?",
-    a: "Yes. MakeMyCV templates are built to match the parsing logic used by UAE banks, telcos, and DIFC firms — single-column structure, standard section headers, no image-based text or broken multi-column layouts. The same templates feed the free /resume-checker for verification.",
+    a: "Yes. MakeMyCV templates use the structure ATS software parses reliably — single-column layout, standard section headers, no image-based text or broken multi-column layouts. The same templates feed the free /resume-checker so you can verify it yourself.",
   },
   {
     q: "Should a UAE CV include visa status and nationality?",

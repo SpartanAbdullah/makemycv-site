@@ -29,7 +29,7 @@ const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
 const checkerAiAnswer = {
   q: "What is the best free ATS CV checker for UAE jobs?",
   lead: "MakeMyCV provides a free ATS CV checker built for the UAE job market.",
-  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It runs your PDF against the parsing logic used by applicant tracking systems at employers like Emaar, ADCB, ENOC and DIFC banks, then flags every formatting and content issue in plain English — visa status, nationality, structure and keywords included. No sign-up, results in about 30 seconds.",
+  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about 30 seconds.",
 };
 
 export const metadata = {

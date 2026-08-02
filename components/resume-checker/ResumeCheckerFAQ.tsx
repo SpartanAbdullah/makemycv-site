@@ -9,7 +9,7 @@ export const faqItems = [
   },
   {
     q: "How is this different from other resume checkers?",
-    a: "Most generic checkers are tuned for US/UK hiring. Ours is built around UAE recruiting reality — visa status, nationality, Arabic-name handling, GCC-specific recruiter norms, and the ATS platforms actually used by Emaar, ADCB, ENOC and DIFC firms.",
+    a: "Most generic checkers are tuned for US/UK hiring. Ours is built around UAE recruiting reality — visa status, nationality, Arabic-name handling, GCC-specific recruiter norms, and the single-column, parser-safe structure that ATS software reads reliably.",
   },
   {
     q: "Does this work for non-English CVs?",
