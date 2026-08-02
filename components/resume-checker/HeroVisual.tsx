@@ -14,15 +14,19 @@ export function HeroVisual() {
       typeof window !== "undefined" &&
       window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
-    if (prefersReduced) {
-      setScore(targetScore);
-      return;
-    }
-
-    const duration = 1800;
+    // Reduced motion jumps straight to the target on the first tick rather
+    // than calling setScore synchronously in the effect body. Same outcome for
+    // the user (30ms is imperceptible), but it avoids the cascading render
+    // that a synchronous setState in an effect triggers.
+    //
+    // It also has to stay inside the effect rather than becoming a lazy
+    // useState initialiser: this component is server-rendered, matchMedia does
+    // not exist there, and seeding 87 on the client while the server emitted 0
+    // would be a hydration mismatch.
+    const duration = prefersReduced ? 0 : 1800;
     const start = Date.now();
     const interval = setInterval(() => {
-      const t = Math.min(1, (Date.now() - start) / duration);
+      const t = duration === 0 ? 1 : Math.min(1, (Date.now() - start) / duration);
       const eased = 1 - Math.pow(1 - t, 3);
       setScore(Math.round(eased * targetScore));
       if (t >= 1) clearInterval(interval);

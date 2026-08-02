@@ -6,8 +6,10 @@
     "dev": "velite dev & next dev",
     "build": "velite build && next build",
     "start": "next start",
-    "lint": "eslint",
-    "test": "npx -y tsx scripts/stress-test-calculators.ts"
+    "lint": "eslint . --max-warnings=2",
+    "test": "npm run test:calculators && npm run test:resignation",
+    "test:calculators": "tsx scripts/stress-test-calculators.ts",
+    "test:resignation": "tsx scripts/test-resignation-letter.ts"
   },
   "dependencies": {
     "@sentry/nextjs": "^10.69.0",
@@ -32,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
+    "tsx": "^4.23.4",
     "typescript": "^5",
     "velite": "^0.3.1"
   }
