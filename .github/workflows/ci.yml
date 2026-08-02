@@ -1,0 +1,69 @@
+# CI for makemycv.ae (2026-08-02, audit A-W5-018).
+#
+# Before this, nothing gated a push in either repo. See the app repo's
+# workflow for the full reasoning; the same applies here.
+#
+# Site-specific note: this repo's content pipeline (velite) runs at build time
+# and a frontmatter typo in any of the 34 MDX files fails the production build
+# (audit A-W5-050). Vercel already catches that on every push and blocks the
+# deploy, so `npm run build` is not duplicated here — what Vercel does not run
+# is lint and the calculator tests, which is what this adds.
+#
+# Those tests matter more than they look: scripts/stress-test-calculators.ts is
+# 102 hand-computed assertions over UAE gratuity, notice-period and annual-leave
+# law, including the 2-year cap and the ADGM variant. A silent regression there
+# gives users wrong legal figures.
+
+name: CI
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: typecheck · lint · test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # MUST run before typecheck. lib/blog.ts and lib/templates.ts import from
+      # '@/.velite', which is GENERATED and gitignored — a fresh checkout does
+      # not have it. Verified by deleting .velite locally and re-running tsc:
+      # "Cannot find module '@/.velite'" plus a cascade of implicit-any errors
+      # in every consumer. Without this step CI would have been red on its very
+      # first run for a reason unrelated to the code, which is how pipelines
+      # get switched off.
+      #
+      # It also means a frontmatter typo in any of the 34 MDX files fails here
+      # rather than in the production deploy (audit A-W5-050).
+      - name: Build content (velite)
+        run: npx velite build
+
+      # Each step runs even if an earlier one failed, so one push surfaces
+      # every problem rather than one per round-trip.
+      - name: Typecheck
+        if: '!cancelled()'
+        run: npx tsc --noEmit
+
+      - name: Lint
+        if: '!cancelled()'
+        run: npm run lint
+
+      - name: Test
+        if: '!cancelled()'
+        run: npm test
