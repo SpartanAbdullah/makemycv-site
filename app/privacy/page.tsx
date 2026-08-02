@@ -21,9 +21,18 @@ export const metadata = buildPageMetadata({
  *   server-side; request bodies are not logged or stored.
  * - ATS checker reports ARE stored server-side: Vercel KV, random id,
  *   24h TTL (lib/resumeChecker/storage.ts — TTL_SECONDS = 86400).
- * - Rate limiting keys on client IP in Vercel KV (transient).
+ * - Rate limiting keys on client IP in Vercel KV. TRANSIENT as of 2026-08-02:
+ *   the limiters previously ran with `analytics: true`, which wrote client IPs
+ *   into KV permanently with no TTL (audit A-W3-001) and made the "held
+ *   briefly" wording below false. That flag is now off in all eight limiters.
  * - Contact form posts to Formspree (form id mqeykryy).
- * - Analytics: GA4 via GTM + Vercel Analytics/Speed Insights.
+ * - Analytics: GA4 via GTM + Vercel Analytics/Speed Insights on this site;
+ *   Vercel Analytics/Speed Insights added to app.makemycv.ae on 2026-08-02.
+ * - Error monitoring: Sentry on BOTH repos as of 2026-08-02, EU region
+ *   (ingest host *.ingest.de.sentry.io). Configured with sendDefaultPii:false,
+ *   request bodies stripped in beforeSend, and session replay hard-disabled
+ *   (replaysSessionSampleRate / replaysOnErrorSampleRate both 0). If any of
+ *   those change, the "Error monitoring" section below becomes false.
  * - Tips: Ko-fi → PayPal, external checkout only.
  */
 
@@ -183,9 +192,26 @@ export default function PrivacyPage() {
               Only the service providers needed to run the product, each for one
               job: Vercel (hosting and the short-lived storage described above),
               Google (analytics), Formspree (contact form delivery), Anthropic
-              (AI processing), and Ko-fi/PayPal (tips). Some of these providers
-              process data in the United States or Europe. We do not sell or
-              rent personal data to anyone.
+              (AI processing), Sentry (error monitoring), and Ko-fi/PayPal
+              (tips). Some of these providers process data in the United States
+              or Europe. We do not sell or rent personal data to anyone.
+            </p>
+          </Section>
+
+          <Section title="Error monitoring">
+            <p>
+              When something breaks, we use Sentry to record the technical
+              details of the failure so we can fix it. Sentry receives the error
+              message, the code path that failed, the page you were on, and your
+              browser and operating system version.
+            </p>
+            <p>
+              It is deliberately configured not to receive the things that would
+              identify you: no IP address, no cookies, no form contents, and no
+              CV text. We do not use Sentry&apos;s session-replay feature, which
+              would record your screen as you type — that is switched off in
+              both our applications and we do not intend to turn it on. Sentry
+              stores this data in the European Union.
             </p>
           </Section>
 

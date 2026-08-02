@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withSentryConfig } from "@sentry/nextjs";
 
 const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -54,4 +55,30 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// withSentryConfig WRAPS the config above — it does not replace it. Both the
+// headers() block and the redirects() block (which carries the apex->www
+// redirect and the old-blog-slug 301s) are preserved. If you refactor this
+// line, verify a redirect still fires:
+// `curl -sI https://makemycv.ae/pricing | grep -i location`.
+export default withSentryConfig(nextConfig, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  // Build-time only; never bundled. Without it the build still succeeds, you
+  // just get minified stack traces.
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  silent: !process.env.CI,
+
+  // Upload maps to Sentry, then delete them so they are not served publicly.
+  widenClientFileUpload: true,
+  sourcemaps: { deleteSourcemapsAfterUpload: true },
+
+  // No tunnel — this site ships no CSP, so there is nothing to work around,
+  // and proxying would add function invocations to a project that currently
+  // runs zero.
+  tunnelRoute: undefined,
+
+  reactComponentAnnotation: { enabled: false },
+
+  disableLogger: true,
+});

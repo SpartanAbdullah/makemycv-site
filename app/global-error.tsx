@@ -1,11 +1,17 @@
 "use client";
 
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
 
 /* Last-resort boundary for the marketing site (audit 2026-06-12, gap #2).
  * Replaces the root layout on a layout-level crash, so it renders its own
  * <html>/<body> with inline styles only — no globals.css, no next/font.
- * Brand blue #2563eb, ink #0a0f1e. */
+ * Brand blue #2563eb, ink #0a0f1e.
+ *
+ * ONE DELIBERATE EXCEPTION (2026-08-02): @sentry/nextjs, for reporting only.
+ * It is never on the render path — if the capture throws, the JSX below still
+ * renders. This is the boundary whose errors matter most, because reaching it
+ * means the root layout failed. Do not add any other import here. */
 export default function GlobalError({
   error,
 }: {
@@ -13,6 +19,8 @@ export default function GlobalError({
 }) {
   useEffect(() => {
     console.error("[site/global-error]", error);
+    // Reporting only — never on the render path. See the header note.
+    Sentry.captureException(error);
   }, [error]);
 
   return (
