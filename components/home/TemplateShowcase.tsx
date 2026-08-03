@@ -69,22 +69,24 @@ export function TemplateShowcase() {
                 )}
                 {t.thumbnail ? (
                   <>
-                    {/* eslint-disable-next-line @next/next/no-img-element -- fixed-size Playwright captures; sized + lazy */}
+                    {/* 544w WebP thumbs (~30KB vs ~300KB source PNGs) — the
+                        full captures stay for /templates. */}
+                    {/* eslint-disable-next-line @next/next/no-img-element -- fixed-size WebP thumbs; sized + lazy */}
                     <img
-                      src={t.thumbnail}
+                      src={t.thumbnail.replace(/\.png$/, "-thumb.webp")}
                       alt={`${t.name} CV template preview — ${t.positioning}`}
-                      width={794}
-                      height={1123}
+                      width={544}
+                      height={769}
                       loading="lazy"
                       className="h-full w-full object-cover object-top peer-checked:hidden"
                     />
                     {t.tags.includes("Photo") && (
-                      // eslint-disable-next-line @next/next/no-img-element -- fixed-size Playwright captures; sized + lazy
+                      // eslint-disable-next-line @next/next/no-img-element -- fixed-size WebP thumbs; sized + lazy
                       <img
-                        src={t.thumbnail.replace("-preview.png", "-nophoto-preview.png")}
+                        src={t.thumbnail.replace("-preview.png", "-nophoto-preview-thumb.webp")}
                         alt={`${t.name} CV template preview without photo`}
-                        width={794}
-                        height={1123}
+                        width={544}
+                        height={769}
                         loading="lazy"
                         className="hidden h-full w-full object-cover object-top peer-checked:block"
                       />

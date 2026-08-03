@@ -32,7 +32,7 @@ export function SectionHeading({
         </p>
       )}
       <h2
-        className={`font-display font-bold ${titleColor} text-[28px] md:text-[32px] leading-[1.2] tracking-tight-2 ${
+        className={`font-display font-bold ${titleColor} text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2 ${
           eyebrow ? "mt-3" : ""
         }`}
       >
