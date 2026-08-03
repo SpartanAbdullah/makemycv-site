@@ -114,9 +114,9 @@ export default function AuthorPage() {
                 <p className="text-sm text-muted mt-1 line-clamp-1">{post.excerpt}</p>
                 <div className="flex items-center gap-3 mt-2">
                   <span className="text-xs text-muted">{formatDate(post.date)}</span>
-                  <span className="text-xs text-line-strong">·</span>
+                  <span className="text-xs text-muted">·</span>
                   <span className="text-xs text-muted">{post.readingTime ?? 5} min read</span>
-                  <span className="text-xs text-line-strong">·</span>
+                  <span className="text-xs text-muted">·</span>
                   <span className="text-xs font-medium text-accent">{post.category}</span>
                 </div>
               </div>

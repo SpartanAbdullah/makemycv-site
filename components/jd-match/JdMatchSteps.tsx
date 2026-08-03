@@ -65,7 +65,7 @@ export function JdMatchSteps() {
               className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-xs"
             >
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-accent">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <s.icon size={22} strokeWidth={2} />
                 </span>
                 <span className="text-xs font-semibold uppercase tracking-eyebrow text-muted">

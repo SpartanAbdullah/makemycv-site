@@ -54,7 +54,7 @@ export const TipJar = ({
           className="absolute inset-x-0 top-0 h-1"
           style={{
             background:
-              "linear-gradient(90deg, #2563eb 0%, #4f46e5 50%, #2563eb 100%)",
+              "linear-gradient(90deg, #0E7C4A 0%, #C49A48 50%, #0E7C4A 100%)",
           }}
         />
       )}

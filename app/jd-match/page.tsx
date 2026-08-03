@@ -205,7 +205,7 @@ export default function JdMatchPage() {
         lead={jdAiAnswer.lead}
         answer={jdAiAnswer.a}
         emitSchema={false}
-        className="bg-white py-12 md:py-14"
+        className="bg-paper py-12 md:py-14"
       />
 
       <JdMatchSteps />

@@ -66,9 +66,14 @@ export const ContactForm = () => {
           Something went wrong. Please try again or email us directly at hello@makemycv.ae.
         </div>
       )}
+      {/* id/htmlFor pairs: without them the select was an unnamed combobox
+          and the text fields were named only by their vanishing placeholders
+          (WCAG 1.3.1/4.1.2/3.3.2 — Part 3 review). */}
       <div>
-        <label className={labelClass}>Name *</label>
+        <label htmlFor="contact-name" className={labelClass}>Name *</label>
         <input
+          id="contact-name"
+          name="name"
           type="text"
           required
           placeholder="Your full name"
@@ -78,8 +83,10 @@ export const ContactForm = () => {
         />
       </div>
       <div>
-        <label className={labelClass}>Email *</label>
+        <label htmlFor="contact-email" className={labelClass}>Email *</label>
         <input
+          id="contact-email"
+          name="email"
           type="email"
           required
           placeholder="you@email.com"
@@ -89,8 +96,10 @@ export const ContactForm = () => {
         />
       </div>
       <div>
-        <label className={labelClass}>Subject</label>
+        <label htmlFor="contact-subject" className={labelClass}>Subject</label>
         <select
+          id="contact-subject"
+          name="subject"
           className={inputClass}
           value={form.subject}
           onChange={(e) => setForm({ ...form, subject: e.target.value })}
@@ -102,8 +111,10 @@ export const ContactForm = () => {
         </select>
       </div>
       <div>
-        <label className={labelClass}>Message *</label>
+        <label htmlFor="contact-message" className={labelClass}>Message *</label>
         <textarea
+          id="contact-message"
+          name="message"
           required
           rows={5}
           placeholder="How can we help?"

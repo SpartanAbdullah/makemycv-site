@@ -84,7 +84,7 @@ export function WhatWeCheck() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-5 rounded-[28px] border border-line bg-gradient-to-br from-white via-white to-blue-50/60 p-10 text-center md:flex-row md:justify-between md:text-left" style={{ boxShadow: "var(--shadow-md-soft)" }}>
+        <div className="mt-14 flex flex-col items-center gap-5 rounded-[28px] border border-line bg-gradient-to-br from-sheet via-sheet to-accent-soft/60 p-10 text-center md:flex-row md:justify-between md:text-left" style={{ boxShadow: "var(--shadow-md-soft)" }}>
           <div>
             <h3 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
               See what we&apos;d find in yours.

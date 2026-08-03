@@ -195,7 +195,7 @@ export default function CvExamplesUaePage() {
 
                 <div className="mt-4 grid gap-4 md:grid-cols-2">
                   <div className="rounded-2xl border-2 border-red-100 bg-red-50/60 p-6">
-                    <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-red-600">
+                    <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-red-700">
                       <X size={14} strokeWidth={2.5} /> Weak — a duty, not an
                       achievement
                     </p>
