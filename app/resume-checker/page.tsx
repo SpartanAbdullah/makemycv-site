@@ -146,66 +146,35 @@ export default function ResumeCheckerPage() {
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumbSchema} />
 
-      {/* HERO — distinct "scanner" identity vs. the navy home hero */}
-      <section
-        className="relative overflow-hidden text-white"
-        style={{
-          background:
-            "radial-gradient(ellipse 90% 70% at 30% 0%, #1e1b4b 0%, transparent 60%)," +
-            "radial-gradient(ellipse 70% 60% at 90% 100%, #134e4a 0%, transparent 65%)," +
-            "linear-gradient(180deg, #050714 0%, #0b0a23 100%)",
-        }}
-      >
-        {/* Animated scanner beam — gives this page a unique, "diagnostic" identity */}
-        <div className="scanner-beam" aria-hidden="true" />
-
-        {/* fine grid texture */}
+      {/* HERO — warm-paper skin (Part 3 reskin, 2026-08-03): same layout
+          rhythm as the homepage hero (1400px container, green wash, one
+          CTA), diagnostic identity carried by the pulse-dot eyebrow and the
+          live score card instead of the old cyan scanner-beam-on-navy. */}
+      <section className="relative overflow-hidden bg-paper">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          className="pointer-events-none absolute inset-0"
           style={{
-            backgroundImage:
-              "linear-gradient(rgba(34,211,238,0.12) 1px, transparent 1px)," +
-              "linear-gradient(90deg, rgba(34,211,238,0.12) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-            maskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 80%)",
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
           }}
         />
 
-        <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-20 md:py-28 lg:grid-cols-5 lg:gap-10">
+        <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-12 md:gap-16 md:px-10 md:py-24 lg:grid-cols-5 lg:gap-10 lg:py-[104px] xl:px-14">
           {/* Left copy — 60% */}
           <div className="lg:col-span-3">
-            <p className="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-400/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-cyan-300">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.9)]" />
+            <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
               ATS Diagnostic · UAE-focused · Free
             </p>
 
-            <h1
-              className="mt-6 font-display font-extrabold text-white"
-              style={{
-                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
-                letterSpacing: "-0.03em",
-                lineHeight: 1.02,
-              }}
-            >
-              Is your CV going to pass
-              <br />
-              the{" "}
-              <span
-                className="bg-gradient-to-r from-cyan-300 via-violet-300 to-cyan-300 bg-clip-text text-transparent"
-                style={{ backgroundSize: "200% 100%" }}
-              >
-                UAE ATS
-              </span>{" "}
-              —
-              <br />
-              or get filtered out?
+            <h1 className="mt-6 max-w-[18ch] text-balance font-display text-[clamp(40px,4.6vw,60px)] font-bold leading-[1.04] tracking-tight-2 text-ink">
+              Is your CV going to pass the{" "}
+              <span className="text-accent">UAE ATS</span> — or get filtered
+              out?
             </h1>
 
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl">
+            <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-muted md:text-xl">
               Upload your PDF. In 30 seconds we&apos;ll show you exactly what
               Dubai, Abu Dhabi and GCC applicant tracking systems do to your
               CV — and every issue we&apos;d flag. Free. No sign-up.
@@ -223,16 +192,16 @@ export default function ResumeCheckerPage() {
               >
                 Check my CV — Free
               </Button>
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-muted">
                 PDF only · Results in 30 seconds
               </span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-2">
-              <TrustChip icon={Shield} label="No sign-up" tone="dark" />
-              <TrustChip icon={FileCheck2} label="PDF only" tone="dark" />
-              <TrustChip icon={Zap} label="Under 30 seconds" tone="dark" />
-              <TrustChip icon={MapPin} label="Deleted after 24h" tone="dark" />
+              <TrustChip icon={Shield} label="No sign-up" />
+              <TrustChip icon={FileCheck2} label="PDF only" />
+              <TrustChip icon={Zap} label="Under 30 seconds" />
+              <TrustChip icon={MapPin} label="Deleted after 24h" />
             </div>
           </div>
 

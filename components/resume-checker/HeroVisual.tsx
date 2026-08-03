@@ -55,7 +55,7 @@ export function HeroVisual() {
 
   return (
     <div className="relative">
-      <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-blue-100/60 via-white to-blue-50/40" aria-hidden="true" />
+      <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-accent-soft/70 via-sheet to-gold-soft/40" aria-hidden="true" />
 
       <div
         className="relative rounded-[24px] border border-line bg-paper p-7"

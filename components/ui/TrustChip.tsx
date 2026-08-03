@@ -12,7 +12,7 @@ export function TrustChip({ icon: Icon, label, tone = "light" }: Props) {
   const toneClass =
     tone === "dark"
       ? "bg-white/10 text-slate-200 border-white/10"
-      : "bg-slate-100 text-slate-700 border-slate-200";
+      : "bg-paper-2 text-ink-2 border-line";
 
   return (
     <span
