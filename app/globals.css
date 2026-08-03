@@ -80,6 +80,15 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* ── Scrollbar-less scroller (template shelf) ───────────────────────── */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── Scroll reveal (one subtle animation per section, JS-gated) ─────── */
 /* Hidden state is only ever applied by the Reveal client component after
    hydration, so no-JS visitors and crawlers always see full content. */

@@ -23,7 +23,8 @@ const toolLinks = [
 
 export const Footer = () => (
   <footer className="border-t border-white/10 bg-ink text-white">
-    <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-4">
+    {/* Container mirrors the nav/hero 1400px rhythm. */}
+    <div className="mx-auto grid w-full max-w-[1400px] gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-4 md:px-10 xl:px-14">
       {/* Brand — white logo variant for dark backgrounds (same as the app) */}
       <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -116,7 +117,7 @@ export const Footer = () => (
     {/* Bottom bar */}
     <div>
       <div className="mb-6 h-px bg-white/10" />
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row">
+      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row md:px-10 xl:px-14">
         <span className="flex items-center gap-3">
           <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
           <span aria-hidden="true" className="text-white/25">
