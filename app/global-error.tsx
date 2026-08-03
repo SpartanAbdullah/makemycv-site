@@ -6,7 +6,7 @@ import * as Sentry from "@sentry/nextjs";
 /* Last-resort boundary for the marketing site (audit 2026-06-12, gap #2).
  * Replaces the root layout on a layout-level crash, so it renders its own
  * <html>/<body> with inline styles only — no globals.css, no next/font.
- * Brand blue #2563eb, ink #0a0f1e.
+ * Brand blue #0E7C4A, ink #0b0f0c.
  *
  * ONE DELIBERATE EXCEPTION (2026-08-02): @sentry/nextjs, for reporting only.
  * It is never on the render path — if the capture throws, the JSX below still
@@ -55,7 +55,7 @@ export default function GlobalError({
               margin: 0,
               fontSize: "20px",
               fontWeight: 600,
-              color: "#0a0f1e",
+              color: "#0b0f0c",
             }}
           >
             makemycv.ae hit an unexpected error
@@ -78,7 +78,7 @@ export default function GlobalError({
               marginTop: "24px",
               padding: "10px 22px",
               borderRadius: "999px",
-              background: "#2563eb",
+              background: "#0E7C4A",
               color: "#ffffff",
               fontSize: "14px",
               fontWeight: 600,

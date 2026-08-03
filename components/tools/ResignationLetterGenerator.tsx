@@ -80,15 +80,15 @@ export function ResignationLetterGenerator() {
   }
 
   const inputCls =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
+    "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
   const checkCls =
-    "h-4 w-4 rounded border-slate-300 text-brand-blue accent-[#2563eb]";
+    "h-4 w-4 rounded border-line-strong text-accent accent-[#0E7C4A]";
 
   return (
-    <div className="rounded-3xl border border-line bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Your full name
           </span>
           <input
@@ -101,7 +101,7 @@ export function ResignationLetterGenerator() {
         </label>
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Your job title
           </span>
           <input
@@ -114,7 +114,7 @@ export function ResignationLetterGenerator() {
         </label>
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Company name
           </span>
           <input
@@ -127,9 +127,9 @@ export function ResignationLetterGenerator() {
         </label>
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Addressed to{" "}
-            <span className="font-normal text-slate-500">(optional)</span>
+            <span className="font-normal text-muted">(optional)</span>
           </span>
           <input
             type="text"
@@ -138,14 +138,14 @@ export function ResignationLetterGenerator() {
             onChange={(e) => setRecipientName(e.target.value)}
             className={inputCls}
           />
-          <span className="mt-1 block text-xs text-slate-500">
+          <span className="mt-1 block text-xs text-muted">
             Your line manager or HR contact. Left empty, the letter is
             addressed to the HR Manager.
           </span>
         </label>
 
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Your situation
           </span>
           <select
@@ -165,7 +165,7 @@ export function ResignationLetterGenerator() {
 
         {scenario === "standard" && (
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Notice period in your contract (days)
             </span>
             <input
@@ -178,14 +178,14 @@ export function ResignationLetterGenerator() {
               onChange={(e) => setContractDays(e.target.value)}
               className={inputCls}
             />
-            <span className="mt-1 block text-xs text-slate-500">
+            <span className="mt-1 block text-xs text-muted">
               The law allows 30–90 days; values outside that range are clamped.
             </span>
           </label>
         )}
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Notice starts on
           </span>
           <input
@@ -194,14 +194,14 @@ export function ResignationLetterGenerator() {
             onChange={(e) => setStartDate(e.target.value)}
             className={inputCls}
           />
-          <span className="mt-1 block text-xs text-slate-500">
+          <span className="mt-1 block text-xs text-muted">
             Usually the day you hand the letter in — it becomes the letter
             date.
           </span>
         </label>
 
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">Reason</span>
+          <span className="text-sm font-semibold text-ink-2">Reason</span>
           <select
             value={reason}
             onChange={(e) => setReason(e.target.value as ReasonKey)}
@@ -213,17 +213,17 @@ export function ResignationLetterGenerator() {
               </option>
             ))}
           </select>
-          <span className="mt-1 block text-xs text-slate-500">
+          <span className="mt-1 block text-xs text-muted">
             UAE law does not require a reason — keeping it private is
             perfectly professional.
           </span>
         </label>
 
         <fieldset className="md:col-span-2">
-          <legend className="text-sm font-semibold text-slate-700">
+          <legend className="text-sm font-semibold text-ink-2">
             Optional paragraphs
           </legend>
-          <div className="mt-2 flex flex-col gap-2.5 text-sm text-slate-700">
+          <div className="mt-2 flex flex-col gap-2.5 text-sm text-ink-2">
             <label className="flex items-center gap-2.5">
               <input
                 type="checkbox"
@@ -256,9 +256,9 @@ export function ResignationLetterGenerator() {
       </div>
 
       {/* Notice facts strip */}
-      <div className="mt-6 rounded-2xl border border-line bg-paper-2 px-5 py-4 text-sm text-slate-700">
+      <div className="mt-6 rounded-2xl border border-line bg-paper-2 px-5 py-4 text-sm text-ink-2">
         Required notice for this situation:{" "}
-        <strong className="text-slate-900">
+        <strong className="text-ink">
           {result.requiredDays} days
         </strong>{" "}
         (Article {result.articleCited}, Federal Decree-Law No. 33 of 2021)
@@ -266,7 +266,7 @@ export function ResignationLetterGenerator() {
           <>
             {" "}
             — served in full, your last working day is{" "}
-            <strong className="text-slate-900">{result.lastDay}</strong>
+            <strong className="text-ink">{result.lastDay}</strong>
           </>
         )}
         .
@@ -280,10 +280,10 @@ export function ResignationLetterGenerator() {
 
       {/* Letter preview */}
       <div className="mt-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Your letter
         </p>
-        <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-line bg-paper-2 p-6 font-sans text-[15px] leading-relaxed text-slate-800 md:p-8">
+        <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-line bg-paper-2 p-6 font-sans text-[15px] leading-relaxed text-ink md:p-8">
           {result.letter}
         </pre>
       </div>
@@ -295,14 +295,14 @@ export function ResignationLetterGenerator() {
           type="button"
           onClick={downloadTxt}
           data-event="resignation_download_click"
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-blue/50"
+          className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
         >
           <Download size={15} />
           Download .txt
         </button>
       </div>
 
-      <p className="mt-4 text-xs leading-relaxed text-slate-500">
+      <p className="mt-4 text-xs leading-relaxed text-muted">
         Your letter is built entirely in your browser — nothing you type here
         is sent to a server or stored by us. Template for the standard
         private-sector case under Federal Decree-Law No. 33 of 2021; deliver

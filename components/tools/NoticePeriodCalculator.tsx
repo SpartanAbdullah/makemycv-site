@@ -87,13 +87,13 @@ export function NoticePeriodCalculator() {
   }
 
   const inputCls =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
+    "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
-    <div className="rounded-3xl border border-line bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Your situation
           </span>
           <select
@@ -112,7 +112,7 @@ export function NoticePeriodCalculator() {
         {scenario === "standard" && (
           <>
             <label className="block">
-              <span className="text-sm font-semibold text-slate-700">
+              <span className="text-sm font-semibold text-ink-2">
                 Who is ending the contract?
               </span>
               <select
@@ -125,7 +125,7 @@ export function NoticePeriodCalculator() {
               </select>
             </label>
             <label className="block">
-              <span className="text-sm font-semibold text-slate-700">
+              <span className="text-sm font-semibold text-ink-2">
                 Notice period in your contract (days)
               </span>
               <input
@@ -138,7 +138,7 @@ export function NoticePeriodCalculator() {
                 onChange={(e) => setContractDays(e.target.value)}
                 className={inputCls}
               />
-              <span className="mt-1 block text-xs text-slate-500">
+              <span className="mt-1 block text-xs text-muted">
                 The law allows 30–90 days; values outside that range are clamped.
               </span>
             </label>
@@ -146,7 +146,7 @@ export function NoticePeriodCalculator() {
         )}
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Full monthly salary (AED)
           </span>
           <input
@@ -158,14 +158,14 @@ export function NoticePeriodCalculator() {
             onChange={(e) => setSalary(e.target.value)}
             className={inputCls}
           />
-          <span className="mt-1 block text-xs text-slate-500">
+          <span className="mt-1 block text-xs text-muted">
             Total salary <strong>including allowances</strong> — notice pay in
             lieu uses the full wage (Art. 43), unlike gratuity which uses basic.
           </span>
         </label>
 
         <label className="block">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Notice days you&rsquo;ll actually serve
           </span>
           <input
@@ -177,14 +177,14 @@ export function NoticePeriodCalculator() {
             onChange={(e) => setServed(e.target.value)}
             className={inputCls}
           />
-          <span className="mt-1 block text-xs text-slate-500">
+          <span className="mt-1 block text-xs text-muted">
             Leave 0 if no notice will be worked at all.
           </span>
         </label>
 
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">
-            Notice starts on <span className="font-normal text-slate-500">(optional — shows your last working day)</span>
+          <span className="text-sm font-semibold text-ink-2">
+            Notice starts on <span className="font-normal text-muted">(optional — shows your last working day)</span>
           </span>
           <input
             type="date"
@@ -197,14 +197,14 @@ export function NoticePeriodCalculator() {
 
       {/* Result */}
       <div className="mt-6 rounded-2xl border border-line bg-paper-2 p-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Required notice
         </p>
-        <p className="mt-2 font-display text-4xl font-extrabold text-brand-blue">
+        <p className="mt-2 font-display text-4xl font-extrabold text-accent">
           {result.requiredDays} days
         </p>
         {lastDay && (
-          <p className="mt-2 text-base text-slate-700">
+          <p className="mt-2 text-base text-ink-2">
             Serving in full, your last working day would be{" "}
             <strong>{lastDay}</strong>.
           </p>
@@ -220,14 +220,14 @@ export function NoticePeriodCalculator() {
           <>
             <dl className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">Daily wage (full salary ÷ 30)</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">Daily wage (full salary ÷ 30)</dt>
+                <dd className="font-semibold text-ink">
                   {formatAedPrecise(result.dailyWage)}
                 </dd>
               </div>
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">Unserved notice days</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">Unserved notice days</dt>
+                <dd className="font-semibold text-ink">
                   {result.unservedDays} days
                 </dd>
               </div>
@@ -257,7 +257,7 @@ export function NoticePeriodCalculator() {
 
         {/* Probation-specific realities */}
         {scenario !== "standard" && (
-          <div className="mt-4 space-y-2 text-sm leading-relaxed text-slate-600">
+          <div className="mt-4 space-y-2 text-sm leading-relaxed text-muted">
             <p>
               <strong>Gratuity during probation: AED 0.</strong> End-of-service
               gratuity needs one full year of service, so leaving in probation
@@ -289,7 +289,7 @@ export function NoticePeriodCalculator() {
         <CopyBreakdownButton getText={buildBreakdown} />
       </div>
 
-      <p className="mt-4 text-xs leading-relaxed text-slate-500">
+      <p className="mt-4 text-xs leading-relaxed text-muted">
         Estimate only, for the standard private-sector case under Federal
         Decree-Law No. 33 of 2021 (Articles 9 &amp; 43). Dismissal for gross
         misconduct under Article 44 and some free-zone contracts differ.
@@ -298,7 +298,7 @@ export function NoticePeriodCalculator() {
           href="https://www.mohre.gov.ae/"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="font-medium text-brand-blue hover:underline"
+          className="font-medium text-accent hover:underline"
         >
           MOHRE
         </a>{" "}

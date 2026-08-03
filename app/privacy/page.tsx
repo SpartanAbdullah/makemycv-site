@@ -47,10 +47,10 @@ function Section({
 }) {
   return (
     <section className="mt-10">
-      <h2 className="font-display text-2xl font-bold text-slate-800">
+      <h2 className="font-display text-2xl font-bold tracking-tight-2 text-ink">
         {title}
       </h2>
-      <div className="mt-3 space-y-3 text-sm leading-relaxed text-slate-700">
+      <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-2">
         {children}
       </div>
     </section>
@@ -61,26 +61,34 @@ export default function PrivacyPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-brand-navy py-16 md:py-20">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <h1 className="font-display text-4xl font-extrabold text-white md:text-5xl">
-            Privacy Policy
+      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-6xl px-6 text-center">
+          <h1 className="font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.1] tracking-tight-2 text-ink">
+            Privacy <span className="text-accent">Policy</span>
           </h1>
-          <p className="mt-4 text-lg text-slate-400">
+          <p className="mt-4 text-lg text-muted">
             Plain English, no legal maze. Last updated {LAST_UPDATED}.
           </p>
         </div>
       </section>
 
-      <section className="bg-white py-12 md:py-16">
+      <section className="bg-paper py-12 md:py-16">
         <div className="mx-auto max-w-3xl px-6">
           {/* The short version — mirrors the AiAnswer pattern: lead with the
               answer, details below. */}
-          <div className="rounded-2xl border border-slate-200 bg-brand-light p-6">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <div className="rounded-2xl border border-line bg-paper-2 p-6">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               The short version
             </p>
-            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-700">
+            <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-2">
               <li>
                 Your CV lives in your browser, not on our servers — no account,
                 no cloud copy.
@@ -108,7 +116,7 @@ export default function PrivacyPage() {
               or want something deleted? Email{" "}
               <a
                 href="mailto:hello@makemycv.ae"
-                className="font-semibold text-brand-blue underline underline-offset-2"
+                className="font-semibold text-accent underline underline-offset-2"
               >
                 hello@makemycv.ae
               </a>
@@ -158,7 +166,7 @@ export default function PrivacyPage() {
               The form on our{" "}
               <Link
                 href="/contact"
-                className="font-semibold text-brand-blue underline underline-offset-2"
+                className="font-semibold text-accent underline underline-offset-2"
               >
                 contact page
               </Link>{" "}
@@ -225,7 +233,7 @@ export default function PrivacyPage() {
               ATS report link), email{" "}
               <a
                 href="mailto:hello@makemycv.ae"
-                className="font-semibold text-brand-blue underline underline-offset-2"
+                className="font-semibold text-accent underline underline-offset-2"
               >
                 hello@makemycv.ae
               </a>{" "}

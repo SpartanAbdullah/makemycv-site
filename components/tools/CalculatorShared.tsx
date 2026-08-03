@@ -14,7 +14,7 @@ import { ShieldCheck, ArrowRight } from "lucide-react";
 
 export function TrustBadge() {
   return (
-    <p className="mb-4 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-[13px] font-medium text-emerald-800">
+    <p className="mb-4 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-accent/20 bg-accent-soft px-4 py-1.5 text-[13px] font-medium text-accent-deep">
       <ShieldCheck size={14} className="shrink-0" />
       No sign-up · No email · No ads · Nothing stored
     </p>
@@ -25,8 +25,8 @@ export function WageBasisExplainer() {
   return (
     <section className="bg-paper pb-4">
       <div className="mx-auto max-w-3xl px-6">
-        <div className="rounded-2xl border border-line bg-paper-2 p-5 text-sm leading-relaxed text-slate-600">
-          <strong className="text-slate-800">
+        <div className="rounded-2xl border border-line bg-paper-2 p-5 text-sm leading-relaxed text-muted">
+          <strong className="text-ink">
             Why our calculators use different salaries on purpose:
           </strong>{" "}
           end-of-service gratuity and unused-leave encashment are paid on your{" "}
@@ -63,40 +63,40 @@ export function SettlementFooter({ currentPath }: { currentPath: string }) {
     <section className="bg-paper py-10 md:py-12">
       <div className="mx-auto max-w-3xl px-6">
         <div className="rounded-3xl border border-line bg-paper-2 p-7 md:p-8">
-          <h2 className="font-display text-lg font-bold text-slate-900 md:text-xl">
+          <h2 className="font-display text-lg font-bold text-ink md:text-xl">
             Your full final settlement is more than this one number
           </h2>
-          <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-slate-700">
+          <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-ink-2">
             {settlementItems.map((item) =>
               item.href === currentPath ? (
                 <li key={item.href} className="flex gap-2.5">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
-                    <strong className="text-slate-900">{item.label}</strong>{" "}
-                    <span className="text-slate-500">— {item.note} (this calculator)</span>
+                    <strong className="text-ink">{item.label}</strong>{" "}
+                    <span className="text-muted">— {item.note} (this calculator)</span>
                   </span>
                 </li>
               ) : (
                 <li key={item.href} className="flex gap-2.5">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   <span>
                     <Link
                       href={item.href}
-                      className="inline-flex items-center gap-1 font-semibold text-brand-blue hover:underline"
+                      className="inline-flex items-center gap-1 font-semibold text-accent hover:underline"
                     >
                       {item.label}
                       <ArrowRight size={13} />
                     </Link>{" "}
-                    <span className="text-slate-500">— {item.note}</span>
+                    <span className="text-muted">— {item.note}</span>
                   </span>
                 </li>
               ),
             )}
             <li className="flex gap-2.5">
-              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
               <span>
-                <strong className="text-slate-900">Plus</strong>{" "}
-                <span className="text-slate-500">
+                <strong className="text-ink">Plus</strong>{" "}
+                <span className="text-muted">
                   — any unpaid salary days, and a one-way repatriation ticket if
                   you&rsquo;re leaving the UAE and not joining another employer
                   here.
@@ -104,7 +104,7 @@ export function SettlementFooter({ currentPath }: { currentPath: string }) {
               </span>
             </li>
           </ul>
-          <p className="mt-5 rounded-xl bg-blue-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
+          <p className="mt-5 rounded-xl bg-accent-soft px-4 py-3 text-sm leading-relaxed text-ink-2">
             Everything above is due within <strong>14 days of your last
             working day</strong> (Article 53). Paid less than the law says?
             Filing a MOHRE complaint is free — call{" "}

@@ -44,7 +44,7 @@ export const TipJar = ({
   return (
     <div
       data-context={context}
-      className={`relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card-blue card-lift ${
+      className={`relative overflow-hidden rounded-2xl border border-line bg-sheet shadow-md-soft card-lift ${
         isCompact ? "p-6" : "p-6 md:p-8"
       }`}
     >
@@ -61,7 +61,7 @@ export const TipJar = ({
 
       <div className="flex items-baseline justify-between gap-3">
         <h3
-          className={`font-display font-bold text-slate-900 ${
+          className={`font-display font-bold text-ink ${
             isCompact ? "text-lg" : "text-2xl md:text-3xl"
           }`}
         >
@@ -107,14 +107,14 @@ export const TipJar = ({
           onClick={handlePaypalClick}
           data-event="tipjar_paypal_click"
           data-context={context}
-          className="text-sm font-medium text-slate-600 underline-offset-4 hover:text-[#2563eb] hover:underline"
+          className="text-sm font-medium text-muted underline-offset-4 hover:text-accent hover:underline"
         >
           Prefer PayPal? Tip via PayPal instead &rarr;
         </a>
       </div>
 
       {/* Reassurance */}
-      <p className="mt-5 text-center text-xs leading-relaxed text-slate-500">
+      <p className="mt-5 text-center text-xs leading-relaxed text-muted">
         Built by Abdullah, a solo developer in Dubai. Ko-fi accepts cards
         without a PayPal account; tips go directly to him.
       </p>

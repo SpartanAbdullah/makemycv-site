@@ -86,12 +86,20 @@ export default function SupportPage() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="bg-white py-16 md:py-24">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h1 className="font-display text-4xl font-extrabold leading-tight text-slate-900 md:text-5xl">
-            MakeMyCV is free. Always.
+      <section className="relative overflow-hidden bg-paper py-16 md:py-24">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
+          <h1 className="font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.1] tracking-tight-2 text-ink">
+            MakeMyCV is <span className="text-accent">free</span>. Always.
           </h1>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600 md:text-xl">
+          <p className="mt-5 text-lg leading-relaxed text-muted md:text-xl">
             Built by one person in Dubai. Supported by people who find it
             useful.
           </p>
@@ -115,17 +123,17 @@ export default function SupportPage() {
               ) : (
                 <div
                   aria-hidden="true"
-                  className="flex h-24 w-24 items-center justify-center rounded-full bg-blue-100 text-3xl font-bold text-[#2563eb]"
+                  className="flex h-24 w-24 items-center justify-center rounded-full bg-accent-soft text-3xl font-bold text-accent"
                 >
                   A
                 </div>
               )}
             </div>
             <div className="text-center md:text-left">
-              <h2 className="font-display text-2xl font-bold text-slate-900 md:text-3xl">
+              <h2 className="font-display text-2xl font-bold tracking-tight-2 text-ink md:text-3xl">
                 Hi, I&apos;m Abdullah.
               </h2>
-              <div className="mt-4 space-y-4 text-base leading-relaxed text-slate-700">
+              <div className="mt-4 space-y-4 text-base leading-relaxed text-ink-2">
                 <p>
                   I&apos;m a solo developer based in Dubai. I built MakeMyCV
                   because every CV builder I tried was either built for the US
@@ -144,13 +152,13 @@ export default function SupportPage() {
       </section>
 
       {/* 3. Why support */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               Where it goes
             </p>
-            <h2 className="mt-3 font-display text-3xl font-bold text-slate-800 md:text-4xl">
+            <h2 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
               Why support
             </h2>
           </div>
@@ -158,15 +166,15 @@ export default function SupportPage() {
             {whySupport.map((item, i) => (
               <div
                 key={item.title}
-                className="card-lift rounded-2xl border border-slate-100 bg-white p-6 shadow-sm"
+                className="card-lift rounded-2xl border border-line bg-sheet p-6 shadow-sm-soft"
               >
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-sm font-bold text-[#2563eb]">
+                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent-soft text-sm font-bold text-accent">
                   {i + 1}
                 </span>
-                <h3 className="mt-4 font-display text-lg font-bold text-slate-800">
+                <h3 className="mt-4 font-display text-lg font-bold text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-brand-muted">{item.desc}</p>
+                <p className="mt-2 text-sm text-muted">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -181,12 +189,12 @@ export default function SupportPage() {
       </section>
 
       {/* 5. What you get for tipping */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="font-display text-2xl font-bold text-slate-800 md:text-3xl">
+          <h2 className="font-display text-2xl font-bold tracking-tight-2 text-ink md:text-3xl">
             What do you get for tipping?
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+          <p className="mt-5 text-lg leading-relaxed text-muted">
             Honestly? Nothing extra. This is a tip jar, not a paywall. Every
             feature is free for everyone, tip or no tip. Tipping just means
             more sleep for me and a longer runway for the tool.
@@ -197,25 +205,25 @@ export default function SupportPage() {
       {/* 6. FAQ */}
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-center font-display text-3xl font-bold text-slate-800">
+          <h2 className="text-center font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
             Frequently Asked Questions
           </h2>
           <div className="mt-10 space-y-3">
             {faq.map((item) => (
               <details
                 key={item.q}
-                className="group rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-blue-200"
+                className="group rounded-2xl border border-line bg-sheet p-6 transition-colors hover:border-line-strong"
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-slate-800">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink">
                   <span>{item.q}</span>
                   <span
                     aria-hidden="true"
-                    className="mt-0.5 text-xl leading-none text-[#2563eb] transition-transform group-open:rotate-45"
+                    className="mt-0.5 text-xl leading-none text-accent transition-transform group-open:rotate-45"
                   >
                     +
                   </span>
                 </summary>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                <p className="mt-3 text-sm leading-relaxed text-muted">
                   {item.a}
                 </p>
               </details>
@@ -225,12 +233,12 @@ export default function SupportPage() {
       </section>
 
       {/* 7. Footer CTA */}
-      <section className="bg-brand-navy dot-grid py-16 md:py-20">
+      <section className="bg-accent-deep py-16 md:py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-display text-3xl font-bold text-white md:text-4xl">
+          <h2 className="font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-white md:text-[38px]">
             Back to building.
           </h2>
-          <p className="mt-3 text-slate-400">
+          <p className="mt-3 text-white/75">
             Your CV is waiting. Free, always.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -238,13 +246,13 @@ export default function SupportPage() {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block btn-primary rounded-xl px-7 py-3.5 text-base font-bold text-white"
+              className="inline-block rounded-xl bg-white px-7 py-3.5 text-base font-bold text-accent-deep shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper"
             >
               Back to the builder &rarr;
             </a>
             <Link
               href="/blog"
-              className="inline-block rounded-xl border border-slate-600 px-7 py-3.5 text-base font-semibold text-slate-200 transition-colors hover:bg-white/10"
+              className="inline-block rounded-xl border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               Read the blog
             </Link>

@@ -80,16 +80,16 @@ export function LeaveCalculator() {
   }
 
   const inputCls =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
+    "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {/* Encashment */}
-      <div className="rounded-3xl border border-line bg-white p-6 shadow-sm md:p-8">
-        <h3 className="font-display text-lg font-bold text-slate-900">
+      <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
+        <h3 className="font-display text-lg font-bold text-ink">
           Leave salary (encashment)
         </h3>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted">
           What your unused leave days are worth at end of service.
         </p>
 
@@ -101,7 +101,7 @@ export function LeaveCalculator() {
             placeholder="e.g. 9000"
           />
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Unused leave days
             </span>
             <input
@@ -118,18 +118,18 @@ export function LeaveCalculator() {
 
         <div className="mt-5 rounded-2xl border border-line bg-paper-2 p-5">
           {!hasEncashInput ? (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted">
               Enter your basic salary and unused days to see the estimate.
             </p>
           ) : (
             <>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated leave salary
               </p>
-              <p className="mt-2 font-display text-3xl font-extrabold text-brand-blue">
+              <p className="mt-2 font-display text-3xl font-extrabold text-accent">
                 {formatAed(encash.amount)}
               </p>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-muted">
                 Daily rate {formatAedPrecise(encash.dailyWage)} (basic ÷ 30) ×{" "}
                 {unusedDays} days. Paid on top of your gratuity — accrued leave{" "}
                 <strong>cannot be forfeited</strong> (Art. 29).
@@ -140,17 +140,17 @@ export function LeaveCalculator() {
       </div>
 
       {/* Entitlement */}
-      <div className="rounded-3xl border border-line bg-white p-6 shadow-sm md:p-8">
-        <h3 className="font-display text-lg font-bold text-slate-900">
+      <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
+        <h3 className="font-display text-lg font-bold text-ink">
           Annual leave entitlement
         </h3>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-muted">
           Days accrued from your length of service — and what&rsquo;s left.
         </p>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-3">
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Years of service
             </span>
             <input
@@ -164,7 +164,7 @@ export function LeaveCalculator() {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Extra months
             </span>
             <input
@@ -179,7 +179,7 @@ export function LeaveCalculator() {
             />
           </label>
           <label className="block">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Days already taken
             </span>
             <input
@@ -196,18 +196,18 @@ export function LeaveCalculator() {
 
         <div className="mt-5 rounded-2xl border border-line bg-paper-2 p-5">
           {!hasServiceInput ? (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-muted">
               Enter your length of service to see the estimate.
             </p>
           ) : !entitlement.eligible ? (
             <>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated entitlement
               </p>
-              <p className="mt-2 font-display text-3xl font-extrabold text-slate-900">
+              <p className="mt-2 font-display text-3xl font-extrabold text-ink">
                 0 days
               </p>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-muted">
                 Statutory annual leave for full-time employees begins once you
                 complete <strong>six months</strong> of service (2 days per
                 month from then until your first anniversary).
@@ -215,16 +215,16 @@ export function LeaveCalculator() {
             </>
           ) : (
             <>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 {takenDays > 0 ? "Remaining leave" : "Estimated entitlement"}
               </p>
-              <p className="mt-2 font-display text-3xl font-extrabold text-brand-blue">
+              <p className="mt-2 font-display text-3xl font-extrabold text-accent">
                 {(takenDays > 0 ? remaining : entitlement.days)
                   .toFixed(1)
                   .replace(/\.0$/, "")}{" "}
                 days
               </p>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-muted">
                 {entitlement.basis === "monthly-2-days"
                   ? "Service between 6 and 12 months accrues 2 days per month of service."
                   : "30 days per completed year, plus 2.5 days per month for the fraction of the final year."}
@@ -244,7 +244,7 @@ export function LeaveCalculator() {
                   ))}
               </p>
               {remainingValue !== null && remaining > 0 && (
-                <p className="mt-2 text-sm text-slate-600">
+                <p className="mt-2 text-sm text-muted">
                   Worth about <strong>{formatAed(remainingValue)}</strong> at
                   your basic daily rate if paid out.
                 </p>
@@ -260,7 +260,7 @@ export function LeaveCalculator() {
           <CopyBreakdownButton getText={buildBreakdown} />
         </div>
 
-        <p className="mt-4 text-xs leading-relaxed text-slate-500">
+        <p className="mt-4 text-xs leading-relaxed text-muted">
           Estimates only, for the standard full-time private-sector case under
           Federal Decree-Law No. 33 of 2021 (Article 29) and Cabinet Resolution
           No. 1 of 2022 (Article 19). Contracts and free-zone rules can be more
@@ -270,7 +270,7 @@ export function LeaveCalculator() {
             href="https://www.mohre.gov.ae/"
             target="_blank"
             rel="noopener noreferrer nofollow"
-            className="font-medium text-brand-blue hover:underline"
+            className="font-medium text-accent hover:underline"
           >
             MOHRE
           </a>{" "}

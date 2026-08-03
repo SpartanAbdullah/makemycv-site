@@ -35,12 +35,12 @@ export default function NotFound() {
           </a>
           <Link
             href="/blog"
-            className="rounded-full border border-brand-border px-5 py-2.5 text-sm font-medium text-brand-deep"
+            className="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-2"
           >
             Read the blog
           </Link>
         </div>
-        <p className="mt-6 text-xs text-brand-muted">
+        <p className="mt-6 text-xs text-muted">
           Or go back to the{" "}
           <Link href="/" className="underline">
             homepage

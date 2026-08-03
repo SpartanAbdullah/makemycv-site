@@ -46,14 +46,14 @@ export function CopyBreakdownButton({
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-blue/50"
+        className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
       >
         {copied ? <Check size={15} className="text-emerald-600" /> : <Copy size={15} />}
         {copied ? "Copied" : label}
       </button>
       {fallbackText !== null && (
         <div className="w-full">
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-muted">
             Your browser blocked automatic copying — the breakdown is selected
             below; press Ctrl/Cmd+C.
           </p>
@@ -62,7 +62,7 @@ export function CopyBreakdownButton({
             readOnly
             value={fallbackText}
             rows={Math.min(12, fallbackText.split("\n").length + 1)}
-            className="mt-2 w-full rounded-xl border border-slate-300 bg-paper-2 p-3 font-mono text-xs text-slate-700"
+            className="mt-2 w-full rounded-xl border border-line-strong bg-paper-2 p-3 font-mono text-xs text-ink-2"
           />
         </div>
       )}

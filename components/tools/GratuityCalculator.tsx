@@ -157,14 +157,14 @@ export function GratuityCalculator() {
   }
 
   const inputCls =
-    "mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
+    "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
-    <div className="rounded-3xl border border-line bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         {/* Jurisdiction */}
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Where do you work?
           </span>
           <select
@@ -194,13 +194,13 @@ export function GratuityCalculator() {
         {/* Service entry */}
         <div className="md:col-span-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-slate-700">
+            <span className="text-sm font-semibold text-ink-2">
               Length of service
             </span>
             <button
               type="button"
               onClick={() => setEntryMode(entryMode === "dates" ? "manual" : "dates")}
-              className="text-xs font-semibold text-brand-blue hover:underline"
+              className="text-xs font-semibold text-accent hover:underline"
             >
               {entryMode === "dates"
                 ? "Enter years & months instead"
@@ -211,7 +211,7 @@ export function GratuityCalculator() {
           {entryMode === "dates" ? (
             <div className="mt-2 grid gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="text-xs font-semibold text-slate-600">
+                <span className="text-xs font-semibold text-muted">
                   Date of joining
                 </span>
                 <input
@@ -222,7 +222,7 @@ export function GratuityCalculator() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs font-semibold text-slate-600">
+                <span className="text-xs font-semibold text-muted">
                   Last working day
                 </span>
                 <input
@@ -233,7 +233,7 @@ export function GratuityCalculator() {
                 />
               </label>
               {span && (
-                <p className="text-sm text-slate-600 sm:col-span-2">
+                <p className="text-sm text-muted sm:col-span-2">
                   Service:{" "}
                   <strong>
                     {span.years} years, {span.months} months, {span.days} days
@@ -250,7 +250,7 @@ export function GratuityCalculator() {
           ) : (
             <div className="mt-2 grid gap-3 sm:grid-cols-2">
               <label className="block">
-                <span className="text-xs font-semibold text-slate-600">
+                <span className="text-xs font-semibold text-muted">
                   Years of service
                 </span>
                 <input
@@ -264,7 +264,7 @@ export function GratuityCalculator() {
                 />
               </label>
               <label className="block">
-                <span className="text-xs font-semibold text-slate-600">
+                <span className="text-xs font-semibold text-muted">
                   Extra months
                 </span>
                 <input
@@ -284,7 +284,7 @@ export function GratuityCalculator() {
 
         {/* Reason for leaving */}
         <label className="block md:col-span-2">
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-sm font-semibold text-ink-2">
             Reason for leaving
           </span>
           <select
@@ -302,12 +302,12 @@ export function GratuityCalculator() {
 
         {/* Advanced */}
         <details className="md:col-span-2 rounded-xl border border-line bg-paper-2 p-4 [&_summary::-webkit-details-marker]:hidden">
-          <summary className="cursor-pointer text-sm font-semibold text-slate-700">
+          <summary className="cursor-pointer text-sm font-semibold text-ink-2">
             Advanced: unpaid leave, part-time
           </summary>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="text-xs font-semibold text-slate-600">
+              <span className="text-xs font-semibold text-muted">
                 Voluntary unpaid leave taken (days)
               </span>
               <input
@@ -319,47 +319,47 @@ export function GratuityCalculator() {
                 onChange={(e) => setUnpaidDays(e.target.value)}
                 className={inputCls}
               />
-              <span className="mt-1 block text-[11px] leading-relaxed text-slate-500">
+              <span className="mt-1 block text-[11px] leading-relaxed text-muted">
                 Unpaid absence doesn&rsquo;t count as service. Do <strong>not</strong>{" "}
                 subtract sick leave, maternity leave or annual leave — those
                 count in full.
               </span>
             </label>
             <div>
-              <label className="flex items-center gap-2 text-xs font-semibold text-slate-600">
+              <label className="flex items-center gap-2 text-xs font-semibold text-muted">
                 <input
                   type="checkbox"
                   checked={partTime}
                   onChange={(e) => setPartTime(e.target.checked)}
-                  className="h-4 w-4 rounded border-slate-300"
+                  className="h-4 w-4 rounded border-line-strong"
                 />
                 I work part-time
               </label>
               {partTime && (
                 <div className="mt-2 grid grid-cols-2 gap-2">
                   <label className="block">
-                    <span className="text-[11px] text-slate-500">My weekly hours</span>
+                    <span className="text-[11px] text-muted">My weekly hours</span>
                     <input
                       type="number"
                       min={1}
                       placeholder="24"
                       value={myHours}
                       onChange={(e) => setMyHours(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+                      className="mt-1 w-full rounded-lg border border-line-strong bg-white px-3 py-2 text-sm"
                     />
                   </label>
                   <label className="block">
-                    <span className="text-[11px] text-slate-500">Full-time hours</span>
+                    <span className="text-[11px] text-muted">Full-time hours</span>
                     <input
                       type="number"
                       min={1}
                       placeholder="48"
                       value={ftHours}
                       onChange={(e) => setFtHours(e.target.value)}
-                      className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm"
+                      className="mt-1 w-full rounded-lg border border-line-strong bg-white px-3 py-2 text-sm"
                     />
                   </label>
-                  <p className="col-span-2 text-[11px] leading-relaxed text-slate-500">
+                  <p className="col-span-2 text-[11px] leading-relaxed text-muted">
                     Part-time gratuity is pro-rated by hours (Cabinet Res.
                     1/2022). Enter the <strong>full-time basic salary</strong>{" "}
                     for your role above so the ratio applies correctly.
@@ -374,20 +374,20 @@ export function GratuityCalculator() {
       {/* ── Result ── */}
       <div className="mt-6 rounded-2xl border border-line bg-paper-2 p-6">
         {!hasInput ? (
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-muted">
             Enter your basic salary and service dates to see an estimated
             end-of-service gratuity.
           </p>
         ) : jurisdiction === "difc" ? (
           /* DIFC — mandatory DEWS scheme, not lump-sum gratuity */
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               DIFC — DEWS scheme
             </p>
-            <p className="mt-2 font-display text-4xl font-extrabold text-brand-blue">
+            <p className="mt-2 font-display text-4xl font-extrabold text-accent">
               {formatAed(dews.contributions)}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            <p className="mt-2 text-sm leading-relaxed text-muted">
               DIFC replaced lump-sum gratuity with the funded DEWS scheme: your
               employer contributes about <strong>5.83%</strong> of basic salary
               monthly for your first five years and <strong>8.33%</strong>{" "}
@@ -397,26 +397,26 @@ export function GratuityCalculator() {
               actual pot depends on the fund&rsquo;s investment returns, so
               check your DEWS statement for the real balance.
             </p>
-            <p className="mt-3 rounded-lg bg-blue-50 px-4 py-3 text-sm text-slate-700">
+            <p className="mt-3 rounded-lg bg-accent-soft px-4 py-3 text-sm text-ink-2">
               DIFC service <strong>before Feb 2020</strong> accrued under the
               old gratuity rules and is settled separately by your employer.
             </p>
           </div>
         ) : !result.eligible ? (
           reason === "death" ? (
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted">
               Enter the service period to calculate — for death in service,
               gratuity is due to the legal heirs even under one year.
             </p>
           ) : (
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated gratuity
               </p>
-              <p className="mt-2 font-display text-3xl font-extrabold text-slate-900">
+              <p className="mt-2 font-display text-3xl font-extrabold text-ink">
                 {formatAed(0)}
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+              <p className="mt-2 text-sm leading-relaxed text-muted">
                 Gratuity needs <strong>one full year</strong> of continuous
                 service{unpaidExcluded ? " (unpaid days excluded)" : ""}.
               </p>
@@ -433,45 +433,45 @@ export function GratuityCalculator() {
           )
         ) : (
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-slate-500">
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               Estimated gratuity
             </p>
-            <p className="mt-2 font-display text-4xl font-extrabold text-brand-blue">
+            <p className="mt-2 font-display text-4xl font-extrabold text-accent">
               {formatAed(result.gratuity)}
             </p>
 
             <dl className="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">Daily wage (basic ÷ 30)</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">Daily wage (basic ÷ 30)</dt>
+                <dd className="font-semibold text-ink">
                   {formatAedPrecise(result.dailyWage)}
                 </dd>
               </div>
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">Service used</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">Service used</dt>
+                <dd className="font-semibold text-ink">
                   {serviceLabel}
                   {unpaidExcluded && (
-                    <span className="text-slate-500"> −{result.unpaidDaysExcluded}d unpaid</span>
+                    <span className="text-muted"> −{result.unpaidDaysExcluded}d unpaid</span>
                   )}
                 </dd>
               </div>
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">First 5 years (21 days/yr)</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">First 5 years (21 days/yr)</dt>
+                <dd className="font-semibold text-ink">
                   {result.first5Days.toFixed(1)} days
                 </dd>
               </div>
               <div className="flex justify-between border-b border-line py-1.5">
-                <dt className="text-slate-600">Beyond 5 years (30 days/yr)</dt>
-                <dd className="font-semibold text-slate-900">
+                <dt className="text-muted">Beyond 5 years (30 days/yr)</dt>
+                <dd className="font-semibold text-ink">
                   {result.beyond5Days.toFixed(1)} days
                 </dd>
               </div>
               {result.partTimeRatio < 1 && (
                 <div className="flex justify-between border-b border-line py-1.5 sm:col-span-2">
-                  <dt className="text-slate-600">Part-time pro-rating</dt>
-                  <dd className="font-semibold text-slate-900">
+                  <dt className="text-muted">Part-time pro-rating</dt>
+                  <dd className="font-semibold text-ink">
                     ×{(result.partTimeRatio * 100).toFixed(0)}%
                   </dd>
                 </div>
@@ -489,7 +489,7 @@ export function GratuityCalculator() {
             )}
 
             {jurisdiction === "adgm" && (
-              <p className="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
+              <p className="mt-4 rounded-lg bg-accent-soft px-4 py-3 text-sm leading-relaxed text-ink-2">
                 <strong>ADGM kept the standard lump-sum gratuity</strong> — its
                 Employment Regulations mirror the 21/30-day model, so the
                 figure above applies by default. Two ADGM differences: the
@@ -504,7 +504,7 @@ export function GratuityCalculator() {
             )}
 
             {jurisdiction === "mainland" && (
-              <p className="mt-4 rounded-lg bg-paper-2 px-4 py-3 text-[13px] leading-relaxed text-slate-600">
+              <p className="mt-4 rounded-lg bg-paper-2 px-4 py-3 text-[13px] leading-relaxed text-muted">
                 One exception to know: if your employer enrolled you in
                 MOHRE&rsquo;s <strong>voluntary alternative end-of-service
                 savings scheme</strong>, gratuity stops accruing from the
@@ -524,7 +524,7 @@ export function GratuityCalculator() {
               </p>
             )}
             {reason === "misconduct" && (
-              <p className="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
+              <p className="mt-4 rounded-lg bg-accent-soft px-4 py-3 text-sm leading-relaxed text-ink-2">
                 Even after an Article 44 dismissal you{" "}
                 <strong>generally keep your gratuity</strong> — it can only be
                 withheld where the law specifically allows it (e.g. a court
@@ -533,7 +533,7 @@ export function GratuityCalculator() {
               </p>
             )}
             {reason === "death" && (
-              <p className="mt-4 rounded-lg bg-blue-50 px-4 py-3 text-sm leading-relaxed text-slate-700">
+              <p className="mt-4 rounded-lg bg-accent-soft px-4 py-3 text-sm leading-relaxed text-ink-2">
                 For death in service, the accrued gratuity is due to the{" "}
                 <strong>legal heirs regardless of service length</strong>, and
                 UAE law requires employers to settle the family&rsquo;s dues
@@ -552,14 +552,14 @@ export function GratuityCalculator() {
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-blue/50"
+            className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
           >
             <Printer size={15} /> Print / save as PDF
           </button>
         </div>
       )}
 
-      <p className="mt-4 text-xs leading-relaxed text-slate-500">
+      <p className="mt-4 text-xs leading-relaxed text-muted">
         Estimate only, for the standard private-sector case under Federal
         Decree-Law No. 33 of 2021.{" "}
         {jurisdiction === "difc" ? (
@@ -579,7 +579,7 @@ export function GratuityCalculator() {
           href="https://www.mohre.gov.ae/"
           target="_blank"
           rel="noopener noreferrer nofollow"
-          className="font-medium text-brand-blue hover:underline"
+          className="font-medium text-accent hover:underline"
         >
           MOHRE
         </a>{" "}

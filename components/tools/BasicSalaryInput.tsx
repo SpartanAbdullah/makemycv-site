@@ -46,7 +46,7 @@ export function BasicSalaryInput({
   return (
     <div>
       <label className="block">
-        <span className="text-sm font-semibold text-slate-700">{label}</span>
+        <span className="text-sm font-semibold text-ink-2">{label}</span>
         {!grossMode && (
           <>
             <input
@@ -56,9 +56,9 @@ export function BasicSalaryInput({
               placeholder={placeholder}
               value={value}
               onChange={(e) => onChange(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+              className="mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
             />
-            <span className="mt-1 block text-xs text-slate-500">
+            <span className="mt-1 block text-xs text-muted">
               The <strong>Basic</strong> line on your payslip / MOHRE contract —{" "}
               <strong>not</strong> gross. Exclude housing, transport,
               allowances, commission and bonus. If it changed over the years,
@@ -72,7 +72,7 @@ export function BasicSalaryInput({
         <div className="mt-2 rounded-xl border border-amber-200 bg-amber-50/60 p-4">
           <div className="grid gap-3 sm:grid-cols-2">
             <label className="block">
-              <span className="text-xs font-semibold text-slate-700">
+              <span className="text-xs font-semibold text-ink-2">
                 Gross monthly salary (AED)
               </span>
               <input
@@ -82,11 +82,11 @@ export function BasicSalaryInput({
                 placeholder="e.g. 16000"
                 value={gross}
                 onChange={(e) => applyGross(e.target.value, basicPct)}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+                className="mt-1.5 w-full rounded-lg border border-line-strong bg-white px-3 py-2.5 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
               />
             </label>
             <label className="block">
-              <span className="text-xs font-semibold text-slate-700">
+              <span className="text-xs font-semibold text-ink-2">
                 Basic as % of gross
               </span>
               <input
@@ -96,16 +96,16 @@ export function BasicSalaryInput({
                 max={100}
                 value={basicPct}
                 onChange={(e) => applyGross(gross, e.target.value)}
-                className="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-slate-900 outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20"
+                className="mt-1.5 w-full rounded-lg border border-line-strong bg-white px-3 py-2.5 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20"
               />
-              <span className="mt-1 block text-[11px] text-slate-500">
+              <span className="mt-1 block text-[11px] text-muted">
                 Check your contract — UAE packages commonly set basic at
                 35–60% of gross.
               </span>
             </label>
           </div>
           {value !== "" && parseFloat(value) > 0 && (
-            <p className="mt-3 text-sm text-slate-700">
+            <p className="mt-3 text-sm text-ink-2">
               Estimated basic used: <strong>{formatAed(parseFloat(value))}</strong>
               {" "}— the real figure is on your contract; if your true basic is
               lower, the payout will be lower.
@@ -125,7 +125,7 @@ export function BasicSalaryInput({
             setGross("");
           }
         }}
-        className="mt-2 text-xs font-semibold text-brand-blue hover:underline"
+        className="mt-2 text-xs font-semibold text-accent hover:underline"
       >
         {grossMode
           ? "I know my exact basic salary"

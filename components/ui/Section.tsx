@@ -5,8 +5,8 @@ type PaddingY = "content" | "hero";
 
 const bgs: Record<Bg, string> = {
   dark: "text-white",
-  paper: "bg-paper text-slate-900",
-  "paper-2": "bg-paper-2 text-slate-900",
+  paper: "bg-paper text-ink",
+  "paper-2": "bg-paper-2 text-ink",
 };
 
 const paddings: Record<PaddingY, string> = {

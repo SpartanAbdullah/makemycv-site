@@ -11,15 +11,23 @@ export const metadata: Metadata = {
 
 export default function ThanksPage() {
   return (
-    <section className="min-h-[60vh] bg-brand-navy dot-grid py-20 md:py-28">
-      <div className="mx-auto max-w-2xl px-6 text-center">
-        <h1 className="font-display text-5xl font-extrabold text-white md:text-6xl">
-          Thank you &#x1F64F;
+    <section className="relative min-h-[60vh] overflow-hidden bg-paper py-20 md:py-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+        }}
+      />
+      <div className="relative mx-auto max-w-2xl px-6 text-center">
+        <h1 className="font-display text-[clamp(40px,5vw,64px)] font-bold leading-[1.1] tracking-tight-2 text-ink">
+          <span className="text-accent">Thank you</span> &#x1F64F;
         </h1>
-        <p className="mt-6 text-lg text-slate-300">
+        <p className="mt-6 text-lg text-ink-2">
           Really &mdash; thank you. Your tip keeps MakeMyCV free for everyone.
         </p>
-        <p className="mt-4 text-base italic text-slate-400">
+        <p className="mt-4 text-base italic text-muted">
           If you have a moment, sharing the tool with someone job-hunting in
           the UAE helps just as much as a tip. &mdash; Abdullah
         </p>
@@ -34,7 +42,7 @@ export default function ThanksPage() {
           </a>
           <Link
             href="/blog"
-            className="inline-block rounded-xl border border-slate-600 px-7 py-3.5 text-base font-semibold text-slate-200 transition-colors hover:bg-white/10"
+            className="inline-block rounded-xl border border-line text-ink transition-colors hover:border-line-strong hover:bg-sheet px-7 py-3.5 text-base font-semibold"
           >
             Read the blog
           </Link>

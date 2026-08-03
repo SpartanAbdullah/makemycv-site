@@ -139,18 +139,26 @@ export default function CvExamplesUaePage() {
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumb} />
 
-      {/* Hero */}
-      <section className="bg-brand-navy py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-400/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-300">
+      {/* Hero — warm-paper skin (Part 3 reskin) */}
+      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
+          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             <ScanSearch size={13} /> Six sectors · Free to copy
           </p>
-          <h1 className="mt-5 font-display text-4xl font-extrabold text-white md:text-5xl">
+          <h1 className="mt-5 text-balance font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-tight-2 text-ink">
             UAE CV Examples:
             <br />
-            <span className="text-brand-blue">Weak vs Strong, by Sector</span>
+            <span className="text-accent">Weak vs Strong, by Sector</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
             The same bullet, before and after — with the AED figures, scale and
             UAE context that make recruiters stop scrolling.
           </p>
@@ -178,10 +186,10 @@ export default function CvExamplesUaePage() {
           <div className="mt-10 space-y-10">
             {sectors.map((s) => (
               <article key={s.name}>
-                <h2 className="font-display text-2xl font-bold tracking-[-0.015em] text-slate-900">
+                <h2 className="font-display text-2xl font-bold tracking-[-0.015em] text-ink">
                   {s.name}
                 </h2>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-muted">
                   Example role: {s.role}
                 </p>
 
@@ -191,7 +199,7 @@ export default function CvExamplesUaePage() {
                       <X size={14} strokeWidth={2.5} /> Weak — a duty, not an
                       achievement
                     </p>
-                    <p className="mt-3 text-[15px] leading-relaxed text-slate-700">
+                    <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
                       &ldquo;{s.weak}&rdquo;
                     </p>
                   </div>
@@ -200,13 +208,13 @@ export default function CvExamplesUaePage() {
                       <Check size={14} strokeWidth={2.5} /> Strong — quantified
                       &amp; UAE-anchored
                     </p>
-                    <p className="mt-3 text-[15px] leading-relaxed text-slate-800">
+                    <p className="mt-3 text-[15px] leading-relaxed text-ink">
                       &ldquo;{s.strong}&rdquo;
                     </p>
                   </div>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                  <strong className="text-slate-800">Why it works:</strong>{" "}
+                <p className="mt-3 text-sm leading-relaxed text-muted">
+                  <strong className="text-ink">Why it works:</strong>{" "}
                   {s.why}
                 </p>
               </article>
@@ -219,8 +227,7 @@ export default function CvExamplesUaePage() {
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-slate-900 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
           >
             Writing UAE CV bullets — questions, answered
           </h2>
@@ -228,12 +235,12 @@ export default function CvExamplesUaePage() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-line bg-white p-6"
+                className="rounded-2xl border border-line bg-sheet p-6"
               >
-                <dt className="font-display text-base font-bold text-slate-900">
+                <dt className="font-display text-base font-bold text-ink">
                   {item.q}
                 </dt>
-                <dd className="mt-2 text-[15px] leading-relaxed text-slate-600">
+                <dd className="mt-2 text-[15px] leading-relaxed text-muted">
                   {item.a}
                 </dd>
               </div>
@@ -249,17 +256,17 @@ export default function CvExamplesUaePage() {
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
             data-event="cv_examples_cross_link_click"
             data-cta-location="builder"
           >
-            <FileCheck2 className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <FileCheck2 className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Put these into a CV{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Free UAE CV builder with an AI bullet rewriter designed not to
                 invent facts — you review every suggestion.
               </span>
@@ -267,15 +274,15 @@ export default function CvExamplesUaePage() {
           </a>
           <Link
             href="/resume-checker"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <ScanSearch className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <ScanSearch className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Check your rewritten CV{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Free ATS checker — 60+ UAE-tuned checks in ~30 seconds.
               </span>
             </span>

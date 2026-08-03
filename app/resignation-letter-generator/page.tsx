@@ -139,16 +139,25 @@ export default function ResignationLetterGeneratorPage() {
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumb} />
 
-      {/* Hero */}
-      <section className="bg-brand-navy py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-400/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-300">
+      {/* Hero — warm-paper skin (Part 3 reskin) */}
+      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
+          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             <FileSignature size={13} /> UAE Labour Law · Free
           </p>
-          <h1 className="mt-5 font-display text-4xl font-extrabold text-white md:text-5xl">
-            UAE Resignation Letter Generator
+          <h1 className="mt-5 text-balance font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-tight-2 text-ink">
+            UAE <span className="text-accent">Resignation Letter</span>{" "}
+            Generator
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
             A professional resignation letter with the correct notice period
             under Federal Decree-Law No. 33 of 2021 — written in your browser,
             in under a minute. Free, no sign-up.
@@ -177,12 +186,11 @@ export default function ResignationLetterGeneratorPage() {
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-slate-900 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
           >
             How to resign properly in the UAE
           </h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-2 md:text-lg">
             <p>
               UAE law requires resignation to be{" "}
               <strong>notified in writing</strong> (Article 43). The notice you
@@ -209,14 +217,14 @@ export default function ResignationLetterGeneratorPage() {
               a year or more of service you are owed{" "}
               <Link
                 href="/gratuity-calculator"
-                className="font-semibold text-brand-blue hover:underline"
+                className="font-semibold text-accent hover:underline"
               >
                 gratuity on your basic wage
               </Link>
               , plus{" "}
               <Link
                 href="/annual-leave-calculator"
-                className="font-semibold text-brand-blue hover:underline"
+                className="font-semibold text-accent hover:underline"
               >
                 encashment of unused annual leave
               </Link>{" "}
@@ -225,7 +233,7 @@ export default function ResignationLetterGeneratorPage() {
               notice allows, the{" "}
               <Link
                 href="/notice-period-calculator"
-                className="font-semibold text-brand-blue hover:underline"
+                className="font-semibold text-accent hover:underline"
               >
                 notice period calculator
               </Link>{" "}
@@ -238,7 +246,7 @@ export default function ResignationLetterGeneratorPage() {
               before booking anything.
             </p>
           </div>
-          <p className="mt-4 text-xs text-slate-400">
+          <p className="mt-4 text-xs text-muted">
             Legal basis shared with our Notice Period Calculator — Federal
             Decree-Law 33/2021, Articles 9, 43 &amp; 53, last verified 12 July
             2026.
@@ -250,8 +258,7 @@ export default function ResignationLetterGeneratorPage() {
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-slate-900 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
           >
             Resigning in the UAE — questions, answered
           </h2>
@@ -259,12 +266,12 @@ export default function ResignationLetterGeneratorPage() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-line bg-white p-6"
+                className="rounded-2xl border border-line bg-sheet p-6"
               >
-                <dt className="font-display text-base font-bold text-slate-900">
+                <dt className="font-display text-base font-bold text-ink">
                   {item.q}
                 </dt>
-                <dd className="mt-2 text-[15px] leading-relaxed text-slate-600">
+                <dd className="mt-2 text-[15px] leading-relaxed text-muted">
                   {item.a}
                 </dd>
               </div>
@@ -278,30 +285,30 @@ export default function ResignationLetterGeneratorPage() {
         <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/notice-period-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <Timer className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <Timer className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Notice Period Calculator{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Notice days and the cost of leaving early.
               </span>
             </span>
           </Link>
           <Link
             href="/gratuity-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <Banknote className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <Banknote className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Gratuity Calculator{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 What you&rsquo;re owed when you leave.
               </span>
             </span>
@@ -310,32 +317,32 @@ export default function ResignationLetterGeneratorPage() {
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
             data-event="resignation_cross_link_click"
             data-cta-location="builder"
           >
-            <FileCheck2 className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <FileCheck2 className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Build your ATS-ready CV{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Resigning for a better role? Start the CV now.
               </span>
             </span>
           </a>
           <Link
             href="/jd-match"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <FileSignature className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <FileSignature className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 JD Match{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Check your CV against the next job first.
               </span>
             </span>

@@ -233,12 +233,12 @@ export default function ResumeCheckerPage() {
             What is an ATS?
           </p>
           <h2
-            className="mt-3 font-display font-bold text-slate-900 tracking-[-0.02em]"
+            className="mt-3 font-display font-bold text-ink tracking-[-0.02em]"
             style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
           >
             The software UAE employers use to filter your CV before a human sees it.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-ink-2 md:text-lg">
             An <strong>Applicant Tracking System (ATS)</strong> is the software
             UAE employers &mdash; including <strong>Emaar</strong>,{" "}
             <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}

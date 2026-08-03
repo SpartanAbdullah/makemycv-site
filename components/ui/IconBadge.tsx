@@ -8,7 +8,7 @@ const tones: Record<Tone, string> = {
   green: "bg-emerald-50 text-emerald-600",
   red: "bg-red-50 text-red-600",
   amber: "bg-amber-50 text-amber-600",
-  slate: "bg-slate-100 text-slate-700",
+  slate: "bg-paper-2 text-ink-2",
 };
 
 const sizes: Record<Size, { box: string; icon: number }> = {

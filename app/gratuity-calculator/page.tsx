@@ -161,16 +161,24 @@ export default function GratuityCalculatorPage() {
       <JsonLd data={faqSchema} />
       <JsonLd data={breadcrumb} />
 
-      {/* Hero */}
-      <section className="bg-brand-navy py-16 md:py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <p className="inline-flex items-center gap-2 rounded-full border border-blue-400/25 bg-blue-400/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-blue-300">
+      {/* Hero — warm-paper skin (Part 3 reskin) */}
+      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-3xl px-6 text-center">
+          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             <Calculator size={13} /> UAE Labour Law · Free
           </p>
-          <h1 className="mt-5 font-display text-4xl font-extrabold text-white md:text-5xl">
-            UAE Gratuity Calculator
+          <h1 className="mt-5 text-balance font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-tight-2 text-ink">
+            UAE <span className="text-accent">Gratuity</span> Calculator
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-300">
+          <p className="mx-auto mt-4 max-w-xl text-lg text-muted">
             Estimate your end-of-service benefit under the UAE Labour Law
             (Federal Decree-Law No. 33 of 2021) — free, instant, no sign-up.
           </p>
@@ -201,12 +209,11 @@ export default function GratuityCalculatorPage() {
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-slate-900 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
           >
             How UAE end-of-service gratuity is calculated
           </h2>
-          <div className="mt-5 space-y-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-2 md:text-lg">
             <p>
               For a full-time private-sector employee, UAE end-of-service
               gratuity is based on your <strong>basic salary</strong> — the
@@ -231,7 +238,7 @@ export default function GratuityCalculatorPage() {
           </div>
 
           {/* Worked examples */}
-          <h3 className="mt-12 font-display text-xl font-bold text-slate-900">
+          <h3 className="mt-12 font-display text-xl font-bold text-ink">
             Worked examples
           </h3>
           <div className="mt-5 space-y-4">
@@ -240,22 +247,22 @@ export default function GratuityCalculatorPage() {
                 key={ex.label}
                 className="rounded-2xl border border-line bg-paper-2 p-5"
               >
-                <p className="font-semibold text-slate-900">{ex.label}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600">
+                <p className="font-semibold text-ink">{ex.label}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
                   {ex.steps}
                 </p>
-                <p className="mt-2 font-display text-lg font-bold text-brand-blue">
+                <p className="mt-2 font-display text-lg font-bold text-accent">
                   = {ex.result}
                 </p>
               </div>
             ))}
           </div>
-          <p className="mt-4 text-sm text-slate-500">
+          <p className="mt-4 text-sm text-muted">
             Figures are illustrative estimates for the standard case. Free-zone
             schemes (e.g. DIFC&rsquo;s DEWS), domestic workers and Article 44
             dismissals can differ — confirm your exact entitlement with MOHRE.
           </p>
-          <p className="mt-2 text-xs text-slate-400">
+          <p className="mt-2 text-xs text-muted">
             Legal basis last verified 12 July 2026 against Federal Decree-Law
             33/2021 (consolidated — Arts. 29/43/51 unchanged by the 2022 and
             2023 amendments), Cabinet Resolution 1/2022, and ADGM Employment
@@ -268,8 +275,7 @@ export default function GratuityCalculatorPage() {
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-slate-900 tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)", lineHeight: 1.2 }}
+            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
           >
             UAE gratuity — questions, answered
           </h2>
@@ -277,12 +283,12 @@ export default function GratuityCalculatorPage() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-line bg-white p-6"
+                className="rounded-2xl border border-line bg-sheet p-6"
               >
-                <dt className="font-display text-base font-bold text-slate-900">
+                <dt className="font-display text-base font-bold text-ink">
                   {item.q}
                 </dt>
-                <dd className="mt-2 text-[15px] leading-relaxed text-slate-600">
+                <dd className="mt-2 text-[15px] leading-relaxed text-muted">
                   {item.a}
                 </dd>
               </div>
@@ -296,30 +302,30 @@ export default function GratuityCalculatorPage() {
         <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/notice-period-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <Calculator className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <Calculator className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Notice Period Calculator{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Leaving? Check your notice days and pay in lieu.
               </span>
             </span>
           </Link>
           <Link
             href="/annual-leave-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <Calculator className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <Calculator className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Annual Leave Calculator{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Entitlement plus unused-leave payout.
               </span>
             </span>
@@ -328,32 +334,32 @@ export default function GratuityCalculatorPage() {
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
             data-event="gratuity_cross_link_click"
             data-cta-location="builder"
           >
-            <FileCheck2 className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <FileCheck2 className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Build your ATS-ready CV{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Free UAE CV builder — visa-ready fields, no sign-up.
               </span>
             </span>
           </a>
           <Link
             href="/resume-checker"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-brand-blue/40"
+            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
           >
-            <Calculator className="mt-0.5 shrink-0 text-brand-blue" size={22} />
+            <Calculator className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
-              <span className="flex items-center gap-1 font-display font-bold text-slate-900">
+              <span className="flex items-center gap-1 font-display font-bold text-ink">
                 Check your CV against UAE ATS{" "}
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
-              <span className="mt-1 block text-sm text-slate-600">
+              <span className="mt-1 block text-sm text-muted">
                 Free ATS checker — 60+ UAE-tuned checks in ~30 seconds.
               </span>
             </span>

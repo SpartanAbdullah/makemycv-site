@@ -46,12 +46,12 @@ export default function Error({
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-brand-border px-5 py-2.5 text-sm font-medium text-brand-deep"
+            className="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-2"
           >
             Open the CV builder
           </a>
         </div>
-        <p className="mt-6 text-xs text-brand-muted">
+        <p className="mt-6 text-xs text-muted">
           Keeps happening? Email{" "}
           <a href="mailto:hello@makemycv.ae" className="underline">
             hello@makemycv.ae

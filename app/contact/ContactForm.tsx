@@ -7,9 +7,9 @@ import { CheckCircle2 } from "lucide-react";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-slate-400 outline-none focus:border-[#2563eb] focus:ring-4 focus:ring-blue-100 transition-all";
+  "w-full rounded-xl border border-line bg-sheet px-4 py-3 text-sm text-ink placeholder:text-muted outline-none focus:border-accent focus:ring-4 focus:ring-accent-soft transition-all";
 const labelClass =
-  "block mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-slate-500";
+  "block mb-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted";
 
 export const ContactForm = () => {
   const [formState, setFormState] = useState<FormState>("idle");
@@ -122,13 +122,13 @@ export const ContactForm = () => {
       {/* Consent notice \u2014 the details entered above go to Formspree and then
           our inbox; the Privacy Policy's "Contact form" section is the page
           this line points at. Keep the two in sync. */}
-      <p className="text-center text-xs leading-relaxed text-slate-500">
+      <p className="text-center text-xs leading-relaxed text-muted">
         By clicking &ldquo;Send Message&rdquo;, you consent to us using the
         details you&apos;ve entered to respond to your enquiry, as described in
         our{" "}
         <Link
           href="/privacy"
-          className="font-semibold text-slate-600 underline underline-offset-2 hover:text-slate-800"
+          className="font-semibold text-ink-2 underline underline-offset-2 hover:text-accent"
         >
           Privacy Policy
         </Link>

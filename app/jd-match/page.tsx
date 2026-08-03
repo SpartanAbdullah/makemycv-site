@@ -135,30 +135,32 @@ export default function JdMatchPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* HERO */}
-      <section
-        className="relative overflow-hidden text-white"
-        style={{
-          background:
-            "linear-gradient(135deg, #0a0f1e 0%, #111827 50%, #0a0f1e 100%)",
-        }}
-      >
-        <div className="hero-spotlight" aria-hidden="true" />
+      {/* HERO — warm-paper skin (Part 3 reskin): the last navy hero on a
+          money page; same pattern as the checker/homepage heroes. */}
+      <section className="relative overflow-hidden bg-paper">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 50% 55% at 76% 32%, rgba(14, 124, 74, 0.08) 0%, transparent 70%)",
+          }}
+        />
 
-        <div className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-6 py-20 md:py-28 lg:grid-cols-2 lg:gap-10">
+        <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-12 md:gap-16 md:px-10 md:py-24 lg:grid-cols-2 lg:gap-10 lg:py-[104px] xl:px-14">
           {/* Copy */}
           <div className="text-center lg:text-left">
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-eyebrow text-blue-400">
-              <MapPin size={14} />
+            <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
+              <MapPin size={13} aria-hidden="true" />
               JD Match · Free · Built for UAE hiring
             </p>
 
-            <h1 className="mt-5 font-display text-[40px] font-extrabold leading-[1.06] tracking-tight-2 text-white md:text-[58px]">
+            <h1 className="mt-5 font-display text-[40px] font-bold leading-[1.06] tracking-tight-2 text-ink md:text-[58px]">
               See how your CV matches{" "}
-              <span className="text-blue-400">any UAE job.</span>
+              <span className="text-accent">any UAE job.</span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-slate-300 md:text-xl lg:mx-0">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted md:text-xl lg:mx-0">
               Paste a job description and get an instant match score — plus a
               green/amber heatmap on the real job ad showing every requirement
               you cover and every gap to close. Free, with no sign-up.
@@ -176,15 +178,15 @@ export default function JdMatchPage() {
               >
                 Build &amp; match my CV — Free
               </Button>
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-muted">
                 Build or import a CV, then paste the job
               </span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-              <TrustChip icon={ShieldCheck} label="Honest AI — never invents" tone="dark" />
-              <TrustChip icon={Lock} label="Draft saved in your browser" tone="dark" />
-              <TrustChip icon={Highlighter} label="Heatmap on the real JD" tone="dark" />
+              <TrustChip icon={ShieldCheck} label="Honest AI — never invents" />
+              <TrustChip icon={Lock} label="Draft saved in your browser" />
+              <TrustChip icon={Highlighter} label="Heatmap on the real JD" />
             </div>
           </div>
 
