@@ -27,7 +27,6 @@ import {
 } from "@/lib/seo";
 
 const AUTHOR_PAGE_PATH = "/author/makemycv-team";
-const ABOUT_PAGE_PATH = "/about";
 const CONTACT_EMAIL = "hello@makemycv.ae";
 const LOGO_URL = absoluteUrl(ORG_LOGO);
 
@@ -151,7 +150,7 @@ export function webApplicationSchema() {
     operatingSystem: "Web browser",
     browserRequirements: "Requires JavaScript",
     description:
-      "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, Emirates ID, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall, data stays in the browser.",
+      "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, Emirates ID, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall — your CV draft is saved in your browser, not an account.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -165,7 +164,7 @@ export function webApplicationSchema() {
       "Instant PDF/DOCX export",
       "Live preview",
       "AI bullet-point rewriter",
-      "Browser-only data (no accounts)",
+      "Browser-local draft (no accounts)",
     ],
     publisher: { "@id": ORGANIZATION_ID },
     isPartOf: { "@id": WEBSITE_ID },
@@ -254,11 +253,7 @@ export function postSchema(post: Post) {
     description: post.excerpt,
     datePublished,
     dateModified,
-    author: {
-      "@type": "Person",
-      name: post.author,
-      url: canonicalUrl(ABOUT_PAGE_PATH),
-    },
+    author: { "@id": `${canonicalUrl(AUTHOR_PAGE_PATH)}#author` },
     publisher: { "@id": ORGANIZATION_ID },
     mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
     image: {
@@ -299,6 +294,7 @@ export function postSchema(post: Post) {
 
   const author = {
     "@type": "Person",
+    "@id": `${canonicalUrl(AUTHOR_PAGE_PATH)}#author`,
     name: post.author,
     url: canonicalUrl(AUTHOR_PAGE_PATH),
     description:

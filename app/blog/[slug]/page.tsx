@@ -132,6 +132,12 @@ export default async function PostPage({ params }: Props) {
             </Link>
             <span>&middot;</span>
             <span>{formatDate(post.date)}</span>
+            {post.dateModified && post.dateModified !== post.date && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>Updated {formatDate(post.dateModified)}</span>
+              </>
+            )}
             <span>&middot;</span>
             <span>{post.readingTime ?? 5} min read</span>
           </div>
