@@ -31,7 +31,9 @@ export const Navbar = () => {
         scrolled ? "shadow-sm" : ""
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
+      {/* Container mirrors the hero: 1400px, same responsive gutters — the
+          nav must not read narrower than the sections under it. */}
+      <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-3.5 md:px-10 xl:px-14">
         {/* Logo — same lockup as the builder app (source: makemycv-app/public/logos) */}
         <Link href="/" className="flex items-center" aria-label="MakeMyCV — home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,12 +42,12 @@ export const Navbar = () => {
             alt="makemycv.ae"
             width={399}
             height={100}
-            className="h-7 w-auto md:h-8"
+            className="h-8 w-auto md:h-9"
           />
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-6 lg:flex">
+        <div className="hidden items-center gap-7 lg:flex">
           {links.map((link) => {
             const isActive = pathname === link.href;
             return (
