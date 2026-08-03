@@ -60,7 +60,7 @@ export function HeroSection() {
             {[
               "Free — no sign-up, no watermark",
               "Survives the 7-second recruiter scan",
-              "Your data never leaves your browser",
+              "Your CV stays on your device",
             ].map((item) => (
               <li
                 key={item}

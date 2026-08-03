@@ -1,7 +1,11 @@
 import { CreditCard, Lock, Zap } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function FinalCTA() {
+export function FinalCTA({
+  eventName = "home_final_cta_click",
+}: {
+  eventName?: string;
+}) {
   return (
     <section className="bg-accent-deep text-white">
       <Reveal className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
@@ -21,7 +25,7 @@ export function FinalCTA() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
-            data-event="home_final_cta_click"
+            data-event={eventName}
           >
             Build My CV — Free
             <span aria-hidden="true" className="ml-2">
@@ -33,7 +37,7 @@ export function FinalCTA() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/75">
           <span className="inline-flex items-center gap-1.5">
             <Lock size={14} className="text-gold-light" />
-            Your data stays in your browser
+            Your CV stays on your device
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Zap size={14} className="text-gold-light" />

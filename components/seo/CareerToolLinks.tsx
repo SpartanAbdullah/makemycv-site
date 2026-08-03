@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   ArrowRight,
   Banknote,
@@ -65,13 +66,18 @@ const tools = [
 
 export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
   const visible = tools.filter((t) => t.href !== currentPath);
+  // On tool pages 6 cards render (3/3 at lg); the homepage shows all 7,
+  // where 4 columns give 4/3 instead of an orphaned 3/3/1.
+  const lgCols = visible.length >= 7 ? "lg:grid-cols-4" : "lg:grid-cols-3";
   return (
     <section className="bg-paper-2 py-14 md:py-16">
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
-          More free UAE career tools from MakeMyCV
-        </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionHeading
+          align="left"
+          eyebrow="Free tools"
+          title="More free UAE career tools from MakeMyCV."
+        />
+        <div className={`mt-8 grid gap-4 sm:grid-cols-2 ${lgCols}`}>
           {visible.map((t) => (
             <Link
               key={t.href}

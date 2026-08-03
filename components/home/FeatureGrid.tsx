@@ -16,8 +16,8 @@ const differentiators = [
     body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software before a human reads anything. Our templates keep single-column, parser-safe structure so your CV arrives intact, and you can verify it with the free ATS checker.",
   },
   {
-    claim: "Your CV never leaves your browser.",
-    body: "No account, no uploads, no database. Everything is built and stored on your device, and the PDF downloads straight from your browser. Close the tab and it's gone — nothing to leak, nothing to sell.",
+    claim: "Your CV stays on your device.",
+    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI bullet rewriter sends only the text you ask it to improve, nothing else. Nothing to leak, nothing to sell.",
   },
 ];
 

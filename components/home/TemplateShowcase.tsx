@@ -46,25 +46,17 @@ export function TemplateShowcase() {
           header and first card share a left edge; snap padding mirrors the
           gutters. */}
       <div className="mx-auto mt-10 w-full max-w-[1400px] md:mt-12">
-        <div className="scrollbar-none flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 pb-4 pt-2 md:scroll-pl-10 md:px-10 xl:scroll-pl-14 xl:px-14">
+        <div
+          tabIndex={0}
+          role="region"
+          aria-label="CV template gallery — scrolls horizontally"
+          className="scrollbar-none flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-pl-6 px-6 pb-4 pt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent md:scroll-pl-10 md:px-10 xl:scroll-pl-14 xl:px-14"
+        >
           {featured.map((t) => (
             <article
               key={t.slug}
               className="group relative w-[236px] shrink-0 snap-start md:w-[272px]"
             >
-              {/* Photo templates ship a second, photo-less capture; a
-                  CSS-only checkbox flips the card between the two (zero
-                  client JS). It lives at article level so both the image
-                  (group-has-checked) and the visible segmented control
-                  below the card can react to it. */}
-              {t.tags.includes("Photo") && (
-                <input
-                  type="checkbox"
-                  id={`nophoto-${t.slug}`}
-                  className="peer sr-only"
-                  aria-label={`Show the ${t.name} template without photo`}
-                />
-              )}
               <div
                 className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:shadow-lg-soft"
                 style={{ aspectRatio: "1 / 1.414", boxShadow: "var(--shadow-sm-soft)" }}
@@ -80,7 +72,7 @@ export function TemplateShowcase() {
                       width={544}
                       height={769}
                       loading="lazy"
-                      className="h-full w-full object-cover object-top group-has-checked:hidden"
+                      className="h-full w-full object-cover object-top group-has-[.nophoto-radio:checked]:hidden"
                     />
                     {t.tags.includes("Photo") && (
                       // eslint-disable-next-line @next/next/no-img-element -- fixed-size WebP thumbs; sized + lazy
@@ -90,7 +82,7 @@ export function TemplateShowcase() {
                         width={544}
                         height={769}
                         loading="lazy"
-                        className="hidden h-full w-full object-cover object-top group-has-checked:block"
+                        className="hidden h-full w-full object-cover object-top group-has-[.nophoto-radio:checked]:block"
                       />
                     )}
                   </>
@@ -113,7 +105,11 @@ export function TemplateShowcase() {
                 </div>
 
                 {/* Hover / focus overlay (desktop) — keyboard reveals it too. */}
-                <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent p-4 opacity-0 transition-opacity duration-150 group-focus-within:opacity-100 group-hover:opacity-100 md:flex md:pointer-events-auto">
+                {/* pointer-events follow visibility — an opacity-0 overlay
+                    must never eat taps (iPad falls in md+). Focus reveal is
+                    scoped to the overlay's own links so focusing the photo
+                    radios below doesn't summon it. */}
+                <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent p-4 opacity-0 transition-opacity duration-150 focus-within:pointer-events-auto focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 md:flex">
                   <Link
                     href={`/templates#${t.slug}`}
                     className="rounded-lg bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-md transition-colors duration-150 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
@@ -150,6 +146,12 @@ export function TemplateShowcase() {
                     <Check size={12} strokeWidth={3} aria-hidden="true" />
                     ATS-Friendly
                   </span>
+                ) : t.tags.includes("Photo") ? (
+                  // Photo layouts aren't "design-led" sidebars — same layout,
+                  // photo on top. The honest third class.
+                  <span className="shrink-0 text-[11px] font-medium text-muted">
+                    Photo-first
+                  </span>
                 ) : (
                   <span className="shrink-0 text-[11px] font-medium text-muted">
                     Design-led
@@ -157,21 +159,42 @@ export function TemplateShowcase() {
                 )}
               </div>
 
-              {/* Visible with/without-photo switch — always on show, never
-                  buried in a hover state. The active side reads as pressed. */}
+              {/* Visible with/without-photo switch. Two radios (not a
+                  checkbox) so clicking the active side is a no-op, each
+                  segment is named by its own label text for AT, and state
+                  reads as "selected". Still zero client JS. */}
               {t.tags.includes("Photo") && (
-                <label
-                  htmlFor={`nophoto-${t.slug}`}
-                  className="mt-2.5 flex w-fit cursor-pointer select-none items-center rounded-full border border-line bg-paper-2 p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
-                >
+                <fieldset className="mt-2.5 flex w-fit items-center rounded-full border border-line bg-paper-2 p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-accent">
+                  <legend className="sr-only">
+                    {t.name} template photo preview
+                  </legend>
                   <Camera size={11} className="ml-1.5 mr-1 shrink-0" aria-hidden="true" />
-                  <span className="rounded-full bg-sheet px-2 py-1 text-accent-deep shadow-xs transition-all duration-150 group-has-checked:bg-transparent group-has-checked:text-muted group-has-checked:shadow-none">
+                  <input
+                    type="radio"
+                    id={`photo-${t.slug}-with`}
+                    name={`photo-${t.slug}`}
+                    defaultChecked
+                    className="sr-only"
+                  />
+                  <label
+                    htmlFor={`photo-${t.slug}-with`}
+                    className="flex min-h-[36px] cursor-pointer select-none items-center rounded-full bg-sheet px-3 text-accent-deep shadow-xs transition-all duration-150 group-has-[.nophoto-radio:checked]:bg-transparent group-has-[.nophoto-radio:checked]:text-muted group-has-[.nophoto-radio:checked]:shadow-none md:min-h-[30px] md:px-2.5"
+                  >
                     With photo
-                  </span>
-                  <span className="rounded-full px-2 py-1 transition-all duration-150 group-has-checked:bg-sheet group-has-checked:text-ink group-has-checked:shadow-xs">
+                  </label>
+                  <input
+                    type="radio"
+                    id={`photo-${t.slug}-without`}
+                    name={`photo-${t.slug}`}
+                    className="nophoto-radio sr-only"
+                  />
+                  <label
+                    htmlFor={`photo-${t.slug}-without`}
+                    className="flex min-h-[36px] cursor-pointer select-none items-center rounded-full px-3 transition-all duration-150 group-has-[.nophoto-radio:checked]:bg-sheet group-has-[.nophoto-radio:checked]:text-ink group-has-[.nophoto-radio:checked]:shadow-xs md:min-h-[30px] md:px-2.5"
+                  >
                     Without
-                  </span>
-                </label>
+                  </label>
+                </fieldset>
               )}
             </article>
           ))}

@@ -118,14 +118,14 @@ export const Footer = () => (
     <div>
       <div className="mb-6 h-px bg-white/10" />
       <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-2 px-6 pb-6 text-xs text-white/55 sm:flex-row md:px-10 xl:px-14">
-        <span className="flex items-center gap-3">
+        <span className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
           <span>&copy; 2026 makemycv.ae &mdash; All rights reserved.</span>
-          <span aria-hidden="true" className="text-white/25">
+          <span aria-hidden="true" className="hidden text-white/25 sm:inline">
             ·
           </span>
           <Link
             href="/privacy"
-            className="transition-colors duration-150 hover:text-gold-light"
+            className="whitespace-nowrap transition-colors duration-150 hover:text-gold-light"
           >
             Privacy Policy
           </Link>

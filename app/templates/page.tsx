@@ -1,9 +1,12 @@
+import Link from "next/link";
 import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema } from "@/lib/seo-schema";
-import { Camera, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowRight, Camera, CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FinalCTA } from "@/components/home/FinalCTA";
 
 // Phase B0 — branded "Quick Answer" for AI search. Reconciled with the real
 // app template set (Phase B-T): all 10 templates, honest ATS-Friendly vs
@@ -30,15 +33,20 @@ const templatesBreadcrumb = breadcrumbSchema([
   { name: "Templates", item: canonicalUrl("/templates") },
 ]);
 
-/* Badge = the product's own honest signal (mirrors the builder registry):
-   single-column layouts are ATS-Friendly; sidebar/two-column layouts are
-   Design-led (better for direct email than portal uploads). */
-function badgeFor(tags: readonly string[]) {
-  if (tags.includes("ATS-safe"))
-    return { label: "ATS-Friendly", cls: "bg-accent-soft text-accent-deep" };
+/* Badges = the product's own honest signal (mirrors the builder registry):
+   every card gets its classification — ATS-Friendly (single-column),
+   Photo-first (same layout, photo on top) or Design-led (sidebar/two-column,
+   better for direct email than portal uploads) — and New stacks as a second
+   pill rather than replacing it. */
+function badgesFor(tags: readonly string[]) {
+  const badges = tags.includes("ATS-safe")
+    ? [{ label: "ATS-Friendly", cls: "bg-accent-soft text-accent-deep" }]
+    : tags.includes("Photo")
+      ? [{ label: "Photo-first", cls: "bg-sheet/95 text-ink-2 ring-1 ring-line" }]
+      : [{ label: "Design-led", cls: "bg-ink/75 text-white" }];
   if (tags.includes("New"))
-    return { label: "New", cls: "bg-gold-soft text-gold-deep" };
-  return { label: "Design-led", cls: "bg-ink/75 text-white" };
+    badges.push({ label: "New", cls: "bg-gold-soft text-gold-deep" });
+  return badges;
 }
 
 export default function TemplatesPage() {
@@ -67,7 +75,9 @@ export default function TemplatesPage() {
           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted">
             Single-column layouts carry the ATS-Friendly badge, design-led
             layouts shine when you email a recruiter directly, and the newest
-            additions are labelled New.
+            additions are labelled New. Uploading to a portal? Flip a photo
+            template to <span className="font-semibold">Without</span> — the
+            layout stays the same.
           </p>
         </div>
       </section>
@@ -88,7 +98,7 @@ export default function TemplatesPage() {
 
           <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 xl:grid-cols-4">
             {templates.map((t) => {
-              const badge = badgeFor(t.tags);
+              const badges = badgesFor(t.tags);
               return (
                 <article
                   key={t.slug}
@@ -99,23 +109,11 @@ export default function TemplatesPage() {
                     {t.name}
                   </h3>
 
-                  {/* CSS-only with/without-photo flip (zero client JS):
-                      checkbox at article level; the image swap and the
-                      segmented control below both react via group-has. */}
-                  {t.tags.includes("Photo") && (
-                    <input
-                      type="checkbox"
-                      id={`tpl-nophoto-${t.slug}`}
-                      className="peer sr-only"
-                      aria-label={`Show the ${t.name} template without photo`}
-                    />
-                  )}
-
                   <a
                     href="https://app.makemycv.ae"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
+                    className="tpl-cta relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
                     data-event="templates_page_use_template_click"
                     data-template-id={t.slug}
                     aria-label={`Use the ${t.name} template — opens the free builder`}
@@ -137,7 +135,7 @@ export default function TemplatesPage() {
                             width={544}
                             height={769}
                             loading="lazy"
-                            className="h-full w-full object-cover object-top group-has-checked:hidden"
+                            className="h-full w-full object-cover object-top group-has-[.nophoto-radio:checked]:hidden"
                           />
                           {t.tags.includes("Photo") && (
                             // eslint-disable-next-line @next/next/no-img-element
@@ -147,7 +145,7 @@ export default function TemplatesPage() {
                               width={544}
                               height={769}
                               loading="lazy"
-                              className="hidden h-full w-full object-cover object-top group-has-checked:block"
+                              className="hidden h-full w-full object-cover object-top group-has-[.nophoto-radio:checked]:block"
                             />
                           )}
                         </>
@@ -155,11 +153,17 @@ export default function TemplatesPage() {
                         <div className="h-full w-full bg-paper-2" />
                       )}
 
-                      {/* Honest status badge (mirrors the builder) */}
-                      <span
-                        className={`absolute right-2 top-2 rounded-full px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] ${badge.cls}`}
-                      >
-                        {badge.label}
+                      {/* Honest status badges (mirror the builder) — the
+                          classification always shows; New stacks under it. */}
+                      <span className="absolute right-2 top-2 flex flex-col items-end gap-1">
+                        {badges.map((b) => (
+                          <span
+                            key={b.label}
+                            className={`rounded-full px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] ${b.cls}`}
+                          >
+                            {b.label}
+                          </span>
+                        ))}
                       </span>
 
                       {/* Export formats */}
@@ -167,8 +171,10 @@ export default function TemplatesPage() {
                         PDF · DOCX
                       </span>
 
-                      {/* Hover / focus CTA */}
-                      <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-150 group-hover:bg-ink/25 group-hover:opacity-100 group-focus-within:bg-ink/25 group-focus-within:opacity-100">
+                      {/* Hover / focus CTA — focus reveal scoped to the card
+                          link itself so focusing the photo radios below
+                          doesn't summon it. */}
+                      <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-150 group-has-[.tpl-cta:focus-visible]:bg-ink/25 group-has-[.tpl-cta:focus-visible]:opacity-100 group-hover:bg-ink/25 group-hover:opacity-100">
                         <span className="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-md">
                           Use This Template
                         </span>
@@ -180,24 +186,65 @@ export default function TemplatesPage() {
                     {t.positioning}
                   </p>
 
-                  {/* Visible with/without-photo switch, centered under the card. */}
+                  {/* Visible with/without-photo switch — two radios so the
+                      active side is a no-op and AT announces selection. */}
                   {t.tags.includes("Photo") && (
-                    <label
-                      htmlFor={`tpl-nophoto-${t.slug}`}
-                      className="mx-auto mt-2.5 flex w-fit cursor-pointer select-none items-center rounded-full border border-line bg-paper p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
-                    >
+                    <fieldset className="mx-auto mt-2.5 flex w-fit items-center rounded-full border border-line bg-paper p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 has-[input:focus-visible]:ring-2 has-[input:focus-visible]:ring-accent">
+                      <legend className="sr-only">
+                        {t.name} template photo preview
+                      </legend>
                       <Camera size={11} className="ml-1.5 mr-1 shrink-0" aria-hidden="true" />
-                      <span className="rounded-full bg-sheet px-2 py-1 text-accent-deep shadow-xs transition-all duration-150 group-has-checked:bg-transparent group-has-checked:text-muted group-has-checked:shadow-none">
+                      <input
+                        type="radio"
+                        id={`tpl-photo-${t.slug}-with`}
+                        name={`tpl-photo-${t.slug}`}
+                        defaultChecked
+                        className="sr-only"
+                      />
+                      <label
+                        htmlFor={`tpl-photo-${t.slug}-with`}
+                        className="flex min-h-[36px] cursor-pointer select-none items-center rounded-full bg-sheet px-3 text-accent-deep shadow-xs transition-all duration-150 group-has-[.nophoto-radio:checked]:bg-transparent group-has-[.nophoto-radio:checked]:text-muted group-has-[.nophoto-radio:checked]:shadow-none md:min-h-[30px] md:px-2.5"
+                      >
                         With photo
-                      </span>
-                      <span className="rounded-full px-2 py-1 transition-all duration-150 group-has-checked:bg-sheet group-has-checked:text-ink group-has-checked:shadow-xs">
+                      </label>
+                      <input
+                        type="radio"
+                        id={`tpl-photo-${t.slug}-without`}
+                        name={`tpl-photo-${t.slug}`}
+                        className="nophoto-radio sr-only"
+                      />
+                      <label
+                        htmlFor={`tpl-photo-${t.slug}-without`}
+                        className="flex min-h-[36px] cursor-pointer select-none items-center rounded-full px-3 transition-all duration-150 group-has-[.nophoto-radio:checked]:bg-sheet group-has-[.nophoto-radio:checked]:text-ink group-has-[.nophoto-radio:checked]:shadow-xs md:min-h-[30px] md:px-2.5"
+                      >
                         Without
-                      </span>
-                    </label>
+                      </label>
+                    </fieldset>
                   )}
                 </article>
               );
             })}
+
+            {/* End-cap — fills the orphan grid slot and closes the browse
+                loop, mirroring the homepage shelf's dashed card. */}
+            <a
+              href="https://app.makemycv.ae"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-line-strong bg-sheet/60 p-6 text-center transition-colors duration-150 hover:border-accent hover:bg-accent-soft/40"
+              style={{ aspectRatio: "1 / 1.414" }}
+              data-event="templates_page_endcap_click"
+            >
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent">
+                <ArrowRight size={20} aria-hidden="true" />
+              </span>
+              <span className="font-display text-base font-bold text-ink">
+                Can&apos;t decide? Start with Classic
+              </span>
+              <span className="text-xs text-muted">
+                Free, no sign-up — switch templates anytime in the builder
+              </span>
+            </a>
           </div>
         </div>
       </section>
@@ -205,9 +252,10 @@ export default function TemplatesPage() {
       {/* ATS Explainer */}
       <section className="bg-paper py-12 md:py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-center font-display text-[28px] font-bold tracking-tight-2 text-ink md:text-[32px]">
-            What is ATS and Why Does It Matter in UAE?
-          </h2>
+          <SectionHeading
+            eyebrow="ATS explained"
+            title="What ATS is — and why it decides UAE applications."
+          />
           <div className="mt-12 grid items-start gap-10 md:grid-cols-2">
             <div className="text-sm leading-relaxed text-ink-2">
               <p>
@@ -225,7 +273,15 @@ export default function TemplatesPage() {
                 single-column layouts are engineered to parse cleanly through
                 online portals, while design-led layouts are best sent
                 straight to a recruiter&apos;s inbox, where a human reads
-                first.
+                first. You can test your current CV against these rules with
+                the{" "}
+                <Link
+                  href="/resume-checker"
+                  className="font-semibold text-accent underline-offset-4 hover:underline"
+                >
+                  free ATS checker
+                </Link>
+                .
               </p>
             </div>
             <div className="grid gap-4">
@@ -255,6 +311,10 @@ export default function TemplatesPage() {
           </div>
         </div>
       </section>
+
+      {/* Conversion close — the browse page must not dead-end at the ATS
+          fear panel; same green band the homepage funnels into. */}
+      <FinalCTA eventName="templates_final_cta_click" />
     </>
   );
 }
