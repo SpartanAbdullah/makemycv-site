@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
  * HonestMatching — the wedge. When the AI can't truthfully back a keyword it
  * declines instead of inventing. The "SAP ERP" example is told as a 3-step
  * storyboard (think → scan → honest result) so the promise is felt, not read.
- * Dark section for weight; blue→amber→emerald echoes the heatmap.
+ * Dark section for weight; the gold→amber→green journey stays on-brand (Part 3 reskin).
  */
 export function HonestMatching() {
   return (
@@ -13,14 +13,14 @@ export function HonestMatching() {
       className="relative overflow-hidden py-20 text-white md:py-28"
       style={{
         background:
-          "linear-gradient(135deg, #0a0f1e 0%, #111827 50%, #0a0f1e 100%)",
+          "linear-gradient(135deg, #0b0f0c 0%, #16211a 50%, #0b0f0c 100%)",
       }}
     >
-      <div className="hero-spotlight" aria-hidden="true" />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0" style={{ background: "radial-gradient(ellipse 60% 50% at 50% 40%, rgba(14,124,74,0.16) 0%, transparent 70%)" }} />
 
       <div className="relative mx-auto max-w-6xl px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-eyebrow text-blue-400">
+          <p className="text-xs font-semibold uppercase tracking-eyebrow text-gold-light">
             Honest by design
           </p>
           <h2 className="mt-3 font-display text-[32px] font-bold leading-[1.15] tracking-tight-1-5 text-white md:text-[42px]">
@@ -36,25 +36,25 @@ export function HonestMatching() {
 
         {/* ── Storyboard: the "SAP ERP" example, told in 3 steps ── */}
         <div className="mx-auto mt-14 max-w-5xl">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-eyebrow text-muted">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-eyebrow text-white/50">
             Watch it work — the job asks for &ldquo;SAP ERP&rdquo;
           </p>
 
           <ol className="mt-8 flex flex-col items-stretch gap-3 md:flex-row md:gap-2">
             <Step
               n={1}
-              accent="#60a5fa"
+              accent="#d4a95a"
               eyebrow="The situation"
               title={
                 <>
                   The job wants{" "}
-                  <span className="text-blue-300">&ldquo;SAP ERP&rdquo;</span>
+                  <span className="text-gold-light">&ldquo;SAP ERP&rdquo;</span>
                 </>
               }
               body={
                 <>
                   Your closest line is a retail bullet:{" "}
-                  <span className="text-slate-200">
+                  <span className="text-white/90">
                     &ldquo;Greeted walk-in customers and arranged products on
                     shelves.&rdquo;
                   </span>
@@ -189,29 +189,29 @@ function Connector() {
 function ThinkingPerson() {
   return (
     <svg viewBox="0 0 220 150" fill="none" className="h-auto w-full" aria-hidden="true">
-      <ellipse cx="92" cy="141" rx="58" ry="7" fill="#60a5fa" opacity="0.08" />
+      <ellipse cx="92" cy="141" rx="58" ry="7" fill="#d4a95a" opacity="0.08" />
       {/* shoulders + head — a person, mid-thought */}
       <path
         d="M48 142 C48 113 70 101 92 101 C114 101 136 113 136 142"
-        fill="#60a5fa"
+        fill="#d4a95a"
         fillOpacity="0.10"
-        stroke="#60a5fa"
+        stroke="#d4a95a"
         strokeWidth="2.5"
         strokeLinecap="round"
       />
-      <circle cx="92" cy="71" r="26" fill="#60a5fa" fillOpacity="0.10" stroke="#60a5fa" strokeWidth="2.5" />
+      <circle cx="92" cy="71" r="26" fill="#d4a95a" fillOpacity="0.10" stroke="#d4a95a" strokeWidth="2.5" />
       {/* thought trail */}
-      <circle cx="131" cy="49" r="3.5" fill="#60a5fa" fillOpacity="0.55" className="motion-safe:animate-pulse" />
-      <circle cx="142" cy="39" r="5" fill="#60a5fa" fillOpacity="0.4" />
+      <circle cx="131" cy="49" r="3.5" fill="#d4a95a" fillOpacity="0.55" className="motion-safe:animate-pulse" />
+      <circle cx="142" cy="39" r="5" fill="#d4a95a" fillOpacity="0.4" />
       {/* thought bubble with the job's keyword */}
-      <rect x="116" y="6" width="98" height="34" rx="12" fill="#0b1220" stroke="#60a5fa" strokeWidth="2" />
+      <rect x="116" y="6" width="98" height="34" rx="12" fill="#141a13" stroke="#d4a95a" strokeWidth="2" />
       <text
         x="165"
         y="28"
         textAnchor="middle"
         fontSize="14"
         fontWeight="700"
-        fill="#93c5fd"
+        fill="#e8cf9e"
         fontFamily="ui-sans-serif, system-ui, sans-serif"
       >
         SAP ERP?
@@ -225,7 +225,7 @@ function ScanGap() {
     <svg viewBox="0 0 220 150" fill="none" className="h-auto w-full" aria-hidden="true">
       <ellipse cx="108" cy="141" rx="66" ry="7" fill="#fbbf24" opacity="0.07" />
       {/* the bullet, being scanned */}
-      <rect x="42" y="22" width="118" height="104" rx="12" fill="#0b1220" stroke="#fbbf24" strokeOpacity="0.5" strokeWidth="2" />
+      <rect x="42" y="22" width="118" height="104" rx="12" fill="#141a13" stroke="#fbbf24" strokeOpacity="0.5" strokeWidth="2" />
       <rect x="58" y="44" width="80" height="8" rx="4" fill="#ffffff" fillOpacity="0.22" />
       <rect x="58" y="62" width="58" height="8" rx="4" fill="#ffffff" fillOpacity="0.16" />
       {/* searched-for keyword */}
@@ -235,7 +235,7 @@ function ScanGap() {
       </text>
       {/* magnifier — no match */}
       <g className="motion-safe:animate-pulse">
-        <circle cx="150" cy="98" r="20" fill="#0b1220" stroke="#fbbf24" strokeWidth="3" />
+        <circle cx="150" cy="98" r="20" fill="#141a13" stroke="#fbbf24" strokeWidth="3" />
         <path d="M143 91 l14 14 M157 91 l-14 14" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" />
       </g>
       <line x1="165" y1="113" x2="179" y2="127" stroke="#fbbf24" strokeWidth="3.5" strokeLinecap="round" />
@@ -248,7 +248,7 @@ function HonestCheck() {
     <svg viewBox="0 0 220 150" fill="none" className="h-auto w-full" aria-hidden="true">
       <ellipse cx="100" cy="141" rx="66" ry="7" fill="#34d399" opacity="0.08" />
       {/* the honest CV — kept lines + a flagged gap */}
-      <rect x="40" y="22" width="116" height="106" rx="12" fill="#0b1220" stroke="#34d399" strokeOpacity="0.5" strokeWidth="2" />
+      <rect x="40" y="22" width="116" height="106" rx="12" fill="#141a13" stroke="#34d399" strokeOpacity="0.5" strokeWidth="2" />
       <rect x="56" y="42" width="80" height="8" rx="4" fill="#ffffff" fillOpacity="0.22" />
       <rect x="56" y="60" width="62" height="8" rx="4" fill="#ffffff" fillOpacity="0.16" />
       {/* gap flagged, not faked (amber, honest) */}
@@ -276,7 +276,7 @@ function Pillar({
 }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-blue-500/15 text-blue-300">
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold-light/15 text-gold-light">
         <Icon size={20} strokeWidth={2} />
       </span>
       <h3 className="mt-4 font-display text-base font-bold text-white">
