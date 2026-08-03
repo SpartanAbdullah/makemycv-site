@@ -12,8 +12,8 @@ const problems = [
     body: "Gulf recruiters spot a Canva/Word template in one glance. Missing visa status, no nationality, no Emirates ID mention — it signals you don’t understand the market.",
   },
   {
-    title: "Walls of text lose the 6-second scan.",
-    body: "UAE recruiters average 6.2 seconds on a first pass. If your impact isn’t scannable in bullet points with numbers, you’re filtered out before your degree is read.",
+    title: "Walls of text lose the 7-second scan.",
+    body: "UAE recruiters average about 7 seconds on a first pass. If your impact isn’t scannable in bullet points with numbers, you’re filtered out before your degree is read.",
   },
 ];
 
