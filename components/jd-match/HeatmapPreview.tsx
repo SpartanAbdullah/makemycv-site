@@ -22,7 +22,7 @@ const lines: Line[] = [
 const stateClass: Record<Line["state"], string> = {
   match: "bg-emerald-400/15 text-emerald-100 ring-1 ring-inset ring-emerald-400/30",
   gap: "bg-amber-400/15 text-amber-100 ring-1 ring-inset ring-amber-400/30",
-  plain: "text-slate-400",
+  plain: "text-muted",
 };
 
 export function HeatmapPreview() {
@@ -32,11 +32,11 @@ export function HeatmapPreview() {
         {/* Header: score + band */}
         <div className="flex items-center justify-between gap-3 border-b border-white/10 pb-4">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-eyebrow text-slate-400">
+            <p className="text-[11px] font-semibold uppercase tracking-eyebrow text-muted">
               Match score
             </p>
             <p className="mt-1 font-display text-3xl font-extrabold text-white">
-              74<span className="text-lg text-slate-500">/100</span>
+              74<span className="text-lg text-muted">/100</span>
             </p>
           </div>
           <span className="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-semibold text-emerald-300 ring-1 ring-inset ring-emerald-400/30">
@@ -45,7 +45,7 @@ export function HeatmapPreview() {
         </div>
 
         {/* The pasted JD, lit up */}
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-eyebrow text-slate-500">
+        <p className="mt-4 text-[11px] font-semibold uppercase tracking-eyebrow text-muted">
           The job description you pasted
         </p>
         <ul className="mt-3 space-y-1.5">
@@ -60,7 +60,7 @@ export function HeatmapPreview() {
         </ul>
 
         {/* Legend */}
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-xs text-slate-400">
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-white/10 pt-4 text-xs text-muted">
           <span className="inline-flex items-center gap-1.5">
             <span className="h-2.5 w-2.5 rounded-sm bg-emerald-400/70" />
             On your CV
@@ -71,7 +71,7 @@ export function HeatmapPreview() {
           </span>
         </div>
       </div>
-      <p className="mt-2 text-center text-[11px] text-slate-500 lg:text-left">
+      <p className="mt-2 text-center text-[11px] text-muted lg:text-left">
         Illustration — your real result is based on the CV in your browser.
       </p>
     </div>

@@ -26,7 +26,7 @@ export function HonestMatching() {
           <h2 className="mt-3 font-display text-[32px] font-bold leading-[1.15] tracking-tight-1-5 text-white md:text-[42px]">
             We help you tell the truth better — not lie better.
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-slate-300">
+          <p className="mt-4 text-lg leading-relaxed text-line-strong">
             When our AI rewords an experience bullet to fit a job, it
             re-expresses what you actually did. If your experience can&rsquo;t
             truthfully back a keyword, it says so — instead of inventing a number,
@@ -36,7 +36,7 @@ export function HonestMatching() {
 
         {/* ── Storyboard: the "SAP ERP" example, told in 3 steps ── */}
         <div className="mx-auto mt-14 max-w-5xl">
-          <p className="text-center text-[11px] font-semibold uppercase tracking-eyebrow text-slate-500">
+          <p className="text-center text-[11px] font-semibold uppercase tracking-eyebrow text-muted">
             Watch it work — the job asks for &ldquo;SAP ERP&rdquo;
           </p>
 
@@ -168,7 +168,7 @@ function Step({
       </div>
 
       <p className="mt-5 font-display text-base font-bold text-white">{title}</p>
-      <p className="mt-1.5 text-sm leading-relaxed text-slate-300">{body}</p>
+      <p className="mt-1.5 text-sm leading-relaxed text-line-strong">{body}</p>
     </li>
   );
 }
@@ -282,7 +282,7 @@ function Pillar({
       <h3 className="mt-4 font-display text-base font-bold text-white">
         {title}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-300">{body}</p>
+      <p className="mt-2 text-sm leading-relaxed text-line-strong">{body}</p>
     </div>
   );
 }

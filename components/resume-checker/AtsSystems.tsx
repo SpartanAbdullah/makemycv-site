@@ -67,16 +67,16 @@ export function AtsSystems() {
     <section className="bg-paper py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The methodology
           </p>
           <h2
-            className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]"
+            className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
             style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}
           >
             Which ATS systems UAE employers use — and how they read your CV.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-slate-700 md:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-ink-2 md:text-lg">
             MakeMyCV&rsquo;s free checker runs your PDF against the parsing
             behaviour of the applicant tracking systems UAE employers actually
             deploy, then reports every issue across{" "}
@@ -93,13 +93,13 @@ export function AtsSystems() {
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
               <tr className="border-b border-line">
-                <th className="py-3 pr-6 font-display text-sm font-bold text-slate-900">
+                <th className="py-3 pr-6 font-display text-sm font-bold text-ink">
                   ATS platform
                 </th>
-                <th className="py-3 pr-6 font-display text-sm font-bold text-slate-900">
+                <th className="py-3 pr-6 font-display text-sm font-bold text-ink">
                   Common UAE users
                 </th>
-                <th className="py-3 font-display text-sm font-bold text-slate-900">
+                <th className="py-3 font-display text-sm font-bold text-ink">
                   How it tends to parse your CV
                 </th>
               </tr>
@@ -107,13 +107,13 @@ export function AtsSystems() {
             <tbody>
               {systems.map((s) => (
                 <tr key={s.name} className="border-b border-line align-top">
-                  <td className="py-4 pr-6 font-semibold text-slate-900">
+                  <td className="py-4 pr-6 font-semibold text-ink">
                     {s.name}
                   </td>
-                  <td className="py-4 pr-6 text-[15px] text-slate-600">
+                  <td className="py-4 pr-6 text-[15px] text-muted">
                     {s.used}
                   </td>
-                  <td className="py-4 text-[15px] leading-relaxed text-slate-600">
+                  <td className="py-4 text-[15px] leading-relaxed text-muted">
                     {s.parses}
                   </td>
                 </tr>
@@ -128,7 +128,7 @@ export function AtsSystems() {
             <h3 className="flex items-center gap-2 font-display text-xl font-bold text-emerald-700">
               <Check size={20} strokeWidth={2.5} /> Do this — the ATS reads it
             </h3>
-            <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-slate-700">
+            <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-ink-2">
               {dos.map((item) => (
                 <li key={item} className="flex gap-3">
                   <Check
@@ -145,7 +145,7 @@ export function AtsSystems() {
             <h3 className="flex items-center gap-2 font-display text-xl font-bold text-red-600">
               <X size={20} strokeWidth={2.5} /> Avoid this — it gets filtered
             </h3>
-            <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-slate-700">
+            <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-ink-2">
               {donts.map((item) => (
                 <li key={item} className="flex gap-3">
                   <X

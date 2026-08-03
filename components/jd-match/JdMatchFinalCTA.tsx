@@ -20,7 +20,7 @@ export function JdMatchFinalCTA() {
         <h2 className="font-display text-4xl font-extrabold leading-[1.1] tracking-tight-2 text-white md:text-5xl">
           See how your CV matches your next UAE job.
         </h2>
-        <p className="mx-auto mt-5 max-w-xl text-lg text-slate-300 md:text-xl">
+        <p className="mx-auto mt-5 max-w-xl text-lg text-line-strong md:text-xl">
           Build or import your CV, paste the job description, and read exactly
           where you stand — green for covered, amber for the gaps. Free.
         </p>
@@ -39,7 +39,7 @@ export function JdMatchFinalCTA() {
           </Button>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-slate-400">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-muted">
           <span className="inline-flex items-center gap-1.5">
             <Highlighter size={14} className="text-blue-400" />
             Green/amber heatmap on the real job ad

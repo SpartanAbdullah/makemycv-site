@@ -61,7 +61,7 @@ export function HeroVisual() {
         className="relative rounded-[24px] border border-line bg-paper p-7"
         style={{ boxShadow: "var(--shadow-lg-soft)" }}
       >
-        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+        <div className="flex items-center justify-between font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           <span>Your CV · Sample report</span>
           <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-colors duration-300 ${tier.chipBg} ${tier.chipText}`}>
             <span className={`h-1.5 w-1.5 rounded-full ${tier.chipDot}`} /> {tier.label}
@@ -111,10 +111,10 @@ export function HeroVisual() {
             {categories.map((c) => (
               <div key={c.label}>
                 <div className="flex items-baseline justify-between text-xs">
-                  <span className="font-medium text-slate-700">{c.label}</span>
-                  <span className="font-mono font-semibold text-slate-900">{c.value}</span>
+                  <span className="font-medium text-ink-2">{c.label}</span>
+                  <span className="font-mono font-semibold text-ink">{c.value}</span>
                 </div>
-                <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-paper-2">
                   <div
                     className="h-full rounded-full"
                     style={{ width: `${c.value}%`, background: c.tone }}
@@ -125,9 +125,9 @@ export function HeroVisual() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-sm text-slate-700">
-          <p className="font-semibold text-slate-900">3 fixes to get to 95+</p>
-          <ul className="mt-2 space-y-1.5 text-[13px] text-slate-600">
+        <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-sm text-ink-2">
+          <p className="font-semibold text-ink">3 fixes to get to 95+</p>
+          <ul className="mt-2 space-y-1.5 text-[13px] text-muted">
             <li className="flex gap-2">
               <span className="mt-0.5 text-amber-600">•</span>Add nationality &amp; visa status
             </li>

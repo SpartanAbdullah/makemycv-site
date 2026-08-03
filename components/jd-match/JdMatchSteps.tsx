@@ -62,28 +62,28 @@ export function JdMatchSteps() {
           {steps.map((s, i) => (
             <article
               key={s.tag}
-              className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-xs"
+              className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-xs"
             >
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-brand-blue">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-accent">
                   <s.icon size={22} strokeWidth={2} />
                 </span>
-                <span className="text-xs font-semibold uppercase tracking-eyebrow text-slate-500">
+                <span className="text-xs font-semibold uppercase tracking-eyebrow text-muted">
                   {`Step ${i + 1} · ${s.tag}`}
                 </span>
               </div>
 
-              <h3 className="mt-5 font-display text-xl font-bold leading-snug text-slate-900">
+              <h3 className="mt-5 font-display text-xl font-bold leading-snug text-ink">
                 {s.title}
               </h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-slate-600">
+              <p className="mt-2.5 text-sm leading-relaxed text-muted">
                 {s.body}
               </p>
 
-              <ul className="mt-5 space-y-2 border-t border-slate-100 pt-5 text-sm text-slate-700">
+              <ul className="mt-5 space-y-2 border-t border-line pt-5 text-sm text-ink-2">
                 {s.points.map((p) => (
                   <li key={p} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-blue" />
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                     <span>{p}</span>
                   </li>
                 ))}
@@ -92,7 +92,7 @@ export function JdMatchSteps() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-sm text-slate-500">
+        <p className="mt-8 text-center text-sm text-muted">
           From DIFC banking roles to ADNOC and Emaar project teams, JD Match
           reads the job ad back to you and shows exactly where your CV falls
           short &mdash; the fastest way to see why an application isn&rsquo;t

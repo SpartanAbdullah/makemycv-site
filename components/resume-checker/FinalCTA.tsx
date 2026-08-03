@@ -17,7 +17,7 @@ export function FinalCTA() {
           Your next UAE job starts with a CV
           <br className="hidden md:block" /> that actually gets read.
         </h2>
-        <p className="mx-auto mt-6 max-w-lg text-lg text-slate-300">
+        <p className="mx-auto mt-6 max-w-lg text-lg text-line-strong">
           Free check. 30 seconds. No sign-up.
         </p>
 

@@ -15,7 +15,7 @@ const modes = [
   },
   {
     icon: ScanLine,
-    title: "Walls of text lose the 6-second recruiter scan",
+    title: "Walls of text lose the 7-second recruiter scan",
     body:
       "Unquantified bullets, passive verbs, and 3-line paragraphs are the top reason qualified candidates get skipped. Scannability is the gatekeeper.",
   },
@@ -26,13 +26,13 @@ export function FilterProblem() {
     <section className="relative bg-paper py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-3xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The hiring reality
           </p>
-          <h2 className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
+          <h2 className="mt-4 font-display font-bold text-ink tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
             Why 75% of UAE CVs get filtered out before a human reads them.
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-slate-600">
+          <p className="mt-5 text-lg leading-relaxed text-muted">
             ENOC, Emaar, Majid Al Futtaim, ADCB and most DIFC firms run every
             application through an applicant tracking system first. Your CV is
             software-filtered long before a recruiter opens it — and three
@@ -44,17 +44,17 @@ export function FilterProblem() {
           <ol className="divide-y divide-line">
             {modes.map((m, i) => (
               <li key={m.title} className="grid gap-5 p-8 md:grid-cols-[auto_auto_1fr] md:items-start md:gap-7 md:p-10">
-                <span className="font-mono text-xs font-semibold text-slate-400 md:pt-1">
+                <span className="font-mono text-xs font-semibold text-muted md:pt-1">
                   0{i + 1}
                 </span>
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-blue/10 text-brand-blue">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   <m.icon size={20} strokeWidth={2.25} />
                 </span>
                 <div>
-                  <h3 className="font-display text-xl font-bold tracking-[-0.015em] text-slate-900 md:text-2xl">
+                  <h3 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
                     {m.title}
                   </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-slate-600 md:text-base">
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted md:text-base">
                     {m.body}
                   </p>
                 </div>
@@ -63,13 +63,13 @@ export function FilterProblem() {
           </ol>
         </div>
 
-        <p className="mt-10 text-lg text-slate-700">
+        <p className="mt-10 text-lg text-ink-2">
           Our checker catches all three in 30 seconds.{" "}
           <a
             href="https://app.makemycv.ae/resume-checker"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-brand-blue underline-offset-4 hover:underline"
+            className="font-semibold text-accent underline-offset-4 hover:underline"
             data-event="resume_checker_cta_click"
             data-cta-location="problem"
           >

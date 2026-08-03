@@ -45,10 +45,10 @@ export function ResumeCheckerFAQ() {
   return (
     <section className="relative bg-paper py-24 md:py-32">
       <div className="mx-auto max-w-3xl px-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">
+        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Before you upload
         </p>
-        <h2 className="mt-4 font-display font-bold text-slate-900 tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
+        <h2 className="mt-4 font-display font-bold text-ink tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
           Questions people ask before uploading.
         </h2>
 
@@ -59,19 +59,19 @@ export function ResumeCheckerFAQ() {
               className="group py-6 [&_summary::-webkit-details-marker]:hidden"
             >
               <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-left">
-                <span className="font-display text-lg font-semibold text-slate-900 md:text-xl">
+                <span className="font-display text-lg font-semibold text-ink md:text-xl">
                   {item.q}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-slate-500 transition-transform group-open:rotate-45"
+                  className="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-transform group-open:rotate-45"
                 >
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                     <path d="M6 1v10M1 6h10" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
                   </svg>
                 </span>
               </summary>
-              <p className="mt-4 pr-12 text-[15px] leading-relaxed text-slate-600 md:text-base">
+              <p className="mt-4 pr-12 text-[15px] leading-relaxed text-muted md:text-base">
                 {item.a}
               </p>
             </details>
