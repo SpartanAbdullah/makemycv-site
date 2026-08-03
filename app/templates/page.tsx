@@ -2,7 +2,7 @@ import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema } from "@/lib/seo-schema";
-import { CheckCircle2, XCircle } from "lucide-react";
+import { Camera, CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
 
 // Phase B0 — branded "Quick Answer" for AI search. Reconciled with the real
@@ -99,6 +99,18 @@ export default function TemplatesPage() {
                     {t.name}
                   </h3>
 
+                  {/* CSS-only with/without-photo flip (zero client JS):
+                      checkbox at article level; the image swap and the
+                      segmented control below both react via group-has. */}
+                  {t.tags.includes("Photo") && (
+                    <input
+                      type="checkbox"
+                      id={`tpl-nophoto-${t.slug}`}
+                      className="peer sr-only"
+                      aria-label={`Show the ${t.name} template without photo`}
+                    />
+                  )}
+
                   <a
                     href="https://app.makemycv.ae"
                     target="_blank"
@@ -116,15 +128,29 @@ export default function TemplatesPage() {
                       }}
                     >
                       {t.thumbnail ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={t.thumbnail}
-                          alt={`${t.name} CV template — ${t.positioning}`}
-                          width={794}
-                          height={1123}
-                          loading="lazy"
-                          className="h-full w-full object-cover object-top"
-                        />
+                        <>
+                          {/* 544w WebP thumbs — cards render ≤260px wide. */}
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={t.thumbnail.replace(/\.png$/, "-thumb.webp")}
+                            alt={`${t.name} CV template — ${t.positioning}`}
+                            width={544}
+                            height={769}
+                            loading="lazy"
+                            className="h-full w-full object-cover object-top group-has-checked:hidden"
+                          />
+                          {t.tags.includes("Photo") && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={t.thumbnail.replace("-preview.png", "-nophoto-preview-thumb.webp")}
+                              alt={`${t.name} CV template without photo`}
+                              width={544}
+                              height={769}
+                              loading="lazy"
+                              className="hidden h-full w-full object-cover object-top group-has-checked:block"
+                            />
+                          )}
+                        </>
                       ) : (
                         <div className="h-full w-full bg-paper-2" />
                       )}
@@ -153,6 +179,22 @@ export default function TemplatesPage() {
                   <p className="mx-auto mt-2 max-w-[26ch] text-center text-xs leading-snug text-muted">
                     {t.positioning}
                   </p>
+
+                  {/* Visible with/without-photo switch, centered under the card. */}
+                  {t.tags.includes("Photo") && (
+                    <label
+                      htmlFor={`tpl-nophoto-${t.slug}`}
+                      className="mx-auto mt-2.5 flex w-fit cursor-pointer select-none items-center rounded-full border border-line bg-paper p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
+                    >
+                      <Camera size={11} className="ml-1.5 mr-1 shrink-0" aria-hidden="true" />
+                      <span className="rounded-full bg-sheet px-2 py-1 text-accent-deep shadow-xs transition-all duration-150 group-has-checked:bg-transparent group-has-checked:text-muted group-has-checked:shadow-none">
+                        With photo
+                      </span>
+                      <span className="rounded-full px-2 py-1 transition-all duration-150 group-has-checked:bg-sheet group-has-checked:text-ink group-has-checked:shadow-xs">
+                        Without
+                      </span>
+                    </label>
+                  )}
                 </article>
               );
             })}

@@ -52,21 +52,23 @@ export function TemplateShowcase() {
               key={t.slug}
               className="group relative w-[236px] shrink-0 snap-start md:w-[272px]"
             >
+              {/* Photo templates ship a second, photo-less capture; a
+                  CSS-only checkbox flips the card between the two (zero
+                  client JS). It lives at article level so both the image
+                  (group-has-checked) and the visible segmented control
+                  below the card can react to it. */}
+              {t.tags.includes("Photo") && (
+                <input
+                  type="checkbox"
+                  id={`nophoto-${t.slug}`}
+                  className="peer sr-only"
+                  aria-label={`Show the ${t.name} template without photo`}
+                />
+              )}
               <div
                 className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:shadow-lg-soft"
                 style={{ aspectRatio: "1 / 1.414", boxShadow: "var(--shadow-sm-soft)" }}
               >
-                {/* Photo templates ship a second, photo-less capture; a
-                    CSS-only checkbox (peer) flips between the two so users
-                    can compare with/without — still zero client JS. */}
-                {t.tags.includes("Photo") && (
-                  <input
-                    type="checkbox"
-                    id={`nophoto-${t.slug}`}
-                    className="peer sr-only"
-                    aria-label={`Show the ${t.name} template without photo`}
-                  />
-                )}
                 {t.thumbnail ? (
                   <>
                     {/* 544w WebP thumbs (~30KB vs ~300KB source PNGs) — the
@@ -78,7 +80,7 @@ export function TemplateShowcase() {
                       width={544}
                       height={769}
                       loading="lazy"
-                      className="h-full w-full object-cover object-top peer-checked:hidden"
+                      className="h-full w-full object-cover object-top group-has-checked:hidden"
                     />
                     {t.tags.includes("Photo") && (
                       // eslint-disable-next-line @next/next/no-img-element -- fixed-size WebP thumbs; sized + lazy
@@ -88,23 +90,12 @@ export function TemplateShowcase() {
                         width={544}
                         height={769}
                         loading="lazy"
-                        className="hidden h-full w-full object-cover object-top peer-checked:block"
+                        className="hidden h-full w-full object-cover object-top group-has-checked:block"
                       />
                     )}
                   </>
                 ) : (
                   <div className="h-full w-full bg-paper-2" />
-                )}
-
-                {/* Photo on/off switch — a label for the hidden checkbox. */}
-                {t.tags.includes("Photo") && (
-                  <label
-                    htmlFor={`nophoto-${t.slug}`}
-                    className="absolute right-2.5 top-2.5 z-10 cursor-pointer select-none rounded-full border border-line bg-sheet/95 px-2.5 py-1 text-[10px] font-semibold text-ink-2 shadow-sm-soft transition-colors duration-150 hover:border-accent hover:text-accent peer-checked:[&_.label-off]:inline peer-checked:[&_.label-on]:hidden peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
-                  >
-                    <span className="label-on">Hide photo</span>
-                    <span className="label-off hidden">Show photo</span>
-                  </label>
                 )}
 
                 {/* Factual badges, top-left on the sheet. */}
@@ -165,6 +156,23 @@ export function TemplateShowcase() {
                   </span>
                 )}
               </div>
+
+              {/* Visible with/without-photo switch — always on show, never
+                  buried in a hover state. The active side reads as pressed. */}
+              {t.tags.includes("Photo") && (
+                <label
+                  htmlFor={`nophoto-${t.slug}`}
+                  className="mt-2.5 flex w-fit cursor-pointer select-none items-center rounded-full border border-line bg-paper-2 p-0.5 text-[11px] font-semibold text-muted transition-colors duration-150 hover:border-accent/50 peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
+                >
+                  <Camera size={11} className="ml-1.5 mr-1 shrink-0" aria-hidden="true" />
+                  <span className="rounded-full bg-sheet px-2 py-1 text-accent-deep shadow-xs transition-all duration-150 group-has-checked:bg-transparent group-has-checked:text-muted group-has-checked:shadow-none">
+                    With photo
+                  </span>
+                  <span className="rounded-full px-2 py-1 transition-all duration-150 group-has-checked:bg-sheet group-has-checked:text-ink group-has-checked:shadow-xs">
+                    Without
+                  </span>
+                </label>
+              )}
             </article>
           ))}
 
