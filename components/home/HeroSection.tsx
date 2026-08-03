@@ -17,11 +17,13 @@ export function HeroSection() {
 
       {/* Wide section, narrow readable text: the container runs near
           full-viewport; the copy column itself is capped at ~60ch. */}
-      <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-16 px-6 py-20 md:px-10 md:py-24 lg:grid-cols-12 lg:gap-10 lg:py-[104px] xl:px-14">
+      {/* Mobile keeps a tighter stack (py-12/gap-10) so the CV card's photo
+          crests the fold as a scroll cue; the 80-100px+ padding is md+. */}
+      <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-12 md:gap-16 md:px-10 md:py-24 lg:grid-cols-12 lg:gap-10 lg:py-[104px] xl:px-14">
         {/* Left — copy block */}
         <div className="flex flex-col items-center text-center lg:col-span-7 lg:items-start lg:text-left">
           <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
-            <MapPin size={13} />
+            <MapPin size={13} aria-hidden="true" />
             Built for Dubai, Abu Dhabi &amp; GCC hiring
           </p>
 
@@ -36,14 +38,8 @@ export function HeroSection() {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-muted md:text-xl">
-            Recruiters in Dubai spend 6 seconds per CV. Ours are built to
-            survive that — ATS-clean, visa-ready, and designed for the Gulf
-            market.
-          </p>
-
           {/* One CTA. Nothing competes with it. */}
-          <div className="mt-10">
+          <div className="mt-8 md:mt-10">
             <Button
               href="https://app.makemycv.ae"
               target="_blank"
@@ -54,14 +50,16 @@ export function HeroSection() {
               data-event="home_hero_cta_click"
             >
               Build My CV — Free
+              <span className="sr-only">(opens in new tab)</span>
             </Button>
           </div>
 
-          {/* Trust woven in below the button — facts, not badges. */}
-          <ul className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-start">
+          {/* Trust woven in below the button — facts, not badges. The
+              7-second stat matches the blog's recruiter-scan number. */}
+          <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:mt-7 lg:justify-start">
             {[
-              "Free, no sign-up",
-              "No watermark",
+              "Free — no sign-up, no watermark",
+              "Survives the 7-second recruiter scan",
               "Your data never leaves your browser",
             ].map((item) => (
               <li
@@ -79,8 +77,8 @@ export function HeroSection() {
         <div className="lg:col-span-5">
           <div className="mx-auto max-w-[400px] lg:max-w-[460px]">
             <CvPhotoCard />
-            <p className="mt-7 text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted">
-              The Professional template — photo, visa-ready, ATS-safe
+            <p className="mt-6 text-center font-mono text-[10.5px] uppercase tracking-[0.14em] text-muted">
+              The Professional template
             </p>
           </div>
         </div>

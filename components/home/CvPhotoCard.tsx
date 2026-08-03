@@ -43,12 +43,60 @@ function Headshot() {
         {/* ears */}
         <circle cx="34.5" cy="39" r="2.6" fill="url(#hs-skin)" />
         <circle cx="61.5" cy="39" r="2.6" fill="url(#hs-skin)" />
+        {/* brows */}
+        <path
+          d="M40.5 34.6c1.6-1.2 3.8-1.4 5.4-.7"
+          stroke="#4a3526"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M50.1 33.9c1.6-.7 3.8-.5 5.4.7"
+          stroke="#4a3526"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* eyes */}
+        <ellipse cx="43.2" cy="38.6" rx="1.7" ry="2" fill="#3a2c22" />
+        <ellipse cx="52.8" cy="38.6" rx="1.7" ry="2" fill="#3a2c22" />
+        <circle cx="43.8" cy="37.9" r="0.55" fill="#fff" />
+        <circle cx="53.4" cy="37.9" r="0.55" fill="#fff" />
+        {/* nose */}
+        <path
+          d="M47.6 41.5c-.3 1.6-.3 2.6.9 3.1"
+          stroke="#c78d63"
+          strokeWidth="1.1"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* smile */}
+        <path
+          d="M43.8 48c2.6 2.3 5.8 2.3 8.4 0"
+          stroke="#a85c4d"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* blush */}
+        <ellipse cx="40" cy="44.5" rx="2.4" ry="1.4" fill="#e2967a" opacity="0.35" />
+        <ellipse cx="56" cy="44.5" rx="2.4" ry="1.4" fill="#e2967a" opacity="0.35" />
         {/* hair — parted, swept back to a low bun */}
         <path
           d="M48 20.5c-9.5 0-15.5 6.8-15.5 15.2 0 2.6.4 4.6.9 6.3 1.6-5.6 3.4-8.2 5-9.6 1.1 1.8 4 3.1 9.6 3.1s8.5-1.3 9.6-3.1c1.6 1.4 3.4 4 5 9.6.5-1.7.9-3.7.9-6.3 0-8.4-6-15.2-15.5-15.2z"
           fill="#33281f"
         />
         <circle cx="63.5" cy="30" r="5.5" fill="#33281f" />
+        {/* hair sheen */}
+        <path
+          d="M39 26.5c2.5-2.6 6-4 9-4"
+          stroke="#5a4634"
+          strokeWidth="1.3"
+          strokeLinecap="round"
+          fill="none"
+          opacity="0.8"
+        />
         {/* earring */}
         <circle cx="34.5" cy="42.5" r="1.1" fill="#c49a48" />
         {/* shoulders / blazer */}
@@ -68,7 +116,12 @@ function Headshot() {
 
 export function CvPhotoCard() {
   return (
-    <div className="relative">
+    // One announcement for AT instead of ~30 nodes of fictional personal data.
+    <div
+      className="relative"
+      role="img"
+      aria-label="Sample UAE-format CV — photo, visa status, nationality and availability fields, ATS-safe layout"
+    >
       {/* Stacked sheets behind — document depth. */}
       <div
         aria-hidden="true"

@@ -78,7 +78,9 @@ export function Button(props: AnchorProps | ButtonProps) {
   const content = (
     <>
       {children}
-      {withArrow && <ArrowRight className="ml-2" size={18} />}
+      {withArrow && (
+        <ArrowRight className="ml-2" size={18} aria-hidden="true" focusable="false" />
+      )}
     </>
   );
 
