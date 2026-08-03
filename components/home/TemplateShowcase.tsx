@@ -212,7 +212,7 @@ export function TemplateShowcase() {
               Browse all {all.length} templates
             </span>
             <span className="px-6 text-xs text-muted">
-              Filters for ATS, photo &amp; industry
+              Filter by ATS, photo &amp; style
             </span>
           </Link>
         </div>
