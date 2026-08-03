@@ -56,18 +56,53 @@ export function TemplateShowcase() {
                 className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:shadow-lg-soft"
                 style={{ aspectRatio: "1 / 1.414", boxShadow: "var(--shadow-sm-soft)" }}
               >
-                {t.thumbnail ? (
-                  // eslint-disable-next-line @next/next/no-img-element -- fixed-size Playwright captures; sized + lazy
-                  <img
-                    src={t.thumbnail}
-                    alt={`${t.name} CV template preview — ${t.positioning}`}
-                    width={794}
-                    height={1123}
-                    loading="lazy"
-                    className="h-full w-full object-cover object-top"
+                {/* Photo templates ship a second, photo-less capture; a
+                    CSS-only checkbox (peer) flips between the two so users
+                    can compare with/without — still zero client JS. */}
+                {t.tags.includes("Photo") && (
+                  <input
+                    type="checkbox"
+                    id={`nophoto-${t.slug}`}
+                    className="peer sr-only"
+                    aria-label={`Show the ${t.name} template without photo`}
                   />
+                )}
+                {t.thumbnail ? (
+                  <>
+                    {/* eslint-disable-next-line @next/next/no-img-element -- fixed-size Playwright captures; sized + lazy */}
+                    <img
+                      src={t.thumbnail}
+                      alt={`${t.name} CV template preview — ${t.positioning}`}
+                      width={794}
+                      height={1123}
+                      loading="lazy"
+                      className="h-full w-full object-cover object-top peer-checked:hidden"
+                    />
+                    {t.tags.includes("Photo") && (
+                      // eslint-disable-next-line @next/next/no-img-element -- fixed-size Playwright captures; sized + lazy
+                      <img
+                        src={t.thumbnail.replace("-preview.png", "-nophoto-preview.png")}
+                        alt={`${t.name} CV template preview without photo`}
+                        width={794}
+                        height={1123}
+                        loading="lazy"
+                        className="hidden h-full w-full object-cover object-top peer-checked:block"
+                      />
+                    )}
+                  </>
                 ) : (
                   <div className="h-full w-full bg-paper-2" />
+                )}
+
+                {/* Photo on/off switch — a label for the hidden checkbox. */}
+                {t.tags.includes("Photo") && (
+                  <label
+                    htmlFor={`nophoto-${t.slug}`}
+                    className="absolute right-2.5 top-2.5 z-10 cursor-pointer select-none rounded-full border border-line bg-sheet/95 px-2.5 py-1 text-[10px] font-semibold text-ink-2 shadow-sm-soft transition-colors duration-150 hover:border-accent hover:text-accent peer-checked:[&_.label-off]:inline peer-checked:[&_.label-on]:hidden peer-focus-visible:ring-2 peer-focus-visible:ring-accent"
+                  >
+                    <span className="label-on">Hide photo</span>
+                    <span className="label-off hidden">Show photo</span>
+                  </label>
                 )}
 
                 {/* Factual badges, top-left on the sheet. */}
