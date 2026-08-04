@@ -10,9 +10,9 @@
  * items, only pass items whose Q/A is actually on the page.
  */
 import type { Post } from "@/lib/blog";
+import { rasterCover } from "@/lib/og-image";
 import {
   APP_URL,
-  DEFAULT_OG_IMAGE,
   LOGO_ID,
   ORGANIZATION_ID,
   ORG_LOGO,
@@ -242,7 +242,7 @@ function toIsoDate(value: unknown): string {
 export function postSchema(post: Post) {
   const postPath = `/blog/${post.slugPath}`;
   const postUrl = canonicalUrl(postPath);
-  const imageUrl = absoluteUrl(post.coverImage ?? DEFAULT_OG_IMAGE);
+  const imageUrl = absoluteUrl(rasterCover(post.coverImage));
   const datePublished = toIsoDate(post.date);
   const dateModified = toIsoDate(post.dateModified ?? post.date);
 

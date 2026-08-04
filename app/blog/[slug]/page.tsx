@@ -7,12 +7,12 @@ import { AuthorBlock } from '@/components/blog/AuthorBlock'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { postSchema } from '@/lib/seo-schema'
 import {
-  DEFAULT_OG_IMAGE,
   SITE_NAME,
   absoluteUrl,
   canonicalUrl,
   indexableRobots,
 } from '@/lib/seo'
+import { rasterCover } from '@/lib/og-image'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(slug)
   if (!post) return {}
 
-  const ogImageUrl = post.coverImage ?? DEFAULT_OG_IMAGE
+  const ogImageUrl = rasterCover(post.coverImage)
   const postCanonicalUrl = canonicalUrl(`/blog/${post.slugPath}`)
   const modifiedTime = post.dateModified ?? post.date
 
