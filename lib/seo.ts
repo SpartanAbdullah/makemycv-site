@@ -33,6 +33,7 @@ export const LOGO_ID = `${SITE_URL}/#logo`;
  */
 export const ORG_SAME_AS: readonly string[] = [
   "https://www.linkedin.com/company/makemycv-ae",
+  "https://www.instagram.com/makemycvae/",
 ];
 
 function normalizePath(pathname: string): string {

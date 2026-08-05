@@ -10,6 +10,7 @@ import { ProblemSolution } from "@/components/home/ProblemSolution";
 import { FeatureGrid } from "@/components/home/FeatureGrid";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { FinalCTA } from "@/components/home/FinalCTA";
+import { SocialSection } from "@/components/home/SocialSection";
 
 // All sections render server-side directly. next/dynamic was dropped in the
 // 2026-07 redesign: these are static server components (near-zero client JS),
@@ -71,6 +72,9 @@ export default function HomePage() {
           the footer. Same component the tool pages use for cross-linking. */}
       <CareerToolLinks currentPath="/" />
       <HomepageFAQ />
+      {/* Social follow — the one intentionally-client section on the page
+          (framer-motion floating icons). LinkedIn + Instagram only for now. */}
+      <SocialSection />
       <FinalCTA />
     </>
   );

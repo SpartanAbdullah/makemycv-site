@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Heart, MapPin } from "lucide-react";
+import { LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/social";
+import { IconLinkedInGlyph, IconInstagramGlyph } from "@/components/SocialIcons";
 
 /* Two columns by intent: Pages = the site itself; Free Tools = the GEO
    utility pages (kept out of Pages so the footer never reads as link soup). */
@@ -57,6 +59,27 @@ export const Footer = () => (
             Built by Abdullah in Dubai.
           </Link>
         </p>
+        {/* Social — LinkedIn + Instagram only for now */}
+        <div className="mt-4 flex items-center gap-3">
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MakeMyCV on LinkedIn"
+            className="text-white/60 transition-colors duration-150 hover:text-gold-light"
+          >
+            <IconLinkedInGlyph className="h-[18px] w-[18px]" />
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="MakeMyCV on Instagram"
+            className="text-white/60 transition-colors duration-150 hover:text-gold-light"
+          >
+            <IconInstagramGlyph className="h-[18px] w-[18px]" />
+          </a>
+        </div>
       </div>
 
       {/* Quick Links */}
