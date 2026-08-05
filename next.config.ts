@@ -51,6 +51,13 @@ const nextConfig: NextConfig = {
         destination: '/blog/best-cv-writers-uae',
         permanent: true,
       },
+      // Thin Jan-2026 format guide retired 2026-08-05 — cannibalized the
+      // comprehensive cv-format-uae-2026 post (same query intent).
+      {
+        source: '/blog/uae-cv-format-guide',
+        destination: '/blog/cv-format-uae-2026',
+        permanent: true,
+      },
     ];
   },
 };
