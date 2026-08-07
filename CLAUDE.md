@@ -35,6 +35,7 @@ npx tsc --noEmit   # fast type check without a full build
 - Retiring/consolidating a post: delete the MDX AND add a 301 in `next.config.ts` `redirects()` (see existing old-blog-slug entries). Never leave a published slug 404ing.
 - Do not re-add `rehypeAutolinkHeadings` — it broke heading extraction in syndication (see comment in velite.config.ts).
 - After content changes, `npm run build` must pass — Velite validates frontmatter at build time.
+- **After creating or editing any `content/blog/*.mdx`, ALWAYS run the `seo-reviewer` subagent on the changed file(s) before committing.** Apply all BLOCKER and SHOULD FIX findings; mention NICE items to the user.
 
 ## Gotchas
 

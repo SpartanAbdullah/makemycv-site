@@ -19,6 +19,10 @@
             "type": "command",
             "timeout": 90,
             "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{let p='';try{p=((JSON.parse(d).tool_input)||{}).file_path||''}catch(e){}if(!(p.endsWith('.ts')||p.endsWith('.tsx'))||p.endsWith('.d.ts')){process.exit(0)}const{execSync}=require('child_process');try{execSync('npx tsc --noEmit --pretty false',{stdio:['ignore','pipe','pipe']})}catch(e){console.error('TypeScript errors after this edit:'+String.fromCharCode(10)+String(e.stdout||e.message).slice(0,4000));process.exit(2)}process.exit(0)})\""
+          },
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c).on('end',()=>{let p='';try{p=((JSON.parse(d).tool_input)||{}).file_path||''}catch(e){}if(p.endsWith('.mdx')&&p.toLowerCase().split(String.fromCharCode(92)).join('/').includes('content/blog/')){console.error('Blog post modified: before committing, run the seo-reviewer subagent on '+p+' and apply BLOCKER/SHOULD FIX findings.');process.exit(2)}process.exit(0)})\""
           }
         ]
       }
