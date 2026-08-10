@@ -16,6 +16,59 @@ Format:
 
 ---
 
+## [2026-08-10 08:57] Weekly blog batch: 2 new UAE Job Market posts + can-chatgpt-write-cv refresh
+
+**Goal:** Ship the 3 ideas from the 3–10 Aug weekly brief. Dedup check caught that Idea 2
+duplicated an existing post, so it became a refresh instead of a new slug — protecting the
+existing post's rankings rather than cannibalising them. Serves **organic acquisition** and
+**AI/LLM citability** (every stat sourced and dated, FAQ + FAQPage schema on all three).
+
+**Files:**
+- created: `content/blog/why-cv-ignored-dubai.mdx` — new post on the 2026 UAE hiring
+  contraction and application-volume problem. Naukrigulf Hiring Index salary-band data +
+  on-record recruiter quotes (Khaleej Times, 7 Aug 2026). Deliberately scoped AWAY from ATS
+  mechanics and links out to does-dubai-use-ats / ats-cv-checklist-uae instead, to avoid
+  cannibalising them.
+- created: `content/blog/uae-hiring-season-september.mdx` — new evergreen-seasonal post on the
+  July 2026 PMI hiring restart and the August-prep / September-apply window. Refreshable each
+  August with new PMI figures.
+- edited:  `content/blog/can-chatgpt-write-cv.mdx` — refreshed with Aug 2026 HireRight/YouGov
+  Gulf employer research. Added "What Gulf Employers Actually Think" + "The Red Line: What the
+  Gulf Verifies" sections and 4 new FAQs. `dateModified: 2026-08-10` set; `date` left at
+  2026-07-04 per CLAUDE.md refresh convention.
+- created: `public/blog/covers/why-cv-ignored-dubai.svg`
+- created: `public/blog/covers/uae-hiring-season-september.svg`
+- edited:  `CLAUDE.md` — added a "Blog content pipeline" section so Claude Code follows the same
+  dedup / stat-verification / guardrail / FAQ steps as Cowork's `makemycv-blog-ship` skill. Docs
+  only, no build impact.
+
+**Notes / risks / follow-up:**
+- 🔴 **GUARDRAIL FIX (approved by Abdullah this run):** can-chatgpt-write-cv previously carried
+  an FAQ "What is the 7-second rule for CVs?" answering "recruiters spend roughly 6–8 seconds",
+  and a body link reading "the seven seconds you actually get". That is the US eye-tracking claim
+  the content guardrails say to keep OUT of advice content — and it was in FAQPage schema, so it
+  was the version LLMs and Google quoted. Both instances removed and replaced with a
+  UAE-defensible FAQ ("Can employers tell if your CV was written by AI?").
+- Side effect: this removed the only internal link into `7-seconds-thats-it`. That post remains
+  flagged in the guardrails as a live violation worth retiring or rewriting — **still open.**
+- **3 corrections made to the source brief during verification** (do not re-introduce):
+  1. The "many screening systems still prioritise keywords over actual capability" line is a
+     paraphrase, not a quote. Actual quote used instead.
+  2. The "64% of Saudi employers view AI positively" figure is NOT published as 64% — the source
+     says "nearly two-thirds". Written as "nearly two-thirds".
+  3. Most HireRight/YouGov figures are **Saudi**, not UAE. Only 42% (promotion) / 31%
+     (termination) are UAE. Each figure is now labelled with its market in a table.
+- HireRight/YouGov sample size and fieldwork dates are unpublished; the post says so explicitly.
+- Validated against `.claude/agents/seo-reviewer.md` checklist programmatically: frontmatter
+  limits, FAQ↔body mirroring, internal-link targets, category enum, banned claims, thin sections.
+  **0 blockers, 0 warnings.**
+- ⚠️ **NOT COMMITTED.** git index writes fail from the Cowork mount (`.git/index.lock`:
+  Operation not permitted). Run `npm run build` then commit/push from Windows.
+
+**Suggested commit:** content(blog): add UAE hiring-market posts, refresh chatgpt-cv with Gulf employer data, drop 6-second claim
+
+---
+
 ## [2026-08-03 12:01] Project orientation + changelog setup
 
 **Goal:** First Cowork run with write access to this repo. Establish the accountability trail
