@@ -49,6 +49,24 @@ export const viewport = {
   themeColor: "#1B2A4A",
 };
 
+/* GTM container ID, read from the environment rather than hard-coded (GA4 audit,
+   10 Aug 2026). Set ONLY in Vercel's Production environment, so localhost and
+   preview deployments load no Google tag at all and cannot reach the production
+   GA4 property — that audit found ~32 views from localhost plus five rogue
+   `makemycv-site-*.vercel.app` hostnames over 28 days, and Tag Diagnostics rated
+   the tag "Needs Attention" partly for it.
+
+   Note this is the GTM CONTAINER id, not the GA4 measurement id. GA4
+   (G-8MWPD87FJH) is configured inside the container, never in this codebase, so
+   this single variable is the on/off switch for all Google analytics on the site.
+   Setting it to a G- measurement id would request an invalid container and take
+   analytics down silently.
+
+   Format-guarded because the value is interpolated into an inline <script>. */
+const RAW_GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GTM_ID =
+  RAW_GTM_ID && /^GTM-[A-Z0-9]+$/.test(RAW_GTM_ID) ? RAW_GTM_ID : null;
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -143,30 +161,37 @@ export default function RootLayout({
             ],
           }}
         />
-        {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4. */}
-        <Script id="google-tag-manager" strategy="lazyOnload">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4.
+            Renders nothing when NEXT_PUBLIC_GTM_ID is absent (localhost, previews). */}
+        {GTM_ID && (
+          <Script id="google-tag-manager" strategy="lazyOnload">
+            {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-5H2LMVJT');`}
-        </Script>
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+          </Script>
+        )}
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable} antialiased bg-paper`}
       >
-        {/* Google Tag Manager (noscript) — must be immediately after opening <body> */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-5H2LMVJT"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
-        {/* Delegate click listener: forwards [data-event] attributes to gtag (exposed by GTM's GA4 tag) */}
-        <Script id="data-event-dispatch" strategy="lazyOnload">
-          {`
+        {/* Both blocks are gated on GTM_ID: with no container there is no gtag for
+            the dispatcher to call, so shipping them off-production is dead weight. */}
+        {GTM_ID && (
+          <>
+            {/* Google Tag Manager (noscript) — must be immediately after opening <body> */}
+            <noscript>
+              <iframe
+                src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+                height="0"
+                width="0"
+                style={{ display: "none", visibility: "hidden" }}
+              />
+            </noscript>
+            {/* Delegate click listener: forwards [data-event] attributes to gtag (exposed by GTM's GA4 tag) */}
+            <Script id="data-event-dispatch" strategy="lazyOnload">
+              {`
             document.addEventListener('click', function(e) {
               var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
               if (!el) return;
@@ -182,7 +207,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               window.gtag('event', eventName, params);
             }, { passive: true });
           `}
-        </Script>
+            </Script>
+          </>
+        )}
         <Navbar />
         <main>{children}</main>
         <Footer />

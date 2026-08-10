@@ -11,10 +11,14 @@ import {
   SettlementFooter,
 } from "@/components/tools/CalculatorShared";
 
+/* Rewritten 2026-08-10 (Search Console audit). "Free" to the front; title cut
+   from 53 to 33 chars because with the " | MakeMyCV.ae" suffix the old one
+   rendered at 67 and truncated. Law citation stays in the body, quick answer
+   and FAQPage schema — see the note on the gratuity calculator. */
 export const metadata = buildPageMetadata({
-  title: "UAE Notice Period Calculator — Free, Under Labour Law",
+  title: "Free UAE Notice Period Calculator",
   description:
-    "Free UAE notice period calculator. Check the notice you must give or receive under the UAE Labour Law (Federal Decree-Law No. 33 of 2021) — 30–90 days after probation, 14 or 30 days during it — plus payment in lieu. No sign-up.",
+    "Free UAE notice period calculator. Check the notice you must give or receive under UAE Labour Law — 30–90 days after probation, 14 or 30 during it.",
   path: "/notice-period-calculator",
 });
 

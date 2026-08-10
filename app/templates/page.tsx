@@ -19,10 +19,13 @@ const templatesAiAnswer = {
   a: "MakeMyCV offers 10 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean for fresh graduates, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and every layout is available with or without a photo.",
 };
 
+/* Rewritten 2026-08-10 (Search Console audit): `cv template uae` earns 14
+   impressions at position 4.6 and zero clicks. Leads with "Free" + "UAE" and
+   fronts the count, which the old title buried. */
 export const metadata = buildPageMetadata({
-  title: "ATS-Friendly CV Templates for UAE Jobs",
+  title: "Free CV Templates UAE — 10 ATS-Ready Formats",
   description:
-    "Browse all 10 free CV templates built for Dubai and UAE hiring standards — ATS-friendly single-column layouts and design-led formats, with or without a photo.",
+    "10 free CV templates for Dubai & UAE jobs — ATS-friendly single-column layouts and design-led formats, with or without a photo. No sign-up.",
   path: "/templates",
 });
 

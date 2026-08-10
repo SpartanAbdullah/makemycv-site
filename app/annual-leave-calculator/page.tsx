@@ -11,10 +11,15 @@ import {
   SettlementFooter,
 } from "@/components/tools/CalculatorShared";
 
+/* Rewritten 2026-08-10 (Search Console audit). "Free" to the front; title cut
+   from 48 to 41 chars so the rendered version clears 60 with the
+   " | MakeMyCV.ae" suffix. "Leave Salary" compressed to "Salary" — the leave-
+   salary intent is carried by the description and the H2s. Law citation stays
+   in the body, quick answer and FAQPage schema. */
 export const metadata = buildPageMetadata({
-  title: "UAE Annual Leave & Leave Salary Calculator — Free",
+  title: "Free UAE Annual Leave & Salary Calculator",
   description:
-    "Free UAE annual leave calculator. Check your leave entitlement (30 days a year after one year; 2 days a month from 6 months) and what unused days are worth at end of service under the UAE Labour Law. No sign-up.",
+    "Free UAE annual leave calculator. Check your entitlement — 30 days a year after one year — and what unused days are worth at end of service.",
   path: "/annual-leave-calculator",
 });
 

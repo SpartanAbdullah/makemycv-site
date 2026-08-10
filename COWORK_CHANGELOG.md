@@ -16,6 +16,79 @@ Format:
 
 ---
 
+## [2026-08-10 18:40] Scope the Google tag to production + rewrite titles/meta on 6 money pages
+
+**Goal:** Two items from the 10 Aug GA4 analytics brief (§1 and §5). §1 stops localhost and
+Vercel preview deployments polluting the production GA4 property — the audit found ~32 views
+from `localhost` plus five rogue `makemycv-site-*.vercel.app` hostnames over 28 days, and
+Google's Tag Diagnostics rated the tag "Needs Attention" partly for it. Serves **trustworthy
+metrics before monetisation**. §5 attacks the highest-ROI SEO gap available: the site ranks
+1.0–1.7 for `dubai resume maker`, `cv maker uae format` and `dubai format cv maker free` and
+earns **zero clicks** on all of them. That is a snippet problem, not a ranking problem.
+
+**Files:**
+- edited: `app/layout.tsx` — GTM container id now read from `NEXT_PUBLIC_GTM_ID` instead of
+  being hard-coded. Both the head `<Script>` and the `<body>` `<noscript>` iframe are gated on
+  it, as is the `data-event` delegated dispatcher (without a container there is no `gtag` for
+  it to call). Value is format-guarded with `/^GTM-[A-Z0-9]+$/` because it is interpolated into
+  an inline `<script>`.
+- edited: `.env.example` — documents `NEXT_PUBLIC_GTM_ID` with an **empty** value and an
+  explicit warning to keep it empty locally.
+- edited: `app/page.tsx`, `app/templates/page.tsx`, `app/resume-checker/page.tsx`,
+  `app/gratuity-calculator/page.tsx`, `app/notice-period-calculator/page.tsx`,
+  `app/annual-leave-calculator/page.tsx` — title + meta description rewrites.
+
+**IMPORTANT — the brief's §1 was factually wrong, and following it literally would have taken
+analytics down.** It said to replace a hard-coded `G-8MWPD87FJH` with `NEXT_PUBLIC_GA_ID`.
+There is no GA4 measurement id anywhere in this codebase. The site loads **GTM container
+`GTM-5H2LMVJT`**, and GA4 is configured *inside* that container. Feeding a `G-` id into the
+GTM snippet requests a container that does not exist, and every Google analytic on the site
+dies silently. The variable is therefore `NEXT_PUBLIC_GTM_ID`, not `NEXT_PUBLIC_GA_ID`.
+
+**Title changes** (rendered length includes the layout's ` | MakeMyCV.ae` suffix, 14 chars;
+all six now clear 60, three did not before):
+
+| Page | Was | Now | Rendered |
+|---|---|---|---|
+| `/` | Free CV Builder for UAE Jobs | Free CV Maker for UAE Jobs — Dubai CV Format | 58 |
+| `/templates` | ATS-Friendly CV Templates for UAE Jobs | Free CV Templates UAE — 10 ATS-Ready Formats | 58 |
+| `/resume-checker` | Free ATS Resume Checker for UAE Jobs | Free ATS CV Checker — Dubai & UAE Jobs | 52 |
+| `/gratuity-calculator` | UAE Gratuity Calculator — Free End-of-Service Estimate | Free UAE Gratuity Calculator — End of Service | 59 (was 68) |
+| `/notice-period-calculator` | UAE Notice Period Calculator — Free, Under Labour Law | Free UAE Notice Period Calculator | 47 (was 67) |
+| `/annual-leave-calculator` | UAE Annual Leave & Leave Salary Calculator — Free | Free UAE Annual Leave & Salary Calculator | 55 (was 62) |
+
+Two deliberate wording calls: **"Maker" not "Builder"** on the homepage, because every
+converting query uses "maker" (`cv maker for dubai jobs` 20% CVR, `uae cv maker free` 10.7%,
+`dubai cv maker free` 5.45%) and nothing that ranks says "builder"; and **"CV Checker" not
+"Resume Checker"**, which brings the title in line with house style — the page's own quick
+answer already said "free ATS CV checker", so the title was the odd one out. The
+`/resume-checker` **route is unchanged**; renaming it would need a 301 and was out of scope.
+Brand-name positioning was left alone per `makemycv-brand-disambiguation`.
+
+The three calculator descriptions lost their inline `(Federal Decree-Law No. 33 of 2021)`
+citation **only because at ~200–230 chars they were truncated before it ever displayed**. The
+citation still ships in the visible body, the quick answer and the FAQPage schema, which is
+what actually carries it for AI citation.
+
+**Notes / risks / follow-up:**
+- **Abdullah must set `NEXT_PUBLIC_GTM_ID = GTM-5H2LMVJT` in Vercel → Settings → Environment
+  Variables, scoped to Production ONLY** (leave Preview and Development unchecked). Until he
+  does, the next production deploy ships with **no analytics at all**. Verify GA4 → Realtime
+  within ~60s of that deploy; if the var is missing there is no error, just silence.
+- Verified both directions locally rather than assuming: with the var **unset**, 0 of the
+  prerendered HTML files reference `googletagmanager` and there are 0 `dataLayer` references;
+  with it set to `GTM-5H2LMVJT`, all 16 carry the tag with the correct container, the noscript
+  iframe intact, and no `G-` measurement id leaked into the bundle.
+- `npm run build` passes. Title lengths checked programmatically, not by eye.
+- The Vercel preview-domain suggestions in GA4 will stop regenerating once this is deployed and
+  the previews stop carrying the tag. Do not accept them in the meantime.
+- Not done this session, deferred by agreement: §3 (404/bot middleware) and §4 (product event
+  instrumentation). See the open items in the session summary.
+
+**Suggested commit:** `chore(analytics): scope GTM to production env + rewrite money-page titles`
+
+---
+
 ## [2026-08-10 08:57] Weekly blog batch: 2 new UAE Job Market posts + can-chatgpt-write-cv refresh
 
 **Goal:** Ship the 3 ideas from the 3–10 Aug weekly brief. Dedup check caught that Idea 2

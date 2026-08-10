@@ -29,10 +29,22 @@ const homeAiAnswer = {
   a: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market. It serves job seekers, fresh graduates, mid-career professionals and executives targeting roles in Dubai, Abu Dhabi, Sharjah and across the Gulf, with UAE-specific fields (visa status, nationality, Emirates ID), ATS-readable formatting and recruiter-friendly structure. No sign-up, no paywall.",
 };
 
+/* Title/description rewritten 2026-08-10 (GA4 + Search Console audit). The site
+   already ranks 1.0–1.7 for `dubai resume maker`, `cv maker uae format` and
+   `dubai format cv maker free` and earned ZERO clicks on them — a snippet
+   problem, not a ranking problem. Two deliberate changes:
+     - "Maker", not "Builder". Every converting query uses "maker"
+       (`cv maker for dubai jobs` converts at 20%, `uae cv maker free` at 10.7%);
+       nothing ranking here says "builder".
+     - Leads with "Free" + the UAE/Dubai qualifier, which is what the converting
+       queries all contain.
+   The layout template appends " | MakeMyCV.ae" (14 chars), so keep this ≤45 to
+   render under 60. We do NOT optimise for the bare brand name — see
+   makemycv-brand-disambiguation. */
 export const metadata = buildPageMetadata({
-  title: "Free CV Builder for UAE Jobs",
+  title: "Free CV Maker for UAE Jobs — Dubai CV Format",
   description:
-    "Build a CV UAE recruiters actually open — ATS-clean, visa-ready, designed for Dubai, Abu Dhabi & GCC hiring. Free, no sign-up, no paywall.",
+    "Free CV maker for Dubai & UAE jobs. Build an ATS-ready CV in the format UAE recruiters expect — visa status, photo optional. No sign-up, no paywall.",
   path: "/",
 });
 

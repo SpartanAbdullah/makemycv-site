@@ -11,10 +11,18 @@ import {
   SettlementFooter,
 } from "@/components/tools/CalculatorShared";
 
+/* Rewritten 2026-08-10 (Search Console audit). "Free" moved to the front, and
+   the title shortened from 54 to 45 chars — with the layout's " | MakeMyCV.ae"
+   suffix the old one rendered at 68 and was truncated mid-phrase.
+
+   The description drops the "(Federal Decree-Law No. 33 of 2021)" citation only
+   because at ~200 chars it was cut off before ever being displayed. The
+   citation still ships in the visible body, the quick answer and the FAQPage
+   schema, which is what actually carries it for AI citation. */
 export const metadata = buildPageMetadata({
-  title: "UAE Gratuity Calculator — Free End-of-Service Estimate",
+  title: "Free UAE Gratuity Calculator — End of Service",
   description:
-    "Free UAE end-of-service gratuity calculator. Estimate your benefit under the UAE Labour Law (Federal Decree-Law No. 33 of 2021) — 21 days' basic pay per year for the first 5 years, 30 after. No sign-up.",
+    "Free UAE gratuity calculator. Estimate your end-of-service benefit under UAE Labour Law — 21 days' basic pay per year for the first 5 years, 30 after.",
   path: "/gratuity-calculator",
 });
 

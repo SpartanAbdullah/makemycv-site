@@ -32,11 +32,20 @@ const checkerAiAnswer = {
   a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about 30 seconds.",
 };
 
+/* Rewritten 2026-08-10 (Search Console audit): `ats checker uae` earns 29
+   impressions at position 8.6 and zero clicks — the largest zero-click query
+   pointing at this page. Now leads with "Free ATS CV Checker" and names both
+   Dubai and UAE.
+
+   "CV Checker", not "Resume Checker": house style is CV in human-facing copy,
+   "resume" only as ATS vocabulary. The page's own quick answer above already
+   says "free ATS CV checker" — the old title was the odd one out. The /resume-
+   checker ROUTE stays as-is; renaming it would need a 301 and is out of scope. */
 export const metadata = {
   ...buildPageMetadata({
-    title: "Free ATS Resume Checker for UAE Jobs",
+    title: "Free ATS CV Checker — Dubai & UAE Jobs",
     description:
-      "Instantly check if your CV passes Dubai, Abu Dhabi and GCC ATS filters. Free, no sign-up, results in 30 seconds. Built for the UAE job market.",
+      "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in 30 seconds, no sign-up.",
     path: "/resume-checker",
     image: "/og/resume-checker.png",
   }),
