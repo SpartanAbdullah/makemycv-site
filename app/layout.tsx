@@ -189,22 +189,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 style={{ display: "none", visibility: "hidden" }}
               />
             </noscript>
-            {/* Delegate click listener: forwards [data-event] attributes to gtag (exposed by GTM's GA4 tag) */}
+            {/* Delegated click listener: forwards [data-event] attributes to the
+                GTM dataLayer.
+
+                Until 2026-08-10 this called `window.gtag(...)` behind a
+                `typeof window.gtag !== 'function'` guard. That guard NEVER
+                passed. GA4 here is delivered by GTM, and GTM does not define
+                the global `gtag()` wrapper — that comes from the manual gtag.js
+                install snippet this site has never run. So every click on all
+                21 [data-event] call sites returned early and recorded nothing,
+                which is exactly why the 10 Aug 2026 GA4 audit found zero custom
+                events. Do not reintroduce a gtag call here; see lib/analytics.ts.
+
+                NOTE: each event name below still needs a Custom Event trigger
+                and a GA4 Event tag configured AND PUBLISHED in container
+                GTM-5H2LMVJT. Without that, these pushes land in the dataLayer
+                and go no further. */}
             <Script id="data-event-dispatch" strategy="lazyOnload">
               {`
             document.addEventListener('click', function(e) {
               var el = e.target && e.target.closest ? e.target.closest('[data-event]') : null;
               if (!el) return;
               var eventName = el.getAttribute('data-event');
-              if (!eventName || typeof window.gtag !== 'function') return;
-              var params = {};
+              if (!eventName) return;
+              var payload = { event: eventName };
               for (var i = 0; i < el.attributes.length; i++) {
                 var attr = el.attributes[i];
                 if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-event') {
-                  params[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
+                  payload[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
                 }
               }
-              window.gtag('event', eventName, params);
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push(payload);
             }, { passive: true });
           `}
             </Script>

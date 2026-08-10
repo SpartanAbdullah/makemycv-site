@@ -16,6 +16,70 @@ Format:
 
 ---
 
+## [2026-08-10 19:25] Fix the [data-event] dispatcher — it has never fired a single event
+
+**Goal:** The revised 10 Aug analytics brief states that `window.gtag` is undefined on this site
+(verified against the live DOM). That is not a curiosity — it means the delegated `[data-event]`
+click dispatcher in `app/layout.tsx` has been dead code since the day it shipped. It guarded on
+`typeof window.gtag !== 'function'` and returned early on **every** click. All **21** CTA call
+sites across **17** distinct event names recorded nothing. Serves **trustworthy metrics before
+monetisation**: this is the reason §4 of the brief found "zero custom events" in GA4.
+
+**Root cause.** GA4 here is delivered by GTM, not by a direct gtag install. The global `gtag()`
+function comes from the *manual* gtag.js install snippet —
+`function gtag(){dataLayer.push(arguments)}` — which this site has never run. GTM injects
+gtag.js but never defines that wrapper. So `window.gtag` is permanently undefined and every
+call through it is a no-op. The old code comment claiming gtag was "exposed by GTM's GA4 tag"
+was simply wrong, and that wrong assumption is what hid this.
+
+**Files:**
+- created: `lib/analytics.ts` — SSR-safe `track(event, params)` helper that pushes to the GTM
+  dataLayer. No-ops during SSR and when the container is absent (localhost/preview per §1, or
+  an ad blocker). Carries the full explanation so this cannot be reintroduced.
+- edited: `app/layout.tsx` — dispatcher now pushes `{ event, ...params }` to `window.dataLayer`
+  instead of calling `window.gtag`. Same `data-*` → snake_case parameter mapping as before; the
+  17 existing event names are unchanged.
+
+**Verified by executing the real code, not by inspection.** The dispatcher source was lifted
+from `app/layout.tsx` and run against a DOM stub with **no `window.gtag` defined** — production
+conditions. Direct A/B of the committed version against this one:
+
+```
+BEFORE (da61875)  events recorded: 0
+AFTER  (this)     events recorded: 1
+```
+
+Also asserted: the event name is forwarded as the `event` key (what a GTM Custom Event trigger
+matches on), `data-cta-location` → `cta_location` mapping works, non-`data-` attributes are
+excluded so no `href` leaks into a parameter, a bare CTA with no extra params still emits, and
+a click on a non-CTA element pushes nothing.
+
+**Notes / risks / follow-up:**
+- 🔴 **THIS IS ONLY HALF THE PIPELINE.** A `dataLayer.push` with no matching **Custom Event
+  trigger + GA4 Event tag inside container `GTM-5H2LMVJT`** goes nowhere. The code will look
+  correct, the build passes, and GA4 stays empty. The container work is §4a/§4 and needs GTM
+  edit rights. **Until those tags exist and the container is PUBLISHED, this change moves the
+  events from "silently dropped in the browser" to "sitting in the dataLayer, unread".** That
+  is progress, not a fix.
+- The 17 event names needing GTM triggers: `resume_checker_cta_click`, `navbar_ats_checker_click`,
+  `jd_match_cta_click`, `home_hero_cta_click`, `home_how_it_works_cta_click`,
+  `home_template_card_click`, `templates_page_use_template_click`, `templates_page_endcap_click`,
+  `blog_cta_click`, `cv_examples_cross_link_click`, `gratuity_cross_link_click`,
+  `notice_cross_link_click`, `leave_cross_link_click`, `resignation_cross_link_click`,
+  `resignation_download_click`, `tipjar_kofi_click`, `tipjar_paypal_click`.
+- **This changes the §4 naming decision.** The earlier call was "add canonical `cta_click`
+  names, keep the bespoke ones during a transition, so existing reports don't break". There are
+  no existing reports — these names have never produced a row. There is nothing to protect, so
+  §4 should migrate straight to the canonical scheme rather than run both.
+- `track()` is currently unused by design; it is the transport §4 will build on. The inline
+  dispatcher cannot import it (it is a raw `<Script>` string), so the dataLayer push is
+  duplicated there deliberately.
+- `npm run build` and `npm run lint` pass (2 warnings, both pre-existing in blog files).
+
+**Suggested commit:** `fix(analytics): dispatcher pushes to dataLayer instead of undefined gtag`
+
+---
+
 ## [2026-08-10 18:40] Scope the Google tag to production + rewrite titles/meta on 6 money pages
 
 **Goal:** Two items from the 10 Aug GA4 analytics brief (§1 and §5). §1 stops localhost and
