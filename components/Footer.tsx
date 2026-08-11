@@ -5,13 +5,15 @@ import { IconLinkedInGlyph, IconInstagramGlyph } from "@/components/SocialIcons"
 
 /* Two columns by intent: Pages = the site itself; Free Tools = the GEO
    utility pages (kept out of Pages so the footer never reads as link soup). */
+/* Anchor text matches the /support page's own H1 and <title> — "Support" alone
+   no longer describes what the page asks for. */
 const pageLinks = [
   { href: "/", label: "Home" },
   { href: "/templates", label: "Templates" },
-  { href: "/support", label: "Support" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
+  { href: "/support", label: "Support This Project" },
 ];
 
 const toolLinks = [

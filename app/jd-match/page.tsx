@@ -20,16 +20,18 @@ const jdAiAnswer = {
   a: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss. Build or import your CV, paste the job ad, and close each gap. Built for Dubai, Abu Dhabi and GCC hiring, it never invents experience — your draft stays in your browser while matching runs server-side. Free, no sign-up.",
 };
 
-export const metadata = {
-  ...buildPageMetadata({
-    title: "JD Match — Free CV-vs-Job Check for UAE Jobs",
-    description:
-      "Paste any UAE job description and see how your CV matches it — a match score plus a green/amber heatmap of every requirement you cover or miss. Free, honest, private. Built for Dubai, Abu Dhabi & GCC hiring.",
-    path: "/jd-match",
-  }),
-  // No brand suffix here — the root layout's title template already appends
-  // "| MakeMyCV.ae". Hardcoding one rendered a doubled "| MakeMyCV | MakeMyCV.ae".
-  title: "JD Match — Free CV-vs-Job Description Check for UAE Jobs",
+/* Call buildPageMetadata directly — do NOT spread-and-override. This block used
+   to spread the helper and then reassign `title`, which changed <title> but left
+   the helper's generated og:title untouched: the page shipped
+   <title>"…CV-vs-Job Description Check…"</title> against
+   og:title "…CV-vs-Job Check…". `keywords` is a helper parameter so the
+   override is unnecessary. No brand suffix here — the root layout's title
+   template appends " | MakeMyCV.ae" for child segments like this one. */
+export const metadata = buildPageMetadata({
+  title: "JD Match — CV vs Job Description",
+  description:
+    "Paste any UAE job description and see how your CV matches — a score plus a heatmap of every requirement you cover or miss. Free, no sign-up.",
+  path: "/jd-match",
   keywords: [
     "JD match",
     "CV job match UAE",
@@ -39,7 +41,7 @@ export const metadata = {
     "job description match score",
     "tailor resume UAE",
   ],
-};
+});
 
 // No aggregateRating by design — the Rich Results Test's "optional" warning is
 // expected. Only real, user-sourced, on-page-visible ratings may ever go here;

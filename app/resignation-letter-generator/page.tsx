@@ -8,9 +8,9 @@ import { ResignationLetterGenerator } from "@/components/tools/ResignationLetter
 import { TrustBadge } from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
-  title: "UAE Resignation Letter Generator — Free, Under Labour Law",
+  title: "UAE Resignation Letter Generator",
   description:
-    "Generate a professional UAE resignation letter in under a minute — correct notice period under the UAE Labour Law (Federal Decree-Law No. 33 of 2021), last working day included. Free, in-browser, no sign-up.",
+    "Generate a professional UAE resignation letter in a minute — correct notice period under UAE Labour Law, last working day included. Free, no sign-up.",
   path: "/resignation-letter-generator",
 });
 

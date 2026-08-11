@@ -23,7 +23,7 @@ const templatesAiAnswer = {
    impressions at position 4.6 and zero clicks. Leads with "Free" + "UAE" and
    fronts the count, which the old title buried. */
 export const metadata = buildPageMetadata({
-  title: "Free CV Templates UAE — 10 ATS-Ready Formats",
+  title: "Free UAE CV Templates — 10 ATS Formats",
   description:
     "10 free CV templates for Dubai & UAE jobs — ATS-friendly single-column layouts and design-led formats, with or without a photo. No sign-up.",
   path: "/templates",

@@ -1,18 +1,29 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { Mail, MapPin } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 import { ContactForm } from "./ContactForm";
 
+/* Indexable as of 2026-08-11. This page carried `index: false` while being
+   linked from the footer on all 44 pages and excluded from the sitemap —
+   confirmed unintentional. A noindexed page can never be surfaced as a
+   sitelink, and Contact is one of the most conventional sitelink targets. */
 export const metadata = buildPageMetadata({
-  title: "Contact MakeMyCV",
+  title: "Contact Us",
   description:
     "Get in touch with the MakeMyCV team for questions, feedback, or partnership inquiries.",
   path: "/contact",
-  index: false,
 });
+
+const contactBreadcrumb = breadcrumbSchema([
+  { name: "Home", item: canonicalUrl("/") },
+  { name: "Contact", item: canonicalUrl("/contact") },
+]);
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={contactBreadcrumb} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div

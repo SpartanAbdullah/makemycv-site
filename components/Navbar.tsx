@@ -4,11 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+/* /support deliberately lives in the FOOTER only (2026-08-11). The tip ask
+   doesn't belong in the primary nav — it competes with the tool links for the
+   one row of attention that actually drives usage. It stays linked sitewide
+   from the footer, so it keeps its internal links and remains crawlable. */
 const links = [
   { href: "/", label: "Home" },
   { href: "/templates", label: "Templates" },
   { href: "/jd-match", label: "JD Match" },
-  { href: "/support", label: "Support" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

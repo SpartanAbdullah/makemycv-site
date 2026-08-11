@@ -17,7 +17,7 @@ import {
    salary intent is carried by the description and the H2s. Law citation stays
    in the body, quick answer and FAQPage schema. */
 export const metadata = buildPageMetadata({
-  title: "Free UAE Annual Leave & Salary Calculator",
+  title: "UAE Annual Leave Calculator",
   description:
     "Free UAE annual leave calculator. Check your entitlement — 30 days a year after one year — and what unused days are worth at end of service.",
   path: "/annual-leave-calculator",

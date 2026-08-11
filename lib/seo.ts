@@ -86,21 +86,51 @@ type BuildPageMetadataOptions = {
   path?: string;
   index?: boolean;
   image?: string;
+  keywords?: string[];
+  /**
+   * Emit the title as `{ absolute }`, bypassing the root layout's
+   * `title.template`. Only the homepage needs this: Next.js does not apply a
+   * layout's template to the page in the SAME route segment, so app/page.tsx
+   * silently rendered with no " | MakeMyCV.ae" suffix — and therefore no brand
+   * token at all. `absolute` makes that explicit instead of accidental, so the
+   * homepage title states the brand itself. Child segments must leave this off
+   * or they render a doubled brand.
+   */
+  titleAbsolute?: boolean;
 };
 
+/**
+ * Single source of truth for a page's title/description across <title>,
+ * og: and twitter:.
+ *
+ * ALWAYS call this directly. Never spread it and override a field:
+ *
+ *   // WRONG — <title> changes, og:title keeps the old string
+ *   export const metadata = { ...buildPageMetadata({ title: "A", ... }), title: "B" }
+ *
+ * That pattern shipped a real defect: /jd-match rendered
+ * <title>"…CV-vs-Job Description Check…"</title> against
+ * og:title "…CV-vs-Job Check…" for as long as the override existed.
+ * `keywords` is a parameter here precisely so no page needs the spread.
+ */
 export function buildPageMetadata({
   title,
   description,
   path = "/",
   index = true,
   image = DEFAULT_OG_IMAGE,
+  keywords,
+  titleAbsolute = false,
 }: BuildPageMetadataOptions): Metadata {
   const url = canonicalUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
-    title,
+    // og:/twitter: titles below deliberately reuse the same bare `title`
+    // string — they carry no template in any case, so they stay in sync.
+    title: titleAbsolute ? { absolute: title } : title,
     description,
+    ...(keywords && keywords.length > 0 ? { keywords } : {}),
     alternates: {
       canonical: url,
     },

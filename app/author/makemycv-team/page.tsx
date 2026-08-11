@@ -1,19 +1,27 @@
 import Link from 'next/link'
 import { getAllPosts, formatDate } from '@/lib/blog'
-import { buildPageMetadata } from '@/lib/seo'
+import { buildPageMetadata, canonicalUrl } from '@/lib/seo'
+import { JsonLd } from '@/components/seo/JsonLd'
+import { breadcrumbSchema } from '@/lib/seo-schema'
 
 export const metadata = buildPageMetadata({
-  title: 'MakeMyCV Team - UAE CV and Career Specialists',
+  title: 'MakeMyCV Team — UAE CV Specialists',
   description:
     'The MakeMyCV editorial team writes practical, ATS-focused CV guides for UAE and Gulf job seekers.',
   path: '/author/makemycv-team',
 })
+
+const authorBreadcrumb = breadcrumbSchema([
+  { name: 'Home', item: canonicalUrl('/') },
+  { name: 'MakeMyCV Team', item: canonicalUrl('/author/makemycv-team') },
+])
 
 export default function AuthorPage() {
   const allPosts = getAllPosts().filter((p) => p.author === 'MakeMyCV Team')
 
   return (
     <>
+      <JsonLd data={authorBreadcrumb} />
       {/* Hero — warm-paper skin (Part 3 reskin): paper band + green wash
           instead of the legacy dark hero band. */}
       <section className="relative bg-paper py-16 md:py-20 overflow-hidden">

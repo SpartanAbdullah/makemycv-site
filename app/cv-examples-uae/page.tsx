@@ -6,9 +6,9 @@ import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 
 export const metadata = buildPageMetadata({
-  title: "UAE CV Examples — Weak vs Strong Bullets by Sector",
+  title: "UAE CV Examples by Sector",
   description:
-    "Before/after CV bullet rewrites for six UAE sectors — banking & DIFC finance, executive, tech, healthcare, oil & gas, and sales. See exactly how to add AED figures, scale and UAE context that recruiters and ATS reward.",
+    "Before/after CV bullet rewrites for six UAE sectors — banking, executive, tech, healthcare, oil & gas and sales. See how to add AED figures and scale.",
   path: "/cv-examples-uae",
 });
 

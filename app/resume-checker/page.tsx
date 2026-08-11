@@ -41,15 +41,15 @@ const checkerAiAnswer = {
    "resume" only as ATS vocabulary. The page's own quick answer above already
    says "free ATS CV checker" — the old title was the odd one out. The /resume-
    checker ROUTE stays as-is; renaming it would need a 301 and is out of scope. */
-export const metadata = {
-  ...buildPageMetadata({
-    title: "Free ATS CV Checker — Dubai & UAE Jobs",
-    description:
-      "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in 30 seconds, no sign-up.",
-    path: "/resume-checker",
-    image: "/og/resume-checker.png",
-  }),
-  // Layout template appends " | MakeMyCV" — keep title bare here.
+/* Layout template appends " | MakeMyCV.ae" — keep title bare here. Called
+   directly rather than spread-and-overridden so <title> and og:title cannot
+   drift apart (see the note in lib/seo.ts). */
+export const metadata = buildPageMetadata({
+  title: "Free ATS CV Checker for UAE Jobs",
+  description:
+    "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in 30 seconds, no sign-up.",
+  path: "/resume-checker",
+  image: "/og/resume-checker.png",
   keywords: [
     "ATS checker UAE",
     "resume checker Dubai",
@@ -60,7 +60,7 @@ export const metadata = {
     "DIFC resume",
     "Abu Dhabi CV review",
   ],
-};
+});
 
 const softwareSchema = {
   "@context": "https://schema.org",

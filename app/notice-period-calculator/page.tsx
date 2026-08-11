@@ -16,7 +16,7 @@ import {
    rendered at 67 and truncated. Law citation stays in the body, quick answer
    and FAQPage schema — see the note on the gratuity calculator. */
 export const metadata = buildPageMetadata({
-  title: "Free UAE Notice Period Calculator",
+  title: "UAE Notice Period Calculator",
   description:
     "Free UAE notice period calculator. Check the notice you must give or receive under UAE Labour Law — 30–90 days after probation, 14 or 30 during it.",
   path: "/notice-period-calculator",

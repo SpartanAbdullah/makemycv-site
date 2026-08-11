@@ -16,6 +16,121 @@ Format:
 
 ---
 
+## [2026-08-11 10:05] Sitelinks fix — brand the homepage title, unblock /contact, trim titles
+
+**Goal:** makemycv.ae renders as a bare title+description in Google while the unrelated
+makemycv.com gets expanded sitelinks. Sitelinks are algorithmic and cannot be requested, so the
+job was to remove every technical reason Google would withhold them and make titles good enough
+to serve as sitelink labels. Audit found the nav/sitemap/canonical theories were all dead ends —
+those are clean. The real defect was that **the homepage title carried no brand token at all**.
+
+**Files:**
+- edited: `lib/seo.ts` — `buildPageMetadata()` gains `keywords` and `titleAbsolute`. `keywords` exists so no page needs the spread-and-override pattern that let `<title>` and `og:title` drift; `titleAbsolute` emits `title: {absolute}` for the homepage
+- edited: `app/page.tsx` — title → `MakeMyCV.ae — Free ATS CV Builder for UAE Jobs` via `titleAbsolute`. Replaced the block comment, which asserted the layout template appends " | MakeMyCV.ae" to this page — it does not, and that false claim is what hid the bug
+- edited: `app/contact/page.tsx` — dropped `index: false`; title → `Contact Us`; added BreadcrumbList
+- edited: `app/sitemap.ts` — added `/contact` (41 → 42 URLs)
+- edited: `app/jd-match/page.tsx`, `app/resume-checker/page.tsx` — call `buildPageMetadata` directly instead of spreading it; fixes the jd-match `<title>`/`og:title` mismatch at the pattern level
+- edited: titles trimmed — `app/resignation-letter-generator`, `app/cv-examples-uae`, `app/gratuity-calculator`, `app/notice-period-calculator`, `app/annual-leave-calculator`, `app/templates`, `app/blog`, `app/about`, `app/author/makemycv-team` — all now render ≤60 chars
+- edited: descriptions rewritten to ≤155 — `jd-match` (213→142), `cv-examples-uae` (228→152), `resignation-letter-generator` (209→151), `gratuity-calculator` (157→146)
+- edited: BreadcrumbList added to `app/about`, `app/contact`, `app/support`, `app/privacy`, `app/author/makemycv-team` (was 10 of 15 routes, now 15 of 15)
+- edited: `app/support/page.tsx` — title → `Support This Project`; H1 → "Buy me a karak" + plain subline; BreadcrumbList. **URL unchanged at /support** — no slug change, no redirect
+- edited: `components/TipJar.tsx` — h3 and primary CTA → "Buy me a karak". Only rendered on /support, so blast radius is one page
+- edited: `components/Navbar.tsx` — `/support` removed from primary nav
+- edited: `components/Footer.tsx` — `/support` anchor text → "Support This Project", moved to end of Pages column
+
+**Result:** `npm run build` passes, `tsc --noEmit` clean, lint at 2 pre-existing warnings (cap 2).
+Verified against built HTML: homepage title now `MakeMyCV.ae — Free ATS CV Builder for UAE Jobs`
+(no suffix — `absolute` working); `/contact` is `index, follow`; zero titles >60; zero
+descriptions >155; jd-match `<title>` and `og:title` identical; 5/5 new BreadcrumbLists present;
+`/support` appears 0× in nav, 2× in footer.
+
+**Notes / risks / follow-up:**
+- **OPEN QUESTION — "Builder" vs "Maker" in the homepage title.** The approved string uses
+  "Builder". The comment block previously on `app/page.tsx` records a 2026-08-10 Search Console
+  finding that argues the opposite: `cv maker for dubai jobs` converts at 20%, `uae cv maker free`
+  at 10.7%, and nothing ranking on this page says "builder". Shipped as approved, but
+  `MakeMyCV.ae — Free ATS CV Maker for UAE Jobs` would satisfy both the brand-token fix and that
+  finding. One-word change if Abdullah wants it.
+- **Sitelinks remain algorithmic.** Nothing here requests them. This removes obstacles and
+  improves label quality; it does not guarantee sitelinks appear, and there is no markup that can.
+- **Deliberately NOT done:** `WebSite.potentialAction` / sitelinks searchbox — Google deprecated
+  that rich result in late 2024, so it would be dead markup. Homepage internal links to
+  /blog, /about, /support were skipped per instruction (weak causal link, body-copy churn).
+- **Post-download tip prompt — insertion point identified, not built.** See the report; the CV
+  download itself lives in `makemycv-app`, not this repo.
+- `TipJar`'s `markTipped()` writes `mmcv_tipped_at` to localStorage but **nothing reads it**. Any
+  post-download prompt must add that read, or it will re-prompt people who already tipped.
+- Not pushed by this entry — see the merge entry below for the Phase 1 release.
+
+**Suggested commit:** fix(seo): brand the homepage title, unblock /contact, trim titles for sitelinks
+
+---
+
+## [2026-08-11 09:40] Release — fast-forward main to staging (analytics + money-page titles)
+
+**Goal:** Production was serving older code than staging: the live homepage title
+(`Free CV Builder for UAE Jobs`) did not match staging's build output. Reconcile the two so the
+SEO work in the next entry lands on a known baseline rather than on top of an unknown drift.
+
+**Files:** none edited — release only. `origin/main` fast-forwarded `3478f64` → `7fa1749`.
+Shipped two commits:
+- `da61875` chore(analytics): scope GTM to production env + rewrite money-page titles
+- `7fa1749` fix(analytics): dispatcher pushes to dataLayer instead of undefined gtag
+
+Areas touched: config (`app/layout.tsx`, `.env.example`), components (`app/page.tsx` + 5 money
+pages), lib (`lib/analytics.ts`, new), docs (`COWORK_CHANGELOG.md`). **No dependency changes** —
+no `package.json`, no lockfile, no CI, no auth.
+
+**Result:** Pushed via `git push origin staging:main` (no checkout, so the uncommitted working
+tree was never touched). Deploy live in ~45s; homepage title confirmed as
+`Free CV Maker for UAE Jobs — Dubai CV Format`, matching the staging build exactly.
+
+**Notes / risks / follow-up:**
+- **`.env.example` was the only exception-list file touched.** Docs-only: adds an empty
+  `NEXT_PUBLIC_GTM_ID=` key plus comments. The comments name `GTM-5H2LMVJT` and `G-8MWPD87FJH`,
+  neither of which is a secret — GTM container and GA4 measurement IDs are public by design, and
+  `GTM-5H2LMVJT` was already being served in production HTML. Confirmed with Abdullah before merge.
+- **Three blog MDX edits were deliberately left uncommitted** and did NOT ship:
+  `cv-format-uae-2026`, `how-to-get-a-job-in-dubai-2026`, `how-to-make-cv-for-job-in-uae` (the
+  orphaned-post internal-linking work from the 10 Aug entry). Still sitting in the working tree.
+  They need the `seo-reviewer` subagent run on them before they can be committed, per CLAUDE.md.
+- Fast-forward only — `main` had no commits staging lacked, so no merge commit and no divergence.
+
+**Suggested commit:** n/a — release merge, no new commit created
+
+---
+
+## [2026-08-10 20:12] Fix three orphaned posts — link cv-maker-dubai and mohre-cv-format-uae
+
+**Goal:** The Bing Webmaster Tools AI Search Queries export (10 Aug) prices the `we build cv`
+**Creation** intent at ~388 total citations with MakeMyCV holding only **12.37%** — the highest
+commercial-value intent in the dataset and one of our weakest shares. A repo-wide internal-link
+audit found that the asset for that intent, `cv-maker-dubai`, has **zero inbound internal links**
+— as does `mohre-cv-format-uae`, which is the **#2 page site-wide by Google clicks** (3 of 208 in
+July). Serves the 90-day objective **AI citation share**. Note this supersedes the standing GEO
+recommendation to "build a dedicated CV maker page": the page already existed, it was just orphaned.
+
+**Files:**
+- edited: `content/blog/cv-format-uae-2026.mdx` — 2 links added: `/blog/cv-maker-dubai` in "The Fastest Way to Get Your UAE CV Right"; `/blog/mohre-cv-format-uae` in "Why UAE CV Format Is Different", framed on that post's own thesis that no official ministry template exists
+- edited: `content/blog/how-to-make-cv-for-job-in-uae.mdx` — 2 links added: `/blog/cv-maker-dubai` in "Build It in Five Minutes"; `/blog/mohre-cv-format-uae` in "Step 2 — Write the Header"
+- edited: `content/blog/how-to-get-a-job-in-dubai-2026.mdx` — 1 link added: `/blog/cv-maker-dubai` in "Step 1: Get Your CV Right", alongside the existing cv-format-uae-2026 link
+
+**Result:** `cv-maker-dubai` 0 → 3 inbound · `mohre-cv-format-uae` 0 → 2 inbound. `npm run build`
+passes (Velite 1.96s, compiled 14.4s, all 27 blog routes prerendered). Diff is 5 insertions /
+5 deletions — single-line appends only, no frontmatter touched, no line-ending churn.
+
+**Notes / risks / follow-up:**
+- **Zero organic-traffic risk.** Neither format page earned a single Google click in July; only `mohre-cv-format-uae` (3) and `best-cv-writers-uae` (2) earned anything at all. This can only add link equity.
+- **Third orphan left alone deliberately.** `how-to-make-cv-for-job-in-dubai` still has 0 inbound links. Its UAE twin has 9, so link topology has already picked a winner. Differentiate or 301 — needs Abdullah's decision, not a unilateral edit.
+- **Do NOT act on the `UAE CV format` 4.87% citation share yet.** `uae-cv-format-guide` was retired 5 Aug (commit `2c3bf7f`), five days before that measurement, so the number is likely a page mid-transition rather than a content fault. Control case: `UAE resume format`, which has no retired twin, sits at a healthy 27.64%. Re-measure in the next Bing export before restructuring the cluster.
+- **Correction to project notes:** `7-seconds-thats-it` was recorded as having no inbound links. It has **six** (`cv-maker-dubai`, `cv-vs-resume-uae`, `dubai-cv-vs-abu-dhabi-cv`, `how-to-get-a-job-in-dubai-2026`, `how-to-make-cv-for-job-in-uae`, `professional-summary-examples-uae-cv`). Retiring it — the open guardrail-violation decision — means editing six files first, not a simple 301.
+- **Housekeeping:** a stale git worktree at `.claude/worktrees/great-zhukovsky-4d9c54/` holds a pre-guardrail-fix copy of `content/blog/` and pollutes repo-wide greps. Worth pruning.
+- Not committed. On `staging`; push is Abdullah's.
+
+**Suggested commit:** `fix(blog): link orphaned cv-maker-dubai and mohre-cv-format-uae from three hub posts`
+
+---
+
 ## [2026-08-10 19:25] Fix the [data-event] dispatcher — it has never fired a single event
 
 **Goal:** The revised 10 Aug analytics brief states that `window.gtag` is undefined on this site

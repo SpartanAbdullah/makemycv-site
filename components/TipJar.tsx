@@ -65,7 +65,7 @@ export const TipJar = ({
             isCompact ? "text-lg" : "text-2xl md:text-3xl"
           }`}
         >
-          Support a free tool
+          Buy me a karak
         </h3>
         {!isCompact && (
           <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#2563eb]">
@@ -79,7 +79,8 @@ export const TipJar = ({
           isCompact ? "text-sm" : "text-base"
         }`}
       >
-        MakeMyCV is free for everyone. Tips help cover hosting and AI costs.
+        MakeMyCV is free and always will be — a karak covers hosting and AI
+        costs.
       </p>
 
       {/* Primary CTA — Ko-fi */}
@@ -95,7 +96,7 @@ export const TipJar = ({
         }`}
       >
         <KofiIcon size={isCompact ? 20 : 22} />
-        <span>Tip via Ko-fi</span>
+        <span>Buy me a karak</span>
       </a>
 
       {/* Secondary — PayPal */}

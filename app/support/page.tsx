@@ -1,15 +1,25 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 import { TipJar } from "@/components/TipJar";
 
+/* The URL stays /support deliberately — it has inbound internal links and
+   accrued history. Only the human-facing label changed to the "karak" framing
+   (2026-08-11). Do not rename the route; that would need a 301 for no gain. */
 export const metadata = buildPageMetadata({
-  title: "Support MakeMyCV",
+  title: "Support This Project",
   description:
-    "MakeMyCV is free for everyone. If it helped you, you can leave a tip to support hosting and AI costs. No paywall, no Pro tier — just a tip jar.",
+    "MakeMyCV is free for everyone. If it helped you, buy me a karak — it covers hosting and AI costs. No paywall, no Pro tier, no subscription.",
   path: "/support",
 });
+
+const supportBreadcrumb = breadcrumbSchema([
+  { name: "Home", item: canonicalUrl("/") },
+  { name: "Support This Project", item: canonicalUrl("/support") },
+]);
 
 const CONTACT_EMAIL = "hello@makemycv.ae";
 
@@ -85,6 +95,7 @@ export default function SupportPage() {
 
   return (
     <>
+      <JsonLd data={supportBreadcrumb} />
       {/* 1. Hero */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div
@@ -97,9 +108,15 @@ export default function SupportPage() {
         />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
           <h1 className="font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.1] tracking-tight-2 text-ink">
-            MakeMyCV is <span className="text-accent">free</span>. Always.
+            Buy me a <span className="text-accent">karak</span>
           </h1>
+          {/* Plain-language subline: "karak" is everyday UAE vocabulary but not
+              universal, and this page is read by people who have just arrived.
+              The ask has to be legible without knowing the term. */}
           <p className="mt-5 text-lg leading-relaxed text-muted md:text-xl">
+            MakeMyCV is free and always will be — a karak keeps it running.
+          </p>
+          <p className="mt-3 text-base leading-relaxed text-muted">
             Built by one person in Dubai. Supported by people who find it
             useful.
           </p>

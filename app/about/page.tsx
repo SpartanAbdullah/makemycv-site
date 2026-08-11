@@ -1,11 +1,18 @@
-import { buildPageMetadata } from "@/lib/seo";
+import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 
 export const metadata = buildPageMetadata({
-  title: "About MakeMyCV",
+  title: "About Us — Built in Dubai",
   description:
     "Learn why MakeMyCV was built for UAE job seekers and how it helps candidates create professional, ATS-friendly CVs for Dubai and GCC jobs.",
   path: "/about",
 });
+
+const aboutBreadcrumb = breadcrumbSchema([
+  { name: "Home", item: canonicalUrl("/") },
+  { name: "About", item: canonicalUrl("/about") },
+]);
 
 const values = [
   {
@@ -28,6 +35,7 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={aboutBreadcrumb} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div

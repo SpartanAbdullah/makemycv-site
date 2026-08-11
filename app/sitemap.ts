@@ -85,6 +85,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 0.6,
   },
   {
+    path: '/contact',
+    sourceFile: 'app/contact/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  },
+  {
     path: '/author/makemycv-team',
     sourceFile: 'app/author/makemycv-team/page.tsx',
     changeFrequency: 'monthly',

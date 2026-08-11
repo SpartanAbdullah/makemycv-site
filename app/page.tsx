@@ -38,11 +38,26 @@ const homeAiAnswer = {
        nothing ranking here says "builder".
      - Leads with "Free" + the UAE/Dubai qualifier, which is what the converting
        queries all contain.
-   The layout template appends " | MakeMyCV.ae" (14 chars), so keep this ≤45 to
-   render under 60. We do NOT optimise for the bare brand name — see
-   makemycv-brand-disambiguation. */
+   We do NOT optimise for the bare brand name — see
+   makemycv-brand-disambiguation.
+
+   ── title.absolute is REQUIRED here; do not "simplify" it to a plain string ──
+   A previous comment on this block claimed the layout template appends
+   " | MakeMyCV.ae" to this page. IT DOES NOT. Next.js does not apply a
+   layout's `title.template` to the page in the SAME route segment, and
+   app/page.tsx sits beside app/layout.tsx in the root segment. Every child
+   segment (/templates, /blog, …) does get the suffix; the homepage never did.
+   Verified 2026-08-11 against production HTML and a local build — the live
+   homepage rendered `<title>Free CV Maker for UAE Jobs — Dubai CV Format</title>`
+   with no brand token anywhere in the title or the H1.
+
+   That mattered: this is the one page Google must resolve for the navigational
+   query "makemycv", which we are losing to the unrelated makemycv.com.
+   `absolute` bypasses the template so the brand can lead the string. Keep the
+   full rendered title ≤60 chars — there is no suffix to budget for. */
 export const metadata = buildPageMetadata({
-  title: "Free CV Maker for UAE Jobs — Dubai CV Format",
+  title: "MakeMyCV.ae — Free ATS CV Builder for UAE Jobs",
+  titleAbsolute: true,
   description:
     "Free CV maker for Dubai & UAE jobs. Build an ATS-ready CV in the format UAE recruiters expect — visa status, photo optional. No sign-up, no paywall.",
   path: "/",

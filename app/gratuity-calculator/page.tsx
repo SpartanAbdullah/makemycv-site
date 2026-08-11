@@ -20,9 +20,9 @@ import {
    citation still ships in the visible body, the quick answer and the FAQPage
    schema, which is what actually carries it for AI citation. */
 export const metadata = buildPageMetadata({
-  title: "Free UAE Gratuity Calculator — End of Service",
+  title: "UAE Gratuity Calculator — Free",
   description:
-    "Free UAE gratuity calculator. Estimate your end-of-service benefit under UAE Labour Law — 21 days' basic pay per year for the first 5 years, 30 after.",
+    "Free UAE gratuity calculator. Estimate your end-of-service benefit under UAE Labour Law — 21 days' basic pay per year for years 1–5, 30 after.",
   path: "/gratuity-calculator",
 });
 
