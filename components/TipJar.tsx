@@ -65,7 +65,10 @@ export const TipJar = ({
             isCompact ? "text-lg" : "text-2xl md:text-3xl"
           }`}
         >
-          Buy me a karak
+          {/* Deliberately NOT "Buy me a karak" — that is the button copy
+              directly below, and the page H1 above. Three identical CTAs in one
+              viewport reads as a glitch. */}
+          Support a free tool
         </h3>
         {!isCompact && (
           <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-widest text-[#2563eb]">
