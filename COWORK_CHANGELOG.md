@@ -60,9 +60,13 @@ descriptions >155; jd-match `<title>` and `og:title` identical; 5/5 new Breadcru
   download itself lives in `makemycv-app`, not this repo.
 - `TipJar`'s `markTipped()` writes `mmcv_tipped_at` to localStorage but **nothing reads it**. Any
   post-download prompt must add that read, or it will re-prompt people who already tipped.
-- Not pushed by this entry — see the merge entry below for the Phase 1 release.
+- **Follow-up commit `9803fcb`** — the first pass also changed TipJar's `<h3>` to "Buy me a karak",
+  which put three identical CTAs (H1, h3, button) in one viewport. Heading reverted to
+  "Support a free tool"; H1 and button keep the karak copy as specified. Caught on visual review
+  of the live page, not by the build.
 
 **Suggested commit:** fix(seo): brand the homepage title, unblock /contact, trim titles for sitelinks
+(shipped as `4ff03ef`, plus copy follow-up `9803fcb`)
 
 ---
 
