@@ -16,6 +16,67 @@ Format:
 
 ---
 
+## [2026-08-11 12:10] Ship the orphaned-post internal links + clear banned claims in the cluster
+
+**Goal:** Push the three blog edits that had been sitting uncommitted since 10 Aug — 5 internal
+links added to fix two orphaned posts (`cv-maker-dubai`, 0 inbound; `mohre-cv-format-uae`, 0
+inbound, and the **#2 page site-wide by Google clicks**). Per CLAUDE.md, blog MDX changes must
+pass the `seo-reviewer` subagent before committing. It ran twice: once on the original diff, once
+to verify the fixes. Round 1 returned 0 BLOCKER / 5 SHOULD FIX; round 2 confirmed all 5 resolved
+and caught a real BLOCKER unrelated to content (see below).
+
+**Files:**
+- edited: `content/blog/how-to-make-cv-for-job-in-uae.mdx` — MOHRE anchor reworded: the old setup
+  ("Seen the phrase in a job ad?") contradicted the target post, which says the phrase comes from
+  job seekers and CV services, not employer ads. Also de-banned a `[7 Seconds. That's It.]` anchor.
+- edited: `content/blog/cv-format-uae-2026.mdx` — Dubai link pulled out of the conversion block
+  (it read as a link to the tool but lands on an article, and claimed a Dubai-specific build
+  config that does not exist) and re-placed as an editorial line after the Quick Reference list.
+- edited: `content/blog/how-to-get-a-job-in-dubai-2026.mdx` — **removed a banned claim**:
+  "UAE recruiters spend roughly 7 seconds on an initial CV scan… In those 7 seconds". Guardrail 3
+  forbids this in advice content (US eye-tracking data, not UAE). Also "British or South Asian
+  resumes" → CVs, per the CV-not-resume rule.
+- edited: `content/blog/cv-maker-dubai.mdx` — **added to scope deliberately.** This change points
+  3 new internal links at it, and it carried both banned patterns at once: an H2 reading
+  "The 7-Second Reality in Dubai" plus "The widely-cited TheLadders study… around seven seconds"
+  — the exact US→Gulf market conflation CLAUDE.md calls out by name. Promoting a page before
+  cleaning it is the wrong order. H2 renamed, the TheLadders sentence deleted, `[7-second guide]`
+  anchor reworded.
+- edited: all four — `dateModified` → `2026-08-11`. One had none at all (so sitemap `lastmod` and
+  Article `dateModified` were reporting 30 Mar for a page edited today); the other three were
+  bumped from `2026-08-04` so the linked cluster is consistent. **No `date:` was rewritten.**
+
+**Result:** Velite validates all four. `npm run build` passes. Banned-claim sweep across
+`content/blog/` is clean apart from the dedicated `7-seconds-thats-it` post and one other file
+(both flagged below). Link topology: `cv-maker-dubai` 0 → 3 inbound, `mohre-cv-format-uae` 0 → 2.
+
+**Notes / risks / follow-up:**
+- **NEAR-MISS, caught by the reviewer — `public/static/cv-photo-amira.jpg` was deleted from the
+  working tree.** `velite.config.ts:76` sets `output.assets: 'public/static'` with `clean: true`,
+  so `npx velite build --clean` wipes that directory — and this hand-placed homepage hero
+  headshot lives inside it. `components/home/CvPhotoCard.tsx:38` still references it, rendered on
+  `/` via HeroSection. Restored with `git checkout`. **Nothing shipped broken** — production still
+  served it 200 throughout, because every commit this session staged explicit paths rather than
+  `git add -A`. Plain `npm run build` does NOT delete it; only the `--clean` variant does.
+  A task chip is open to move the asset out of Velite's output dir permanently — until then,
+  check `git status` for a `D public/static/…` line after any `velite build --clean`.
+- **Still carrying banned claims, NOT fixed here (out of scope, needs a decision):**
+  `content/blog/7-seconds-thats-it.mdx` — the cluster hub. Title, excerpt and body all assert the
+  7-second figure plus an unsourced "300–800 applications" UAE claim. These four edits raise its
+  inbound prominence, so it matters more now. Retiring vs refreshing it is the open decision
+  already noted in the 10 Aug entry (six posts link to it — a 301 is not a one-file change).
+  `content/blog/professional-summary-examples-uae-cv.mdx:19` — "When a recruiter spends just 7
+  seconds scanning your CV". Straightforward one-line fix, unrelated to this change.
+- **NICE items not actioned:** `how-to-get-a-job-in-dubai-2026` has no `faqs:` and no FAQ section
+  at all (pipeline step 4 wants 5–7) on a 3,114-word featured pillar, and still carries a
+  `"how to get a job in dubai 2025"` tag. `cv-maker-dubai` has 4 FAQs vs the 5–7 guideline.
+  `cv-maker-dubai` links out but never back to `cv-format-uae-2026` — one reciprocal link would
+  pass equity to the money page.
+
+**Suggested commit:** content(blog): link orphaned posts, strip banned 7-second claims from the cluster
+
+---
+
 ## [2026-08-11 11:20] Self-host all fonts — take Google off the build path
 
 **Goal:** The staging preview build failed (`dpl_BzJVro4NZeJJofGcyzh5wMdmdshK`). Root cause was
