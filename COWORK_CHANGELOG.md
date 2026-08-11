@@ -16,6 +16,63 @@ Format:
 
 ---
 
+## [2026-08-11 11:20] Self-host all fonts — take Google off the build path
+
+**Goal:** The staging preview build failed (`dpl_BzJVro4NZeJJofGcyzh5wMdmdshK`). Root cause was
+NOT the committed code — that commit changed one markdown file. `next/font/google` fetches from
+fonts.gstatic.com **at build time** and bakes the resolved URLs into Vercel's build cache; Google
+rotates those hashed URLs, so the restored cache asked for three Plus Jakarta Sans woff2 files
+that returned **404**, cascading into module-not-found and `npm run build` exit 1. The identical
+commit deployed fine to production seconds later because it restored a different, not-yet-stale
+cache. A clean local build also passed — proving stale cache, not code.
+
+Left alone, this recurs: Vercel restores the preview cache from the last successful staging
+deployment, which is the same poisoned one. It can equally hit a **production** deploy — nothing
+about the mechanism is preview-specific. For a site whose revenue depends on shipping, a
+third-party network dependency on the deploy path is the actual defect. Self-hosting removes it.
+
+**Files:**
+- created: `app/fonts/*.woff2` — 7 files, 200 KiB total, latin subset, pulled from the Google
+  Fonts CSS API. Inter / Bricolage Grotesque / JetBrains Mono / Plus Jakarta Sans are VARIABLE
+  fonts — Google returns one byte-identical file per family regardless of weights requested
+  (verified by md5), so one file each covers the full range. IBM Plex Mono is static: 3 files.
+- created: `app/fonts/site.ts` — Inter, Bricolage, JetBrains Mono via `next/font/local`
+- created: `app/fonts/blog.ts` — Plus Jakarta Sans, IBM Plex Mono (blog index only)
+- edited: `app/layout.tsx` — imports from `@/app/fonts/site`; the three inline `next/font/google`
+  loaders removed. Same CSS variables, same weights.
+- edited: `app/blog/fonts.ts` — thin re-export of `@/app/fonts/blog`, so the path referenced by
+  `docs/blog-redesign-notes.md` still resolves
+
+**Result:** `npm run build` clean from a wiped `.next`, `tsc` clean, lint at 2 pre-existing
+warnings. **Zero `fonts.gstatic.com` / `fonts.googleapis.com` references anywhere in the build
+output** — the build is now hermetic for fonts. Emitted font files dropped 35 → 7.
+Verified in a real browser (`document.fonts`, computed `font-family`): homepage body resolves to
+`inter`, H1 to `bricolage`, mono to `jetbrainsMono`; blog index H1 to `plusJakarta`; all faces
+`status: loaded`, zero errors.
+
+**Notes / risks / follow-up:**
+- **Caught and fixed mid-change:** declaring all five faces in one module made *every route*
+  preload the two blog-only faces — 4 extra files, ~72 KiB, on pages that never render them.
+  next/font preloads per-module, so the split into `site.ts` / `blog.ts` is load-bearing, not
+  organisational. Verified after the split: homepage preloads 3 files, blog index 7, blog posts 3.
+  Both font modules carry a comment saying so; do not merge them.
+- **Design decision deliberately NOT touched.** Dropping the two blog faces would have fixed the
+  build too, and was considered — but `docs/blog-redesign-notes.md` records the dark blog "island"
+  and this type pairing as user-confirmed. Reverting an approved design as a side effect of a
+  build fix would have been the wrong trade.
+- `adjustFontFallback: "Arial"` on the sans faces reproduces the metric-adjusted fallback that
+  next/font/google generated automatically — confirmed present in the browser as
+  `"inter Fallback"` / `"plusJakarta Fallback"`, so CLS behaviour is unchanged. The mono faces opt
+  out (Arial metrics are wrong for monospace) and use an explicit monospace stack.
+- **Still worth doing regardless:** the poisoned cache on the staging lineage. This change makes
+  it harmless, but a cache-cleared redeploy is still the clean way to retire it.
+- Fonts now live in git. They are static assets that do not change; refresh instructions are in
+  `app/fonts/site.ts` if a family is ever intentionally swapped.
+
+**Suggested commit:** fix(build): self-host fonts so builds stop depending on Google at build time
+
+---
+
 ## [2026-08-11 10:05] Sitelinks fix — brand the homepage title, unblock /contact, trim titles
 
 **Goal:** makemycv.ae renders as a bare title+description in Google while the unrelated

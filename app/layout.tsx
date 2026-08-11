@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
+import { bricolage, inter, jetbrainsMono } from "@/app/fonts/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
@@ -20,28 +20,13 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
-
-// Display face — same family the builder app uses, so marketing and product
-// share one typographic voice. Headings only; body stays Inter.
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
+/* Inter (body), JetBrains Mono (labels) and Bricolage Grotesque (display —
+   the same family the builder app uses, so marketing and product share one
+   typographic voice) are now self-hosted. See app/fonts/site.ts for why:
+   next/font/google fetches from gstatic at build time and broke a deploy on
+   2026-08-11. Same CSS variables, same weights, so nothing downstream moves.
+   Blog-only faces live in app/fonts/blog.ts and must stay out of this import,
+   or every route preloads them. */
 
 // Matches the app + manifest (brand navy) so tab/PWA chrome is identical
 // on both surfaces.

@@ -1,18 +1,10 @@
-import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
-
-// Scoped to the blog index (applied on the page wrapper, not site-wide) so the
-// rest of the app keeps Inter/JetBrains Mono. Loaded via next/font (self-hosted,
-// no render-blocking <link>).
-export const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
-});
-
-export const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex-mono",
-  display: "swap",
-});
+/**
+ * Blog-index type pairing, scoped to `/blog` via the page wrapper so the rest
+ * of the site keeps Inter + JetBrains Mono. That scoping is a confirmed design
+ * decision — see docs/blog-redesign-notes.md, which references this file by name.
+ *
+ * The faces moved to app/fonts/blog.ts and are now self-hosted; these two are
+ * the ones whose gstatic URLs 404'd and failed the 2026-08-11 staging build.
+ * Re-exported here so the documented structure still holds.
+ */
+export { plusJakarta, ibmPlexMono } from "@/app/fonts/blog";
