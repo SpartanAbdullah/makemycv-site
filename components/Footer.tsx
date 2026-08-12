@@ -139,6 +139,19 @@ export const Footer = () => (
       </div>
     </div>
 
+    {/* Giant brand wordmark — premium footer signature. Deliberately full-bleed
+       (17vw) rather than bound to the 1400px grid above; the scale is the point.
+       aria-hidden because it's decorative — the accessible brand name is already
+       carried by the logo's alt text at the top of the footer. */}
+    <div className="relative overflow-hidden px-4" aria-hidden="true">
+      <span
+        className="block select-none whitespace-nowrap bg-gradient-to-b from-white/[0.13] to-white/[0.015] bg-clip-text text-center font-display font-extrabold leading-[0.8] tracking-tight-2 text-transparent"
+        style={{ fontSize: "clamp(3.25rem, 17vw, 13.5rem)" }}
+      >
+        MakeMyCV
+      </span>
+    </div>
+
     {/* Bottom bar */}
     <div>
       <div className="mb-6 h-px bg-white/10" />
