@@ -2,6 +2,53 @@
 
 Running log. Newest first. See `PLAN.md` for the session breakdown.
 Branch: `beat-jobxdubai` (off `main`). Never merged to `main` — merges are Abdullah's STOP gate.
+(Later sessions run on `staging` — see CLAUDE.md workflow rules.)
+
+---
+
+## 2026-08-12 · Session CONTENT-NP — Nepal corridor guide ✅
+
+**Goal (Abdullah):** "Start the Nepal guide." Fourth post in the corridor cluster
+(India / Philippines / Kenya-Nigeria → Nepal). Nepal is the largest uncovered
+source market for UAE-bound jobseekers in the blog.
+
+**Dedup:** ran `git ls-tree origin/main content/blog/` first (27 posts). No Nepal
+post existed and no plan file mentioned one. Nearest neighbours by intent are the
+three corridor guides; primary query ("CV for Dubai job from Nepal") is unowned,
+so this is a new post, not a refresh.
+
+**Stats verified before drafting** (per pipeline step 2):
+- Nepal + UAE both absent from the HCCH Apostille status table (cid=41) — checked
+  the table directly, not a secondary claim. So: legalisation chain, not apostille.
+- "Free visa, free ticket" directive, July 2015, 7 destinations incl. UAE, NPR
+  10,000 agency cap — FairSquare + The Diplomat.
+- DoFE labour-permit figures, Mangsir 2081: UAE 24,769 / KSA 18,115 / Qatar 14,844
+  / Malaysia 4,469.
+- **Rejected one source:** the UAE MoFA Kathmandu attestation page 404s. A search
+  snippet had quoted it as if live — did not cite it.
+- **Corrected after review:** first draft read "the UAE is *now* the leading
+  destination" off a single Nepali month of *new + renewed* permits. Renewals track
+  the existing resident workforce, so that overstates fresh outflow. Rewritten to
+  bind the claim to its window and state the caveat inline.
+
+**Built:**
+- New post `cv-for-dubai-jobs-from-nepal.mdx` (2,332 words Velite-computed, 9 min read;
+  6 FAQs mirrored to body).
+  Nepal-only material carrying the post: Bikram Sambat → Gregorian date conversion
+  (a BS year reads as a typo to a Gulf ATS), passport-transliteration consistency,
+  Shram Swikriti timing, the 4-step attestation chain, and the NPR 10,000 cap.
+- Cover SVG + rendered PNG og:image.
+- Cluster de-orphaned: 3 inbound links added (expat guide gained a 🇳🇵 section;
+  OFW and Kenya/Nigeria posts gained sibling cross-links), plus outbound links from
+  the new post back to both siblings.
+
+**Gates:** `npm run build` ✅ · `npm run lint` ✅ (2 warnings, pre-existing, at cap) ·
+`seo-reviewer` ✅ 0 BLOCKER, 4 SHOULD FIX + 5 NICE — all applied.
+
+**Follow-up:** uncommitted by design — Abdullah's call on commit/push. The reviewer
+also flagged that the corridor cluster shares ~18% verbatim boilerplate across posts
+(shared "What to change" / ATS / fraud blocks); reduced here, but it compounds with
+each new corridor post and is worth a cluster-wide pass before a fifth is added.
 
 ---
 

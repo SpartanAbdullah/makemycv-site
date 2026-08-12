@@ -16,6 +16,53 @@ Format:
 
 ---
 
+## [2026-08-12 20:36] Nepal corridor guide — new post + cluster de-orphaning
+
+**Goal:** "Start the Nepal guide." Adds the fourth corridor post (after India, Philippines,
+Kenya/Nigeria) and closes the largest uncovered source market in the blog. Ran the full CLAUDE.md
+blog pipeline: dedup against `origin/main` first, every statistic verified against its source URL
+before drafting, then build + `seo-reviewer`.
+
+**Files:**
+- created: `content/blog/cv-for-dubai-jobs-from-nepal.mdx` — 2,332 words (Velite-computed, 9 min
+  read), 6 FAQs mirrored verbatim
+  to the visible body. Differentiated from the sibling corridor posts by Nepal-only mechanics:
+  Bikram Sambat → Gregorian date conversion, passport-transliteration consistency, Shram Swikriti
+  timing, the 4-step attestation chain, and the NPR 10,000 agency fee cap.
+- created: `public/blog/covers/cv-for-dubai-jobs-from-nepal.svg` + `.png` (rendered via
+  `scripts/render-og-covers.mjs` — the PNG is the og:image, make sure `git add` catches both).
+- edited: `content/blog/expat-cv-uae-guide.mdx` — new 🇳🇵 Nepali Expats section under
+  "Expat-Specific Tips by Nationality"; `dateModified` bumped to 2026-08-12 (real content added).
+- edited: `content/blog/first-time-ofw-cv-uae.mdx`, `content/blog/cv-for-dubai-jobs-from-kenya-nigeria.mdx`
+  — one sibling cross-link sentence each. `dateModified` deliberately NOT bumped: a single added
+  link is not a refresh, and over-signalling freshness on trivial edits is bad practice.
+
+**Source corrections made — do not reintroduce:**
+- The UAE MoFA Kathmandu attestation page (`mofa.gov.ae/en/missions/kathmandu/services/attestation-information`)
+  **404s.** A search-result snippet quoted it as though live; it was not cited. The attestation chain
+  in the post rests on the HCCH status table instead.
+- Apostille non-membership was confirmed by reading the **HCCH status table for the 1961 Convention
+  directly** (neither Nepal nor the UAE is a contracting party) rather than trusting the
+  attestation-agency blogs that dominate this SERP.
+- The first draft said the UAE "is now the leading destination" for Nepali labour migration on the
+  strength of one Nepali month of permits that **combined new and renewed**. Renewals track the
+  resident workforce, not fresh departures, so that overstated the claim. Now bound to its window
+  (Mangsir 2081) with the new+renewed caveat stated inline.
+- `myrepublica.nagariknetwork.com` returns 403 to bots — the DoFE figures are linked via the CESLAM
+  mirror, which was actually fetched and read.
+
+**Notes / risks / follow-up:** `seo-reviewer` returned 0 BLOCKER, 4 SHOULD FIX, 5 NICE — all applied.
+Its one structural finding is worth carrying forward: the corridor cluster shares ~18% verbatim
+body copy (the "What to change", "ATS reality check" and fraud blocks are near-identical across
+posts). Reduced in this post, but it compounds with every corridor guide added and degrades AI
+extraction — worth a cluster-wide differentiation pass before a fifth corridor post is written.
+Build ✅, lint ✅ (2 warnings, pre-existing, at the `--max-warnings=2` cap). Left uncommitted for
+Abdullah's review.
+
+**Suggested commit:** content(blog): Nepal corridor CV guide + de-orphan the corridor cluster
+
+---
+
 ## [2026-08-11 12:10] Ship the orphaned-post internal links + clear banned claims in the cluster
 
 **Goal:** Push the three blog edits that had been sitting uncommitted since 10 Aug — 5 internal
