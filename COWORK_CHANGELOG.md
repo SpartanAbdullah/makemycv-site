@@ -16,6 +16,43 @@ Format:
 
 ---
 
+## [2026-08-12 22:15] Share row on all blog posts
+
+**Goal:** Blog posts had zero share affordance. Adds one to all 28, so posts can actually
+circulate — the corridor guides in particular travel through diaspora jobseeker groups.
+
+**Files:**
+- created: `components/blog/SharePost.tsx` — WhatsApp · LinkedIn · X · Copy link, plus a native
+  Share button that appears only where `navigator.share` exists (mobile), opening the OS sheet.
+- edited: `components/SocialIcons.tsx` — added `IconWhatsAppGlyph` and `IconXGlyph` (lucide
+  dropped brand icons; follows the existing currentColor glyph pattern in that file).
+- edited: `app/blog/[slug]/page.tsx` — static import (Next 16 dynamic-import gotcha), placed
+  after the tags block and before `AuthorBlock`. URL comes from `canonicalUrl()`, so shares point
+  at production even from a local preview.
+
+**Decisions worth keeping:**
+- **No third-party widget.** AddThis/ShareThis-style embeds are tracking scripts that cost CWV
+  budget and would contradict what `ResumeCheckerFAQ.tsx:20` promises about third parties. These
+  are plain anchors — the three network links work with JS disabled (verified: all 28 prerendered
+  HTML files contain the row).
+- **WhatsApp leads the row, not LinkedIn.** The corridor audience shares in WhatsApp groups;
+  LinkedIn is the right channel for the white-collar posts, not these.
+- **Capability detection via `useSyncExternalStore`,** not `useEffect` + `setState` — the latter
+  trips `react-hooks/set-state-in-effect` (caught by lint) and risks a hydration mismatch, since
+  server and client must legitimately disagree here. Server snapshot false, client reads navigator.
+
+**Notes / risks / follow-up:** `copyText()` is reused from `components/tools/copyText.ts`, already
+in production via `CopyBreakdownButton`. **The copy button's success path is unverified in this
+environment** — the Browser pane doesn't composite, so no real user-activated click is possible,
+and both `clipboard.writeText` and the `execCommand` fallback reject without user activation
+(`navigator.userActivation.isActive === false`). What that *did* confirm is the failure path: the
+label correctly stays "Copy link" rather than falsely claiming "Copied". Worth one manual click on
+a real device. Build ✅, tsc ✅, lint ✅ (2 warnings, pre-existing, at cap).
+
+**Suggested commit:** feat(blog): share row on all posts — WhatsApp, LinkedIn, X, copy link
+
+---
+
 ## [2026-08-12 20:36] Nepal corridor guide — new post + cluster de-orphaning
 
 **Goal:** "Start the Nepal guide." Adds the fourth corridor post (after India, Philippines,
