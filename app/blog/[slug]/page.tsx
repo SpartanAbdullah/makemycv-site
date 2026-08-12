@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { getPostBySlug, getAllPosts, getRelatedPosts, formatDate } from '@/lib/blog'
 import { MDXContent } from '@/lib/mdx'
 import { AuthorBlock } from '@/components/blog/AuthorBlock'
+import { SharePost } from '@/components/blog/SharePost'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { postSchema } from '@/lib/seo-schema'
 import {
@@ -178,6 +179,12 @@ export default async function PostPage({ params }: Props) {
                 ))}
               </div>
             )}
+
+            {/* Share row — absolute URL, since share targets reject relative paths */}
+            <SharePost
+              url={canonicalUrl(`/blog/${post.slugPath}`)}
+              title={post.title}
+            />
 
             {/* Author block */}
             <AuthorBlock />
