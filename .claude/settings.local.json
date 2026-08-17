@@ -14,7 +14,11 @@
       "Bash(curl -sf -o /tmp/h.html http://localhost:3000/)",
       "Bash(curl -sf -o /tmp/rc.html http://localhost:3000/resume-checker)",
       "Bash(git push *)",
-      "Bash(git ls-files *)"
+      "Bash(git ls-files *)",
+      "mcp__claude-in-chrome__list_connected_browsers",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__navigate",
+      "mcp__claude-in-chrome__computer"
     ]
   }
 }
