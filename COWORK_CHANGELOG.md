@@ -16,6 +16,73 @@ Format:
 
 ---
 
+## [2026-08-17 14:00] Three blog posts: 2 new + 1 refresh (weekly brief 11–17 Aug)
+
+**Goal:** Ship the three blog ideas from the 11–17 Aug weekly brief. Two new posts cover underserved search intents (UAE sector hiring + skills-vs-degrees for Gulf job seekers). One refresh adds Fortune/Greenhouse global data to the existing why-cv-ignored-dubai post. All sources verified against originals; all stats checked per content guardrails.
+
+**Files:**
+- created: `content/blog/uae-sectors-hiring-2026.mdx` — new post: which UAE sectors are hiring above the national average (LinkedIn × Ministry of Foreign Trade report), operations crowding problem at 21.4%, sector vocabulary swaps for CV rewriting. Category: UAE Job Market. 6 FAQs.
+- created: `public/blog/covers/uae-sectors-hiring-2026.svg` — cover image (1200×630, dark gradient, green accent)
+- created: `content/blog/skills-vs-degrees-uae-cv.mdx` — new post: why Gulf job seekers should not follow global "drop your degree" advice. MoHRE skill levels 1–9, degree attestation for employment visa, how to structure a CV that leads with skills without hiding qualifications. Category: Career Advice. 6 FAQs.
+- created: `public/blog/covers/skills-vs-degrees-uae-cv.svg` — cover image (1200×630, dark gradient, gold accent)
+- edited: `content/blog/why-cv-ignored-dubai.mdx` — refresh: added `dateModified: 2026-08-17`, new section "This Is Not a Dubai Problem — It Is a Global One" with Greenhouse data (254 applicants/role, 412% increase, AI doom loop), added internal link to new sectors post, updated Sources line.
+
+**Notes / risks / follow-up:**
+- Idea 2 from the brief was identified as a duplicate of `why-cv-ignored-dubai` (same Khaleej Times sources, same recruiter quotes). Abdullah confirmed: refresh rather than new post.
+- The skills-vs-degrees post links to labeeb.ae's degree attestation guide was deliberately avoided (GEO competitor per audit). The attestation process is stated as established fact instead.
+- New posts add internal links to: `why-cv-ignored-dubai`, `uae-hiring-season-september`, `how-to-get-a-job-in-dubai-2026`, `professional-summary-examples-uae-cv`, `cv-format-uae-2026`, `expat-cv-uae-guide`, `cv-for-freshers-uae`, `ats-cv-checklist-uae`, `does-dubai-use-ats`, `/jd-match`, `/resume-checker`.
+- The refreshed `why-cv-ignored-dubai` now links to `uae-sectors-hiring-2026`, creating a two-way connection.
+- Blog count after this: 29 posts (27 existing + 2 new).
+- All three need staging → main merge to go live. Medium syndication queued below.
+
+**Suggested commit:** content(blog): add sector-hiring and skills-vs-degrees posts, refresh why-cv-ignored with Greenhouse data
+
+## [2026-08-12 23:22] Bind the Medium profile into the Organization entity graph
+
+**Goal:** Item 2 of the post-queue list in the Medium syndication runbook, and the one part of
+the Medium job that needs no browser. Syndicated Medium stories canonical back to this domain,
+but nothing on this domain pointed *back* at the Medium profile — so the two surfaces were not
+declared as one entity. With 10+ same-name `makemycv.*` properties competing for the bare brand
+string, every owned profile bound into `sameAs` is another UAE-scoped signal that resolves this
+entity rather than a European one.
+
+**Files:**
+- edited: `lib/seo.ts` — added `https://medium.com/@abdullahportfolio5` to `ORG_SAME_AS`, the
+  array `organizationSchema()` spreads into the Organization node's `sameAs`. LinkedIn and
+  Instagram were already there; this is a third entry, no other change.
+
+**Judgement call worth flagging — this is a personal handle, not an org profile.**
+`ORG_SAME_AS` carries a HARD RULE comment: only profiles we own and control. Abdullah owns this
+one, it carries the display name "Abdullah — MakeMyCV.ae", and it publishes nothing but this
+site's content — so it passes the ownership test. But it is a *personal* Medium handle rather
+than a Medium publication (publications are a paid feature, decided against on 2026-08-01), and
+binding a person-entity into an Organization node is not perfectly clean: if that profile ever
+publishes unrelated personal writing, it muddies the org entity. Documented in an inline comment
+directly above the URL, phrased so a future session knows it is the single line to remove if the
+entity graph is ever tightened to org-owned profiles only. **Reversible in one line — say the
+word and it comes out.**
+
+**Also checked, no change needed:** the `og:site_name` mismatch recorded in
+`makemycv-offsite-profiles-plan` is stale — every emission site (`app/layout.tsx`,
+`app/blog/page.tsx`, `app/blog/[slug]/page.tsx`, `lib/seo.ts`) already uses `SITE_NAME`
+= "MakeMyCV.ae". That memory note has been corrected.
+
+**Notes / risks / follow-up:**
+- **Not committed and not pushed** — Cowork cannot write the git index through this mount
+  (documented failure, see project memory). The edit is in the working tree; it needs your
+  `git add lib/seo.ts && git commit && git push`.
+- Build risk is as close to zero as a change gets: one string literal appended to a
+  `readonly string[]`. `npx tsc --noEmit` was started against the working tree but had not
+  finished when this entry was written — typechecking across the Windows mount from the Linux
+  VM runs at a crawl. It emitted no errors while running. Worth one `npm run build` before you
+  push, purely as habit.
+- The Organization node only renders where `organizationSchema()` is emitted — the marketing
+  site. `app.makemycv.ae` still has no entity block of its own; that is a separate open item.
+
+**Suggested commit:** feat(seo): bind Medium profile into Organization sameAs
+
+---
+
 ## [2026-08-12 22:15] Share row on all blog posts
 
 **Goal:** Blog posts had zero share affordance. Adds one to all 28, so posts can actually
