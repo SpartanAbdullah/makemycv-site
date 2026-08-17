@@ -9,7 +9,7 @@ const problems = [
   },
   {
     title: "Generic templates scream “expat import”.",
-    body: "Gulf recruiters spot a Canva/Word template in one glance. Missing visa status, no nationality, no Emirates ID mention — it signals you don’t understand the market.",
+    body: "Gulf recruiters spot a Canva/Word template in one glance. Missing visa status, no nationality, no notice period — it signals you don’t understand the market.",
   },
   {
     title: "Walls of text lose the 7-second scan.",

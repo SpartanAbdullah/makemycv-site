@@ -16,6 +16,71 @@ Format:
 
 ---
 
+## [2026-08-17 22:20] Emirates ID removal, edge 404 bot guard, llms.txt rebuild, OG 404 fix
+
+**Goal:** Abdullah's batch of 17 Aug. The honesty pass is **parked by his decision** — everything
+here is separate from it, with one carve-out he asked for explicitly (Emirates ID).
+
+**Files:**
+- edited: `app/page.tsx`, `components/home/FAQ.tsx`, `components/home/FeatureGrid.tsx`,
+  `components/home/ProblemSolution.tsx`, `lib/seo-schema.ts` (×2),
+  `content/blog/how-to-make-cv-for-job-in-uae.mdx` — removed **Emirates ID** everywhere it was
+  presented as a UAE Essentials field or as CV advice.
+- created: `middleware.ts` — edge 404 guard for scanner path sweeps.
+- edited: `public/llms.txt` — full rebuild.
+- edited: `app/resume-checker/page.tsx` — OG image repointed off a path that never existed.
+
+**Emirates ID — this was worse than bad advice, it was a phantom feature.**
+Verified in `makemycv-app/components/builder/steps/UAEEssentialsStep.tsx`: the step's fields are
+**visa status, availability/notice period, UAE driving licence, nationality**. There is no Emirates
+ID field and there never has been. The site claimed one in six places, including `WebApplication`
+schema `featureList` — so we were advertising a feature that doesn't exist *and* telling UAE job
+seekers to put an identity-document number on a document that gets forwarded around. The FAQ answer
+now says the opposite, and says why. **Left untouched deliberately:**
+`content/blog/how-to-get-a-job-in-dubai-2026.mdx:184` — "Emirates ID biometrics" there refers to the
+residence-visa process, which is factually correct.
+
+**The middleware is the highest-risk change here; it is regex-tested.**
+Blocks only paths observed in the GA4 bot sweep (~229 views / ~226 fake "users" in 28 days, ~23% user
+inflation, making "Page not found" the second-biggest page on the site). Returns a bare 404 before
+React — and therefore before GTM — loads, so probes stop minting sessions. Also cuts function
+invocations.
+- ⚠️ **`/static` is NOT blocked wholesale.** `public/static/cv-photo-amira.jpg` is a real referenced
+  asset; the audit's suggested path list would have silently broken it. Only `/static/js` and
+  `/static/media` are blocked.
+- `/personas` is prefix-matched, not boundary-matched, because scanners also request malformed
+  variants like `/personashttp:/iphoneservicelimburg.nl`.
+- Verified with a standalone regex harness: **29 real routes/assets pass, 18 observed bot paths
+  blocked, 0 false positives.**
+- ⚠️ `/en` and `/login` are blocked because nothing serves them today. If an English locale prefix is
+  ever added, or the marketing domain proxies auth, remove that entry FIRST — otherwise the new route
+  404s with nothing to explain it.
+
+**llms.txt was badly stale** — 19 of 30 posts (the blog has grown to 30; `skills-vs-degrees-uae-cv`
+and `uae-sectors-hiring-2026` were both missing), no `/jd-match`, `/privacy`, `/support` or
+`/resignation-letter-generator`, and it repeated the Emirates ID claim. Rebuilt with all 30 posts
+grouped by intent (format/ATS · by situation · by country of origin · market), all four missing pages
+added, and the entity name corrected to MakeMyCV.ae. `7-seconds-thats-it` is still listed — the
+decision to retire or rewrite it is parked with the honesty pass — but it no longer *leads* the file,
+which is what an LLM reads first.
+
+**OG:** `app/resume-checker/page.tsx` pointed `image` at `/og/resume-checker.png`. `public/og/` is not
+a directory in this repo, so every OG and Twitter card for that page resolved to a 404 and previews
+rendered blank. Repointed to the real `/og-image.png`. A bespoke card would convert better and can be
+generated from `scripts/generate-og-image.mjs` — not done here.
+
+**Notes / risks / follow-up:**
+- **Not committed** — Cowork cannot write the git index through this mount. Needs `git add` / `commit`
+  / `push`. Still-uncommitted from 12 Aug: the `ORG_SAME_AS` Medium line in `lib/seo.ts`.
+- **Preview-test the middleware before promoting.** It runs on every request. Walk `/`, `/blog`,
+  `/templates`, `/static/cv-photo-amira.jpg` and one blog cover on the preview deployment.
+- No build run — `npm run build` on this mount is impractically slow. Changes are copy strings, one new
+  edge file, and a static text file.
+
+**Suggested commit:** fix(content,seo): drop phantom Emirates ID field, add 404 bot guard, rebuild llms.txt
+
+---
+
 ## [2026-08-17 14:00] Three blog posts: 2 new + 1 refresh (weekly brief 11–17 Aug)
 
 **Goal:** Ship the three blog ideas from the 11–17 Aug weekly brief. Two new posts cover underserved search intents (UAE sector hiring + skills-vs-degrees for Gulf job seekers). One refresh adds Fortune/Greenhouse global data to the existing why-cv-ignored-dubai post. All sources verified against originals; all stats checked per content guardrails.

@@ -26,7 +26,7 @@ import { SocialSection } from "@/components/home/SocialSection";
 const homeAiAnswer = {
   q: "What is MakeMyCV?",
   lead: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market.",
-  a: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market. It serves job seekers, fresh graduates, mid-career professionals and executives targeting roles in Dubai, Abu Dhabi, Sharjah and across the Gulf, with UAE-specific fields (visa status, nationality, Emirates ID), ATS-readable formatting and recruiter-friendly structure. No sign-up, no paywall.",
+  a: "MakeMyCV is a free, ATS-friendly CV builder and checker for the UAE and GCC job market. It serves job seekers, fresh graduates, mid-career professionals and executives targeting roles in Dubai, Abu Dhabi, Sharjah and across the Gulf, with UAE-specific fields (visa status, nationality, notice period), ATS-readable formatting and recruiter-friendly structure. No sign-up, no paywall.",
 };
 
 /* Title/description rewritten 2026-08-10 (GA4 + Search Console audit). The site

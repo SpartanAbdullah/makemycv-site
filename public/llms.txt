@@ -1,40 +1,61 @@
-# MakeMyCV
+# MakeMyCV.ae
 
-> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: a dedicated "UAE Essentials" step covers visa status, nationality, Emirates ID, driving licence, notice period and availability, and every template works with or without a photo (user's choice per application). Templates use the single-column, standard-section structure that ATS software parses reliably.
+> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: a dedicated "UAE Essentials" step covers visa status, nationality, driving licence, notice period and availability, and every template works with or without a photo (user's choice per application). Templates use the single-column, standard-section structure that ATS software parses reliably.
 
 ## Core pages
-- [Home](https://www.makemycv.ae/): What MakeMyCV is, who it's for, and why UAE CVs need ATS-clean formatting.
-- [Templates](https://www.makemycv.ae/templates): All 10 free CV templates — ATS-Friendly single-column layouts (Classic, ATS Clean, Professional) and design-led sidebar/two-column formats (Executive, Modern, Executive Split, Corporate, Onyx, Sandstone, Professional Photo). Every layout is available with or without a photo.
+- [Home](https://www.makemycv.ae/): What MakeMyCV.ae is, who it's for, and why UAE CVs need ATS-clean formatting.
+- [Templates](https://www.makemycv.ae/templates): All 10 free CV templates — ATS-friendly single-column layouts (Classic, ATS Clean, Professional) and design-led sidebar/two-column formats (Executive, Modern, Executive Split, Corporate, Onyx, Sandstone, Professional Photo). Every layout is available with or without a photo.
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
-- [Build a CV (app)](https://app.makemycv.ae): The free builder tool.
+- [JD Match](https://www.makemycv.ae/jd-match): Paste a job description and see how closely a CV matches it, with the specific gaps to fix. The CV is compared in the browser.
+- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Example CVs by role and industry, formatted for UAE hiring.
+- [Build a CV (app)](https://app.makemycv.ae): The free builder tool — 10 steps, PDF and DOCX download, no account.
 
 ## Free tools
-- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity per UAE Labour Law (limited/unlimited contracts, resignation vs termination).
+- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under UAE Labour Law (resignation vs termination, service length).
 - [Notice Period Calculator](https://www.makemycv.ae/notice-period-calculator): Notice period and last working day under UAE Labour Law.
 - [Annual Leave Calculator](https://www.makemycv.ae/annual-leave-calculator): Accrued annual leave days and leave salary in the UAE.
-- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Real example CVs by role and industry, formatted for UAE hiring.
+- [Resignation Letter Generator](https://www.makemycv.ae/resignation-letter-generator): Generates a UAE-appropriate resignation letter with the correct notice wording.
 
-## Guides (blog)
-- [How UAE Recruiters Judge Your CV in 7 Seconds](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.
-- [How to Get a Job in Dubai (2026)](https://www.makemycv.ae/blog/how-to-get-a-job-in-dubai-2026): Step-by-step from CV to visa to job portals.
-- [Professional Summary Examples for UAE CVs](https://www.makemycv.ae/blog/professional-summary-examples-uae-cv): Ready-to-use summary examples by industry.
-- [Dubai CV vs Abu Dhabi CV](https://www.makemycv.ae/blog/dubai-cv-vs-abu-dhabi-cv): Formatting, tone, and content differences between the two markets.
-- [ATS CV Checklist for the UAE](https://www.makemycv.ae/blog/ats-cv-checklist-uae): 10-point checklist for passing UAE ATS filters.
-- [Do UAE Companies Use ATS?](https://www.makemycv.ae/blog/does-dubai-use-ats): Which Dubai and Abu Dhabi employers screen CVs with ATS software, and how to pass it.
-- [How to Write a CV as an Expat in the UAE](https://www.makemycv.ae/blog/expat-cv-uae-guide): What to add/remove for the UAE market by nationality.
-- [CV for Freshers in the UAE](https://www.makemycv.ae/blog/cv-for-freshers-uae): Writing a first CV with no experience.
-- [How to Make a CV for a Job in UAE (2026)](https://www.makemycv.ae/blog/how-to-make-cv-for-job-in-uae): The step-by-step build — sections, visa status, UAE fields, ATS rules.
-- [Should Your CV Have a Photo in the UAE?](https://www.makemycv.ae/blog/should-cv-have-photo-uae): The UAE photo convention vs Western rules, and ATS-safe placement.
-- [CV vs Resume in the UAE](https://www.makemycv.ae/blog/cv-vs-resume-uae): Why both terms mean the same 1–2 page document in the UAE.
-- [Can ChatGPT Write Your CV?](https://www.makemycv.ae/blog/can-chatgpt-write-cv): Where AI helps CV writing and where raw AI output fails UAE screening.
+## Guides — UAE CV format and ATS
+- [CV Format UAE 2026](https://www.makemycv.ae/blog/cv-format-uae-2026): The complete format guide for Dubai and Gulf job seekers — structure, length, sections, file type.
+- [How to Make a CV for a Job in UAE](https://www.makemycv.ae/blog/how-to-make-cv-for-job-in-uae): Step-by-step build — sections, visa status, UAE fields, ATS rules.
 - [How to Make a CV for a Job in Dubai](https://www.makemycv.ae/blog/how-to-make-cv-for-job-in-dubai): Dubai-specific tuning — DIFC, free zones, mainland, WhatsApp recruiters.
-- [Best CV Writers in UAE](https://www.makemycv.ae/blog/best-cv-writers-uae): Typing centres to executive services — costs, checks, and free alternatives.
-- [Do You Need a Cover Letter for UAE Jobs?](https://www.makemycv.ae/blog/cover-letter-for-uae-jobs): When a cover letter is worth writing for Dubai jobs, what to include, and a short template.
-- [LinkedIn for UAE Job Seekers](https://www.makemycv.ae/blog/linkedin-profile-uae-jobs): How Dubai and Abu Dhabi recruiters source candidates on LinkedIn, and how to be found.
-- [How to Explain Employment Gaps on a UAE CV](https://www.makemycv.ae/blog/employment-gaps-uae-cv): Presenting career breaks — visa cancellation, relocation, family — honestly and without cost.
-- [Nursing & Healthcare CV for the UAE](https://www.makemycv.ae/blog/nursing-cv-uae): DHA/DOH/MOHAP licensing, DataFlow verification, and clinical CV structure for UAE hospitals.
+- [Do UAE Companies Use ATS?](https://www.makemycv.ae/blog/does-dubai-use-ats): Which Dubai and Abu Dhabi employers screen CVs with ATS software, and how to pass it.
+- [ATS CV Checklist for the UAE](https://www.makemycv.ae/blog/ats-cv-checklist-uae): 10-point checklist for passing UAE ATS filters.
+- [MOHRE CV Format](https://www.makemycv.ae/blog/mohre-cv-format-uae): What "MOHRE CV format" actually means in the UAE, and what MOHRE does and does not specify.
+- [CV vs Resume in the UAE](https://www.makemycv.ae/blog/cv-vs-resume-uae): Why both terms mean the same 1–2 page document in the UAE.
+- [Dubai CV vs Abu Dhabi CV](https://www.makemycv.ae/blog/dubai-cv-vs-abu-dhabi-cv): Formatting, tone and emphasis differences between the two markets.
+- [Should Your CV Have a Photo in the UAE?](https://www.makemycv.ae/blog/should-cv-have-photo-uae): The UAE photo convention vs Western rules, and ATS-safe placement.
+- [Professional Summary Examples for UAE CVs](https://www.makemycv.ae/blog/professional-summary-examples-uae-cv): Ready-to-use summary examples by industry.
+
+## Guides — by situation
+- [CV for Freshers in the UAE](https://www.makemycv.ae/blog/cv-for-freshers-uae): Writing a first CV with no experience.
+- [How to Explain Employment Gaps on a UAE CV](https://www.makemycv.ae/blog/employment-gaps-uae-cv): Presenting career breaks — visa cancellation, relocation, family — honestly.
 - [Career-Change CV for the UAE](https://www.makemycv.ae/blog/career-change-cv-uae): Switching industries in Dubai — skills-forward format and translating past experience.
+- [How to Write a CV as an Expat in the UAE](https://www.makemycv.ae/blog/expat-cv-uae-guide): What to add and remove for the UAE market, with notes by nationality.
+- [Nursing & Healthcare CV for the UAE](https://www.makemycv.ae/blog/nursing-cv-uae): DHA/DOH/MOHAP licensing, DataFlow verification, and clinical CV structure.
+- [Skills vs Degrees in 2026](https://www.makemycv.ae/blog/skills-vs-degrees-uae-cv): Why Gulf job seekers should not drop qualifications from a CV despite skills-based hiring.
+- [Do You Need a Cover Letter for UAE Jobs?](https://www.makemycv.ae/blog/cover-letter-for-uae-jobs): When a cover letter is worth writing for Dubai jobs, plus a short template.
+- [LinkedIn for UAE Job Seekers](https://www.makemycv.ae/blog/linkedin-profile-uae-jobs): How Dubai and Abu Dhabi recruiters source candidates on LinkedIn.
+- [Can ChatGPT Write Your CV?](https://www.makemycv.ae/blog/can-chatgpt-write-cv): Where AI helps CV writing and where raw AI output fails UAE screening.
+- [Best CV Writers in UAE](https://www.makemycv.ae/blog/best-cv-writers-uae): Typing centres to executive services — costs, checks, and free alternatives.
+- [Free CV Maker in Dubai](https://www.makemycv.ae/blog/cv-maker-dubai): Building a UAE-ready CV in about five minutes.
+- [How UAE Recruiters Judge Your CV](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.
+
+## Guides — applying from your country
+- [How to Adapt Your Indian CV for UAE Jobs](https://www.makemycv.ae/blog/adapt-indian-cv-for-uae-jobs): What to change moving from an Indian CV to a UAE one.
+- [First-Time OFW CV for UAE Jobs](https://www.makemycv.ae/blog/first-time-ofw-cv-uae): Philippine conventions to drop, PRC licences and CHED degrees, DMW agency route.
+- [CV for Dubai & Gulf Jobs from Kenya or Nigeria](https://www.makemycv.ae/blog/cv-for-dubai-jobs-from-kenya-nigeria): WAEC/KCSE handling, degree attestation, and recruitment-fraud warnings.
+- [CV for Dubai & UAE Jobs from Nepal](https://www.makemycv.ae/blog/cv-for-dubai-jobs-from-nepal): Bikram Sambat date conversion, labour approval, attestation chain, agency fee cap.
+
+## Guides — UAE job market
+- [How to Get a Job in Dubai](https://www.makemycv.ae/blog/how-to-get-a-job-in-dubai-2026): Step-by-step from CV to job portals to visa processing.
+- [UAE Hiring in 2026: The Sectors Actually Growing](https://www.makemycv.ae/blog/uae-sectors-hiring-2026): Which sectors are hiring above trend, and how to rewrite a CV for them.
+- [UAE Hiring Restarted in July](https://www.makemycv.ae/blog/uae-hiring-season-september): Why September is the strongest application window and when shortlists are built.
+- [Why Your CV Is Being Ignored in Dubai](https://www.makemycv.ae/blog/why-cv-ignored-dubai): What UAE recruiters said in 2026 about application volume and screening.
 
 ## About
-- [About MakeMyCV](https://www.makemycv.ae/about): Who built it and why.
+- [About MakeMyCV.ae](https://www.makemycv.ae/about): Who built it and why.
+- [Support](https://www.makemycv.ae/support): How to support the project.
+- [Privacy](https://www.makemycv.ae/privacy): What is stored, what is not, and where CV data lives.
 - [Contact](https://www.makemycv.ae/contact): hello@makemycv.ae

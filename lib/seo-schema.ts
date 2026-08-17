@@ -150,7 +150,7 @@ export function webApplicationSchema() {
     operatingSystem: "Web browser",
     browserRequirements: "Requires JavaScript",
     description:
-      "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, Emirates ID, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall — your CV draft is saved in your browser, not an account.",
+      "Free ATS-optimized CV builder with a dedicated UAE Essentials step (visa status, nationality, driving licence, notice period) and optional photo per template. No sign-up, no paywall — your CV draft is saved in your browser, not an account.",
     offers: {
       "@type": "Offer",
       price: "0",
@@ -159,7 +159,7 @@ export function webApplicationSchema() {
     },
     featureList: [
       "ATS-parseable structure",
-      "UAE Essentials step (visa status, Emirates ID, nationality, driving licence)",
+      "UAE Essentials step (visa status, nationality, driving licence, notice period)",
       "Optional photo — on or off per application",
       "Instant PDF/DOCX export",
       "Live preview",

@@ -49,7 +49,11 @@ export const metadata = buildPageMetadata({
   description:
     "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in 30 seconds, no sign-up.",
   path: "/resume-checker",
-  image: "/og/resume-checker.png",
+  /* Was "/og/resume-checker.png", which never existed — public/og/ is not a
+     directory in this repo, so every OG and Twitter card for this page pointed
+     at a 404 and social previews rendered blank. Pointing at the real brand
+     card until a bespoke one is generated via scripts/generate-og-image.mjs. */
+  image: "/og-image.png",
   keywords: [
     "ATS checker UAE",
     "resume checker Dubai",
