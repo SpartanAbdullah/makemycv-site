@@ -263,7 +263,7 @@ export default function SupportPage() {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-full bg-white px-7 py-3.5 text-base font-semibold text-accent-deep shadow-md transition-all duration-200 hover:scale-[1.02] hover:bg-paper"
+              className="inline-block rounded-full bg-white px-7 py-3.5 text-base font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper"
             >
               Back to the builder &rarr;
             </a>

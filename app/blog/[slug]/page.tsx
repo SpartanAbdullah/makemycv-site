@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Props) {
             <span className="text-ink-2 line-clamp-1">{post.title}</span>
           </nav>
 
-          <span className="text-[11px] font-semibold text-accent uppercase tracking-[0.14em] mb-4 block">
+          <span className="mb-4 inline-block rounded-full bg-accent-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-deep">
             {post.category}
           </span>
 
@@ -147,7 +147,7 @@ export default async function PostPage({ params }: Props) {
 
       {/* Cover image */}
       <div className="max-w-4xl mx-auto px-6 -mt-8 relative z-20">
-        <div className="rounded-2xl overflow-hidden border border-line shadow-md-soft">
+        <div className="rounded-[28px] overflow-hidden shadow-float">
           <img
             src={post.coverImage ?? '/og-image.png'}
             alt={post.title}
@@ -195,9 +195,9 @@ export default async function PostPage({ params }: Props) {
             <div className="lg:sticky lg:top-24 space-y-6">
 
               {/* CTA card */}
-              <div className="rounded-2xl p-6 border border-line bg-sheet shadow-sm-soft">
+              <div className="rounded-2xl bg-sheet p-6 shadow-float">
                 <div className="text-3xl mb-3">{emoji}</div>
-                <h3 className="font-display font-bold text-lg text-ink mb-2">
+                <h3 className="font-display font-semibold text-xl text-ink mb-2">
                   Ready to build your CV?
                 </h3>
                 <p className="text-muted text-sm mb-5 leading-relaxed">
@@ -251,7 +251,7 @@ export default async function PostPage({ params }: Props) {
       {/* Bottom CTA — dark green closing band (dark is allowed here, navy is not) */}
       <section className="bg-accent-deep py-20 text-center text-white">
         <div className="max-w-2xl mx-auto px-6">
-          <h2 className="font-display text-[32px] md:text-[40px] font-bold leading-[1.15] tracking-tight-2 text-white mb-4">
+          <h2 className="font-display text-[36px] md:text-[48px] font-bold leading-[1.05] tracking-tight-2 text-white mb-4">
             Put This Into Practice
           </h2>
           <p className="text-white/75 mb-8">
@@ -261,7 +261,7 @@ export default async function PostPage({ params }: Props) {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-accent-deep font-semibold text-lg px-10 py-4 rounded-full shadow-md transition-all duration-200 hover:scale-[1.02] hover:bg-paper"
+            className="inline-block bg-white text-accent-deep font-semibold text-lg px-10 py-4 rounded-full shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper"
           >
             Build My CV Free &rarr;
           </a>
