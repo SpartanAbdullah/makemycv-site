@@ -1,7 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img">
   <title>makemycv.ae icon</title>
-  <desc>Twin ascending peaks that also read as an M: a cream peak and a taller gold peak on a navy rounded square. Every slope uses the same 58 degree system angle, separated by a constant-width negative gap.</desc>
-  <rect x="0" y="0" width="64" height="64" rx="12.75" fill="#1B2A4A"></rect>
-  <path d="M11 44.2 L23.88 23.25 L36.76 44.2 L29.5 44.2 L23.88 35.1 L18.25 44.2 Z" fill="#F4EEE0"></path>
-  <path d="M22.75 44.2 L37.8 19.88 L53 44.2 L45.75 44.2 L37.8 31.7 L30.13 44.2 Z" fill="#C49A48"></path>
+  <desc>Twin ascending peaks that also read as an M: a cream peak and a taller gold peak on a navy rounded square. Every slope uses the same 58 degree system angle, separated by a constant-width negative gap. Icon master (2026-08 reskin): the tile carries a subtle vertical navy gradient plus a faint top light echoing the site's 3D-glass language, and the mark is scaled 1.12x for legibility at 16px. Same brand navy/cream/gold as the lockup SVGs in public/logos/.</desc>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#25375E"/>
+      <stop offset="0.55" stop-color="#1B2A4A"/>
+      <stop offset="1" stop-color="#141F38"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="64" height="64" rx="12.75" fill="url(#tile)"/>
+  <rect x="1" y="1" width="62" height="30" rx="11.75" fill="url(#sheen)"/>
+  <g transform="translate(32 32) scale(1.12) translate(-32 -32)">
+    <path d="M11 44.2 L23.88 23.25 L36.76 44.2 L29.5 44.2 L23.88 35.1 L18.25 44.2 Z" fill="#F4EEE0"/>
+    <path d="M22.75 44.2 L37.8 19.88 L53 44.2 L45.75 44.2 L37.8 31.7 L30.13 44.2 Z" fill="#C49A48"/>
+  </g>
 </svg>

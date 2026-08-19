@@ -99,11 +99,16 @@ export const metadata: Metadata = {
     google: "4-GkL9sPp54uDmGNaKlzJfRKR1PSVXFxgZKvE_RukQQ",
   },
   // Brand parity: identical favicon set to app.makemycv.ae — one brand, two
-  // surfaces. Source of truth is makemycv-app/public; copy from there.
+  // surfaces. The 2026-08 reskin regenerated this set from public/favicon.svg
+  // (subtle gradient tile, 1.12x mark) — this repo is now the icon master;
+  // copy favicon.{svg,ico} + favicon-96x96.png TO makemycv-app when syncing.
+  // Order/sizes matter: the SVG carries sizes="any" so modern browsers pick
+  // the vector; giving the ICO "any" (the old setup) made Chrome upscale the
+  // tiny raster on high-DPI displays — that was the blurry tab icon.
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
       { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
     shortcut: "/favicon.ico",
