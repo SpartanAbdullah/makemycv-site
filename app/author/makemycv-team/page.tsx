@@ -44,7 +44,7 @@ export default function AuthorPage() {
             </div>
 
             <div>
-              <p className="font-mono text-[11px] text-accent font-semibold uppercase tracking-[0.14em] mb-2">Author</p>
+              <p className="text-[11px] text-accent font-semibold uppercase tracking-[0.14em] mb-2">Author</p>
               <h1 className="font-display text-4xl font-bold tracking-tight-2 text-ink mb-2">
                 MakeMyCV Team
               </h1>

@@ -93,7 +93,7 @@ export default function PrivacyPage() {
           {/* The short version — mirrors the AiAnswer pattern: lead with the
               answer, details below. */}
           <div className="rounded-2xl border border-line bg-paper-2 p-6">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               The short version
             </p>
             <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-2">

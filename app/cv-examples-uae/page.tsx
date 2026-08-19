@@ -150,7 +150,7 @@ export default function CvExamplesUaePage() {
           }}
         />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
-          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             <ScanSearch size={13} /> Six sectors · Free to copy
           </p>
           <h1 className="mt-5 text-balance font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-tight-2 text-ink">

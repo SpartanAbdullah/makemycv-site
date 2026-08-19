@@ -67,7 +67,7 @@ export function AtsSystems() {
     <section className="bg-paper py-24 md:py-32">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The methodology
           </p>
           <h2

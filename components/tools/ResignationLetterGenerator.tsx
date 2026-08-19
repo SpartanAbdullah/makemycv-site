@@ -280,7 +280,7 @@ export function ResignationLetterGenerator() {
 
       {/* Letter preview */}
       <div className="mt-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Your letter
         </p>
         <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-paper-2 p-6 font-sans text-[15px] leading-relaxed text-ink md:p-8">

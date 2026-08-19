@@ -46,7 +46,7 @@ export function WhatWeCheck() {
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               The scan
             </p>
             <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">

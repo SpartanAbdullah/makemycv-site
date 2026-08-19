@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Props) {
             <span className="text-ink-2 line-clamp-1">{post.title}</span>
           </nav>
 
-          <span className="font-mono text-[11px] font-semibold text-accent uppercase tracking-[0.14em] mb-4 block">
+          <span className="text-[11px] font-semibold text-accent uppercase tracking-[0.14em] mb-4 block">
             {post.category}
           </span>
 
@@ -217,7 +217,7 @@ export default async function PostPage({ params }: Props) {
               {/* Related posts */}
               {relatedPosts.length > 0 && (
                 <div>
-                  <h3 className="font-mono font-semibold text-accent text-[11px] uppercase tracking-[0.14em] mb-4">
+                  <h3 className="font-semibold text-accent text-[11px] uppercase tracking-[0.14em] mb-4">
                     Related Articles
                   </h3>
                   <div className="space-y-4">

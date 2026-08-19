@@ -37,16 +37,30 @@ export const Navbar = () => {
       {/* Container mirrors the hero: 1400px, same responsive gutters — the
           nav must not read narrower than the sections under it. */}
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-3.5 md:px-10 xl:px-14">
-        {/* Logo — same lockup as the builder app (source: makemycv-app/public/logos) */}
-        <Link href="/" className="flex items-center" aria-label="MakeMyCV — home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logos/logo-horizontal.svg"
-            alt="makemycv.ae"
-            width={399}
-            height={100}
-            className="h-8 w-auto md:h-9"
-          />
+        {/* Logo — the shared brand mark (source: makemycv-app/public/logos)
+            with the wordmark set live in Outfit. The old logo-horizontal.svg
+            carried a Poppins-outlined wordmark that clashed with the 2026-08
+            Outfit reskin; live text stays pixel-sharp and on-face, and the
+            mark tile gets the same 3D-glass depth as the CTAs. */}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5"
+          aria-label="MakeMyCV — home"
+        >
+          <span className="logo-mark-3d shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/logo-mark.svg"
+              alt=""
+              width={64}
+              height={64}
+              className="h-9 w-9 md:h-10 md:w-10"
+            />
+          </span>
+          <span className="font-display text-[19px] font-semibold leading-none tracking-tight-2 md:text-[21px]">
+            <span className="text-[#1B2A4A]">makemycv</span>
+            <span className="text-gold">.ae</span>
+          </span>
         </Link>
 
         {/* Desktop links */}

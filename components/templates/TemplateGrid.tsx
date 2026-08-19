@@ -82,7 +82,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
             >
               {f.label}
               <span
-                className={`font-mono text-[11px] ${active ? "text-accent-deep/70" : "text-muted"}`}
+                className={`text-[11px] ${active ? "text-accent-deep/70" : "text-muted"}`}
               >
                 {count(f.id)}
               </span>
@@ -158,7 +158,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                     {badges.map((b) => (
                       <span
                         key={b.label}
-                        className={`rounded-full px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] ${b.cls}`}
+                        className={`rounded-full px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-[0.1em] ${b.cls}`}
                       >
                         {b.label}
                       </span>
@@ -166,7 +166,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                   </span>
 
                   {/* Export formats */}
-                  <span className="absolute bottom-2 left-2 rounded bg-ink/75 px-1.5 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
+                  <span className="absolute bottom-2 left-2 rounded bg-ink/75 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
                     PDF · DOCX
                   </span>
 

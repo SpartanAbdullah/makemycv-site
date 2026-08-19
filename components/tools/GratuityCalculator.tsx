@@ -381,7 +381,7 @@ export function GratuityCalculator() {
         ) : jurisdiction === "difc" ? (
           /* DIFC — mandatory DEWS scheme, not lump-sum gratuity */
           <div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               DIFC — DEWS scheme
             </p>
             <p className="mt-2 font-display text-4xl font-extrabold text-accent">
@@ -410,7 +410,7 @@ export function GratuityCalculator() {
             </p>
           ) : (
             <div>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated gratuity
               </p>
               <p className="mt-2 font-display text-3xl font-extrabold text-ink">
@@ -433,7 +433,7 @@ export function GratuityCalculator() {
           )
         ) : (
           <div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               Estimated gratuity
             </p>
             <p className="mt-2 font-display text-4xl font-extrabold text-accent">

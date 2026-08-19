@@ -47,7 +47,7 @@ export default function TemplatesPage() {
       {/* Hero */}
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6 text-center">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             Templates
           </p>
           <h1 className="mt-4 font-display text-[36px] font-bold leading-[1.1] tracking-tight-2 text-ink md:text-[44px]">

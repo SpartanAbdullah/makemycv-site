@@ -135,7 +135,7 @@ export function HowItWorks() {
     <section id="how-it-works" className="relative bg-paper-2 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The flow
           </p>
           <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">
@@ -152,7 +152,7 @@ export function HowItWorks() {
               key={num}
               className="group flex flex-col rounded-2xl bg-paper p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             >
-              <span className="font-mono text-[34px] font-semibold leading-none text-accent">
+              <span className="text-[34px] font-semibold leading-none text-accent">
                 {num}
               </span>
 

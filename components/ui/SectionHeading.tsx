@@ -26,7 +26,7 @@ export function SectionHeading({
     <div className={`${alignClass} ${className}`.trim()}>
       {eyebrow && (
         <p
-          className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] ${eyebrowColor}`}
+          className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${eyebrowColor}`}
         >
           {eyebrow}
         </p>

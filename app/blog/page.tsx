@@ -89,7 +89,7 @@ export default function BlogPage() {
           }}
         />
         <div className="relative z-10 mx-auto max-w-6xl px-6 pb-8 pt-14 md:pt-20">
-          <p className="mb-5 inline-flex items-center gap-2.5 font-mono text-[12px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="mb-5 inline-flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent">
             <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
             MakeMyCV · Career Guides
           </p>

@@ -128,7 +128,7 @@ export function BlogIndexClient({
         </div>
 
         {/* Result count */}
-        <p className="font-mono text-[13px] text-muted">
+        <p className="text-[13px] text-muted">
           <span className="font-semibold text-accent">{filtered.length}</span>{" "}
           {filtered.length === 1 ? "guide" : "guides"}
           {cat !== "All" ? ` in ${cat}` : ""}
@@ -171,7 +171,7 @@ export function BlogIndexClient({
             className="inline-flex h-12 items-center gap-2.5 rounded-full bg-sheet px-7 text-[14.5px] font-semibold text-ink shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
           >
             Load more guides
-            <span className="font-mono text-[12px] text-muted">
+            <span className="text-[12px] text-muted">
               {remaining} left
             </span>
           </button>
@@ -210,7 +210,7 @@ function Card({ p, eager = false }: { p: CardPost; eager?: boolean }) {
           <p className="mt-2.5 line-clamp-2 text-base leading-relaxed text-muted">
             {p.excerpt}
           </p>
-          <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-5 font-mono text-[12px] text-muted">
+          <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-5 text-[12px] text-muted">
             <span>{p.readingTime} min</span>
             <span className="h-1 w-1 rounded-full bg-line-strong" />
             <span>{p.dateFormatted}</span>

@@ -123,7 +123,7 @@ export function LeaveCalculator() {
             </p>
           ) : (
             <>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated leave salary
               </p>
               <p className="mt-2 font-display text-3xl font-extrabold text-accent">
@@ -201,7 +201,7 @@ export function LeaveCalculator() {
             </p>
           ) : !entitlement.eligible ? (
             <>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated entitlement
               </p>
               <p className="mt-2 font-display text-3xl font-extrabold text-ink">
@@ -215,7 +215,7 @@ export function LeaveCalculator() {
             </>
           ) : (
             <>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 {takenDays > 0 ? "Remaining leave" : "Estimated entitlement"}
               </p>
               <p className="mt-2 font-display text-3xl font-extrabold text-accent">

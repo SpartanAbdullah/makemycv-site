@@ -61,7 +61,7 @@ export function AiAnswer({
       )}
       <div className="mx-auto max-w-3xl px-6">
         <div className="rounded-2xl bg-paper-2 p-8 shadow-float md:p-10">
-          <p className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-soft px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-deep">
+          <p className="inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent-soft px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent-deep">
             <span className="h-1.5 w-1.5 rounded-full bg-accent" />
             {label}
           </p>

@@ -197,7 +197,7 @@ export function NoticePeriodCalculator() {
 
       {/* Result */}
       <div className="mt-6 rounded-2xl bg-paper-2 p-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Required notice
         </p>
         <p className="mt-2 font-display text-4xl font-extrabold text-accent">

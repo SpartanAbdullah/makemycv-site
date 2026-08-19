@@ -4,7 +4,7 @@ export function PricingClarity() {
   return (
     <section className="relative bg-paper-2 py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           No catch
         </p>
         <h2
