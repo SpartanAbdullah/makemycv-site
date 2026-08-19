@@ -37,16 +37,30 @@ export const Navbar = () => {
       {/* Container mirrors the hero: 1400px, same responsive gutters — the
           nav must not read narrower than the sections under it. */}
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-3.5 md:px-10 xl:px-14">
-        {/* Logo — same lockup as the builder app (source: makemycv-app/public/logos) */}
-        <Link href="/" className="flex items-center" aria-label="MakeMyCV — home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logos/logo-horizontal.svg"
-            alt="makemycv.ae"
-            width={399}
-            height={100}
-            className="h-8 w-auto md:h-9"
-          />
+        {/* Logo — the shared brand mark (source: makemycv-app/public/logos)
+            with the wordmark set live in Outfit. The old logo-horizontal.svg
+            carried a Poppins-outlined wordmark that clashed with the 2026-08
+            Outfit reskin; live text stays pixel-sharp and on-face, and the
+            mark tile gets the same 3D-glass depth as the CTAs. */}
+        <Link
+          href="/"
+          className="flex items-center gap-2.5"
+          aria-label="MakeMyCV — home"
+        >
+          <span className="logo-mark-3d shrink-0">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/logo-mark.svg"
+              alt=""
+              width={64}
+              height={64}
+              className="h-9 w-9 md:h-10 md:w-10"
+            />
+          </span>
+          <span className="font-display text-[19px] font-semibold leading-none tracking-tight-2 md:text-[21px]">
+            <span className="text-[#1B2A4A]">makemycv</span>
+            <span className="text-gold">.ae</span>
+          </span>
         </Link>
 
         {/* Desktop links */}
@@ -57,7 +71,7 @@ export const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-sm font-medium transition-colors duration-150 after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-150 ${
+                className={`relative text-sm font-semibold transition-colors duration-150 after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-150 ${
                   isActive
                     ? "text-accent after:w-full"
                     : "text-ink-2 hover:text-accent after:w-0 hover:after:w-full"
@@ -73,7 +87,7 @@ export const Navbar = () => {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/resume-checker"
-            className="inline-flex items-center gap-1.5 rounded-xl border border-line bg-sheet px-5 py-2.5 text-sm font-semibold text-ink transition-all duration-150 hover:border-accent/40 hover:text-accent"
+            className="inline-flex items-center gap-1.5 rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink shadow-float transition-all duration-200 hover:-translate-y-px hover:text-accent hover:shadow-float-hover"
             data-cta-location="navbar-ats-checker"
             data-event="navbar_ats_checker_click"
           >
@@ -87,7 +101,7 @@ export const Navbar = () => {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary rounded-xl px-5 py-2.5 text-sm font-bold text-white"
+            className="btn-primary px-5 py-2.5 text-sm font-semibold text-white"
           >
             Start Building Free &rarr;
           </a>
@@ -139,7 +153,7 @@ export const Navbar = () => {
             <Link
               href="/resume-checker"
               onClick={() => setMenuOpen(false)}
-              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-xl border border-line bg-sheet px-5 py-2.5 text-center text-sm font-semibold text-ink transition-all duration-150 hover:border-accent/40 hover:text-accent"
+              className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-sheet px-5 py-2.5 text-center text-sm font-semibold text-ink shadow-float transition-all duration-200 hover:text-accent hover:shadow-float-hover"
               data-cta-location="navbar-ats-checker"
               data-event="navbar_ats_checker_click"
             >
@@ -153,7 +167,7 @@ export const Navbar = () => {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary rounded-xl px-5 py-2.5 text-center text-sm font-bold text-white"
+              className="btn-primary px-5 py-2.5 text-center text-sm font-semibold text-white"
             >
               Start Building Free &rarr;
             </a>

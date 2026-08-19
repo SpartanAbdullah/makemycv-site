@@ -1,8 +1,8 @@
 import localFont from "next/font/local";
 
 /**
- * Site-wide faces: Inter (body), Bricolage Grotesque (display — the same family
- * the builder app uses, so marketing and product share one typographic voice),
+ * Site-wide faces: Outfit (display AND body — one geometric sans for the whole
+ * site since the 2026-08 premium reskin; Bricolage Grotesque + Inter retired),
  * JetBrains Mono (labels).
  *
  * ── Why self-hosted instead of next/font/google ────────────────────────────
@@ -18,18 +18,18 @@ import localFont from "next/font/local";
  * Self-hosting makes the build hermetic: no network fetch, so that whole class
  * of failure is off the deploy path. Fonts are static assets that do not change.
  *
- * ── KEEP BLOG FACES OUT OF THIS FILE ───────────────────────────────────────
+ * ── KEEP ROUTE-SCOPED FACES OUT OF THIS FILE ───────────────────────────────
  * next/font registers a <link rel="preload"> for every face declared in a
- * module that a route pulls in. When all five lived in one module, every page
- * preloaded the two blog-only faces as well — 4 extra files, ~72 KiB, on pages
- * that never render them. Blog faces live in ./blog.ts for that reason. Adding
- * a face here means every route on the site pays for it.
+ * module that a route pulls in. When five faces lived in one module, every
+ * page preloaded the two blog-only faces as well — 4 extra files, ~72 KiB, on
+ * pages that never rendered them. (The blog faces were retired with the
+ * 2026-08 blog-index reskin.) Adding a face here means every route pays for it.
  *
  * ── Variable vs static ─────────────────────────────────────────────────────
- * All three ship as VARIABLE fonts — Google returns one byte-identical file for
+ * Both ship as VARIABLE fonts — Google returns one byte-identical file for
  * every weight requested (verified by md5), so one file covers the whole range.
- * Ranges below match the weights previously requested from Google, so rendering
- * is unchanged.
+ * Outfit's range runs 200–800: 200 for airy subtitles/labels, 400 body,
+ * 500–700 for nav/buttons/headings.
  *
  * `adjustFontFallback: "Arial"` reproduces the metric-adjusted fallback face
  * that next/font/google generated automatically, which is what holds CLS down
@@ -40,20 +40,11 @@ import localFont from "next/font/local";
  * with a browser User-Agent (a non-browser UA returns ttf, not woff2).
  */
 
-export const inter = localFont({
-  src: "./inter-variable.woff2",
-  weight: "400 800",
+export const outfit = localFont({
+  src: "./outfit-variable.woff2",
+  weight: "200 800",
   style: "normal",
-  variable: "--font-inter",
-  display: "swap",
-  adjustFontFallback: "Arial",
-});
-
-export const bricolage = localFont({
-  src: "./bricolage-variable.woff2",
-  weight: "500 800",
-  style: "normal",
-  variable: "--font-bricolage",
+  variable: "--font-outfit",
   display: "swap",
   adjustFontFallback: "Arial",
 });

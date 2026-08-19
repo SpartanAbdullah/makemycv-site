@@ -34,13 +34,10 @@ export function HomepageFAQ() {
   return (
     <section className="bg-paper py-20 md:py-28">
       <Reveal className="mx-auto max-w-3xl px-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Frequently asked
         </p>
-        <h2
-          className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
-          style={{ fontSize: "clamp(1.75rem, 3vw, 2rem)", lineHeight: 1.2 }}
-        >
+        <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] text-ink tracking-[-0.02em] md:text-[48px]">
           What people ask before they build.
         </h2>
 

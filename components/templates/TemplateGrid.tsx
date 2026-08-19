@@ -82,7 +82,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
             >
               {f.label}
               <span
-                className={`font-mono text-[11px] ${active ? "text-accent-deep/70" : "text-muted"}`}
+                className={`text-[11px] ${active ? "text-accent-deep/70" : "text-muted"}`}
               >
                 {count(f.id)}
               </span>
@@ -158,7 +158,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                     {badges.map((b) => (
                       <span
                         key={b.label}
-                        className={`rounded-full px-2 py-0.5 font-mono text-[9.5px] font-bold uppercase tracking-[0.1em] ${b.cls}`}
+                        className={`rounded-full px-2 py-0.5 text-[9.5px] font-bold uppercase tracking-[0.1em] ${b.cls}`}
                       >
                         {b.label}
                       </span>
@@ -166,7 +166,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                   </span>
 
                   {/* Export formats */}
-                  <span className="absolute bottom-2 left-2 rounded bg-ink/75 px-1.5 py-0.5 font-mono text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
+                  <span className="absolute bottom-2 left-2 rounded bg-ink/75 px-1.5 py-0.5 text-[9.5px] font-semibold uppercase tracking-[0.1em] text-white">
                     PDF · DOCX
                   </span>
 
@@ -174,7 +174,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                       link itself so focusing the photo radios below
                       doesn't summon it. */}
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-150 group-has-[.tpl-cta:focus-visible]:bg-ink/25 group-has-[.tpl-cta:focus-visible]:opacity-100 group-hover:bg-ink/25 group-hover:opacity-100">
-                    <span className="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-md">
+                    <span className="rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-cta">
                       Use This Template
                     </span>
                   </span>

@@ -115,7 +115,7 @@ export default async function PostPage({ params }: Props) {
             <span className="text-ink-2 line-clamp-1">{post.title}</span>
           </nav>
 
-          <span className="font-mono text-[11px] font-semibold text-accent uppercase tracking-[0.14em] mb-4 block">
+          <span className="text-[11px] font-semibold text-accent uppercase tracking-[0.14em] mb-4 block">
             {post.category}
           </span>
 
@@ -208,7 +208,7 @@ export default async function PostPage({ params }: Props) {
                   href="https://app.makemycv.ae"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary block text-center text-white font-bold py-3 rounded-xl text-sm"
+                  className="btn-primary block text-center text-white font-semibold py-3 text-sm"
                 >
                   Build My CV Free &rarr;
                 </a>
@@ -217,7 +217,7 @@ export default async function PostPage({ params }: Props) {
               {/* Related posts */}
               {relatedPosts.length > 0 && (
                 <div>
-                  <h3 className="font-mono font-semibold text-accent text-[11px] uppercase tracking-[0.14em] mb-4">
+                  <h3 className="font-semibold text-accent text-[11px] uppercase tracking-[0.14em] mb-4">
                     Related Articles
                   </h3>
                   <div className="space-y-4">
@@ -261,7 +261,7 @@ export default async function PostPage({ params }: Props) {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-accent-deep font-bold text-lg px-10 py-4 rounded-2xl shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper"
+            className="inline-block bg-white text-accent-deep font-semibold text-lg px-10 py-4 rounded-full shadow-md transition-all duration-200 hover:scale-[1.02] hover:bg-paper"
           >
             Build My CV Free &rarr;
           </a>

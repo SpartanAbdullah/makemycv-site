@@ -62,7 +62,7 @@ export function JdMatchSteps() {
           {steps.map((s, i) => (
             <article
               key={s.tag}
-              className="flex h-full flex-col rounded-2xl border border-line bg-white p-7 shadow-xs"
+              className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-float"
             >
               <div className="flex items-center gap-3">
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
@@ -73,7 +73,7 @@ export function JdMatchSteps() {
                 </span>
               </div>
 
-              <h3 className="mt-5 font-display text-xl font-bold leading-snug text-ink">
+              <h3 className="mt-5 font-display text-2xl font-semibold leading-snug text-ink">
                 {s.title}
               </h3>
               <p className="mt-2.5 text-sm leading-relaxed text-muted">

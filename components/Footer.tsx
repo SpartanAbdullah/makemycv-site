@@ -86,7 +86,7 @@ export const Footer = () => (
 
       {/* Quick Links */}
       <div>
-        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Pages
         </p>
         <div className="flex flex-col gap-2">
@@ -104,7 +104,7 @@ export const Footer = () => (
 
       {/* Free tools (GEO utility pages) */}
       <div>
-        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Free Tools
         </p>
         <div className="flex flex-col gap-2">
@@ -122,14 +122,14 @@ export const Footer = () => (
 
       {/* App CTA */}
       <div>
-        <p className="mb-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/55">
           Build Your CV
         </p>
         <a
           href="https://app.makemycv.ae"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary inline-block rounded-xl px-5 py-2.5 text-sm font-bold text-white"
+          className="btn-primary inline-block px-5 py-2.5 text-sm font-semibold text-white"
         >
           Start Free &rarr;
         </a>

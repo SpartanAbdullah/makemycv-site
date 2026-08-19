@@ -57,11 +57,8 @@ export function HeroVisual() {
     <div className="relative">
       <div className="absolute -inset-6 rounded-[32px] bg-gradient-to-br from-accent-soft/70 via-sheet to-gold-soft/40" aria-hidden="true" />
 
-      <div
-        className="relative rounded-[24px] border border-line bg-paper p-7"
-        style={{ boxShadow: "var(--shadow-lg-soft)" }}
-      >
-        <div className="flex items-center justify-between font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+      <div className="relative rounded-[28px] bg-paper p-7 shadow-float">
+        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           <span>Your CV · Sample report</span>
           <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition-colors duration-300 ${tier.chipBg} ${tier.chipText}`}>
             <span className={`h-1.5 w-1.5 rounded-full ${tier.chipDot}`} /> {tier.label}
@@ -112,7 +109,7 @@ export function HeroVisual() {
               <div key={c.label}>
                 <div className="flex items-baseline justify-between text-xs">
                   <span className="font-medium text-ink-2">{c.label}</span>
-                  <span className="font-mono font-semibold text-ink">{c.value}</span>
+                  <span className="font-semibold text-ink">{c.value}</span>
                 </div>
                 <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-paper-2">
                   <div
@@ -125,7 +122,7 @@ export function HeroVisual() {
           </div>
         </div>
 
-        <div className="mt-6 rounded-xl border border-line bg-paper-2 p-4 text-sm text-ink-2">
+        <div className="mt-6 rounded-xl bg-paper-2 p-4 text-sm text-ink-2">
           <p className="font-semibold text-ink">3 fixes to get to 95+</p>
           <ul className="mt-2 space-y-1.5 text-[13px] text-muted">
             <li className="flex gap-2">

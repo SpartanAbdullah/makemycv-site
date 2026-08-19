@@ -31,7 +31,7 @@ export function ProblemSolution() {
           {problems.map((p) => (
             <article
               key={p.title}
-              className="flex h-full flex-col rounded-xl border border-line bg-sheet p-6 shadow-xs transition-all duration-150 hover:border-red-300 hover:shadow-[0_8px_24px_rgba(220,38,38,0.10)]"
+              className="flex h-full flex-col rounded-2xl bg-sheet p-6 shadow-float"
             >
               <XCircle
                 size={24}
@@ -39,7 +39,7 @@ export function ProblemSolution() {
                 strokeWidth={2}
                 aria-hidden="true"
               />
-              <h3 className="mt-4 font-display text-lg font-bold leading-snug text-ink">
+              <h3 className="mt-4 font-display text-xl font-semibold leading-snug text-ink">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-ink-2">

@@ -185,7 +185,7 @@ const FloatingIconsHero = React.forwardRef<
 
         {/* Container for the foreground content */}
         <div className="relative z-10 px-4 text-center">
-          <h2 className="bg-gradient-to-b from-ink to-ink/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-6xl">
+          <h2 className="bg-gradient-to-b from-ink to-ink/70 bg-clip-text text-[36px] font-bold leading-[1.05] tracking-tight text-transparent md:text-[48px]">
             {title}
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg text-muted">{subtitle}</p>
@@ -194,7 +194,7 @@ const FloatingIconsHero = React.forwardRef<
               href={ctaHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-block rounded-xl px-8 py-3.5 text-base font-bold text-white"
+              className="btn-primary inline-block px-8 py-3.5 text-base font-semibold text-white"
             >
               {ctaText}
             </a>
@@ -203,7 +203,7 @@ const FloatingIconsHero = React.forwardRef<
                 href={secondaryCtaHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block rounded-xl border border-line-strong bg-white px-8 py-3.5 text-base font-bold text-ink transition-colors duration-150 hover:border-accent hover:text-accent"
+                className="inline-block rounded-full bg-sheet px-8 py-3.5 text-base font-semibold text-ink shadow-float transition-all duration-200 hover:-translate-y-px hover:text-accent hover:shadow-float-hover"
               >
                 {secondaryCtaText}
               </a>

@@ -20,7 +20,7 @@ export default function Error({
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
-      <div className="w-full max-w-md rounded-2xl border border-line bg-paper p-8 text-center shadow-lg-soft">
+      <div className="w-full max-w-md rounded-2xl bg-sheet p-8 text-center shadow-float">
         <span
           aria-hidden
           className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-2xl font-bold text-accent"
@@ -38,7 +38,7 @@ export default function Error({
           <button
             type="button"
             onClick={reset}
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 hover:bg-accent-deep"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08]"
           >
             Try again
           </button>
@@ -46,7 +46,7 @@ export default function Error({
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-2"
+            className="rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
           >
             Open the CV builder
           </a>

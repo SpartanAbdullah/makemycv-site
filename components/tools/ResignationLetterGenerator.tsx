@@ -85,7 +85,7 @@ export function ResignationLetterGenerator() {
     "h-4 w-4 rounded border-line-strong text-accent accent-[#0E7C4A]";
 
   return (
-    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
+    <div className="rounded-[28px] bg-sheet p-6 shadow-float md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block">
           <span className="text-sm font-semibold text-ink-2">
@@ -256,7 +256,7 @@ export function ResignationLetterGenerator() {
       </div>
 
       {/* Notice facts strip */}
-      <div className="mt-6 rounded-2xl border border-line bg-paper-2 px-5 py-4 text-sm text-ink-2">
+      <div className="mt-6 rounded-2xl bg-paper-2 px-5 py-4 text-sm text-ink-2">
         Required notice for this situation:{" "}
         <strong className="text-ink">
           {result.requiredDays} days
@@ -280,10 +280,10 @@ export function ResignationLetterGenerator() {
 
       {/* Letter preview */}
       <div className="mt-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Your letter
         </p>
-        <pre className="mt-3 whitespace-pre-wrap rounded-2xl border border-line bg-paper-2 p-6 font-sans text-[15px] leading-relaxed text-ink md:p-8">
+        <pre className="mt-3 whitespace-pre-wrap rounded-2xl bg-paper-2 p-6 font-sans text-[15px] leading-relaxed text-ink md:p-8">
           {result.letter}
         </pre>
       </div>
@@ -295,7 +295,7 @@ export function ResignationLetterGenerator() {
           type="button"
           onClick={downloadTxt}
           data-event="resignation_download_click"
-          className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
+          className="inline-flex items-center gap-2 rounded-full bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
         >
           <Download size={15} />
           Download .txt

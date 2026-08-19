@@ -2,9 +2,11 @@ import type { HTMLAttributes, ReactNode } from "react";
 
 type Variant = "default" | "glass";
 
+/* Floating-paper cards (2026-08 reskin): the shadow's ring layer replaces the
+   old `border border-line`, so no border here. */
 const variants: Record<Variant, string> = {
   default:
-    "bg-sheet border border-line rounded-2xl p-6 shadow-xs transition-all duration-200 hover:border-line-strong hover:shadow-md-soft hover:-translate-y-0.5",
+    "bg-sheet rounded-2xl p-6 shadow-float transition-all duration-200 hover:shadow-float-hover hover:-translate-y-0.5",
   glass:
     "glass-card rounded-2xl p-6 transition-all duration-200 hover:bg-white/[0.06]",
 };

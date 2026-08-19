@@ -172,7 +172,7 @@ export default function NoticePeriodCalculatorPage() {
           }}
         />
         <div className="relative mx-auto max-w-3xl px-6 text-center">
-          <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             <Calculator size={13} /> UAE Labour Law · Free
           </p>
           <h1 className="mt-5 text-balance font-display text-[clamp(36px,4vw,56px)] font-bold leading-[1.08] tracking-tight-2 text-ink">
@@ -203,7 +203,7 @@ export default function NoticePeriodCalculatorPage() {
           {/* Next step in the resigning journey — the letter itself. */}
           <Link
             href="/resignation-letter-generator"
-            className="group mt-4 flex items-center justify-between gap-3 rounded-2xl border border-line bg-paper-2 px-5 py-4 transition hover:border-accent/40"
+            className="group mt-4 flex items-center justify-between gap-3 rounded-2xl bg-paper-2 px-5 py-4 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
           >
             <span className="text-sm leading-relaxed text-ink-2">
               <strong className="text-ink">Resigning?</strong> Generate a
@@ -225,7 +225,7 @@ export default function NoticePeriodCalculatorPage() {
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
+            className="font-display font-bold text-ink text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2"
           >
             How the UAE notice period works
           </h2>
@@ -258,14 +258,14 @@ export default function NoticePeriodCalculatorPage() {
           </div>
 
           {/* Worked examples */}
-          <h3 className="mt-12 font-display text-xl font-bold text-ink">
+          <h3 className="mt-12 font-display text-[24px] font-semibold leading-[1.25] text-ink md:text-[30px]">
             Worked examples
           </h3>
           <div className="mt-5 space-y-4">
             {examples.map((ex) => (
               <div
                 key={ex.label}
-                className="rounded-2xl border border-line bg-paper-2 p-5"
+                className="rounded-2xl bg-paper-2 p-5 shadow-float"
               >
                 <p className="font-semibold text-ink">{ex.label}</p>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">
@@ -294,7 +294,7 @@ export default function NoticePeriodCalculatorPage() {
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
+            className="font-display font-bold text-ink text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2"
           >
             UAE notice period — questions, answered
           </h2>
@@ -302,7 +302,7 @@ export default function NoticePeriodCalculatorPage() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-line bg-sheet p-6"
+                className="rounded-2xl bg-sheet p-6 shadow-float"
               >
                 <dt className="font-display text-base font-bold text-ink">
                   {item.q}
@@ -321,7 +321,7 @@ export default function NoticePeriodCalculatorPage() {
         <div className="mx-auto grid max-w-5xl gap-4 px-6 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/annual-leave-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
           >
             <Calculator className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
@@ -336,7 +336,7 @@ export default function NoticePeriodCalculatorPage() {
           </Link>
           <Link
             href="/gratuity-calculator"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
           >
             <Banknote className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>
@@ -353,7 +353,7 @@ export default function NoticePeriodCalculatorPage() {
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             data-event="notice_cross_link_click"
             data-cta-location="builder"
           >
@@ -370,7 +370,7 @@ export default function NoticePeriodCalculatorPage() {
           </a>
           <Link
             href="/resume-checker"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
           >
             <Calculator className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>

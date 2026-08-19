@@ -25,7 +25,7 @@ export function WageBasisExplainer() {
   return (
     <section className="bg-paper pb-4">
       <div className="mx-auto max-w-3xl px-6">
-        <div className="rounded-2xl border border-line bg-paper-2 p-5 text-sm leading-relaxed text-muted">
+        <div className="rounded-2xl bg-paper-2 p-5 text-sm leading-relaxed text-muted">
           <strong className="text-ink">
             Why our calculators use different salaries on purpose:
           </strong>{" "}
@@ -62,7 +62,7 @@ export function SettlementFooter({ currentPath }: { currentPath: string }) {
   return (
     <section className="bg-paper py-10 md:py-12">
       <div className="mx-auto max-w-3xl px-6">
-        <div className="rounded-3xl border border-line bg-paper-2 p-7 md:p-8">
+        <div className="rounded-[28px] bg-paper-2 p-7 shadow-float md:p-8">
           <h2 className="font-display text-lg font-bold text-ink md:text-xl">
             Your full final settlement is more than this one number
           </h2>

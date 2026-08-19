@@ -93,7 +93,7 @@ export const SharePost = ({ url, title }: Props) => {
 
   return (
     <div className="mt-12 pt-8 border-t border-line">
-      <p className="mb-4 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+      <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
         Share this guide
       </p>
 

@@ -58,8 +58,8 @@ export function TemplateShowcase() {
               className="group relative w-[236px] shrink-0 snap-start md:w-[272px]"
             >
               <div
-                className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:shadow-lg-soft"
-                style={{ aspectRatio: "1 / 1.414", boxShadow: "var(--shadow-sm-soft)" }}
+                className="relative overflow-hidden rounded-2xl bg-sheet shadow-float transition-all duration-200 group-hover:-translate-y-0.5 group-hover:shadow-float-hover"
+                style={{ aspectRatio: "1 / 1.414" }}
               >
                 {t.thumbnail ? (
                   <>
@@ -98,7 +98,7 @@ export function TemplateShowcase() {
                     </span>
                   )}
                   {t.tags.includes("New") && (
-                    <span className="rounded-full bg-gold-soft px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-eyebrow text-gold-deep">
+                    <span className="rounded-full bg-gold-soft px-2 py-0.5 text-[10px] font-bold uppercase tracking-eyebrow text-gold-deep">
                       New
                     </span>
                   )}
@@ -112,7 +112,7 @@ export function TemplateShowcase() {
                 <div className="pointer-events-none absolute inset-0 hidden items-end justify-center gap-2 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent p-4 opacity-0 transition-opacity duration-150 focus-within:pointer-events-auto focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 md:flex">
                   <Link
                     href={`/templates#${t.slug}`}
-                    className="rounded-lg bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-md transition-colors duration-150 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
+                    className="rounded-full bg-white/95 px-3 py-2 text-xs font-semibold text-ink shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
                   >
                     Preview
                   </Link>
@@ -120,7 +120,7 @@ export function TemplateShowcase() {
                     href="https://app.makemycv.ae"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-lg bg-accent px-3 py-2 text-xs font-semibold text-white shadow-md transition-colors duration-150 hover:bg-accent-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
+                    className="rounded-full bg-accent px-3 py-2 text-xs font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
                     data-event="home_template_card_click"
                     data-template-id={t.slug}
                   >
@@ -138,7 +138,7 @@ export function TemplateShowcase() {
               </div>
 
               <div className="mt-3 flex items-baseline justify-between gap-2 px-0.5">
-                <h3 className="font-display text-[15px] font-bold text-ink md:text-base">
+                <h3 className="font-display text-[15px] font-semibold text-ink md:text-base">
                   {t.name}
                 </h3>
                 {t.tags.includes("ATS-safe") ? (
@@ -202,7 +202,7 @@ export function TemplateShowcase() {
           {/* End cap — the browse-everything card. */}
           <Link
             href="/templates"
-            className="flex w-[236px] shrink-0 snap-start flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-line-strong bg-sheet/60 text-center transition-colors duration-150 hover:border-accent hover:bg-accent-soft/40 md:w-[272px]"
+            className="flex w-[236px] shrink-0 snap-start flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-line-strong bg-sheet/60 text-center transition-colors duration-150 hover:border-accent hover:bg-accent-soft/40 md:w-[272px]"
             style={{ aspectRatio: "1 / 1.5" }}
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent">

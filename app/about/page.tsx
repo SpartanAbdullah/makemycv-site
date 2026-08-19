@@ -62,7 +62,7 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="bg-paper py-12 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
+          <h2 className="font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-ink md:text-[48px]">
             Why We Built This
           </h2>
           <div className="mt-6 space-y-4 text-sm leading-relaxed text-ink-2">
@@ -130,12 +130,12 @@ export default function AboutPage() {
             {values.map((v) => (
               <div
                 key={v.title}
-                className="card-lift rounded-2xl p-8 text-center bg-sheet border border-line shadow-sm-soft hover:border-line-strong"
+                className="card-lift rounded-2xl p-8 text-center bg-sheet shadow-float"
               >
-                <div className="w-14 h-14 rounded-2xl btn-primary flex items-center justify-center text-2xl mx-auto mb-5">
+                <div className="w-14 h-14 rounded-2xl bg-accent shadow-sm-soft flex items-center justify-center text-2xl mx-auto mb-5">
                   {v.icon}
                 </div>
-                <h3 className="font-bold text-xl text-ink mb-3">{v.title}</h3>
+                <h3 className="font-semibold text-2xl leading-[1.25] text-ink mb-3">{v.title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}

@@ -37,14 +37,14 @@ export default function AuthorPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
             {/* Avatar */}
             <div
-              className="w-24 h-24 rounded-3xl flex-shrink-0 flex items-center justify-center text-white font-bold text-3xl shadow-cta"
+              className="w-24 h-24 rounded-3xl flex-shrink-0 flex items-center justify-center text-white font-bold text-3xl shadow-md-soft"
               style={{ background: 'linear-gradient(135deg, #0e7c4a 0%, #0a5c37 100%)' }}
             >
               MC
             </div>
 
             <div>
-              <p className="font-mono text-[11px] text-accent font-semibold uppercase tracking-[0.14em] mb-2">Author</p>
+              <p className="text-[11px] text-accent font-semibold uppercase tracking-[0.14em] mb-2">Author</p>
               <h1 className="font-display text-4xl font-bold tracking-tight-2 text-ink mb-2">
                 MakeMyCV Team
               </h1>
@@ -107,7 +107,7 @@ export default function AuthorPage() {
             <Link
               key={post.slugPath}
               href={`/blog/${post.slugPath}`}
-              className="group flex items-start gap-5 p-5 rounded-2xl border border-line bg-sheet hover:border-line-strong hover:shadow-md-soft transition-all"
+              className="group flex items-start gap-5 p-5 rounded-2xl bg-sheet shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             >
               <div
                 className="w-12 h-12 rounded-xl flex-shrink-0 flex items-center justify-center text-white font-bold text-xs"

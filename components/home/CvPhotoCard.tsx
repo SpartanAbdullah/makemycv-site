@@ -77,7 +77,7 @@ export function CvPhotoCard() {
 
         {/* Experience */}
         <div className="mt-5">
-          <p className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
+          <p className="text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
             Experience
           </p>
           <div className="mt-2.5">
@@ -107,7 +107,7 @@ export function CvPhotoCard() {
 
         {/* Education */}
         <div className="mt-4">
-          <p className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
+          <p className="text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
             Education
           </p>
           <div className="mt-1.5 flex items-baseline justify-between gap-2">
@@ -123,7 +123,7 @@ export function CvPhotoCard() {
 
         {/* Skills + languages */}
         <div className="mt-4">
-          <p className="font-mono text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
+          <p className="text-[9.5px] font-semibold uppercase tracking-[0.16em] text-muted">
             Skills
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5">

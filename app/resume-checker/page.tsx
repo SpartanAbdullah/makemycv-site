@@ -176,7 +176,7 @@ export default function ResumeCheckerPage() {
         <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-12 md:gap-16 md:px-10 md:py-24 lg:grid-cols-5 lg:gap-10 lg:py-[104px] xl:px-14">
           {/* Left copy — 60% */}
           <div className="lg:col-span-3">
-            <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
+            <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
               ATS Diagnostic · UAE-focused · Free
             </p>
@@ -242,13 +242,13 @@ export default function ResumeCheckerPage() {
           so the citation has UAE-specific information gain. */}
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             What is an ATS?
           </p>
-          <h2 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
+          <h2 className="mt-3 font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-ink md:text-[48px]">
             The software UAE employers use to filter your CV before a human sees it.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-2 md:text-lg">
+          <p className="mt-4 text-lg leading-relaxed text-ink-2">
             An <strong>Applicant Tracking System (ATS)</strong> is the software
             UAE employers &mdash; including <strong>Emaar</strong>,{" "}
             <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}

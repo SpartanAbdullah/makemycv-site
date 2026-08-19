@@ -26,13 +26,13 @@ export function SectionHeading({
     <div className={`${alignClass} ${className}`.trim()}>
       {eyebrow && (
         <p
-          className={`font-mono text-[11px] font-semibold uppercase tracking-[0.14em] ${eyebrowColor}`}
+          className={`text-[11px] font-semibold uppercase tracking-[0.14em] ${eyebrowColor}`}
         >
           {eyebrow}
         </p>
       )}
       <h2
-        className={`font-display font-bold ${titleColor} text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2 ${
+        className={`font-display font-bold ${titleColor} text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2 ${
           eyebrow ? "mt-3" : ""
         }`}
       >

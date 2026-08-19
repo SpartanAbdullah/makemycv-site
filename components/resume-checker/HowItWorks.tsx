@@ -135,10 +135,10 @@ export function HowItWorks() {
     <section id="how-it-works" className="relative bg-paper-2 py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
         <div className="max-w-2xl">
-          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The flow
           </p>
-          <h2 className="mt-4 font-display font-bold text-ink tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
+          <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">
             How it works.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
@@ -150,14 +150,13 @@ export function HowItWorks() {
           {steps.map(({ num, title, body, detail, Visual }) => (
             <article
               key={num}
-              className="group flex flex-col rounded-2xl border border-line bg-paper p-6 transition-all hover:-translate-y-0.5"
-              style={{ boxShadow: "var(--shadow-xs)" }}
+              className="group flex flex-col rounded-2xl bg-paper p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             >
-              <span className="font-mono text-[34px] font-semibold leading-none text-accent">
+              <span className="text-[34px] font-semibold leading-none text-accent">
                 {num}
               </span>
 
-              <h3 className="mt-5 font-display text-[22px] font-bold leading-tight tracking-[-0.015em] text-ink md:text-[24px]">
+              <h3 className="mt-5 font-display text-[22px] font-semibold leading-tight tracking-[-0.015em] text-ink md:text-[24px]">
                 {title}
               </h3>
 
@@ -171,7 +170,7 @@ export function HowItWorks() {
 
               <div className="mt-6 flex-1" />
 
-              <div className="mt-4 rounded-xl border border-line bg-paper-2 p-4">
+              <div className="mt-4 rounded-xl bg-paper-2 p-4">
                 <Visual className="h-16 w-full" aria-hidden="true" />
               </div>
             </article>

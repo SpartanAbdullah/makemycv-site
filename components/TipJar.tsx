@@ -44,7 +44,7 @@ export const TipJar = ({
   return (
     <div
       data-context={context}
-      className={`relative overflow-hidden rounded-2xl border border-line bg-sheet shadow-md-soft card-lift ${
+      className={`relative overflow-hidden rounded-2xl bg-sheet shadow-float card-lift ${
         isCompact ? "p-6" : "p-6 md:p-8"
       }`}
     >
@@ -94,7 +94,7 @@ export const TipJar = ({
         onClick={handleKofiClick}
         data-event="tipjar_kofi_click"
         data-context={context}
-        className={`mt-6 inline-flex w-full items-center justify-center gap-2.5 rounded-xl btn-primary text-center font-bold text-white transition-all ${
+        className={`mt-6 inline-flex w-full items-center justify-center gap-2.5 btn-primary text-center font-semibold text-white transition-all duration-200 ${
           isCompact ? "px-5 py-3 text-base" : "px-6 py-4 text-lg"
         }`}
       >

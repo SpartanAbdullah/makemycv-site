@@ -8,7 +8,6 @@ import {
   canonicalUrl,
   indexableRobots,
 } from '@/lib/seo'
-import { plusJakarta, ibmPlexMono } from './fonts'
 import { BlogIndexClient, type CardPost } from '@/components/blog/BlogIndexClient'
 
 export const metadata: Metadata = {
@@ -71,10 +70,7 @@ export default function BlogPage() {
   }))
 
   return (
-    <div
-      className={`${plusJakarta.variable} ${ibmPlexMono.variable} bg-[#0a0f1e] text-white`}
-      style={{ fontFamily: 'var(--font-plus-jakarta)' }}
-    >
+    <div className="bg-paper text-ink">
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Home', item: canonicalUrl('/') },
@@ -82,28 +78,29 @@ export default function BlogPage() {
         ])}
       />
 
-      {/* Hero */}
+      {/* Hero — light paper, green gradient on the accent words */}
       <section className="relative overflow-hidden">
-        <div className="hero-spotlight" aria-hidden="true" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 55% 60% at 70% 20%, rgba(14, 124, 74, 0.07) 0%, transparent 70%)',
+          }}
+        />
         <div className="relative z-10 mx-auto max-w-6xl px-6 pb-8 pt-14 md:pt-20">
-          <p className="mb-5 inline-flex items-center gap-2.5 font-[family-name:var(--font-ibm-plex-mono)] text-[12px] uppercase tracking-[0.14em] text-[#34d399]">
-            <span className="h-2 w-2 rounded-full bg-[#34d399]" aria-hidden="true" />
+          <p className="mb-5 inline-flex items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <span className="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
             MakeMyCV · Career Guides
           </p>
           <h1
-            className="max-w-3xl text-[clamp(2.1rem,5.2vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.02em]"
+            className="max-w-3xl font-display text-[clamp(2.1rem,5.2vw,3.6rem)] font-bold leading-[1.04] tracking-[-0.02em] text-ink"
             style={{ textWrap: 'balance' }}
           >
             Career guides for the{' '}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: 'linear-gradient(90deg,#60a5fa,#34d399)' }}
-            >
-              UAE job market
-            </span>
-            .
+            <span className="gradient-text">UAE job market</span>.
           </h1>
-          <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-white/65">
+          <p className="mt-5 max-w-xl text-lg leading-[1.56] text-muted">
             Practical, ATS-focused advice for job seekers in Dubai, Abu Dhabi and
             across the GCC — written by the MakeMyCV team. Free, no sign-up.
           </p>
@@ -113,13 +110,13 @@ export default function BlogPage() {
       {/* Search + filter + grid (Client) */}
       <BlogIndexClient posts={cards} categories={categories} />
 
-      {/* Closing CTA */}
-      <section className="border-t border-white/8">
+      {/* Closing CTA — alternate warm surface */}
+      <section className="border-t border-line bg-paper-2">
         <div className="mx-auto max-w-2xl px-6 py-16 text-center">
-          <h2 className="text-3xl font-extrabold tracking-[-0.02em]">
+          <h2 className="font-display text-[36px] font-bold tracking-[-0.02em] text-ink md:text-[40px]">
             Ready to build your UAE CV?
           </h2>
-          <p className="mt-3 text-white/65">
+          <p className="mt-3 text-muted">
             Put these guides into practice. Free, ATS-ready, no sign-up.
           </p>
           <a
@@ -127,7 +124,7 @@ export default function BlogPage() {
             target="_blank"
             rel="noopener noreferrer"
             data-event="blog_cta_click"
-            className="btn-primary mt-7 inline-block rounded-xl px-8 py-4 text-base font-bold text-white"
+            className="btn-primary mt-7 inline-block px-8 py-3.5 text-lg font-semibold text-white"
           >
             Build My CV Free &rarr;
           </a>

@@ -10,7 +10,7 @@ export function FinalCTA({
     <section className="bg-accent-deep text-white">
       <Reveal className="mx-auto max-w-3xl px-6 py-20 text-center md:py-28">
         <h2
-          className="font-display text-[32px] font-bold leading-[1.15] tracking-tight-2 md:text-[40px]"
+          className="font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 md:text-[48px]"
           style={{ textWrap: "balance" }}
         >
           Your next UAE job starts with the right CV.
@@ -24,7 +24,7 @@ export function FinalCTA({
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
+            className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
             data-event={eventName}
           >
             Build My CV — Free

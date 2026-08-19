@@ -36,13 +36,13 @@ export default function ThanksPage() {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-block rounded-xl px-7 py-3.5 text-base font-bold text-white"
+            className="btn-primary inline-block px-7 py-3.5 text-base font-semibold text-white"
           >
             Back to the CV builder &rarr;
           </a>
           <Link
             href="/blog"
-            className="inline-block rounded-xl border border-line text-ink transition-colors hover:border-line-strong hover:bg-sheet px-7 py-3.5 text-base font-semibold"
+            className="inline-block rounded-full bg-sheet text-ink shadow-float hover:shadow-float-hover hover:-translate-y-px transition-all duration-200 px-7 py-3.5 text-base font-semibold"
           >
             Read the blog
           </Link>

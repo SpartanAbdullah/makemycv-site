@@ -152,7 +152,7 @@ export default function JdMatchPage() {
         <div className="relative mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-10 px-6 py-12 md:gap-16 md:px-10 md:py-24 lg:grid-cols-2 lg:gap-10 lg:py-[104px] xl:px-14">
           {/* Copy */}
           <div className="text-center lg:text-left">
-            <p className="inline-flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
+            <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-accent md:text-xs">
               <MapPin size={13} aria-hidden="true" />
               JD Match · Free · Built for UAE hiring
             </p>

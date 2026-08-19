@@ -160,7 +160,7 @@ export function GratuityCalculator() {
     "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
-    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
+    <div className="rounded-[28px] bg-sheet p-6 shadow-float md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         {/* Jurisdiction */}
         <label className="block md:col-span-2">
@@ -301,7 +301,7 @@ export function GratuityCalculator() {
         </label>
 
         {/* Advanced */}
-        <details className="md:col-span-2 rounded-xl border border-line bg-paper-2 p-4 [&_summary::-webkit-details-marker]:hidden">
+        <details className="md:col-span-2 rounded-2xl bg-paper-2 p-4 [&_summary::-webkit-details-marker]:hidden">
           <summary className="cursor-pointer text-sm font-semibold text-ink-2">
             Advanced: unpaid leave, part-time
           </summary>
@@ -372,7 +372,7 @@ export function GratuityCalculator() {
       </div>
 
       {/* ── Result ── */}
-      <div className="mt-6 rounded-2xl border border-line bg-paper-2 p-6">
+      <div className="mt-6 rounded-2xl bg-paper-2 p-6">
         {!hasInput ? (
           <p className="text-sm text-muted">
             Enter your basic salary and service dates to see an estimated
@@ -381,7 +381,7 @@ export function GratuityCalculator() {
         ) : jurisdiction === "difc" ? (
           /* DIFC — mandatory DEWS scheme, not lump-sum gratuity */
           <div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               DIFC — DEWS scheme
             </p>
             <p className="mt-2 font-display text-4xl font-extrabold text-accent">
@@ -410,7 +410,7 @@ export function GratuityCalculator() {
             </p>
           ) : (
             <div>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
                 Estimated gratuity
               </p>
               <p className="mt-2 font-display text-3xl font-extrabold text-ink">
@@ -433,7 +433,7 @@ export function GratuityCalculator() {
           )
         ) : (
           <div>
-            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               Estimated gratuity
             </p>
             <p className="mt-2 font-display text-4xl font-extrabold text-accent">
@@ -552,7 +552,7 @@ export function GratuityCalculator() {
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
+            className="inline-flex items-center gap-2 rounded-full bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
           >
             <Printer size={15} /> Print / save as PDF
           </button>

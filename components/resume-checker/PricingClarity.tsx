@@ -4,12 +4,11 @@ export function PricingClarity() {
   return (
     <section className="relative bg-paper-2 py-24 md:py-32">
       <div className="mx-auto max-w-4xl px-6">
-        <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           No catch
         </p>
         <h2
-          className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
-          style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.05 }}
+          className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]"
         >
           Free to check.
           <br />

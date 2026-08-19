@@ -59,7 +59,7 @@ export function BlogCover({
       <div className="absolute inset-y-0 left-0 w-1.5" style={{ background: color }} />
       <div className="absolute inset-0 flex flex-col justify-end p-6">
         <span
-          className="font-[family-name:var(--font-ibm-plex-mono)] text-[11px] font-semibold uppercase tracking-[0.14em]"
+          className="text-[11px] font-semibold uppercase tracking-[0.14em]"
           style={{ color }}
         >
           {category}
