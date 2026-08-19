@@ -28,7 +28,7 @@ type Props = {
 };
 
 const pill =
-  "inline-flex items-center gap-2 rounded-full border border-line bg-sheet px-3.5 py-2 text-sm text-ink-2 transition-colors duration-150 hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "inline-flex items-center gap-2 rounded-full bg-sheet px-3.5 py-2 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:text-accent hover:shadow-float-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 /* Capability detection has to disagree between server and client, so it goes
    through useSyncExternalStore rather than an effect + setState: the server
