@@ -37,7 +37,7 @@ export function FeatureGrid() {
               key={d.claim}
               className="grid gap-3 py-10 transition-colors duration-150 md:grid-cols-5 md:gap-10 md:py-12"
             >
-              <h3 className="font-display text-xl font-bold leading-snug tracking-tight-1-5 text-ink md:col-span-2 md:text-2xl">
+              <h3 className="font-display text-[24px] font-semibold leading-[1.25] tracking-tight-1-5 text-ink md:col-span-2 md:text-[30px]">
                 {d.claim}
               </h3>
               <p className="text-base leading-relaxed text-ink-2 md:col-span-3">

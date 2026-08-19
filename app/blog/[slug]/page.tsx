@@ -208,7 +208,7 @@ export default async function PostPage({ params }: Props) {
                   href="https://app.makemycv.ae"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary block text-center text-white font-bold py-3 rounded-xl text-sm"
+                  className="btn-primary block text-center text-white font-semibold py-3 text-sm"
                 >
                   Build My CV Free &rarr;
                 </a>
@@ -261,7 +261,7 @@ export default async function PostPage({ params }: Props) {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-white text-accent-deep font-bold text-lg px-10 py-4 rounded-2xl shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper"
+            className="inline-block bg-white text-accent-deep font-semibold text-lg px-10 py-4 rounded-full shadow-md transition-all duration-200 hover:scale-[1.02] hover:bg-paper"
           >
             Build My CV Free &rarr;
           </a>

@@ -31,7 +31,7 @@ export function HeroSection() {
               display weight. One h1 for semantics/SEO, two visual tiers. */}
           <h1 className="mt-6 font-display tracking-tight-2 text-ink">
             <span className="block text-balance text-[clamp(46px,5.8vw,84px)] font-bold leading-[1.02]">
-              Land the <span className="text-accent">UAE job.</span>
+              Land the <span className="gradient-text">UAE job.</span>
             </span>
             <span className="mt-5 block text-balance text-[clamp(21px,2.1vw,30px)] font-semibold leading-snug text-ink-2">
               Start with a CV recruiters actually open.

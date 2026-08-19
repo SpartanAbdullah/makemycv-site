@@ -37,7 +37,7 @@ export function JdMatchFAQ() {
   return (
     <section className="bg-paper-2 py-20 md:py-28">
       <div className="mx-auto max-w-3xl px-6">
-        <h2 className="text-center font-display text-[32px] font-bold tracking-tight-1-5 text-ink md:text-[40px]">
+        <h2 className="text-center font-display text-[36px] font-bold leading-[1.05] tracking-tight-1-5 text-ink md:text-[48px]">
           JD Match — questions, answered.
         </h2>
 
@@ -45,7 +45,7 @@ export function JdMatchFAQ() {
           {faqItems.map((item) => (
             <div
               key={item.id}
-              className="rounded-2xl border border-line bg-white p-6 shadow-xs"
+              className="rounded-2xl bg-white p-6 shadow-float"
             >
               <dt className="font-display text-base font-bold text-ink">
                 {item.q}

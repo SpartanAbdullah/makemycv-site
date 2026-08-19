@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { bricolage, inter, jetbrainsMono } from "@/app/fonts/site";
+import { outfit, jetbrainsMono } from "@/app/fonts/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
@@ -20,13 +20,12 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 
-/* Inter (body), JetBrains Mono (labels) and Bricolage Grotesque (display —
-   the same family the builder app uses, so marketing and product share one
-   typographic voice) are now self-hosted. See app/fonts/site.ts for why:
-   next/font/google fetches from gstatic at build time and broke a deploy on
-   2026-08-11. Same CSS variables, same weights, so nothing downstream moves.
-   Blog-only faces live in app/fonts/blog.ts and must stay out of this import,
-   or every route preloads them. */
+/* Outfit (display + body — one geometric sans since the 2026-08 premium
+   reskin) and JetBrains Mono (labels) are self-hosted. See app/fonts/site.ts
+   for why: next/font/google fetches from gstatic at build time and broke a
+   deploy on 2026-08-11. The blog-only faces (Plus Jakarta, IBM Plex Mono)
+   were retired with the blog-index reskin; if route-scoped faces ever return,
+   keep them OUT of this import or every route preloads them. */
 
 // Matches the app + manifest (brand navy) so tab/PWA chrome is identical
 // on both surfaces.
@@ -123,7 +122,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable}`}
+      className={`${outfit.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <link rel="preconnect" href="https://app.makemycv.ae" />
@@ -159,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         )}
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${bricolage.variable} antialiased bg-paper`}
+        className={`${outfit.variable} ${jetbrainsMono.variable} antialiased bg-paper`}
       >
         {/* Both blocks are gated on GTM_ID: with no container there is no gtag for
             the dispatcher to call, so shipping them off-production is dead weight. */}

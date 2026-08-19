@@ -90,7 +90,7 @@ export function NoticePeriodCalculator() {
     "mt-2 w-full rounded-xl border border-line-strong bg-white px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20";
 
   return (
-    <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
+    <div className="rounded-[28px] bg-sheet p-6 shadow-float md:p-8">
       <div className="grid gap-5 md:grid-cols-2">
         <label className="block md:col-span-2">
           <span className="text-sm font-semibold text-ink-2">
@@ -196,7 +196,7 @@ export function NoticePeriodCalculator() {
       </div>
 
       {/* Result */}
-      <div className="mt-6 rounded-2xl border border-line bg-paper-2 p-6">
+      <div className="mt-6 rounded-2xl bg-paper-2 p-6">
         <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
           Required notice
         </p>

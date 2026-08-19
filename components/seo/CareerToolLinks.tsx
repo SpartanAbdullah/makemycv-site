@@ -82,7 +82,7 @@ export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
             <Link
               key={t.href}
               href={t.href}
-              className="group flex items-start gap-3 rounded-xl border border-line bg-sheet p-5 transition-all duration-150 hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md-soft"
+              className="group flex items-start gap-3 rounded-2xl bg-sheet p-5 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             >
               <t.icon className="mt-0.5 shrink-0 text-accent" size={20} />
               <span>

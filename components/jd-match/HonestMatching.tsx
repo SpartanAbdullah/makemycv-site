@@ -23,7 +23,7 @@ export function HonestMatching() {
           <p className="text-xs font-semibold uppercase tracking-eyebrow text-gold-light">
             Honest by design
           </p>
-          <h2 className="mt-3 font-display text-[32px] font-bold leading-[1.15] tracking-tight-1-5 text-white md:text-[42px]">
+          <h2 className="mt-3 font-display text-[36px] font-bold leading-[1.05] tracking-tight-1-5 text-white md:text-[48px]">
             We help you tell the truth better — not lie better.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-line-strong">
@@ -167,7 +167,7 @@ function Step({
         <div className="w-full max-w-[220px]">{illustration}</div>
       </div>
 
-      <p className="mt-5 font-display text-base font-bold text-white">{title}</p>
+      <p className="mt-5 font-display text-lg font-semibold text-white">{title}</p>
       <p className="mt-1.5 text-sm leading-relaxed text-line-strong">{body}</p>
     </li>
   );
@@ -279,7 +279,7 @@ function Pillar({
       <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold-light/15 text-gold-light">
         <Icon size={20} strokeWidth={2} />
       </span>
-      <h3 className="mt-4 font-display text-base font-bold text-white">
+      <h3 className="mt-4 font-display text-lg font-semibold text-white">
         {title}
       </h3>
       <p className="mt-2 text-sm leading-relaxed text-line-strong">{body}</p>

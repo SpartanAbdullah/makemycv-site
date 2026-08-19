@@ -227,7 +227,7 @@ export default function CvExamplesUaePage() {
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2
-            className="font-display font-bold text-ink text-[30px] md:text-[38px] leading-[1.15] tracking-tight-2"
+            className="font-display font-bold text-ink text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2"
           >
             Writing UAE CV bullets — questions, answered
           </h2>
@@ -235,7 +235,7 @@ export default function CvExamplesUaePage() {
             {faqs.map((item) => (
               <div
                 key={item.q}
-                className="rounded-2xl border border-line bg-sheet p-6"
+                className="rounded-2xl bg-sheet p-6 shadow-float"
               >
                 <dt className="font-display text-base font-bold text-ink">
                   {item.q}
@@ -256,7 +256,7 @@ export default function CvExamplesUaePage() {
             href={APP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             data-event="cv_examples_cross_link_click"
             data-cta-location="builder"
           >
@@ -274,7 +274,7 @@ export default function CvExamplesUaePage() {
           </a>
           <Link
             href="/resume-checker"
-            className="group flex items-start gap-3 rounded-2xl border border-line bg-paper-2 p-6 transition hover:border-accent/40"
+            className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
           >
             <ScanSearch className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>

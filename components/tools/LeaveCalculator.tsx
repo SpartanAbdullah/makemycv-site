@@ -85,8 +85,8 @@ export function LeaveCalculator() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       {/* Encashment */}
-      <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
-        <h3 className="font-display text-lg font-bold text-ink">
+      <div className="rounded-[28px] bg-sheet p-6 shadow-float md:p-8">
+        <h3 className="font-display text-xl font-semibold text-ink">
           Leave salary (encashment)
         </h3>
         <p className="mt-1 text-sm text-muted">
@@ -116,7 +116,7 @@ export function LeaveCalculator() {
           </label>
         </div>
 
-        <div className="mt-5 rounded-2xl border border-line bg-paper-2 p-5">
+        <div className="mt-5 rounded-2xl bg-paper-2 p-5">
           {!hasEncashInput ? (
             <p className="text-sm text-muted">
               Enter your basic salary and unused days to see the estimate.
@@ -140,8 +140,8 @@ export function LeaveCalculator() {
       </div>
 
       {/* Entitlement */}
-      <div className="rounded-3xl border border-line bg-sheet p-6 shadow-sm-soft md:p-8">
-        <h3 className="font-display text-lg font-bold text-ink">
+      <div className="rounded-[28px] bg-sheet p-6 shadow-float md:p-8">
+        <h3 className="font-display text-xl font-semibold text-ink">
           Annual leave entitlement
         </h3>
         <p className="mt-1 text-sm text-muted">
@@ -194,7 +194,7 @@ export function LeaveCalculator() {
           </label>
         </div>
 
-        <div className="mt-5 rounded-2xl border border-line bg-paper-2 p-5">
+        <div className="mt-5 rounded-2xl bg-paper-2 p-5">
           {!hasServiceInput ? (
             <p className="text-sm text-muted">
               Enter your length of service to see the estimate.

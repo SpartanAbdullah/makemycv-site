@@ -29,7 +29,7 @@ export function FilterProblem() {
           <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
             The hiring reality
           </p>
-          <h2 className="mt-4 font-display font-bold text-ink tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
+          <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">
             Why 75% of UAE CVs get filtered out before a human reads them.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
@@ -40,7 +40,7 @@ export function FilterProblem() {
           </p>
         </div>
 
-        <div className="mt-14 overflow-hidden rounded-[28px] border border-line bg-paper-2" style={{ boxShadow: "var(--shadow-md-soft)" }}>
+        <div className="mt-14 overflow-hidden rounded-[28px] bg-paper-2 shadow-float">
           <ol className="divide-y divide-line">
             {modes.map((m, i) => (
               <li key={m.title} className="grid gap-5 p-8 md:grid-cols-[auto_auto_1fr] md:items-start md:gap-7 md:p-10">
@@ -51,7 +51,7 @@ export function FilterProblem() {
                   <m.icon size={20} strokeWidth={2.25} />
                 </span>
                 <div>
-                  <h3 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
+                  <h3 className="font-display text-xl font-semibold tracking-[-0.015em] text-ink md:text-2xl">
                     {m.title}
                   </h3>
                   <p className="mt-2 text-[15px] leading-relaxed text-muted md:text-base">

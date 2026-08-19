@@ -5,26 +5,28 @@ type Variant = "primary" | "ghost" | "outline" | "text";
 type Size = "sm" | "md" | "lg";
 type Tone = "light" | "dark";
 
+/* Premium pill buttons (2026-08 reskin): fully rounded, 3D-glass primary,
+   floating-paper secondary — shadows carry the ring border, so no `border`. */
 const base =
-  "inline-flex items-center justify-center rounded-xl font-semibold transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap";
+  "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap";
 
 const sizes: Record<Size, string> = {
-  sm: "text-sm px-4 py-2",
-  md: "text-base px-7 py-3.5",
-  lg: "text-lg px-8 py-4",
+  sm: "text-sm px-5 py-2.5",
+  md: "text-lg px-8 py-3.5",
+  lg: "text-lg px-9 py-4",
 };
 
 const variants: Record<Variant, (tone: Tone) => string> = {
   primary: () =>
-    "text-white bg-accent shadow-cta hover:bg-accent-deep hover:shadow-cta-hover hover:scale-[1.02]",
+    "text-white bg-accent shadow-cta hover:shadow-cta-hover hover:-translate-y-px hover:brightness-[1.08]",
   ghost: (tone) =>
     tone === "dark"
       ? "border border-white/20 text-white hover:bg-white/10"
-      : "border border-line text-ink hover:border-line-strong hover:bg-sheet",
+      : "bg-sheet text-ink shadow-float hover:shadow-float-hover hover:-translate-y-px",
   outline: (tone) =>
     tone === "dark"
       ? "border border-white/30 bg-white/5 text-white hover:bg-white/10 hover:border-white/50"
-      : "border border-accent bg-sheet text-accent hover:bg-accent-soft hover:border-accent-deep",
+      : "bg-sheet text-accent shadow-float hover:shadow-float-hover hover:-translate-y-px",
   text: () =>
     "text-accent hover:underline underline-offset-4 px-0 py-0 shadow-none",
 };

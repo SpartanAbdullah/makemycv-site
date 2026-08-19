@@ -71,12 +71,11 @@ export function AtsSystems() {
             The methodology
           </p>
           <h2
-            className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
-            style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}
+            className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]"
           >
             Which ATS systems UAE employers use — and how they read your CV.
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-2 md:text-lg">
+          <p className="mt-4 text-lg leading-relaxed text-ink-2">
             MakeMyCV&rsquo;s free checker runs your PDF against the parsing
             behaviour of the applicant tracking systems UAE employers actually
             deploy, then reports every issue across{" "}
@@ -125,7 +124,7 @@ export function AtsSystems() {
         {/* DO / DON'T */}
         <div className="mt-14 grid gap-5 md:grid-cols-2">
           <div className="rounded-[24px] border-2 border-emerald-100 bg-emerald-50/60 p-8">
-            <h3 className="flex items-center gap-2 font-display text-xl font-bold text-emerald-700">
+            <h3 className="flex items-center gap-2 font-display text-2xl font-semibold text-emerald-700">
               <Check size={20} strokeWidth={2.5} /> Do this — the ATS reads it
             </h3>
             <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-ink-2">
@@ -142,7 +141,7 @@ export function AtsSystems() {
             </ul>
           </div>
           <div className="rounded-[24px] border-2 border-red-100 bg-red-50/60 p-8">
-            <h3 className="flex items-center gap-2 font-display text-xl font-bold text-red-600">
+            <h3 className="flex items-center gap-2 font-display text-2xl font-semibold text-red-600">
               <X size={20} strokeWidth={2.5} /> Avoid this — it gets filtered
             </h3>
             <ul className="mt-5 space-y-3 text-[15px] leading-relaxed text-ink-2">

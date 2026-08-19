@@ -129,7 +129,7 @@ export const Footer = () => (
           href="https://app.makemycv.ae"
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-primary inline-block rounded-xl px-5 py-2.5 text-sm font-bold text-white"
+          className="btn-primary inline-block px-5 py-2.5 text-sm font-semibold text-white"
         >
           Start Free &rarr;
         </a>

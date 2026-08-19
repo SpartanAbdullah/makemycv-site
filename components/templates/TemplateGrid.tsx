@@ -174,7 +174,7 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                       link itself so focusing the photo radios below
                       doesn't summon it. */}
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-all duration-150 group-has-[.tpl-cta:focus-visible]:bg-ink/25 group-has-[.tpl-cta:focus-visible]:opacity-100 group-hover:bg-ink/25 group-hover:opacity-100">
-                    <span className="rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-md">
+                    <span className="rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-white shadow-cta">
                       Use This Template
                     </span>
                   </span>

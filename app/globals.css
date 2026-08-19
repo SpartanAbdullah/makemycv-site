@@ -48,8 +48,10 @@
   --color-accent-cyan: #06b6d4;
 
   /* ── Fonts ───────────────────────────────────────────────────────── */
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-bricolage);
+  /* One family since the 2026-08 premium reskin: Outfit covers both display
+     and body, so `font-display` call sites keep working unchanged. */
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-outfit);
   --font-mono: var(--font-jetbrains-mono);
 
   /* ── Shadows (neutral, paper-like — no colored glows) ────────────── */
@@ -57,8 +59,35 @@
   --shadow-sm-soft: 0 2px 6px rgba(11, 15, 12, 0.06);
   --shadow-md-soft: 0 8px 24px rgba(11, 15, 12, 0.07);
   --shadow-lg-soft: 0 16px 48px rgba(11, 15, 12, 0.08);
-  --shadow-cta: 0 4px 14px rgba(14, 124, 74, 0.25);
-  --shadow-cta-hover: 0 6px 20px rgba(14, 124, 74, 0.32);
+  /* 3D glass CTA: inset glass highlight + dark bottom edge + solid ring +
+     glow + lift. Ring/edge use the brand greens (accent / accent-deep). */
+  --shadow-cta:
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 0 0 rgba(10, 92, 55, 0.66),
+    0 0 0 1px rgb(14, 124, 74),
+    0 0 6px 0 rgba(0, 0, 0, 0.02),
+    0 2px 4px 0 rgba(0, 0, 0, 0.08);
+  --shadow-cta-hover:
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -2px 0 0 rgba(10, 92, 55, 0.66),
+    0 0 0 1px rgb(14, 124, 74),
+    0 0 6px 0 rgba(0, 0, 0, 0.04),
+    0 4px 10px 0 rgba(0, 0, 0, 0.12);
+  /* Floating paper: 5 layers — distant ambient, mid depth, contact, ring
+     border (replaces `border border-line`), bottom inner edge. Ring uses the
+     brand line colors so the warm palette is unchanged. */
+  --shadow-float:
+    0 53px 32px 0 rgba(0, 0, 0, 0.02),
+    0 6px 13px 0 rgba(0, 0, 0, 0.04),
+    0 1px 3px 0 rgba(143, 143, 143, 0.2),
+    0 0 0 1px var(--color-line),
+    inset 0 -2.4px 0 0 rgba(61, 61, 61, 0.04);
+  --shadow-float-hover:
+    0 53px 32px 0 rgba(0, 0, 0, 0.03),
+    0 8px 16px 0 rgba(0, 0, 0, 0.06),
+    0 1px 4px 0 rgba(143, 143, 143, 0.25),
+    0 0 0 1px var(--color-line-strong),
+    inset 0 -2.4px 0 0 rgba(61, 61, 61, 0.06);
   /* A real document on a desk: tight contact shadow + soft ambient. */
   --shadow-sheet: 0 1px 3px rgba(11, 15, 12, 0.08), 0 24px 48px rgba(11, 15, 12, 0.1);
 
@@ -155,32 +184,37 @@ body {
   background: linear-gradient(135deg, #0a0f1e 0%, #0f172a 50%, #1a1040 100%);
 }
 
+/* Forest → emerald → mint. Richer than solid green, still on-brand; applied
+   to hero accent words (homepage, blog) and legacy gradient callers. */
 .gradient-text {
-  background: linear-gradient(135deg, #2563eb 0%, #818cf8 100%);
+  background: linear-gradient(90deg, #0e7c4a 0%, #10b981 50%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Repointed to the v2 accent so legacy callers (blog, /templates, TipJar)
-   pick up the new brand without markup changes. */
+/* Premium pill CTA (2026-08 reskin): fully-rounded, 3D glass shadow.
+   Legacy callers (blog, /templates, TipJar) pick it up without markup
+   changes; padding/font-size stay per-call-site. */
 .btn-primary {
   background: #0e7c4a;
-  box-shadow: 0 4px 14px rgba(14, 124, 74, 0.25);
-  transition: all 0.15s ease;
+  border-radius: 400px;
+  box-shadow: var(--shadow-cta);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .btn-primary:hover {
-  background: #0a5c37;
-  box-shadow: 0 6px 20px rgba(14, 124, 74, 0.32);
-  transform: scale(1.02);
+  background: #0e7c4a;
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: var(--shadow-cta-hover);
 }
 
 .card-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-float-hover);
 }
 
 /* ── Neon AI border (Samsung Galaxy AI / Gemini-style) ─────────────── */

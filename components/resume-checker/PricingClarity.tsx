@@ -8,8 +8,7 @@ export function PricingClarity() {
           No catch
         </p>
         <h2
-          className="mt-4 font-display font-bold text-ink tracking-[-0.02em]"
-          style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.05 }}
+          className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]"
         >
           Free to check.
           <br />

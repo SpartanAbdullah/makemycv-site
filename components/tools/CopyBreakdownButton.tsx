@@ -46,7 +46,7 @@ export function CopyBreakdownButton({
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 transition hover:border-accent/50"
+        className="inline-flex items-center gap-2 rounded-full bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
       >
         {copied ? <Check size={15} className="text-emerald-600" /> : <Copy size={15} />}
         {copied ? "Copied" : label}

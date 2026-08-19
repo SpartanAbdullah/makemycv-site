@@ -28,7 +28,7 @@ const stateClass: Record<Line["state"], string> = {
 export function HeatmapPreview() {
   return (
     <div className="mx-auto w-full max-w-sm lg:max-w-none">
-      <div className="rounded-2xl border border-line bg-sheet p-5 shadow-lg-soft">
+      <div className="rounded-2xl bg-sheet p-5 shadow-float">
         {/* Header: score + band */}
         <div className="flex items-center justify-between gap-3 border-b border-line pb-4">
           <div>

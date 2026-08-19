@@ -53,14 +53,14 @@ export default function ContactPage() {
 
         {/* Info cards */}
         <div className="mx-auto mt-12 grid max-w-xl gap-4 px-6 sm:grid-cols-2">
-          <div className="rounded-xl border border-line bg-sheet p-5 text-center shadow-sm-soft">
+          <div className="rounded-2xl bg-sheet p-5 text-center shadow-float">
             <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
               <Mail size={20} />
             </div>
             <p className="mt-2 text-sm font-semibold text-ink">Email</p>
             <p className="text-sm text-muted">hello@makemycv.ae</p>
           </div>
-          <div className="rounded-xl border border-line bg-sheet p-5 text-center shadow-sm-soft">
+          <div className="rounded-2xl bg-sheet p-5 text-center shadow-float">
             <div className="mx-auto inline-flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
               <MapPin size={20} />
             </div>

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
-      <div className="w-full max-w-md rounded-2xl border border-line bg-paper p-8 text-center shadow-lg-soft">
+      <div className="w-full max-w-md rounded-2xl bg-sheet p-8 text-center shadow-float">
         <p className="font-mono text-sm font-semibold tracking-eyebrow text-accent">
           404
         </p>
@@ -29,13 +29,13 @@ export default function NotFound() {
             href="https://app.makemycv.ae"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-colors duration-150 hover:bg-accent-deep"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08]"
           >
             Build My CV — Free
           </a>
           <Link
             href="/blog"
-            className="rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink-2"
+            className="rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
           >
             Read the blog
           </Link>

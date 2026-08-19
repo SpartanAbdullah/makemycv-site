@@ -49,7 +49,7 @@ export function WhatWeCheck() {
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               The scan
             </p>
-            <h2 className="mt-4 font-display font-bold text-ink tracking-[-0.02em]" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", lineHeight: 1.1 }}>
+            <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">
               What we check in your CV.
             </h2>
           </div>
@@ -63,13 +63,12 @@ export function WhatWeCheck() {
           {categories.map((c) => (
             <article
               key={c.name}
-              className="group relative rounded-[24px] border border-line bg-paper p-8 transition-shadow"
-              style={{ boxShadow: "var(--shadow-sm-soft)" }}
+              className="group relative rounded-2xl bg-paper p-8 shadow-float"
             >
               <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-soft text-accent">
                 <c.icon size={22} strokeWidth={2.25} />
               </span>
-              <h3 className="mt-5 font-display text-2xl font-bold tracking-[-0.015em] text-ink">
+              <h3 className="mt-5 font-display text-2xl font-semibold tracking-[-0.015em] text-ink">
                 {c.name}
               </h3>
               <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-muted">
@@ -84,9 +83,9 @@ export function WhatWeCheck() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col items-center gap-5 rounded-[28px] border border-line bg-gradient-to-br from-sheet via-sheet to-accent-soft/60 p-10 text-center md:flex-row md:justify-between md:text-left" style={{ boxShadow: "var(--shadow-md-soft)" }}>
+        <div className="mt-14 flex flex-col items-center gap-5 rounded-[28px] bg-gradient-to-br from-sheet via-sheet to-accent-soft/60 p-10 text-center shadow-float md:flex-row md:justify-between md:text-left">
           <div>
-            <h3 className="font-display text-xl font-bold tracking-[-0.015em] text-ink md:text-2xl">
+            <h3 className="font-display text-xl font-semibold tracking-[-0.015em] text-ink md:text-2xl">
               See what we&apos;d find in yours.
             </h3>
             <p className="mt-1.5 text-[15px] text-muted">

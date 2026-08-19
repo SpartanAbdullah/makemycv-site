@@ -126,7 +126,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         disabled={formState === "submitting"}
-        className="btn-primary w-full text-white font-bold py-4 rounded-2xl text-base disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-primary w-full text-white font-semibold py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {formState === "submitting" ? "Sending..." : "Send Message \u2192"}
       </button>

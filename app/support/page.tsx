@@ -175,7 +175,7 @@ export default function SupportPage() {
             <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
               Where it goes
             </p>
-            <h2 className="mt-3 font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
+            <h2 className="mt-3 font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-ink md:text-[48px]">
               Why support
             </h2>
           </div>
@@ -183,12 +183,12 @@ export default function SupportPage() {
             {whySupport.map((item, i) => (
               <div
                 key={item.title}
-                className="card-lift rounded-2xl border border-line bg-sheet p-6 shadow-sm-soft"
+                className="card-lift rounded-2xl bg-sheet p-6 shadow-float"
               >
                 <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-accent-soft text-sm font-bold text-accent">
                   {i + 1}
                 </span>
-                <h3 className="mt-4 font-display text-lg font-bold text-ink">
+                <h3 className="mt-4 font-display text-xl font-semibold text-ink">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm text-muted">{item.desc}</p>
@@ -222,14 +222,14 @@ export default function SupportPage() {
       {/* 6. FAQ */}
       <section className="bg-paper-2 py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
-          <h2 className="text-center font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-ink md:text-[38px]">
+          <h2 className="text-center font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-ink md:text-[48px]">
             Frequently Asked Questions
           </h2>
           <div className="mt-10 space-y-3">
             {faq.map((item) => (
               <details
                 key={item.q}
-                className="group rounded-2xl border border-line bg-sheet p-6 transition-colors hover:border-line-strong"
+                className="group rounded-2xl bg-sheet p-6 shadow-float transition-all duration-200 hover:shadow-float-hover"
               >
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 font-semibold text-ink">
                   <span>{item.q}</span>
@@ -252,7 +252,7 @@ export default function SupportPage() {
       {/* 7. Footer CTA */}
       <section className="bg-accent-deep py-16 md:py-20">
         <div className="mx-auto max-w-2xl px-6 text-center">
-          <h2 className="font-display text-[30px] font-bold leading-[1.15] tracking-tight-2 text-white md:text-[38px]">
+          <h2 className="font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-white md:text-[48px]">
             Back to building.
           </h2>
           <p className="mt-3 text-white/75">
@@ -263,13 +263,13 @@ export default function SupportPage() {
               href="https://app.makemycv.ae"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-xl bg-white px-7 py-3.5 text-base font-bold text-accent-deep shadow-md transition-all duration-150 ease-out hover:scale-[1.02] hover:bg-paper"
+              className="inline-block rounded-full bg-white px-7 py-3.5 text-base font-semibold text-accent-deep shadow-md transition-all duration-200 hover:scale-[1.02] hover:bg-paper"
             >
               Back to the builder &rarr;
             </a>
             <Link
               href="/blog"
-              className="inline-block rounded-xl border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
+              className="inline-block rounded-full border border-white/25 px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-white/10"
             >
               Read the blog
             </Link>
