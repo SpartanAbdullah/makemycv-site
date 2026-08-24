@@ -16,6 +16,62 @@ Format:
 
 ---
 
+## [2026-08-24 21:00] Blog batch — 1 refresh + 2 new posts (week of 17–24 Aug)
+
+**Goal:** Ship three blog posts from the weekly brief (17–24 Aug 2026). Protect ranking equity
+on the existing `why-cv-ignored-dubai` slug by refreshing it rather than creating a competing
+second post. Two genuinely new slugs for AI skills and Nafis regulatory changes.
+
+**Verdicts:**
+- Idea 1 "Why You're Not Hearing Back" → **REFRESH** of `why-cv-ignored-dubai` (same search intent)
+- Idea 2 "AI Skills on Your CV" → **NEW** slug `ai-skills-on-cv-uae` (distinct from `can-chatgpt-write-cv` and `skills-vs-degrees-uae-cv`)
+- Idea 3 "Nafis Salary Support September 2026" → **NEW** slug `nafis-salary-support-september-2026`
+
+**Files:**
+- edited: `content/blog/why-cv-ignored-dubai.mdx` — added PeopleScout/TrueBlue candidate-experience
+  data (25% very confident, 9/10 ghosted, 64% no response, 65% no AI disclosure), new section
+  "The Five UAE-Specific Fields Recruiters Check Before Reading Anything Else" (visa status, notice
+  period, location, nationality, driving licence), expanded honest-summary section with redirect
+  advice, new 7th FAQ, added `dateModified: "2026-08-24"`, new tag "does anyone read my cv uae",
+  cross-links to `cv-format-uae-2026`, `expat-cv-uae-guide`, `ai-skills-on-cv-uae`
+- created: `content/blog/ai-skills-on-cv-uae.mdx` — GulfTalent 3.4% Gulf AI demand, three-level
+  AI skill framework, 5-function credible-vs-weak bullet table, Robert Walters 42% irrelevant
+  applications, AI-written vs AI-skilled trap, 6 FAQs, 8 internal links
+- created: `content/blog/nafis-salary-support-september-2026.mdx` — Dh6K minimum / Dh20K cap,
+  education-tiered support table (5 rows), pension contribution shift, GPSSA part-time pension
+  (8–32 hrs, Ma'ashi platform), Emiratisation CV positioning, Dh500 phase-down, 6 FAQs, 8 internal links
+- created: `public/blog/covers/ai-skills-on-cv-uae.svg` — green accent, "CV TIPS" eyebrow
+- created: `public/blog/covers/nafis-salary-support-september-2026.svg` — blue accent, "UAE JOB MARKET" eyebrow
+
+**Source corrections applied (brief → post):**
+- PeopleScout "confident" → "very confident" (exact source wording)
+- Robert Walters "40% reject" → "42% receiving more irrelevant applications" (different verb, different number)
+- Nafis below-secondary tiers: brief lumped into one row → split into married/dependents (Dh4K)
+  and single (Dh3K) per the Gulf Business source
+
+**Guardrails:** No banned claims. "Resume" only in product names and tags. All figures labeled
+with correct market (Gulf-wide vs UAE-specific).
+
+**Notes / risks / follow-up:**
+- `why-cv-ignored-dubai` body now ~2,326 words (target 1,200–1,800) — acceptable for a data-rich
+  REFRESH with two new substantive sections. Monitor readability metrics.
+- Blog count after merge: 31 posts (29 existing + `cv-for-dubai-jobs-from-nepal` from last batch + 2 new).
+- No `validate_post.py` script exists yet — validation run manually (frontmatter limits, FAQ↔body
+  mirror, banned claims, H1-in-body, internal links, word count). All pass.
+- No `seo-reviewer` agent at `.claude/agents/seo-reviewer.md` — skipped.
+
+**Suggested commit:**
+```
+content(blog): add AI skills + Nafis posts, refresh why-cv-ignored
+
+- New: ai-skills-on-cv-uae (GulfTalent AI demand, credible bullet framework)
+- New: nafis-salary-support-september-2026 (Sep 2026 restructuring, pension shift)
+- Refresh: why-cv-ignored-dubai (PeopleScout data, five UAE-specific fields)
+- 2 new cover SVGs
+```
+
+---
+
 ## [2026-08-17 22:20] Emirates ID removal, edge 404 bot guard, llms.txt rebuild, OG 404 fix
 
 **Goal:** Abdullah's batch of 17 Aug. The honesty pass is **parked by his decision** — everything
