@@ -816,3 +816,19 @@ reviewable record, and the project log stops under-reporting shipped work.
   `@vercel/analytics`, `@vercel/speed-insights`, GTM `GTM-5H2LMVJT`. **No PostHog, no Plausible.**
 
 **Suggested commit:** `docs(cowork): add COWORK_CHANGELOG.md and record the orientation run`
+
+## [2026-08-25 18:15] Blog→app funnel: early CTAs + expat link fix
+
+**Goal:** Connect AIO citation wins to product conversions. The 4 posts optimised for AIO extractability had their only CTA in the bottom 13–25% of the page. AIO visitors read the cited section and leave before seeing a product link.
+
+**Files:**
+- edited: `content/blog/expat-cv-uae-guide.mdx` — fixed CTA link from `makemycv.ae` (marketing site, 7s avg engagement) → `app.makemycv.ae` (product). Was the only blog post with this wrong link. Also added inline CTA after "What to Include" section (line 101, 45% depth).
+- edited: `content/blog/cv-for-freshers-uae.mdx` — added inline CTA after structure list (line 45, 38% depth). Previous first CTA was at 98% (last line).
+- edited: `content/blog/cv-format-uae-2026.mdx` — added inline CTA after 9-section structure (line 92, 40% depth). Previous first CTA was at 77%.
+
+**Notes / risks / follow-up:**
+- `should-cv-have-photo-uae.mdx` already had 2 CTAs with first at 64% — no change needed.
+- CRLF line endings: same note as prior entry — sed inserts LF; git autocrlf normalises on commit.
+- App subdomain (`app.makemycv.ae`) is still untracked in GA4 — these CTAs generate traffic we currently cannot measure. GA4 Phase 0 + Phase 1.3 from the GA4 audit must ship.
+
+**Suggested commit:** `content(blog): add early inline CTAs on AIO-cited posts + fix expat link`
