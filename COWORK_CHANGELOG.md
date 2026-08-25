@@ -16,6 +16,29 @@ Format:
 
 ---
 
+## [2026-08-25 17:30] AIO extractability optimisation — 4 blog posts
+
+**Goal:** Flip uncited queries on Google AI Overview by applying the proven extractability formula:
+Dubai-anchored FAQ in frontmatter + matching H3 in body + dateModified bump. Based on the 23 Aug
+GEO audit which showed AIO jumping from 4→10 citations but 10 queries still uncited.
+
+**Files:**
+- edited: `content/blog/should-cv-have-photo-uae.mdx` — added FAQ "Should I put a photo on my CV for a Dubai job?" (frontmatter + body), dateModified → 2026-08-25. Targets Q10.
+- edited: `content/blog/cv-for-freshers-uae.mdx` — added FAQ "How do I write a CV for a Dubai job with no work experience?" (frontmatter + body), dateModified → 2026-08-25. Targets Q17.
+- edited: `content/blog/expat-cv-uae-guide.mdx` — added FAQ "What are the best CV tips for expats moving to Dubai?" (frontmatter + body), dateModified → 2026-08-25. Targets Q18 recovery (was cited 10 Aug, lost to GulfTalent+labeeb).
+- edited: `content/blog/cv-format-uae-2026.mdx` — added FAQ "What should a UAE CV include?" (frontmatter + body), dateModified → 2026-08-25. Targets Q7 — highest-priority gap, never cited on any engine across 7 runs.
+
+**Notes / risks / follow-up:**
+- All 4 posts already had FAQPage schema — the GEO report assumed they didn't. The real gap was query-phrasing mismatch and lack of "Dubai" anchoring (Bing data shows 11.5× share gap between "dubai cv format" vs "UAE cv format").
+- CRLF → LF line ending conversion occurred on all 4 files (known Cowork commit issue). Git autocrlf handles normalisation but `git diff --stat` shows near-whole-file changes. Content diff is clean — only FAQ additions and dateModified.
+- `uae-cv-requirements` slug referenced in GEO report does NOT exist — cv-format-uae-2026 is the sole owner per cannibalisation rules. Corrected in this edit.
+- Emirates ID homepage conflict (from content guardrails) checked: already resolved in current codebase. FAQ.tsx correctly says "Leave your Emirates ID number off." No change needed.
+- These are on `staging` branch, uncommitted. Abdullah needs to review and push.
+
+**Suggested commit:** content(blog): add Dubai-anchored FAQs for AIO extractability on Q7/Q10/Q17/Q18
+
+---
+
 ## [2026-08-24 21:00] Blog batch — 1 refresh + 2 new posts (week of 17–24 Aug)
 
 **Goal:** Ship three blog posts from the weekly brief (17–24 Aug 2026). Protect ranking equity
