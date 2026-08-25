@@ -832,3 +832,22 @@ reviewable record, and the project log stops under-reporting shipped work.
 - App subdomain (`app.makemycv.ae`) is still untracked in GA4 — these CTAs generate traffic we currently cannot measure. GA4 Phase 0 + Phase 1.3 from the GA4 audit must ship.
 
 **Suggested commit:** `content(blog): add early inline CTAs on AIO-cited posts + fix expat link`
+
+## [2026-08-25 18:45] Tier 1 Dubai anchoring — 5 blog post titles + opening paragraphs
+
+**Goal:** Bing AI Search Queries Report shows 11.5× citation share for "Dubai" vs "UAE" framing on identical intent (56.25% vs 4.87%). Tier 1 adds "Dubai &" alongside existing "UAE" in titles — no keyword coverage lost, stronger AI retrieval signal gained.
+
+**Files:**
+- edited: `content/blog/cv-for-freshers-uae.mdx` — title: "CV for Freshers in Dubai & the UAE…", opening paragraph leads with "Dubai CV", added "cv for freshers dubai" and "first job cv dubai" to tags
+- edited: `content/blog/adapt-indian-cv-for-uae-jobs.mdx` — title: "How to Adapt Your Indian CV for Dubai & UAE Jobs" (opening already led with Dubai)
+- edited: `content/blog/professional-summary-examples-uae-cv.mdx` — title: "Professional Summary Examples for Dubai & UAE CVs…", excerpt updated, opening sentence anchored to "Dubai recruiter"
+- edited: `content/blog/first-time-ofw-cv-uae.mdx` — title: "First-Time OFW CV for Dubai & UAE Jobs…" (opening already led with Dubai)
+- edited: `content/blog/best-cv-writers-uae.mdx` — title: "Best CV Writers in Dubai & UAE…", opening sentence changed from "Best CV writers in UAE" to "Best CV writers in Dubai"
+
+**Notes / risks / follow-up:**
+- URLs/slugs unchanged — title is a ranking signal, slug is a URL. Different jobs.
+- CRLF note: same as prior entries.
+- Tier 2 (swap UAE → Dubai entirely on 4 more posts) is parked until September Bing AI Performance Report shows Tier 1 impact.
+- No `dateModified` changes on these posts — the content substance hasn't changed, only the title/meta framing. Update `dateModified` only when body content is materially revised.
+
+**Suggested commit:** `content(blog): Tier 1 Dubai anchoring on 5 post titles for AIO citation share`
