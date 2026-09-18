@@ -34,12 +34,16 @@ export const LOGO_ID = `${SITE_URL}/#logo`;
 export const ORG_SAME_AS: readonly string[] = [
   "https://www.linkedin.com/company/makemycv-ae",
   "https://www.instagram.com/makemycv.ae/",
-  // Medium syndication profile. A personal handle rather than a publication
-  // (Medium publications are a paid feature), but it carries the display name
-  // "Abdullah — MakeMyCV.ae", publishes only this site's content, and every
-  // story canonicals back to this domain. If the entity graph is ever
-  // tightened to org-owned profiles only, this is the single line to remove.
-  "https://medium.com/@abdullahportfolio5",
+  // Medium syndication profile, org-owned: display name "MakeMyCV.ae",
+  // publishes only this site's content, every story canonicals back here.
+  //
+  // Replaced @abdullahportfolio5 on 2026-09-18. That handle was DEAD —
+  // medium.com/feed/@abdullahportfolio5 returned 404 — so the entity graph
+  // was shipping a broken sameAs, which is worse than omitting one: it is a
+  // citation that cannot be corroborated. Verified before the swap:
+  // medium.com/feed/@makemycv.ae returns 200, "Stories by MakeMyCV.ae".
+  // Re-check this URL resolves before changing it again.
+  "https://medium.com/@makemycv.ae",
 ];
 
 function normalizePath(pathname: string): string {
