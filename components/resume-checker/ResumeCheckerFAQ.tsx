@@ -25,7 +25,7 @@ export const faqItems = [
   },
   {
     q: "Should I upload my CV as a PDF or DOCX for UAE jobs?",
-    a: "Use a text-based PDF (one you exported from a document, not a scan or screenshot). Modern applicant tracking systems used by UAE employers parse text-based PDFs reliably, and a PDF keeps your layout intact for the recruiter who reads it afterwards. A scanned or image-based PDF has no readable text, so the ATS sees a blank CV. This checker only accepts PDF.",
+    a: "Use a text-based PDF (one you exported from a document, not a scan or screenshot). Modern applicant tracking systems used by UAE employers parse text-based PDFs reliably, and a PDF keeps your layout intact for the recruiter who reads it afterwards. A scanned or image-based PDF has no readable text, so the ATS sees a blank CV. This checker accepts text-based PDF and Word (.docx) files.",
   },
   {
     q: "Is passing the ATS enough to get the job?",

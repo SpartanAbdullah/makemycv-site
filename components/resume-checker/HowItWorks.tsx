@@ -109,8 +109,8 @@ function ReviewVisual(props: SVGProps<SVGSVGElement>) {
 export const steps: Step[] = [
   {
     num: "00",
-    title: "Upload your PDF",
-    body: "Drop in the CV you'd send today. PDF only — no DOCX, no sign-up, no email field.",
+    title: "Upload your PDF or DOCX",
+    body: "Drop in the CV you'd send today. PDF or Word (.docx) — no sign-up, no email field.",
     detail: "Parsed in our backend. Your file is deleted after 24 hours.",
     Visual: UploadVisual,
   },

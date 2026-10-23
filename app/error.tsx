@@ -18,8 +18,10 @@ export default function Error({
     Sentry.captureException(error);
   }, [error]);
 
+  // A <div>, not <main>: the root layout already provides the page's main
+  // landmark, and a nested one is an a11y error (audit F19).
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
+    <div className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
       <div className="w-full max-w-md rounded-2xl bg-sheet p-8 text-center shadow-float">
         <span
           aria-hidden
@@ -44,8 +46,6 @@ export default function Error({
           </button>
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
           >
             Open the CV builder
@@ -59,6 +59,6 @@ export default function Error({
           {error.digest ? ` and mention code ${error.digest}` : ""}.
         </p>
       </div>
-    </main>
+    </div>
   );
 }

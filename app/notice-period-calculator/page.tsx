@@ -379,7 +379,7 @@ export default function NoticePeriodCalculatorPage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                60+ UAE-tuned checks in ~30 seconds.
+                60+ UAE-tuned checks in about a minute.
               </span>
             </span>
           </Link>

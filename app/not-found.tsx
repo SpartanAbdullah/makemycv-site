@@ -11,8 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
+  // A <div>, not <main>: the root layout already provides the page's main
+  // landmark, and a nested one is an a11y error (audit F19).
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
+    <div className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
       <div className="w-full max-w-md rounded-2xl bg-sheet p-8 text-center shadow-float">
         <p className="text-sm font-semibold tracking-eyebrow text-accent">
           404
@@ -27,8 +29,6 @@ export default function NotFound() {
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08]"
           >
             Build My CV — Free
@@ -48,6 +48,6 @@ export default function NotFound() {
           .
         </p>
       </div>
-    </main>
+    </div>
   );
 }

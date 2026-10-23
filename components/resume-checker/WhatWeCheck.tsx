@@ -89,13 +89,11 @@ export function WhatWeCheck() {
               See what we&apos;d find in yours.
             </h3>
             <p className="mt-1.5 text-[15px] text-muted">
-              Drop your PDF. We&apos;ll hand back every issue in under 30 seconds.
+              Drop your PDF. We&apos;ll hand back every issue in about a minute.
             </p>
           </div>
           <Button
             href="https://app.makemycv.ae/resume-checker"
-            target="_blank"
-            rel="noopener noreferrer"
             size="lg"
             withArrow
             data-event="resume_checker_cta_click"

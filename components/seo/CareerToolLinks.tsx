@@ -24,7 +24,7 @@ const tools = [
     href: "/resume-checker",
     icon: FileSearch,
     title: "ATS Resume Checker",
-    blurb: "60+ UAE-tuned checks in ~30 seconds.",
+    blurb: "60+ UAE-tuned checks in about a minute.",
   },
   {
     href: "/jd-match",

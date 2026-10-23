@@ -22,8 +22,6 @@ export function HowItWorks() {
         <div className="mt-8">
           <Button
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             size="lg"
             withArrow
             data-event="home_how_it_works_cta_click"

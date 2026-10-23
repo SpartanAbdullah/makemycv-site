@@ -11,14 +11,12 @@ export function FinalCTA() {
           <br className="hidden md:block" /> that actually gets read.
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-lg text-white/75">
-          Free check. 30 seconds. No sign-up.
+          Free check. About a minute. No sign-up.
         </p>
 
         <div className="mt-10 flex justify-center">
           <Button
             href="https://app.makemycv.ae/resume-checker"
-            target="_blank"
-            rel="noopener noreferrer"
             size="lg"
             withArrow
             data-event="resume_checker_cta_click"
@@ -30,7 +28,7 @@ export function FinalCTA() {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
           <TrustChip icon={Lock} label="No sign-up" tone="dark" />
-          <TrustChip icon={Zap} label="30 seconds" tone="dark" />
+          <TrustChip icon={Zap} label="About a minute" tone="dark" />
           <TrustChip icon={CreditCard} label="No card required" tone="dark" />
         </div>
       </div>

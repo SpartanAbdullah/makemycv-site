@@ -121,8 +121,6 @@ export default function BlogPage() {
           </p>
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             data-event="blog_cta_click"
             className="btn-primary mt-7 inline-block px-8 py-3.5 text-lg font-semibold text-white"
           >

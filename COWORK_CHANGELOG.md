@@ -16,6 +16,91 @@ Format:
 
 ---
 
+## [2026-10-24 07:40] WP-7 / WP-9 (site half): no nested <main> on error pages; privacy policy names the cover letter
+
+**Goal:** Audit F19 (two `<main>` landmarks on the error and not-found pages) and the disclosure the
+app's new cover letter needs: it is the first feature that sends CV text (an excerpt) to a server, so
+the privacy policy must say so before it ships.
+**Files:**
+- edited: `app/error.tsx`, `app/not-found.tsx` — outer `<main>` → `<div>`; the root layout already
+  provides the page landmark. Styling unchanged.
+- edited: `app/privacy/page.tsx` — "AI features" now lists the cover letter writer and spells out the
+  excerpt it sends (headline, summary, latest role, up to twelve skills, visa and availability lines,
+  plus the job details typed — never contact details or the photo). The "we do not log or store"
+  sentence covers it too. This wording mirrors `makemycv-app/lib/coverLetter/payload.ts`; change both
+  together.
+**Notes / risks / follow-up:** The site's `Logo` wordmark still uses weight 600 + `--brand-gold`
+(2.6:1); the app moved to 700 + a `--brand-gold-text` (#B38A3C) for the ".ae" to pass axe. Copy that
+here when the site gets an axe pass (the app's `scripts/builder-smoke.mjs` shows the pattern).
+**Suggested commit:** fix(site): single main landmark on error pages; privacy policy covers the cover letter
+
+---
+
+## [2026-10-24 04:10] WP-6 (site half): proxy.ts, Sentry options, excerpt, stray file
+
+**Goal:** Build-time warnings and leftovers from the Oct-2026 audit (F14, housekeeping).
+**Files:**
+- renamed: `middleware.ts` → `proxy.ts` (`export default function proxy`), the Next 16 convention;
+  identical matcher and behaviour. The build no longer prints the middleware deprecation.
+- edited: `next.config.ts` — Sentry's deprecated top-level `reactComponentAnnotation` / `disableLogger`
+  moved under `webpack: { reactComponentAnnotation, treeshake.removeDebugLogging }`.
+- edited: `content/blog/skills-vs-degrees-uae-cv.mdx` — excerpt trimmed 314 → ≤300 chars (Velite
+  schema limit; it was reported as a build issue on every run). Wording kept, `date` untouched.
+- deleted: `google4f67127b6f30fe74 (1).html` — a duplicated Search Console file at the repo root
+  (not under `public/`), so it served nothing; verification stays via the `<meta>` tag in `app/layout.tsx`.
+**Notes / risks / follow-up:** `npm run build` (53 routes, "ƒ Proxy"), lint and the 124 calculator /
+letter tests pass. CI already existed for this repo (the audit's "no CI on the site" line was wrong —
+corrected in `_cowork/audit-2026-10/04-findings.md`).
+**Suggested commit:** chore(site): proxy.ts, Sentry webpack options, excerpt limit, stray file
+
+---
+
+## [2026-10-24 03:20] WP-2 (site half): the ATS checker now takes DOCX — copy updated
+
+**Goal:** The app's checker accepts Word files from today (`makemycv-app` WP-2). Three places on
+this site still said PDF only.
+**Files:**
+- edited: `components/resume-checker/HowItWorks.tsx` — step 00 title/body ("Upload your PDF or
+  DOCX"); this array also feeds the HowTo JSON-LD, so schema and visible copy move together.
+- edited: `components/resume-checker/ResumeCheckerFAQ.tsx` — "This checker only accepts PDF" →
+  accepts text-based PDF and Word (.docx).
+- edited: `app/resume-checker/page.tsx` — hero chip "PDF or DOCX · Results in about a minute".
+**Notes / risks / follow-up:** Deploy the app change first or at the same time; the site copy
+promises DOCX. `npm run build` / lint / tsc pass.
+**Suggested commit:** content(checker): say the ATS checker accepts DOCX
+
+---
+
+## [2026-10-24 01:50] WP-5 (site half): honest claims, checker timing copy, same-tab product CTAs
+
+**Goal:** Audit findings F12, F18, F20, F10 (`../_cowork/audit-2026-10/06-REPORT.md`). Marketing
+absolutes over-promised relative to the (accurate) privacy page, the checker promised "30 seconds"
+against a measured ~38 s, and every product CTA opened app.makemycv.ae in a new tab.
+**Files:**
+- edited: `app/about/page.tsx` — "Your CV data never leaves your browser" → what actually happens
+  (browser-local CV; AI + checker send only submitted text; report auto-deletes in 24 h).
+- edited: `components/home/ProblemSolution.tsx`, `components/resume-checker/FilterProblem.tsx`,
+  `app/resume-checker/page.tsx` — the unsourced "75% rejected" figure softened to a claim the
+  site can stand behind (software screens first; a large share rejected for parser-unreadable
+  formatting). The site's own blog guardrails already ban unsourced recruiter statistics.
+- edited: `app/resume-checker/page.tsx`, `components/resume-checker/{FinalCTA,WhatWeCheck,FilterProblem}.tsx`,
+  `components/seo/CareerToolLinks.tsx`, three calculator pages — "30 seconds" → "about a minute"
+  everywhere (16 occurrences incl. meta descriptions and the AiAnswer).
+- edited: 23 `<a>`/`<Button>` tags across Navbar, Footer, home sections, templates grid, blog
+  index/post chrome, JD-match/checker landings, support/thanks/error/404, calculator pages —
+  `target="_blank"` + `rel` removed on links to app.makemycv.ae, the "(opens in new tab)" sr-only
+  hints and the "opens the free builder" aria-label removed. Links inside MDX article bodies and
+  all external links (MOHRE, Ko-fi, social) are unchanged.
+- edited: `app/free-cv-maker-dubai/page.tsx` — unused `Link` import removed (lint was 3 warnings
+  against a cap of 2 on `staging`; the gate is green again).
+**Notes / risks / follow-up:** Decision taken per the audit's recommendation: primary CTAs open in
+the same tab (Back works, one GA4 session across the www→app hop, better in LinkedIn/Instagram
+in-app browsers). If a new-tab preference exists for a specific surface, re-add `target` on that
+tag only. `npm run build`, `npm run lint` and `npx tsc --noEmit` pass.
+**Suggested commit:** fix(site): honest privacy/ATS claims, checker timing copy, same-tab product CTAs
+
+---
+
 ## [2026-08-25 17:30] AIO extractability optimisation — 4 blog posts
 
 **Goal:** Flip uncited queries on Google AI Overview by applying the proven extractability formula:

@@ -27,8 +27,6 @@ export function PricingClarity() {
             the{" "}
             <a
               href="https://app.makemycv.ae"
-              target="_blank"
-              rel="noopener noreferrer"
               className="font-semibold text-accent underline-offset-4 hover:underline"
             >
               MakeMyCV builder
@@ -47,8 +45,6 @@ export function PricingClarity() {
         <p className="mt-10 text-lg text-ink-2">
           <a
             href="https://app.makemycv.ae/resume-checker"
-            target="_blank"
-            rel="noopener noreferrer"
             className="font-semibold text-accent underline-offset-4 hover:underline"
             data-event="resume_checker_cta_click"
             data-cta-location="pricing"

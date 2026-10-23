@@ -23,7 +23,7 @@ const values = [
   {
     icon: "\uD83D\uDD12",
     title: "Privacy by Design",
-    desc: "Your CV data never leaves your browser. We don\u2019t store personal information.",
+    desc: "Your CV is built and saved in your browser — no account, no CV database on our side. AI features and the ATS checker send only the text you submit, and the checker report deletes itself after 24 hours.",
   },
   {
     icon: "\uD83D\uDC9A",

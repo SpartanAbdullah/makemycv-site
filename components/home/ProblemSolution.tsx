@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const problems = [
   {
-    title: "The ATS filter eats 75% before anyone reads them.",
+    title: "Software reads your CV before a person does.",
     body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software first. Fancy columns, headers, and icons break the parser. Your CV never reaches a human.",
   },
   {

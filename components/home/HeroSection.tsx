@@ -42,15 +42,12 @@ export function HeroSection() {
           <div className="mt-8 md:mt-10">
             <Button
               href="https://app.makemycv.ae"
-              target="_blank"
-              rel="noopener noreferrer"
               size="lg"
               withArrow
               className="md:px-10 md:py-5 md:text-xl"
               data-event="home_hero_cta_click"
             >
               Build My CV — Free
-              <span className="sr-only">(opens in new tab)</span>
             </Button>
           </div>
 
