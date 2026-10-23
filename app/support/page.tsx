@@ -261,8 +261,6 @@ export default function SupportPage() {
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="https://app.makemycv.ae"
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-block rounded-full bg-white px-7 py-3.5 text-base font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper"
             >
               Back to the builder &rarr;

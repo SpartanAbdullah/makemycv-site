@@ -29,7 +29,7 @@ const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
 const checkerAiAnswer = {
   q: "What is the best free ATS CV checker for UAE jobs?",
   lead: "MakeMyCV provides a free ATS CV checker built for the UAE job market.",
-  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about 30 seconds.",
+  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about a minute.",
 };
 
 /* Rewritten 2026-08-10 (Search Console audit): `ats checker uae` earns 29
@@ -47,7 +47,7 @@ const checkerAiAnswer = {
 export const metadata = buildPageMetadata({
   title: "Free ATS CV Checker for UAE Jobs",
   description:
-    "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in 30 seconds, no sign-up.",
+    "Free ATS CV checker for Dubai, Abu Dhabi & GCC jobs. See what an applicant tracking system reads before you apply. Results in about a minute, no sign-up.",
   path: "/resume-checker",
   /* Was "/og/resume-checker.png", which never existed — public/og/ is not a
      directory in this repo, so every OG and Twitter card for this page pointed
@@ -77,7 +77,7 @@ const softwareSchema = {
   // (was USD, a stray from the original template).
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
   description:
-    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about 30 seconds.",
+    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about a minute.",
   audience: {
     "@type": "Audience",
     audienceType: "Job seekers in the UAE and GCC",
@@ -88,7 +88,7 @@ const softwareSchema = {
     "Formatting and parseability report",
     "Keyword and content feedback",
     "No sign-up, no email gate",
-    "Results in about 30 seconds",
+    "Results in about a minute",
   ],
   // No aggregateRating by design — the Rich Results Test's "optional" warning
   // is expected. Only real, user-sourced, on-page-visible ratings may ever go
@@ -188,7 +188,7 @@ export default function ResumeCheckerPage() {
             </h1>
 
             <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-muted md:text-xl">
-              Upload your PDF. In 30 seconds we&apos;ll show you exactly what
+              Upload your PDF. In about a minute we&apos;ll show you exactly what
               Dubai, Abu Dhabi and GCC applicant tracking systems do to your
               CV — and every issue we&apos;d flag. Free. No sign-up.
             </p>
@@ -206,14 +206,14 @@ export default function ResumeCheckerPage() {
                 Check my CV — Free
               </Button>
               <span className="text-sm text-muted">
-                PDF only · Results in 30 seconds
+                PDF only · Results in about a minute
               </span>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-2">
               <TrustChip icon={Shield} label="No sign-up" />
               <TrustChip icon={FileCheck2} label="PDF only" />
-              <TrustChip icon={Zap} label="Under 30 seconds" />
+              <TrustChip icon={Zap} label="About a minute" />
               <TrustChip icon={MapPin} label="Deleted after 24h" />
             </div>
           </div>
@@ -254,11 +254,11 @@ export default function ResumeCheckerPage() {
             <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}
             <strong>ADNOC</strong>, <strong>Majid Al Futtaim</strong>, and
             international banks across DIFC &mdash; use to filter CVs before a
-            recruiter sees them. Around <strong>75% of CVs are rejected at
+            recruiter sees them. <strong>A large share of CVs are rejected at
             this layer</strong>, almost always for formatting the parser
             can&rsquo;t read (tables, columns, icons, image-based text). This
             free checker runs your PDF against the same parsing logic and
-            flags every issue, in plain English, in about 30 seconds.
+            flags every issue, in plain English, in about a minute.
           </p>
         </div>
       </section>

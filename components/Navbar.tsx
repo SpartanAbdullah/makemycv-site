@@ -99,8 +99,6 @@ export const Navbar = () => {
           </Link>
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn-primary px-5 py-2.5 text-sm font-semibold text-white"
           >
             Start Building Free &rarr;
@@ -165,8 +163,6 @@ export const Navbar = () => {
             </Link>
             <a
               href="https://app.makemycv.ae"
-              target="_blank"
-              rel="noopener noreferrer"
               className="btn-primary px-5 py-2.5 text-center text-sm font-semibold text-white"
             >
               Start Building Free &rarr;

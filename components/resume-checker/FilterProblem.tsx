@@ -30,7 +30,7 @@ export function FilterProblem() {
             The hiring reality
           </p>
           <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-[-0.02em] text-ink md:text-[48px]">
-            Why 75% of UAE CVs get filtered out before a human reads them.
+            Why so many UAE CVs get filtered out before a human reads them.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
             ENOC, Emaar, Majid Al Futtaim, ADCB and most DIFC firms run every
@@ -64,11 +64,9 @@ export function FilterProblem() {
         </div>
 
         <p className="mt-10 text-lg text-ink-2">
-          Our checker catches all three in 30 seconds.{" "}
+          Our checker catches all three in about a minute.{" "}
           <a
             href="https://app.makemycv.ae/resume-checker"
-            target="_blank"
-            rel="noopener noreferrer"
             className="font-semibold text-accent underline-offset-4 hover:underline"
             data-event="resume_checker_cta_click"
             data-cta-location="problem"

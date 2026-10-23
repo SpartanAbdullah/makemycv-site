@@ -44,8 +44,6 @@ export default function Error({
           </button>
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
           >
             Open the CV builder

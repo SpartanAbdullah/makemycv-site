@@ -16,6 +16,36 @@ Format:
 
 ---
 
+## [2026-10-24 01:50] WP-5 (site half): honest claims, checker timing copy, same-tab product CTAs
+
+**Goal:** Audit findings F12, F18, F20, F10 (`../_cowork/audit-2026-10/06-REPORT.md`). Marketing
+absolutes over-promised relative to the (accurate) privacy page, the checker promised "30 seconds"
+against a measured ~38 s, and every product CTA opened app.makemycv.ae in a new tab.
+**Files:**
+- edited: `app/about/page.tsx` — "Your CV data never leaves your browser" → what actually happens
+  (browser-local CV; AI + checker send only submitted text; report auto-deletes in 24 h).
+- edited: `components/home/ProblemSolution.tsx`, `components/resume-checker/FilterProblem.tsx`,
+  `app/resume-checker/page.tsx` — the unsourced "75% rejected" figure softened to a claim the
+  site can stand behind (software screens first; a large share rejected for parser-unreadable
+  formatting). The site's own blog guardrails already ban unsourced recruiter statistics.
+- edited: `app/resume-checker/page.tsx`, `components/resume-checker/{FinalCTA,WhatWeCheck,FilterProblem}.tsx`,
+  `components/seo/CareerToolLinks.tsx`, three calculator pages — "30 seconds" → "about a minute"
+  everywhere (16 occurrences incl. meta descriptions and the AiAnswer).
+- edited: 23 `<a>`/`<Button>` tags across Navbar, Footer, home sections, templates grid, blog
+  index/post chrome, JD-match/checker landings, support/thanks/error/404, calculator pages —
+  `target="_blank"` + `rel` removed on links to app.makemycv.ae, the "(opens in new tab)" sr-only
+  hints and the "opens the free builder" aria-label removed. Links inside MDX article bodies and
+  all external links (MOHRE, Ko-fi, social) are unchanged.
+- edited: `app/free-cv-maker-dubai/page.tsx` — unused `Link` import removed (lint was 3 warnings
+  against a cap of 2 on `staging`; the gate is green again).
+**Notes / risks / follow-up:** Decision taken per the audit's recommendation: primary CTAs open in
+the same tab (Back works, one GA4 session across the www→app hop, better in LinkedIn/Instagram
+in-app browsers). If a new-tab preference exists for a specific surface, re-add `target` on that
+tag only. `npm run build`, `npm run lint` and `npx tsc --noEmit` pass.
+**Suggested commit:** fix(site): honest privacy/ATS claims, checker timing copy, same-tab product CTAs
+
+---
+
 ## [2026-08-25 17:30] AIO extractability optimisation — 4 blog posts
 
 **Goal:** Flip uncited queries on Google AI Overview by applying the proven extractability formula:

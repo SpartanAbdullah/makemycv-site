@@ -20,8 +20,6 @@ export function JdMatchFinalCTA() {
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Button
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             size="lg"
             withArrow
             data-event="jd_match_cta_click"

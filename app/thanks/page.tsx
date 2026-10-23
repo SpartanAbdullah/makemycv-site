@@ -34,8 +34,6 @@ export default function ThanksPage() {
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="btn-primary inline-block px-7 py-3.5 text-base font-semibold text-white"
           >
             Back to the CV builder &rarr;

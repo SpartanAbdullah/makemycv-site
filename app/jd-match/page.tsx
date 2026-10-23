@@ -171,8 +171,6 @@ export default function JdMatchPage() {
             <div className="mt-9 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
               <Button
                 href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
                 size="lg"
                 withArrow
                 data-event="jd_match_cta_click"

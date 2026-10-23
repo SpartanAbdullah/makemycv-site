@@ -110,12 +110,10 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
 
               <a
                 href="https://app.makemycv.ae"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="tpl-cta relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
                 data-event="templates_page_use_template_click"
                 data-template-id={t.slug}
-                aria-label={`Use the ${t.name} template — opens the free builder`}
+                aria-label={`Use the ${t.name} template in the free builder`}
               >
                 <div
                   className="relative overflow-hidden rounded-lg bg-sheet ring-1 ring-line transition-all duration-150 group-hover:-translate-y-1 group-hover:ring-accent group-hover:shadow-lg-soft"
@@ -228,8 +226,6 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
             mirroring the homepage shelf's dashed card. */}
         <a
           href="https://app.makemycv.ae"
-          target="_blank"
-          rel="noopener noreferrer"
           className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-line-strong bg-sheet/60 p-6 text-center transition-colors duration-150 hover:border-accent hover:bg-accent-soft/40"
           style={{ aspectRatio: "1 / 1.414" }}
           data-event="templates_page_endcap_click"

@@ -27,8 +27,6 @@ export default function NotFound() {
         <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-center">
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08]"
           >
             Build My CV — Free

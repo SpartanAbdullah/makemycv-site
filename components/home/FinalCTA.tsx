@@ -22,8 +22,6 @@ export function FinalCTA({
         <div className="mt-10">
           <a
             href="https://app.makemycv.ae"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
             data-event={eventName}
           >

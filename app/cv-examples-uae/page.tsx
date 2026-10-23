@@ -283,7 +283,7 @@ export default function CvExamplesUaePage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                Free ATS checker — 60+ UAE-tuned checks in ~30 seconds.
+                Free ATS checker — 60+ UAE-tuned checks in about a minute.
               </span>
             </span>
           </Link>
