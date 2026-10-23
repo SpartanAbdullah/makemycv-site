@@ -11,8 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default function NotFound() {
+  // A <div>, not <main>: the root layout already provides the page's main
+  // landmark, and a nested one is an a11y error (audit F19).
   return (
-    <main className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
+    <div className="flex min-h-screen items-center justify-center bg-paper-2 px-6">
       <div className="w-full max-w-md rounded-2xl bg-sheet p-8 text-center shadow-float">
         <p className="text-sm font-semibold tracking-eyebrow text-accent">
           404
@@ -46,6 +48,6 @@ export default function NotFound() {
           .
         </p>
       </div>
-    </main>
+    </div>
   );
 }

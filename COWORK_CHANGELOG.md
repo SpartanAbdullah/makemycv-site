@@ -16,6 +16,26 @@ Format:
 
 ---
 
+## [2026-10-24 07:40] WP-7 / WP-9 (site half): no nested <main> on error pages; privacy policy names the cover letter
+
+**Goal:** Audit F19 (two `<main>` landmarks on the error and not-found pages) and the disclosure the
+app's new cover letter needs: it is the first feature that sends CV text (an excerpt) to a server, so
+the privacy policy must say so before it ships.
+**Files:**
+- edited: `app/error.tsx`, `app/not-found.tsx` — outer `<main>` → `<div>`; the root layout already
+  provides the page landmark. Styling unchanged.
+- edited: `app/privacy/page.tsx` — "AI features" now lists the cover letter writer and spells out the
+  excerpt it sends (headline, summary, latest role, up to twelve skills, visa and availability lines,
+  plus the job details typed — never contact details or the photo). The "we do not log or store"
+  sentence covers it too. This wording mirrors `makemycv-app/lib/coverLetter/payload.ts`; change both
+  together.
+**Notes / risks / follow-up:** The site's `Logo` wordmark still uses weight 600 + `--brand-gold`
+(2.6:1); the app moved to 700 + a `--brand-gold-text` (#B38A3C) for the ".ae" to pass axe. Copy that
+here when the site gets an axe pass (the app's `scripts/builder-smoke.mjs` shows the pattern).
+**Suggested commit:** fix(site): single main landmark on error pages; privacy policy covers the cover letter
+
+---
+
 ## [2026-10-24 04:10] WP-6 (site half): proxy.ts, Sentry options, excerpt, stray file
 
 **Goal:** Build-time warnings and leftovers from the Oct-2026 audit (F14, housekeeping).
