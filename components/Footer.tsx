@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
 import { Heart, MapPin } from "lucide-react";
 import { LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/social";
 import { IconLinkedInGlyph, IconInstagramGlyph } from "@/components/SocialIcons";
@@ -165,6 +166,10 @@ export const Footer = () => (
           >
             Privacy Policy
           </Link>
+          <span aria-hidden="true" className="hidden text-white/25 sm:inline">
+            ·
+          </span>
+          <CookieSettingsLink className="whitespace-nowrap transition-colors duration-150 hover:text-gold-light" />
         </span>
         <span className="flex items-center gap-1.5 text-xs text-white/55">
           Made with

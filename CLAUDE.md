@@ -85,6 +85,21 @@ FAQ↔body mirroring, dead internal links, banned claims, H1-in-body, thin secti
 **7. Log** in `COWORK_CHANGELOG.md`, including any source corrections made, so they aren't
 reintroduced next week.
 
+## Consent, privacy and the app's feedback features (2026-10)
+
+- `lib/consent.ts` and `components/consent/*` are **byte-identical copies** of the app's — change both
+  repos together. The Consent Mode v2 default in `app/layout.tsx` must stay ahead of the GTM script;
+  `proxy.ts` stamps the `mmcv_geo` region bucket it reads.
+- `next.config.ts` ships a **Report-Only** CSP; violations reach Sentry via `instrumentation-client.ts`.
+  Flip it to `Content-Security-Policy` only after a few quiet weeks in Sentry.
+- `components/EmailSignup.tsx` posts to the app's `/api/subscribe`; the list, the double opt-in and the
+  unsubscribe live in the app. Renders only with `NEXT_PUBLIC_EMAIL_SIGNUP=1`.
+- `components/home/RatingsProof.tsx` is the only permitted social proof: real first-party ratings from
+  the app's summary endpoint, nothing below 25 ratings, quotes only after a human approved them. The
+  `aggregateRating` node is emitted there and nowhere else.
+- `app/privacy/page.tsx` describes the cookies, the ratings and the email list in detail — any change to
+  those behaviours changes that page (and `LAST_UPDATED`) in the same commit.
+
 ## Gotchas
 
 - `withSentryConfig` wraps next.config — headers() and redirects() must survive any refactor there; verify with `curl -sI https://makemycv.ae/pricing`.

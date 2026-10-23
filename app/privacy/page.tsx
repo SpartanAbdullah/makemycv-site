@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
 import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbSchema } from "@/lib/seo-schema";
@@ -43,7 +44,7 @@ const privacyBreadcrumb = breadcrumbSchema([
  * - Tips: Ko-fi → PayPal, external checkout only.
  */
 
-const LAST_UPDATED = "2 August 2026";
+const LAST_UPDATED = "24 October 2026";
 
 function Section({
   title,
@@ -108,6 +109,14 @@ export default function PrivacyPage() {
               <li>
                 ATS checker reports are stored under a random link for 24 hours,
                 then deleted automatically.
+              </li>
+              <li>
+                Analytics cookies are off until you accept them if you are in
+                the EU or UK; elsewhere they are on with a one-tap opt-out.
+              </li>
+              <li>
+                Ratings are anonymous; a quote is shown only if you tick the
+                box. Email tips need a confirmed sign-up and leave with one click.
               </li>
               <li>
                 We never sell your data, and we never see your card details.
@@ -192,10 +201,48 @@ export default function PrivacyPage() {
             <p>
               We use Google Analytics 4 (loaded via Google Tag Manager) to
               understand which pages help people, and Vercel Analytics for
-              performance monitoring. Google Analytics sets cookies;
-              you can block or clear them in your browser settings, and the site
-              works fine without them. We run no advertising networks and no
-              cross-site tracking of our own.
+              performance monitoring. Google Analytics sets two cookies
+              (<code>_ga</code> and <code>_ga_…</code>, up to 400 days) on
+              makemycv.ae and its subdomains. We run no advertising networks,
+              no cross-site tracking of our own, and Google&apos;s advertising
+              features are switched off.
+            </p>
+            <p>
+              Whether those cookies are set depends on where you are and what
+              you choose. If you visit from the EU, UK or Switzerland, nothing
+              is collected until you press Accept. Elsewhere, analytics is on
+              from the start and the bar at the bottom of the page lets you opt
+              out in one tap. Your choice is kept in a small first-party cookie
+              (<code>mmcv_consent</code>, one year) together with a region
+              marker (<code>mmcv_geo</code>, 30 days) that holds only
+              &ldquo;eu&rdquo; or &ldquo;row&rdquo; — never your country. Change
+              your mind any time via{" "}
+              <CookieSettingsLink className="font-semibold text-accent" />.
+              Declining also removes the Google cookies already set.
+            </p>
+          </Section>
+
+          <Section title="Ratings and quotes">
+            <p>
+              After you export a CV or read an ATS report we may ask for a
+              one-tap star rating. A star alone is anonymous: we store the
+              score, which screen it came from, the date and a two-letter
+              country code. If you choose to add a line and tick &ldquo;you may
+              quote me&rdquo;, that line — with the first name and role you
+              typed, if any — may appear on makemycv.ae after we have read it.
+              Nothing is published automatically, and you can ask us to remove
+              a quote at any time.
+            </p>
+          </Section>
+
+          <Section title="Email updates">
+            <p>
+              If you give us your email address for UAE job-search tips, we
+              store the address, the date, which form you used and the exact
+              wording you agreed to. Nothing is sent until you confirm from the
+              email we send you; unconfirmed addresses are not used for
+              anything. Every email carries a one-click unsubscribe link, which
+              stops all mail at once. We never share, sell or append the list.
             </p>
           </Section>
 
@@ -212,9 +259,11 @@ export default function PrivacyPage() {
               Only the service providers needed to run the product, each for one
               job: Vercel (hosting and the short-lived storage described above),
               Google (analytics), Formspree (contact form delivery), Anthropic
-              (AI processing), Sentry (error monitoring), and Ko-fi/PayPal
-              (tips). Some of these providers process data in the United States
-              or Europe. We do not sell or rent personal data to anyone.
+              (AI processing), Sentry (error monitoring), Supabase (ratings and
+              the email list, stored in the European Union), Resend (sending
+              the emails you asked for), and Ko-fi/PayPal (tips). Some of these
+              providers process data in the United States or Europe. We do not
+              sell or rent personal data to anyone.
             </p>
           </Section>
 
@@ -242,7 +291,7 @@ export default function PrivacyPage() {
               be corrected, or ask for it to be deleted. For most of what this
               site does, the honest answer is that we hold nothing — your CV is
               on your device. For anything we do hold (a contact-form email, an
-              ATS report link), email{" "}
+              ATS report link, a rating quote, an email sign-up), email{" "}
               <a
                 href="mailto:hello@makemycv.ae"
                 className="font-semibold text-accent underline underline-offset-2"
