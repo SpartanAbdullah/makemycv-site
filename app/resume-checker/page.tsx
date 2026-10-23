@@ -206,7 +206,7 @@ export default function ResumeCheckerPage() {
                 Check my CV — Free
               </Button>
               <span className="text-sm text-muted">
-                PDF only · Results in about a minute
+                PDF or DOCX · Results in about a minute
               </span>
             </div>
 

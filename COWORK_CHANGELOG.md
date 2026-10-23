@@ -16,6 +16,22 @@ Format:
 
 ---
 
+## [2026-10-24 03:20] WP-2 (site half): the ATS checker now takes DOCX — copy updated
+
+**Goal:** The app's checker accepts Word files from today (`makemycv-app` WP-2). Three places on
+this site still said PDF only.
+**Files:**
+- edited: `components/resume-checker/HowItWorks.tsx` — step 00 title/body ("Upload your PDF or
+  DOCX"); this array also feeds the HowTo JSON-LD, so schema and visible copy move together.
+- edited: `components/resume-checker/ResumeCheckerFAQ.tsx` — "This checker only accepts PDF" →
+  accepts text-based PDF and Word (.docx).
+- edited: `app/resume-checker/page.tsx` — hero chip "PDF or DOCX · Results in about a minute".
+**Notes / risks / follow-up:** Deploy the app change first or at the same time; the site copy
+promises DOCX. `npm run build` / lint / tsc pass.
+**Suggested commit:** content(checker): say the ATS checker accepts DOCX
+
+---
+
 ## [2026-10-24 01:50] WP-5 (site half): honest claims, checker timing copy, same-tab product CTAs
 
 **Goal:** Audit findings F12, F18, F20, F10 (`../_cowork/audit-2026-10/06-REPORT.md`). Marketing
