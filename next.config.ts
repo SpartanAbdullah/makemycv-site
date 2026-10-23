@@ -85,7 +85,12 @@ export default withSentryConfig(nextConfig, {
   // runs zero.
   tunnelRoute: undefined,
 
-  reactComponentAnnotation: { enabled: false },
+  // Moved under `webpack` (the un-namespaced keys are deprecated in
+  // @sentry/nextjs 10 and only apply to webpack builds; Turbopack ignores
+  // them either way).
+  webpack: {
+    reactComponentAnnotation: { enabled: false },
+    treeshake: { removeDebugLogging: true },
+  },
 
-  disableLogger: true,
 });

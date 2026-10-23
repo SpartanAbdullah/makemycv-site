@@ -3,6 +3,9 @@ import { NextResponse, type NextRequest } from "next/server";
 /**
  * Edge 404 guard for automated path sweeps.
  *
+ * Renamed from middleware.ts → proxy.ts (Next 16 convention; the old name
+ * logged a deprecation on every build). Same matcher, same behaviour.
+ *
  * WHY: the Next.js not-found page is a React route, so every scanner probe
  * rendered it, fired a `page_view`, and became a fake user + session in GA4.
  * Over the 28 days to 9 Aug 2026 that was ~229 views / ~226 "users", every one
@@ -36,7 +39,7 @@ const BOT_PATHS =
 
 const BOT_STATIC = /^\/static\/(js|media)(\/|$)/;
 
-export function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (

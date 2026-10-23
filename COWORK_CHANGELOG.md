@@ -16,6 +16,25 @@ Format:
 
 ---
 
+## [2026-10-24 04:10] WP-6 (site half): proxy.ts, Sentry options, excerpt, stray file
+
+**Goal:** Build-time warnings and leftovers from the Oct-2026 audit (F14, housekeeping).
+**Files:**
+- renamed: `middleware.ts` → `proxy.ts` (`export default function proxy`), the Next 16 convention;
+  identical matcher and behaviour. The build no longer prints the middleware deprecation.
+- edited: `next.config.ts` — Sentry's deprecated top-level `reactComponentAnnotation` / `disableLogger`
+  moved under `webpack: { reactComponentAnnotation, treeshake.removeDebugLogging }`.
+- edited: `content/blog/skills-vs-degrees-uae-cv.mdx` — excerpt trimmed 314 → ≤300 chars (Velite
+  schema limit; it was reported as a build issue on every run). Wording kept, `date` untouched.
+- deleted: `google4f67127b6f30fe74 (1).html` — a duplicated Search Console file at the repo root
+  (not under `public/`), so it served nothing; verification stays via the `<meta>` tag in `app/layout.tsx`.
+**Notes / risks / follow-up:** `npm run build` (53 routes, "ƒ Proxy"), lint and the 124 calculator /
+letter tests pass. CI already existed for this repo (the audit's "no CI on the site" line was wrong —
+corrected in `_cowork/audit-2026-10/04-findings.md`).
+**Suggested commit:** chore(site): proxy.ts, Sentry webpack options, excerpt limit, stray file
+
+---
+
 ## [2026-10-24 03:20] WP-2 (site half): the ATS checker now takes DOCX — copy updated
 
 **Goal:** The app's checker accepts Word files from today (`makemycv-app` WP-2). Three places on
