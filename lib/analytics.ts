@@ -49,5 +49,18 @@ export function track(
   if (typeof window === "undefined") return;
 
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event, ...params });
+  window.dataLayer.push({ event, ...PARAM_RESET, ...params });
 }
+
+/**
+ * Every event-parameter key the GTM container reads as a Data Layer Variable
+ * (container version 4, 2026-10-24). GTM keeps the last value of each key
+ * across pushes, so without a reset a `tip_click` sent after a `share_click`
+ * would carry `method=copy_link`. Pushing `undefined` clears the key in GTM's
+ * data layer model and the GA4 tag omits the parameter. Mirrors
+ * makemycv-app/lib/analytics.ts — add a key in both when a DLV is created.
+ */
+const PARAM_KEYS = ["stars", "surface", "consent", "source", "rail", "context", "method", "format", "template"] as const;
+const PARAM_RESET: Record<(typeof PARAM_KEYS)[number], undefined> = Object.fromEntries(
+  PARAM_KEYS.map((k) => [k, undefined]),
+) as Record<(typeof PARAM_KEYS)[number], undefined>;
