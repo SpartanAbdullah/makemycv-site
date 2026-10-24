@@ -16,6 +16,31 @@ Format:
 
 ---
 
+## [2026-10-24 23:10] /support redesign: the ask comes first, karak tip picker
+
+**Goal:** Design handoff `design_handoff_support_karak` (README + "Support Page v2" reference): reorder
+the page so the ask is first and make the CTA playful. New order: hero with eyebrow pill, H1,
+subline and the karak tip-picker card → Why support → About me → What you get → FAQ → footer CTA.
+The standalone TipJar section and the hero's second line are gone (the line moved into the pill).
+**Files:**
+- edited: `app/support/page.tsx` — sections reordered and restyled to the handoff's spacing/type;
+  copy unchanged; "What you get" now on paper-2 and FAQ on paper; About me is an avatar column +
+  letter card with a mono signature; Why support has the side-by-side header and 01/02/03 indices.
+- created: `components/KarakPicker.tsx` — client tip-picker: 1 / 3 / 5 karaks as a `radiogroup`
+  (arrow, Home, End keys, roving tabIndex), reaction line and Ko-fi label follow the selection,
+  pure-CSS cups (bob + steam, three sizes: big for one cup, md, and sm below the `sm` breakpoint
+  where five md cups overflowed the 85px option on a 375px phone). Ko-fi/PayPal keep the same URLs,
+  `data-event`s, `track("tip_click", { rail, context, cups })` and `markTipped()`; `data-cups` added.
+- edited: `components/TipJar.tsx` — exports `KOFI_URL`, `PAYPAL_URL`, `markTipped` for the picker.
+- edited: `app/globals.css` — `karak-bob` / `karak-steam` keyframes + reduced-motion rule.
+- created: `public/paypal/paypal-mark.svg` — the bundle's placeholder; replace with PayPal's official
+  brand mark at the same path.
+**Notes / risks / follow-up:** `cups` is sent as an event parameter but GTM has no `cups` Data Layer
+Variable yet; add it in GTM and to `PARAM_KEYS` in both repos' `lib/analytics.ts`. TipJar.tsx is no
+longer rendered on the site (kept for its exports and the app mirror). Verified: tsc, lint (2
+pre-existing warnings), `npm run build`, browser at 1440px and 375px (picker click + keyboard).
+**Suggested commit:** feat(support): ask-first redesign with the karak tip picker
+
 ## [2026-10-24 22:40] Templates: Gulf Standard and Banner pages + preview images
 
 **Goal:** The app gained two templates today (audit + founder pick: Gulf Standard, the labelled UAE

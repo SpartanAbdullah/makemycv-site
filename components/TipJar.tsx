@@ -14,10 +14,12 @@ const KOFI_USERNAME =
 const PAYPAL_HANDLE =
   process.env.NEXT_PUBLIC_PAYPAL_ME_HANDLE || "Abdullah2431";
 
-const KOFI_URL = `https://ko-fi.com/${KOFI_USERNAME}`;
-const PAYPAL_URL = `https://paypal.me/${PAYPAL_HANDLE}`;
+// Exported so the /support hero picker (components/KarakPicker.tsx) sends
+// people to the same two destinations and records the tip the same way.
+export const KOFI_URL = `https://ko-fi.com/${KOFI_USERNAME}`;
+export const PAYPAL_URL = `https://paypal.me/${PAYPAL_HANDLE}`;
 
-function markTipped() {
+export function markTipped() {
   try {
     localStorage.setItem("mmcv_tipped_at", new Date().toISOString());
   } catch {
