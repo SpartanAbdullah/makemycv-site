@@ -16,6 +16,26 @@ Format:
 
 ---
 
+## [2026-10-24 22:40] Templates: Gulf Standard and Banner pages + preview images
+
+**Goal:** The app gained two templates today (audit + founder pick: Gulf Standard, the labelled UAE
+format with a passport photo; Banner, an accent header band with a photo over a single column).
+The marketing site's template gallery and home showcase need their cards and images.
+**Files:**
+- created: `content/templates/gulf-standard.mdx` (order 15, accent indigo) and
+  `content/templates/banner.mdx` (order 45, accent emerald) — tags New, Photo, ATS-Friendly,
+  Single column (same vocabulary as professional-photo: "ATS-Friendly" wears the badge while
+  "Photo" files the card under the photo filter; "ATS-safe" is reserved for the photo-less ones).
+- created: `public/templates/{gulf-standard,banner}[-nophoto]-preview.png` (1588x2246 captures from
+  the app's `/preview/<id>` route) and the matching `-thumb.webp` files (544x769) the showcase uses.
+- created: `scripts/import-template-previews.mjs` — copies `../makemycv-app/artifacts/template-previews/
+  <id>[-nophoto]-preview.png` into `public/templates/` and generates the 544x769 WebP thumbs with
+  sharp. Usage: `node scripts/import-template-previews.mjs <id> ... | --all`. Thumb size must stay in
+  step with `components/home/TemplateShowcase.tsx`.
+**Notes / risks / follow-up:** Deploy together with the app's template PR — the cards link into the
+app, which must know the ids. No copy beyond the frontmatter was written for the new cards.
+**Suggested commit:** feat(templates): Gulf Standard and Banner cards, previews and an import script
+
 ## [2026-10-24 18:10] Analytics: reset GTM data-layer parameters on every push
 
 **Goal:** GTM container version 4 (published 2026-10-24) forwards `tip_click` and `email_subscribe`
