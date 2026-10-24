@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { canonicalUrl } from "@/lib/seo";
+import { EmailSignup } from "@/components/EmailSignup";
+import { ThanksMessage } from "./ThanksMessage";
 
 export const metadata: Metadata = {
   title: "Thank you",
@@ -24,6 +26,7 @@ export default function ThanksPage() {
         <h1 className="font-display text-[clamp(40px,5vw,64px)] font-bold leading-[1.1] tracking-tight-2 text-ink">
           <span className="text-accent">Thank you</span> &#x1F64F;
         </h1>
+        <ThanksMessage />
         <p className="mt-6 text-lg text-ink-2">
           Really &mdash; thank you. Your tip keeps MakeMyCV free for everyone.
         </p>
@@ -44,6 +47,9 @@ export default function ThanksPage() {
           >
             Read the blog
           </Link>
+        </div>
+        <div className="mt-12">
+          <EmailSignup source="thanks" compact />
         </div>
       </div>
     </section>

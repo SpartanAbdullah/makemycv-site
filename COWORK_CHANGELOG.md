@@ -16,6 +16,43 @@ Format:
 
 ---
 
+## [2026-10-24 10:40] Consent banner, CSP report-only, email opt-in, ratings proof, privacy policy rewrite
+
+**Goal:** Site half of the feedback-and-consent work (see makemycv-app COWORK_CHANGELOG, same timestamp).
+The live check found GA4 firing with no consent layer, Google Signals pinging doubleclick, and no CSP on
+www at all.
+**Files:**
+- created: `lib/consent.ts`, `components/consent/{ConsentBanner,CookieSettingsLink,useClientValue}.tsx` —
+  byte-identical copies of the app's (edit both). `app/layout.tsx` runs the Consent Mode v2 default before
+  GTM and mounts the banner (both gated on GTM_ID); `proxy.ts` stamps `mmcv_geo` from the Vercel country
+  header; `components/Footer.tsx` gets "Cookie settings".
+- created: `components/EmailSignup.tsx` — posts cross-origin to app.makemycv.ae/api/subscribe (the app owns
+  the list); renders only with `NEXT_PUBLIC_EMAIL_SIGNUP=1`; hides after a send. Mounted on every blog post
+  above the closing band and on `/thanks`.
+- created: `app/thanks/ThanksMessage.tsx` — `/thanks` is also the landing page for `?subscribed=1|expired`
+  and `?unsubscribed=1` (client-side, page stays static).
+- created: `components/home/RatingsProof.tsx` — the first homepage social proof, and the only kind allowed:
+  real one-tap ratings + human-approved quotes from the app's summary endpoint; renders nothing below 25
+  ratings; emits `aggregateRating` on the page where the number is visible (the exact condition
+  `lib/seo-schema.ts` set). Hourly ISR.
+- edited: `next.config.ts` — `Content-Security-Policy-Report-Only` mirroring the app's policy;
+  `instrumentation-client.ts` reports violations to Sentry (first 3 per page). Flip to enforcing after a
+  few quiet weeks.
+- edited: `components/TipJar.tsx` — `tip_click` with rail + context.
+- edited: `app/privacy/page.tsx` — "Analytics & cookies" rewritten (cookie names, region behaviour,
+  `mmcv_consent`/`mmcv_geo`, Cookie settings link, advertising features off); new "Ratings and quotes" and
+  "Email updates" sections; Supabase (EU) and Resend added to processors; short version updated; dated
+  24 October 2026.
+- edited: `.env.example` — `NEXT_PUBLIC_EMAIL_SIGNUP`.
+**Notes / risks / follow-up:** The privacy policy now states Google's advertising features are OFF —
+switch Google Signals off in the GA4 property before this deploys, or soften the sentence. Verified on a
+local production build: CSP report-only header present with zero violations on the home page; EU banner +
+Accept → cookie; blog form posts `{email, source:"blog"}` to the app; thanks messages; privacy sections.
+**Suggested commit:** feat(site): consent banner + Consent Mode defaults, CSP report-only, email opt-in,
+ratings proof, privacy policy for ratings/email/cookies
+
+---
+
 ## [2026-10-24 07:40] WP-7 / WP-9 (site half): no nested <main> on error pages; privacy policy names the cover letter
 
 **Goal:** Audit F19 (two `<main>` landmarks on the error and not-found pages) and the disclosure the

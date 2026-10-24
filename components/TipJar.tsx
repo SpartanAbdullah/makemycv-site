@@ -1,6 +1,7 @@
 "use client";
 
 import { KofiIcon } from "@/components/KofiIcon";
+import { track } from "@/lib/analytics";
 
 interface TipJarProps {
   variant?: "full" | "compact";
@@ -32,11 +33,13 @@ export const TipJar = ({
   const isCompact = variant === "compact";
 
   const handleKofiClick = () => {
+    track("tip_click", { rail: "kofi", context: context ?? "unknown" });
     markTipped();
     if (onDismiss) setTimeout(onDismiss, 500);
   };
 
   const handlePaypalClick = () => {
+    track("tip_click", { rail: "paypal", context: context ?? "unknown" });
     markTipped();
     if (onDismiss) setTimeout(onDismiss, 500);
   };

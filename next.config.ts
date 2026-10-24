@@ -13,6 +13,27 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=()",
   },
+  {
+    // REPORT-ONLY (2026-10-24): the marketing site had no CSP at all. This
+    // observes for a few weeks via the securitypolicyviolation listener in
+    // instrumentation-client.ts (reports land in Sentry), then flips to
+    // Content-Security-Policy once the allow-list is proven complete.
+    // Mirrors the app's enforced policy; GTM/GA hosts as in the app.
+    key: "Content-Security-Policy-Report-Only",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+      "style-src 'self' 'unsafe-inline'",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data:",
+      "connect-src 'self' https://formspree.io https://app.makemycv.ae https://*.ingest.de.sentry.io https://vitals.vercel-insights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.ae https://stats.g.doubleclick.net https://*.doubleclick.net",
+      "frame-src https://www.googletagmanager.com",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self' https://formspree.io",
+      "frame-ancestors 'self'",
+    ].join("; "),
+  },
 ];
 
 const nextConfig: NextConfig = {

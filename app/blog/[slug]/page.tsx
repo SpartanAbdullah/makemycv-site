@@ -5,6 +5,7 @@ import { getPostBySlug, getAllPosts, getRelatedPosts, formatDate } from '@/lib/b
 import { MDXContent } from '@/lib/mdx'
 import { AuthorBlock } from '@/components/blog/AuthorBlock'
 import { SharePost } from '@/components/blog/SharePost'
+import { EmailSignup } from '@/components/EmailSignup'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { postSchema } from '@/lib/seo-schema'
 import {
@@ -243,6 +244,13 @@ export default async function PostPage({ params }: Props) {
               )}
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* Email opt-in (2026-10-24) — renders nothing until the list exists. */}
+      <section className="bg-paper pb-16">
+        <div className="mx-auto max-w-2xl px-6">
+          <EmailSignup source="blog" />
         </div>
       </section>
 

@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ConsentBanner } from "@/components/consent/ConsentBanner";
+import { CONSENT_DEFAULT_SCRIPT } from "@/lib/consent";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   organizationSchema,
@@ -152,6 +154,14 @@ export default function RootLayout({
         />
         {/* Google Tag Manager — lazyOnload keeps it off the critical path; GTM owns GA4.
             Renders nothing when NEXT_PUBLIC_GTM_ID is absent (localhost, previews). */}
+        {/* Consent Mode v2 default (2026-10-24) — MUST run before GTM. EU/UK/CH
+            visitors start with analytics denied, everyone else granted, a
+            stored choice wins; ad_* is denied for all. See lib/consent.ts. */}
+        {GTM_ID && (
+          <Script id="consent-default" strategy="beforeInteractive">
+            {CONSENT_DEFAULT_SCRIPT}
+          </Script>
+        )}
         {GTM_ID && (
           <Script id="google-tag-manager" strategy="lazyOnload">
             {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -218,6 +228,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <Navbar />
         <main>{children}</main>
         <Footer />
+        {GTM_ID && <ConsentBanner />}
         <Analytics />
         <SpeedInsights />
       </body>

@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { GEO_COOKIE, geoBucket } from "./lib/consent";
 
 /**
  * Edge 404 guard for automated path sweeps.
@@ -50,7 +51,19 @@ export default function proxy(request: NextRequest) {
     return new NextResponse(null, { status: 404 });
   }
 
-  return NextResponse.next();
+  // Region bucket for the consent default (2026-10-24): EU/UK/CH visitors
+  // start with analytics denied. Only the bucket is stored, never the
+  // country. See lib/consent.ts.
+  const res = NextResponse.next();
+  if (!request.cookies.get(GEO_COOKIE)) {
+    res.cookies.set(GEO_COOKIE, geoBucket(request.headers.get("x-vercel-ip-country")), {
+      path: "/",
+      maxAge: 30 * 24 * 60 * 60,
+      sameSite: "lax",
+      secure: request.nextUrl.protocol === "https:",
+    });
+  }
+  return res;
 }
 
 export const config = {

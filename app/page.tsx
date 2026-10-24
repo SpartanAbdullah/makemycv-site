@@ -11,6 +11,7 @@ import { FeatureGrid } from "@/components/home/FeatureGrid";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { SocialSection } from "@/components/home/SocialSection";
+import { RatingsProof } from "@/components/home/RatingsProof";
 
 // All sections render server-side directly. next/dynamic was dropped in the
 // 2026-07 redesign: these are static server components (near-zero client JS),
@@ -79,10 +80,9 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={homepageFaqSchema} />
-      {/* Social-proof section intentionally absent: hard rule — no fabricated
-          user counts, no placeholder testimonials. When real, consented
-          stories exist, add a simple quote block here (name, title, one
-          sentence — no carousel). */}
+      {/* Social proof: ONLY real, first-party, consented — see RatingsProof,
+          which renders nothing until 25+ one-tap ratings exist. Hard rule
+          stands: no fabricated user counts, no placeholder testimonials. */}
       <HeroSection />
       <AiAnswer
         question={homeAiAnswer.q}
@@ -94,6 +94,7 @@ export default function HomePage() {
       <ProblemSolution />
       <FeatureGrid />
       <HowItWorks />
+      <RatingsProof />
       {/* Free-tools discovery strip — the GEO landing pages (calculators,
           checker, examples) get a visible home from the homepage, not just
           the footer. Same component the tool pages use for cross-linking. */}
