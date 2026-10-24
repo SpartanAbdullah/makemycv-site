@@ -16,6 +16,21 @@ Format:
 
 ---
 
+## [2026-10-24 18:10] Analytics: reset GTM data-layer parameters on every push
+
+**Goal:** GTM container version 4 (published 2026-10-24) forwards `tip_click` and `email_subscribe`
+from www to GA4 through Data Layer Variables (`rail`, `context`, `source`, …). GTM keeps each key's
+last value across pushes, so a second event could carry a parameter from the first. Mirror of the
+same fix in makemycv-app/lib/analytics.ts.
+**Files:**
+- edited: `lib/analytics.ts` — `track()` pushes `{ event, ...PARAM_RESET, ...params }`; `PARAM_KEYS`
+  lists the DLV keys read by the container.
+**Notes / risks / follow-up:** The `[data-event]` dispatcher in `app/layout.tsx` pushes its own
+payloads and is unchanged. Add a key in both repos when a new DLV is created in GTM.
+**Suggested commit:** fix(analytics): reset data-layer parameter keys on every push
+
+---
+
 ## [2026-10-24 10:40] Consent banner, CSP report-only, email opt-in, ratings proof, privacy policy rewrite
 
 **Goal:** Site half of the feedback-and-consent work (see makemycv-app COWORK_CHANGELOG, same timestamp).
