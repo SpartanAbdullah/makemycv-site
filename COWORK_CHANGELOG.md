@@ -16,6 +16,27 @@ Format:
 
 ---
 
+## [2026-10-25 22:45] Templates: Chronicle and Harvard pages + preview images; template count 14
+
+**Goal:** The app's 13th and 14th templates (Chronicle: single-column timeline with a date gutter and
+accent rail; Harvard: zero-colour serif, education-first one-page graduate format; app PR from
+`stagingmmc`) need their gallery cards and preview images here, deployed together with the app PR.
+**Files:**
+- created: `content/templates/chronicle.mdx` (order 35, accent blue, tags New / ATS-safe / Single
+  column) and `content/templates/harvard.mdx` (order 42, accent slate, same tags). No "Photo" tag:
+  Chronicle's default is no photo and Harvard has no photo slot, so neither card gets the with/without
+  toggle.
+- added: `public/templates/{chronicle,harvard}-preview.png` + `-preview-thumb.webp` via
+  `node scripts/import-template-previews.mjs chronicle harvard` (captures from the app repo).
+- edited: `app/templates/page.tsx` — title, meta description, lead and FAQ answer said 10 templates;
+  now 14, and the FAQ names Harvard for graduates and Chronicle for a career timeline.
+  `app/free-cv-maker-dubai/page.tsx` ("Choose from 14 templates") and the comment in
+  `components/home/TemplateShowcase.tsx` likewise.
+**Notes / risks / follow-up:** `getFeaturedTemplates` is unused, so the orders only set the gallery
+sequence. Verified: `npm run build` (Velite frontmatter), `npx tsc --noEmit`, `npm run lint` (2
+pre-existing warnings).
+**Suggested commit:** feat(templates): Chronicle and Harvard cards, previews and the 14-template count
+
 ## [2026-10-24 23:10] /support redesign: the ask comes first, karak tip picker
 
 **Goal:** Design handoff `design_handoff_support_karak` (README + "Support Page v2" reference): reorder
