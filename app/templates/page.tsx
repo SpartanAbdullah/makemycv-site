@@ -10,22 +10,22 @@ import { FinalCTA } from "@/components/home/FinalCTA";
 import { TemplateGrid } from "@/components/templates/TemplateGrid";
 
 // Phase B0 — branded "Quick Answer" for AI search. Reconciled with the real
-// app template set (Phase B-T): all 10 templates, honest ATS-Friendly vs
+// app template set (Phase B-T): all 14 templates, honest ATS-Friendly vs
 // Design-led framing. This page has no other FAQPage, so <AiAnswer/> emits
 // its own single-Q FAQPage.
 const templatesAiAnswer = {
   q: "Which CV template should I use for UAE jobs?",
-  lead: "MakeMyCV offers 10 free CV templates built for the UAE job market.",
-  a: "MakeMyCV offers 10 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean for fresh graduates, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and every layout is available with or without a photo.",
+  lead: "MakeMyCV offers 14 free CV templates built for the UAE job market.",
+  a: "MakeMyCV offers 14 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean or Harvard for fresh graduates, Chronicle for a timeline of your career, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and every layout is available with or without a photo.",
 };
 
 /* Rewritten 2026-08-10 (Search Console audit): `cv template uae` earns 14
    impressions at position 4.6 and zero clicks. Leads with "Free" + "UAE" and
    fronts the count, which the old title buried. */
 export const metadata = buildPageMetadata({
-  title: "Free UAE CV Templates — 10 ATS Formats",
+  title: "Free UAE CV Templates — 14 ATS Formats",
   description:
-    "10 free CV templates for Dubai & UAE jobs — ATS-friendly single-column layouts and design-led formats, with or without a photo. No sign-up.",
+    "14 free CV templates for Dubai & UAE jobs — ATS-friendly single-column layouts and design-led formats, with or without a photo. No sign-up.",
   path: "/templates",
 });
 

@@ -143,7 +143,7 @@ const steps = [
   {
     number: "1",
     title: "Pick a template",
-    body: "Choose from 10 templates designed for UAE hiring. Every layout is ATS-parseable and tested against the filters at ENOC, Emaar, and Majid Al Futtaim.",
+    body: "Choose from 14 templates designed for UAE hiring. Every layout is ATS-parseable and tested against the filters at ENOC, Emaar, and Majid Al Futtaim.",
   },
   {
     number: "2",

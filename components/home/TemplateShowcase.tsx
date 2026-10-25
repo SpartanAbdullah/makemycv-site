@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getAllTemplates } from "@/lib/templates";
 
 /**
- * All ten templates in a CSS scroll-snap strip — the cvtoolspro-style
+ * All fourteen templates in a CSS scroll-snap strip — the cvtoolspro-style
  * "abundance" shelf, but with zero client JS: the cut-off card at the
  * container edge is the scroll affordance. Badges are factual only
  * (ATS-safe / Photo / New from the content tags) — no invented
