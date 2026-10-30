@@ -45,8 +45,10 @@ export function BlogIndexClient({
     );
   }, [posts, query, cat]);
 
-  const shown = filtered.slice(0, visible);
-  const remaining = filtered.length - shown.length;
+  // Every matching card is rendered (so all post links are in the server HTML
+  // for crawlers); cards past `visible` are hidden with CSS until "Load more".
+  const shown = filtered;
+  const remaining = Math.max(0, filtered.length - visible);
 
   function selectCat(next: string) {
     setCat(next);
@@ -140,7 +142,7 @@ export function BlogIndexClient({
       {shown.length > 0 ? (
         <div className="mt-8 grid grid-flow-row-dense gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((p, i) => (
-            <Card key={p.slugPath} p={p} eager={i === 0} />
+            <Card key={p.slugPath} p={p} eager={i === 0} hidden={i >= visible} />
           ))}
         </div>
       ) : (
@@ -181,9 +183,12 @@ export function BlogIndexClient({
   );
 }
 
-function Card({ p, eager = false }: { p: CardPost; eager?: boolean }) {
+function Card({ p, eager = false, hidden = false }: { p: CardPost; eager?: boolean; hidden?: boolean }) {
   return (
-    <article className={p.featured ? "sm:col-span-2 lg:col-span-2" : ""}>
+    <article
+      className={[p.featured ? "sm:col-span-2 lg:col-span-2" : "", hidden ? "hidden" : ""].join(" ").trim()}
+      aria-hidden={hidden || undefined}
+    >
       <Link
         href={`/blog/${p.slugPath}`}
         className="group flex h-full flex-col overflow-hidden rounded-[28px] bg-sheet shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
