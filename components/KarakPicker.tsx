@@ -238,9 +238,6 @@ export function KarakPicker({ context = "support-page" }: { context?: string }) 
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleKofiClick}
-        data-event="tipjar_kofi_click"
-        data-context={context}
-        data-cups={cups}
         className="btn-primary mt-5 flex w-full items-center justify-center gap-2.5 px-6 py-4 text-center text-lg font-semibold text-white transition-all duration-200"
       >
         <KofiIcon size={22} />
@@ -253,9 +250,6 @@ export function KarakPicker({ context = "support-page" }: { context?: string }) 
         target="_blank"
         rel="noopener noreferrer"
         onClick={handlePaypalClick}
-        data-event="tipjar_paypal_click"
-        data-context={context}
-        data-cups={cups}
         className="mt-3 flex w-full items-center justify-center gap-2.5 rounded-full bg-sheet px-6 py-3.5 text-[15px] font-semibold text-ink shadow-float transition-all duration-200 ease-in-out hover:-translate-y-px hover:shadow-float-hover"
       >
         {/* eslint-disable-next-line @next/next/no-img-element -- 18px static mark, no optimisation needed */}

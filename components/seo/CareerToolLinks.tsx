@@ -8,6 +8,7 @@ import {
   CalendarDays,
   FileSearch,
   FileSignature,
+  FileText,
   Highlighter,
 } from "lucide-react";
 
@@ -20,6 +21,12 @@ import {
  * URLs, tightly hub-linked, instead of surrendering one to a canonical).
  */
 const tools = [
+  {
+    href: "/free-cv-maker-dubai",
+    icon: FileText,
+    title: "Free CV Maker for Dubai",
+    blurb: "UAE-format CV, 14 templates, no sign-up.",
+  },
   {
     href: "/resume-checker",
     icon: FileSearch,

@@ -18,6 +18,7 @@ const pageLinks = [
 ];
 
 const toolLinks = [
+  { href: "/free-cv-maker-dubai", label: "Free CV Maker Dubai" },
   { href: "/resume-checker", label: "ATS Checker" },
   { href: "/gratuity-calculator", label: "Gratuity Calculator" },
   { href: "/notice-period-calculator", label: "Notice Period Calculator" },

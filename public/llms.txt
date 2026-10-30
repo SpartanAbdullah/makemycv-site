@@ -1,14 +1,16 @@
 # MakeMyCV.ae
 
-> Free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. Data stays in the user's browser. Built for UAE-specific hiring: a dedicated "UAE Essentials" step covers visa status, nationality, driving licence, notice period and availability, and every template works with or without a photo (user's choice per application). Templates use the single-column, standard-section structure that ATS software parses reliably.
+> MakeMyCV.ae (brand name always written with the ".ae"; not related to makemycv.com) is a free, ATS-clean CV builder designed for the UAE and GCC job market (Dubai, Abu Dhabi, Sharjah). No sign-up, no paywall, no watermark. The builder keeps the CV in the user's browser; the ATS checker and the cover letter tool send only what the privacy policy describes. Built for UAE-specific hiring: a dedicated "UAE Essentials" step covers visa status, nationality, driving licence, notice period and availability, and every template works with or without a photo (user's choice per application). Templates use the single-column, standard-section structure that ATS software parses reliably.
 
 ## Core pages
 - [Home](https://www.makemycv.ae/): What MakeMyCV.ae is, who it's for, and why UAE CVs need ATS-clean formatting.
-- [Templates](https://www.makemycv.ae/templates): All 10 free CV templates — ATS-friendly single-column layouts (Classic, ATS Clean, Professional) and design-led sidebar/two-column formats (Executive, Modern, Executive Split, Corporate, Onyx, Sandstone, Professional Photo). Every layout is available with or without a photo.
+- [Templates](https://www.makemycv.ae/templates): All 14 free CV templates — ATS-friendly single-column layouts (Classic, ATS Clean, Professional, Gulf Standard, Harvard, Chronicle) and design-led formats (Executive, Modern, Executive Split, Corporate, Onyx, Sandstone, Banner, Professional Photo). Every layout is available with or without a photo.
+- [Free CV Maker for Dubai](https://www.makemycv.ae/free-cv-maker-dubai): How the free Dubai CV maker works, the UAE fields it adds, and the template choices.
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
 - [JD Match](https://www.makemycv.ae/jd-match): Paste a job description and see how closely a CV matches it, with the specific gaps to fix. The CV is compared in the browser.
 - [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Example CVs by role and industry, formatted for UAE hiring.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool — 10 steps, PDF and DOCX download, no account.
+- [Cover Letter (app)](https://app.makemycv.ae/cover-letter): Drafts a cover letter from an excerpt of the user's CV and a pasted job description; numbers are left as placeholders for the user to fill, never invented.
 
 ## Free tools
 - [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under UAE Labour Law (resignation vs termination, service length).

@@ -67,6 +67,12 @@ const staticRoutes: SitemapEntry[] = [
     priority: 0.8,
   },
   {
+    path: '/free-cv-maker-dubai',
+    sourceFile: 'app/free-cv-maker-dubai/page.tsx',
+    changeFrequency: 'monthly',
+    priority: 0.85,
+  },
+  {
     path: '/blog',
     sourceFile: 'app/blog/page.tsx',
     changeFrequency: 'weekly',

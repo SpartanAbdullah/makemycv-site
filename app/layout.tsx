@@ -7,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ConsentBanner } from "@/components/consent/ConsentBanner";
 import { CONSENT_DEFAULT_SCRIPT } from "@/lib/consent";
+import { PARAM_KEYS } from "@/lib/analytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   organizationSchema,
@@ -211,11 +212,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
               if (!el) return;
               var eventName = el.getAttribute('data-event');
               if (!eventName) return;
+              // Same reset as track(): GTM keeps the last value of every Data
+              // Layer Variable across pushes, so every known key is cleared
+              // first and only allow-listed data-* attributes are forwarded.
+              var keys = ${JSON.stringify(PARAM_KEYS)};
               var payload = { event: eventName };
+              for (var k = 0; k < keys.length; k++) payload[keys[k]] = undefined;
               for (var i = 0; i < el.attributes.length; i++) {
                 var attr = el.attributes[i];
                 if (attr.name.indexOf('data-') === 0 && attr.name !== 'data-event') {
-                  payload[attr.name.slice(5).replace(/-/g, '_')] = attr.value;
+                  var key = attr.name.slice(5).replace(/-/g, '_');
+                  if (keys.indexOf(key) !== -1) payload[key] = attr.value;
                 }
               }
               window.dataLayer = window.dataLayer || [];

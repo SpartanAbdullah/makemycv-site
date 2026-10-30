@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getAllPosts, formatDate } from '@/lib/blog'
 import { buildPageMetadata, canonicalUrl } from '@/lib/seo'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { breadcrumbSchema } from '@/lib/seo-schema'
+import { authorPageSchema, breadcrumbSchema } from '@/lib/seo-schema'
 
 export const metadata = buildPageMetadata({
   title: 'MakeMyCV Team — UAE CV Specialists',
@@ -22,6 +22,7 @@ export default function AuthorPage() {
   return (
     <>
       <JsonLd data={authorBreadcrumb} />
+      <JsonLd data={authorPageSchema()} />
       {/* Hero — warm-paper skin (Part 3 reskin): paper band + green wash
           instead of the legacy dark hero band. */}
       <section className="relative bg-paper py-16 md:py-20 overflow-hidden">

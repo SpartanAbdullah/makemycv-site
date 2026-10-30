@@ -56,6 +56,28 @@ const GCC_AREA_SERVED = [
 /* Entity primitives                                                    */
 /* ──────────────────────────────────────────────────────────────────── */
 
+/**
+ * The editorial author entity. Every Article references it by `@id`
+ * (`/author/makemycv-team#author`); the author page itself must emit the
+ * same node so the reference resolves to a real entity on its own URL.
+ */
+function authorPerson(name = "MakeMyCV Team") {
+  return {
+    "@type": "Person",
+    "@id": `${canonicalUrl(AUTHOR_PAGE_PATH)}#author`,
+    name,
+    url: canonicalUrl(AUTHOR_PAGE_PATH),
+    description:
+      "MakeMyCV editorial team writing about UAE and Gulf job market CV strategy.",
+    worksFor: { "@id": ORGANIZATION_ID },
+  };
+}
+
+/** Standalone Person node for /author/makemycv-team. */
+export function authorPageSchema() {
+  return { "@context": "https://schema.org", ...authorPerson() };
+}
+
 export function organizationSchema() {
   return {
     "@type": "Organization",
@@ -292,15 +314,7 @@ export function postSchema(post: Post) {
     ],
   };
 
-  const author = {
-    "@type": "Person",
-    "@id": `${canonicalUrl(AUTHOR_PAGE_PATH)}#author`,
-    name: post.author,
-    url: canonicalUrl(AUTHOR_PAGE_PATH),
-    description:
-      "MakeMyCV editorial team writing about UAE and Gulf job market CV strategy.",
-    worksFor: { "@id": ORGANIZATION_ID },
-  };
+  const author = authorPerson(post.author);
 
   const graph: Array<Record<string, unknown>> = [article, breadcrumb, author];
 
