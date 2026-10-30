@@ -17,7 +17,7 @@ const differentiators = [
   },
   {
     claim: "Your CV stays on your device.",
-    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI bullet rewriter sends only the text you ask it to improve, nothing else. Nothing to leak, nothing to sell.",
+    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI helpers — bullet rewriter, cover letter, ATS checker — send only the text each one needs, listed on our privacy page, nothing else. Nothing to leak, nothing to sell.",
   },
 ];
 
@@ -49,7 +49,8 @@ export function FeatureGrid() {
 
         <p className="mt-8 text-center text-sm text-muted">
           Also included: live preview as you type · instant PDF &amp; DOCX
-          export · free AI bullet rewriter · no watermark, ever.
+          export · free AI bullet rewriter · a cover letter written from your
+          CV · no watermark, ever.
         </p>
       </Reveal>
     </section>

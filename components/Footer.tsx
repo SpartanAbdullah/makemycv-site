@@ -20,6 +20,7 @@ const pageLinks = [
 const toolLinks = [
   { href: "/free-cv-maker-dubai", label: "Free CV Maker Dubai" },
   { href: "/resume-checker", label: "ATS Checker" },
+  { href: "https://app.makemycv.ae/cover-letter", label: "Cover Letter" },
   { href: "/gratuity-calculator", label: "Gratuity Calculator" },
   { href: "/notice-period-calculator", label: "Notice Period Calculator" },
   { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
