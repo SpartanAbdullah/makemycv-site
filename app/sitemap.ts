@@ -1,6 +1,4 @@
 import type { MetadataRoute } from 'next'
-import fs from 'fs'
-import path from 'path'
 import { canonicalUrl } from '@/lib/seo'
 import { getAllPosts } from '@/lib/blog'
 
@@ -110,14 +108,12 @@ const staticRoutes: SitemapEntry[] = [
   },
 ]
 
-function getLastModified(filePath: string): Date {
-  return fs.statSync(path.join(process.cwd(), filePath)).mtime
-}
-
+// No lastModified for static routes: the previous value was the source
+// file's mtime at build time, which every fresh clone/CI build resets, so it
+// told crawlers "changed today" on every deploy. Posts keep their real dates.
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
     url: canonicalUrl(route.path),
-    lastModified: getLastModified(route.sourceFile),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }))

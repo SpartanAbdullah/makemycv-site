@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
-import { withSentryConfig } from "@sentry/nextjs";
+// `@sentry/nextjs/config` is the supported import path from SDK v10.7x on;
+// the root import logs a deprecation at build time and stops working in v11.
+import { withSentryConfig } from "@sentry/nextjs/config";
 
 const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
