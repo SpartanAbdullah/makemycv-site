@@ -16,6 +16,27 @@ Format:
 
 ---
 
+## [2026-10-31 15:40] Ops: daily production monitor + weekly competitor watch (session 6)
+
+**Goal:** a real scheduler for the post-release checks that so far ran only when someone remembered
+(docs/ai-mission/OPERATIONS_RUNBOOK.md in the workspace). Nothing in this entry changes the site itself.
+**Files:**
+- created: `scripts/prod-check.mjs` - the 8 post-release checks from the workspace
+  `docs/ai-mission/tools/prod-check.mjs` (keep both in step) + `--sitemap`: sitemap.xml 200 and every `<loc>`
+  answers 200 itself (redirects not followed, one retry, 4 in flight).
+- created: `.github/workflows/prod-monitor.yml` - daily 04:15 UTC + dispatch + push-on-change: checks, sitemap,
+  `npm run check:checklist` (a "skipped" counts as failure here); logs as artifacts; one open `prod-monitor` issue
+  on failure (closed on recovery); the job fails so GitHub emails the owner.
+- created: `scripts/competitor-check.mjs`, `scripts/competitor-urls.json` (53 public home/pricing URLs from the
+  workspace competitors.json) and `.github/workflows/competitor-watch.yml` - Mondays 05:00 UTC: prices + feature
+  terms per page, compared with last week's state (artifact `competitor-state`, 90 days); issue labelled
+  `competitor-watch` only when new values hold on two consecutive 200 runs (rotating testimonials never confirm;
+  amounts of 10,000+ ignored as salaries). Sequential, 1.5 s apart. Monitor dispatch input `simulate_failure` = alert drill.
+**Notes / risks / follow-up:** `schedule:` fires only from `main`, so both become daily/weekly after the next
+release; until then they run via `gh workflow run <file> --ref staging`. Local run 2026-10-31: prod-check 8/8,
+sitemap 51/51 URLs 200, checklist contract ok (44). Lint 2/2 unchanged.
+**Suggested commit:** feat(ops): daily production monitor + weekly competitor watch
+
 ## [2026-10-31 14:30] Dubai CV post restructured as an 8-step procedure (FEATURE_BACKLOG B9)
 
 **Goal:** Perplexity answers "How do I create a resume for Dubai jobs?" from pikaresume / resumemate /
