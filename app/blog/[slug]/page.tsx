@@ -141,7 +141,7 @@ export default async function PostPage({ params }: Props) {
               </>
             )}
             <span>&middot;</span>
-            <span>{post.readingTime ?? 5} min read</span>
+            <span>{post.readingTime ?? post.metadata?.readingTime ?? 5} min read</span>
           </div>
         </div>
       </section>
@@ -237,7 +237,7 @@ export default async function PostPage({ params }: Props) {
                             {related.title}
                           </p>
                           <p className="text-xs text-muted mt-1">
-                            {related.readingTime ?? 5} min read
+                            {related.readingTime ?? related.metadata?.readingTime ?? 5} min read
                           </p>
                         </div>
                       </Link>
