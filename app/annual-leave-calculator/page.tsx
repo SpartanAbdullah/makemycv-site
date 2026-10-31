@@ -10,6 +10,7 @@ import {
   TrustBadge,
   WageBasisExplainer,
   SettlementFooter,
+  NextRoleCta,
 } from "@/components/tools/CalculatorShared";
 
 /* Rewritten 2026-08-10 (Search Console audit). "Free" to the front; title cut
@@ -194,6 +195,7 @@ export default function AnnualLeaveCalculatorPage() {
         <div className="mx-auto max-w-5xl px-6">
           <TrustBadge />
           <LeaveCalculator />
+          <NextRoleCta tool="leave" />
         </div>
       </section>
 

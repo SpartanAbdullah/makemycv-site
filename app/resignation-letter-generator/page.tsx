@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { ResignationLetterGenerator } from "@/components/tools/ResignationLetterGenerator";
-import { TrustBadge } from "@/components/tools/CalculatorShared";
+import { TrustBadge, NextRoleCta } from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
   title: "UAE Resignation Letter Generator",
@@ -179,6 +179,7 @@ export default function ResignationLetterGeneratorPage() {
         <div className="mx-auto max-w-3xl px-6">
           <TrustBadge />
           <ResignationLetterGenerator />
+          <NextRoleCta tool="resignation" />
         </div>
       </section>
 

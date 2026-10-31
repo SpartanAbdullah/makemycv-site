@@ -10,6 +10,7 @@ import {
   TrustBadge,
   WageBasisExplainer,
   SettlementFooter,
+  NextRoleCta,
 } from "@/components/tools/CalculatorShared";
 
 /* Rewritten 2026-08-10 (Search Console audit). "Free" moved to the front, and
@@ -216,6 +217,7 @@ export default function GratuityCalculatorPage() {
         <div className="mx-auto max-w-3xl px-6">
           <TrustBadge />
           <GratuityCalculator />
+          <NextRoleCta tool="gratuity" />
         </div>
       </section>
 

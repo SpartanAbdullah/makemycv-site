@@ -10,6 +10,7 @@ import {
   TrustBadge,
   WageBasisExplainer,
   SettlementFooter,
+  NextRoleCta,
 } from "@/components/tools/CalculatorShared";
 
 /* Rewritten 2026-08-10 (Search Console audit). "Free" to the front; title cut
@@ -207,6 +208,7 @@ export default function NoticePeriodCalculatorPage() {
         <div className="mx-auto max-w-3xl px-6">
           <TrustBadge />
           <NoticePeriodCalculator />
+          <NextRoleCta tool="notice" />
           {/* Next step in the resigning journey — the letter itself. */}
           <Link
             href="/resignation-letter-generator"

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ShieldCheck, ArrowRight } from "lucide-react";
+import { APP_URL } from "@/lib/seo";
+import { ctaAttrs } from "@/lib/inline-cta";
 
 /**
  * Shared server-rendered blocks for the three calculators, built from the
@@ -18,6 +20,51 @@ export function TrustBadge() {
       <ShieldCheck size={14} className="shrink-0" />
       No sign-up · No email · No ads · Nothing stored
     </p>
+  );
+}
+
+/**
+ * NextRoleCta — sits directly under the tool, where the result appears.
+ * Search Console (3 months to 2026-10-29) sends the calculators ~42K
+ * impressions, and the GA4 landing-page report (Oct 3–30) shows 0 sessions
+ * that landed on a calculator reaching the builder: the only builder link
+ * was a card ~75 % down the page. Someone working out gratuity, notice or
+ * leave is usually changing jobs, so the CV offer goes next to the number.
+ * Tracked as `cta_click` with `<tool>_result_build_cv` / `calculator_result`.
+ * The guide link is a plain internal link (blog links stay untracked).
+ */
+export type CalculatorTool = "gratuity" | "notice" | "leave" | "resignation";
+
+export function NextRoleCta({ tool }: { tool: CalculatorTool }) {
+  return (
+    <div className="mt-6 rounded-2xl border border-accent/20 bg-accent-soft p-5 md:p-6">
+      <p className="font-display text-lg font-bold text-ink">
+        Applying for your next role?
+      </p>
+      <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">
+        Build a UAE-format CV &mdash; free. Visa status and availability have
+        their own fields, and there is no sign-up.
+      </p>
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
+        <a
+          href={APP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+          {...ctaAttrs(`${tool}_result_build_cv`, "calculator_result")}
+        >
+          Build my UAE CV &mdash; free
+          <ArrowRight size={14} aria-hidden="true" />
+        </a>
+        <Link
+          href="/blog/uae-cv-mistakes"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:underline"
+        >
+          15 UAE CV mistakes to fix first
+          <ArrowRight size={13} aria-hidden="true" />
+        </Link>
+      </div>
+    </div>
   );
 }
 
