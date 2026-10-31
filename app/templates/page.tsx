@@ -170,7 +170,7 @@ export default function TemplatesPage() {
         slugs={[
           "cv-format-uae-2026",
           "should-cv-have-photo-uae",
-          "ats-cv-checklist-uae",
+          "uae-cv-mistakes",
         ]}
       />
       <FinalCTA eventName="templates_final_cta_click" />

@@ -276,7 +276,7 @@ export default function ResumeCheckerPage() {
         slugs={[
           "does-dubai-use-ats",
           "ats-cv-checklist-uae",
-          "cv-format-uae-2026",
+          "uae-cv-mistakes",
         ]}
       />
       <FinalCTA />

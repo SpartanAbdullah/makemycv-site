@@ -16,6 +16,62 @@ Format:
 
 ---
 
+## [2026-10-31 12:45] Inbound links for the two 2026-10-31 posts (Mission 6 check)
+
+**Goal:** `/blog/uae-cv-mistakes` had 2 inbound links (cv-format-uae-2026 and the hospitality post) and
+`/blog/hospitality-cv-uae` had none; both needed at least two from relevant pages. Sitemap and blog index
+already carry both (`getAllPosts()` on `published: true`, confirmed in the build), and each post already
+links to the checker, JD Match and /cv-examples-uae.
+**Files:**
+- edited: `app/resume-checker/page.tsx` — ReadNext: `cv-format-uae-2026` → `uae-cv-mistakes` (the format
+  guide stays on home, /templates and the notice-period calculator).
+- edited: `app/templates/page.tsx` — ReadNext: `ats-cv-checklist-uae` → `uae-cv-mistakes` (the checklist
+  stays on /jd-match and /resume-checker).
+- edited: `app/cv-examples-uae/page.tsx` — new "Sector guides" ReadNext block before the internal-links
+  section: `hospitality-cv-uae`, `nursing-cv-uae` (also had zero inbound links), `professional-summary-examples-uae-cv`.
+- edited: `content/blog/cv-for-freshers-uae.mdx` — one parenthetical under "Handle Visa Status Honestly"
+  linking the hospitality guide (qualitative wording, no figure); `dateModified` → 2026-10-31. seo-reviewer:
+  PASS, no blockers; three pre-existing NICE items (FAQ 3 and FAQ 5 body wording drifts slightly from
+  `faqs:`; FAQ 3 carries an unsourced "recruiters spend only seconds" clause) left for the next refresh.
+- edited: `public/llms.txt` — both posts added (mistakes under "UAE CV format and ATS", hospitality under
+  "by situation").
+**Notes / risks / follow-up:** inbound links in the prerendered HTML after: mistakes 2 → 4 pages
+(cv-format-uae-2026, hospitality-cv-uae, /resume-checker, /templates); hospitality 0 → 2 pages
+(/cv-examples-uae, cv-for-freshers-uae) plus llms.txt for both. Gates: tsc clean, lint 2 warnings
+(cap 2), `npm run build` green.
+**Suggested commit:** seo(links): inbound links for the UAE CV mistakes and hospitality CV posts
+
+---
+
+## [2026-10-31 12:40] Checker-count drift check against the app (Mission 8)
+
+**Goal:** this site stated "44 checks" and the four family counts in `WhatWeCheck.tsx`, and "40+ UAE-tuned
+checks" in ~14 places, with nothing tying them to the app's score engine. The app now serves its list at
+`GET https://app.makemycv.ae/api/resume-checker/checklist` (`{ version: 1, count, categories: [{ id, label,
+count, items }] }`); this adds the site half of the contract. The rendered list stays static for SEO — no
+build-time fetch — so the check is a CI script, not a runtime dependency.
+**Files:**
+- created: `lib/checkerChecklist.ts` — the one place with `CHECK_COUNT` (44), `checkFamilies` (ids =
+  the app's category ids, counts 14/7/14/9, item wording), `CHECK_COUNT_COPY_FLOOR` (40, the "40+" copy),
+  `CHECKLIST_ENDPOINT`, `CHECKLIST_CONTRACT_VERSION`. React-free so the script can import it under tsx.
+- edited: `components/resume-checker/WhatWeCheck.tsx` — imports from that module; icons keyed by family id.
+  Rendered output unchanged.
+- created: `scripts/check-checklist-contract.mjs` — fetches the endpoint (`CHECKLIST_URL` overrides), checks
+  version, total, per-category counts by id, the 40+ floor and the payload's own consistency. 200 + match →
+  exit 0; mismatch → exit 1 with each difference; non-200 → "skipped: endpoint <status>", exit 0; network
+  error → exit 1. Verified pass (against a local app dev server on :3700), 404-skip, and a simulated 45/15
+  mismatch (exit 1). Uses `process.exitCode`, not `process.exit()` — the latter tripped a libuv assertion
+  on Windows with an undrained response body.
+- edited: `package.json` — `npm run check:checklist`.
+- edited: `.github/workflows/ci.yml` — `checklist-contract` job, `continue-on-error: true`.
+**Notes / risks / follow-up:** until the app's `stagingmmc` reaches `main`, production answers 404 and the
+job reports "skipped". The "40+" strings themselves are not imported from the module (MDX files cannot);
+the floor constant and the grep hint in the module's comment are the maintenance handle. If the engine
+drops below 40 the script fails and names that copy. Gates: tsc clean, lint 2 warnings (cap 2), build green.
+**Suggested commit:** ci(checker): checker-count contract check against the app endpoint
+
+---
+
 ## [2026-10-25 22:45] Templates: Chronicle and Harvard pages + preview images; template count 14
 
 **Goal:** The app's 13th and 14th templates (Chronicle: single-column timeline with a date gutter and
