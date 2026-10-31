@@ -8,6 +8,7 @@ import { getAllTemplates } from "@/lib/templates";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FinalCTA } from "@/components/home/FinalCTA";
 import { TemplateGrid } from "@/components/templates/TemplateGrid";
+import { ReadNext } from "@/components/seo/ReadNext";
 
 // Phase B0 — branded "Quick Answer" for AI search. Reconciled with the real
 // app template set (Phase B-T): all 14 templates, honest ATS-Friendly vs
@@ -162,6 +163,16 @@ export default function TemplatesPage() {
 
       {/* Conversion close — the browse page must not dead-end at the ATS
           fear panel; same green band the homepage funnels into. */}
+      {/* B5 — format, photo and ATS guides: the decisions people make while
+          choosing a template. */}
+      <ReadNext
+        className="bg-paper-2"
+        slugs={[
+          "cv-format-uae-2026",
+          "should-cv-have-photo-uae",
+          "ats-cv-checklist-uae",
+        ]}
+      />
       <FinalCTA eventName="templates_final_cta_click" />
     </>
   );

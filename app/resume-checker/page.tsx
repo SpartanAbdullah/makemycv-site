@@ -16,6 +16,7 @@ import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
@@ -270,6 +271,14 @@ export default function ResumeCheckerPage() {
       <PricingClarity />
       <ResumeCheckerFAQ />
       <CareerToolLinks currentPath="/resume-checker" />
+      {/* B5 — the ATS-mechanics cluster (see CLAUDE.md collision clusters). */}
+      <ReadNext
+        slugs={[
+          "does-dubai-use-ats",
+          "ats-cv-checklist-uae",
+          "cv-format-uae-2026",
+        ]}
+      />
       <FinalCTA />
     </>
   );

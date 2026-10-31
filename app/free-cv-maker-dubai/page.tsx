@@ -13,6 +13,7 @@ import { faqPageSchema } from "@/lib/seo-schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CvMakerHero } from "@/components/cv-maker-dubai/CvMakerHero";
@@ -391,6 +392,15 @@ export default function CvMakerDubaiPage() {
       <MakerFeatures />
       <CareerToolLinks currentPath="/free-cv-maker-dubai" />
       <CvMakerFAQ />
+      {/* B5 — Dubai-specific how-to, the photo question, and summary copy. */}
+      <ReadNext
+        className="bg-paper-2"
+        slugs={[
+          "how-to-make-cv-for-job-in-dubai",
+          "should-cv-have-photo-uae",
+          "professional-summary-examples-uae-cv",
+        ]}
+      />
       <CvMakerFinalCTA />
     </>
   );

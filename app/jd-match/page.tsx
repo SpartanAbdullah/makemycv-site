@@ -8,6 +8,7 @@ import { JdMatchFAQ, faqItems } from "@/components/jd-match/JdMatchFAQ";
 import { JdMatchFinalCTA } from "@/components/jd-match/JdMatchFinalCTA";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { APP_URL, SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 
 // Phase B0 — branded "Quick Answer" for AI search. Answers Q6 ("tool to check
@@ -212,6 +213,14 @@ export default function JdMatchPage() {
       <HonestMatching />
       <JdMatchFAQ />
       <CareerToolLinks currentPath="/jd-match" />
+      {/* B5 — tailoring guides: the checklist, why CVs get ignored, summaries. */}
+      <ReadNext
+        slugs={[
+          "ats-cv-checklist-uae",
+          "why-cv-ignored-dubai",
+          "professional-summary-examples-uae-cv",
+        ]}
+      />
       <JdMatchFinalCTA />
     </>
   );

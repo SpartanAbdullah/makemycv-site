@@ -3,6 +3,7 @@ import { Calculator, FileCheck2, ArrowRight, Banknote } from "lucide-react";
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { NoticePeriodCalculator } from "@/components/tools/NoticePeriodCalculator";
 import {
@@ -385,6 +386,17 @@ export default function NoticePeriodCalculatorPage() {
           </Link>
         </div>
       </section>
+      {/* B5 — notice period feeds the availability line on a UAE CV and the
+          timing of the next application. */}
+      <ReadNext
+        className="bg-paper-2"
+        title="Planning the next move? Start here."
+        slugs={[
+          "cv-format-uae-2026",
+          "uae-hiring-season-september",
+          "how-to-get-a-job-in-dubai-2026",
+        ]}
+      />
     </>
   );
 }

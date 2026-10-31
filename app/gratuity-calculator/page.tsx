@@ -3,6 +3,7 @@ import { Calculator, FileCheck2, ArrowRight } from "lucide-react";
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { GratuityCalculator } from "@/components/tools/GratuityCalculator";
 import {
@@ -374,6 +375,17 @@ export default function GratuityCalculatorPage() {
           </Link>
         </div>
       </section>
+      {/* B5 — someone working out their gratuity is usually leaving a job:
+          the next-job guides. */}
+      <ReadNext
+        className="bg-paper-2"
+        title="Planning the next move? Start here."
+        slugs={[
+          "how-to-get-a-job-in-dubai-2026",
+          "employment-gaps-uae-cv",
+          "linkedin-profile-uae-jobs",
+        ]}
+      />
     </>
   );
 }
