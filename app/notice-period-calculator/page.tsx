@@ -15,11 +15,17 @@ import {
 /* Rewritten 2026-08-10 (Search Console audit). "Free" to the front; title cut
    from 53 to 33 chars because with the " | MakeMyCV.ae" suffix the old one
    rendered at 67 and truncated. Law citation stays in the body, quick answer
-   and FAQPage schema — see the note on the gratuity calculator. */
+   and FAQPage schema — see the note on the gratuity calculator.
+
+   Rewritten again 2026-10-31 (GSC, last 3 months: 12,470 impressions, 0.8 %
+   CTR, pos 6.5). Adds the "last working day" intent because the tool really
+   outputs one (optional notice-start date → lastWorkingDay() in
+   components/tools/notice.ts) and "pay in lieu" for the "is notice period
+   paid" queries. Title renders at exactly 60 chars with the suffix. */
 export const metadata = buildPageMetadata({
-  title: "UAE Notice Period Calculator",
+  title: "UAE Notice Period Calculator: Last Working Day",
   description:
-    "Free UAE notice period calculator. Check the notice you must give or receive under UAE Labour Law — 30–90 days after probation, 14 or 30 during it.",
+    "Free UAE notice period calculator: notice to give or receive (30–90 days after probation, 14 or 30 during it), your last working day and pay in lieu.",
   path: "/notice-period-calculator",
 });
 
