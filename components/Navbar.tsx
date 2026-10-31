@@ -8,14 +8,23 @@ import { usePathname } from "next/navigation";
    doesn't belong in the primary nav — it competes with the tool links for the
    one row of attention that actually drives usage. It stays linked sitewide
    from the footer, so it keeps its internal links and remains crawlable. */
-const links = [
+/* `ctaId` marks the nav links that open a product surface; the delegated
+   [data-event] dispatcher in app/layout.tsx turns the data-* attributes into a
+   `cta_click` push (GA4 audit §8, 2026-10-31). Plain pages stay untracked. */
+const links: { href: string; label: string; ctaId?: string }[] = [
   { href: "/", label: "Home" },
   { href: "/templates", label: "Templates" },
-  { href: "/jd-match", label: "JD Match" },
+  { href: "/jd-match", label: "JD Match", ctaId: "navbar_jd_match" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
+
+/* Mobile menu ids carry a `_mobile` suffix, matching navbar_build_cv_mobile. */
+const ctaAttrs = (ctaId: string | undefined, suffix = "") =>
+  ctaId
+    ? { "data-event": "cta_click", "data-cta-id": `${ctaId}${suffix}`, "data-cta-location": "navbar" }
+    : undefined;
 
 export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -71,6 +80,7 @@ export const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
+                {...ctaAttrs(link.ctaId)}
                 className={`relative text-sm font-semibold transition-colors duration-150 after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-150 ${
                   isActive
                     ? "text-accent after:w-full"
@@ -143,6 +153,7 @@ export const Navbar = () => {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
+                  {...ctaAttrs(link.ctaId, "_mobile")}
                   className={`text-sm font-medium transition-colors duration-150 ${
                     isActive ? "text-accent" : "text-ink-2 hover:text-accent"
                   }`}
