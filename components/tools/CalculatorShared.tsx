@@ -26,10 +26,12 @@ export function TrustBadge() {
 /**
  * NextRoleCta — sits directly under the tool, where the result appears.
  * Search Console (3 months to 2026-10-29) sends the calculators ~42K
- * impressions, and the GA4 landing-page report (Oct 3–30) shows 0 sessions
- * that landed on a calculator reaching the builder: the only builder link
- * was a card ~75 % down the page. Someone working out gratuity, notice or
- * leave is usually changing jobs, so the CV offer goes next to the number.
+ * impressions. In the GA4 landing-page report (Oct 3–30, Hostname as the
+ * secondary dimension) the gratuity, notice and leave landings have no row
+ * with app.makemycv.ae events and the resignation generator has 2 sessions
+ * (96 landed). The only builder link was a card ~75 % down the page.
+ * Someone working out gratuity, notice or leave is usually changing jobs,
+ * so the CV offer goes next to the number.
  * Tracked as `cta_click` with `<tool>_result_build_cv` / `calculator_result`.
  * The guide link is a plain internal link (blog links stay untracked).
  */
