@@ -3,6 +3,7 @@ import { Calculator, FileCheck2, ArrowRight } from "lucide-react";
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { GratuityCalculator } from "@/components/tools/GratuityCalculator";
 import {
@@ -368,12 +369,23 @@ export default function GratuityCalculatorPage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                Free ATS checker — 60+ UAE-tuned checks in about a minute.
+                Free ATS checker — 40+ UAE-tuned checks in about a minute.
               </span>
             </span>
           </Link>
         </div>
       </section>
+      {/* B5 — someone working out their gratuity is usually leaving a job:
+          the next-job guides. */}
+      <ReadNext
+        className="bg-paper-2"
+        title="Planning the next move? Start here."
+        slugs={[
+          "how-to-get-a-job-in-dubai-2026",
+          "employment-gaps-uae-cv",
+          "linkedin-profile-uae-jobs",
+        ]}
+      />
     </>
   );
 }

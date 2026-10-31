@@ -8,6 +8,7 @@ import {
   CalendarDays,
   FileSearch,
   FileSignature,
+  FileText,
   Highlighter,
 } from "lucide-react";
 
@@ -21,10 +22,16 @@ import {
  */
 const tools = [
   {
+    href: "/free-cv-maker-dubai",
+    icon: FileText,
+    title: "Free CV Maker for Dubai",
+    blurb: "UAE-format CV, 14 templates, no sign-up.",
+  },
+  {
     href: "/resume-checker",
     icon: FileSearch,
     title: "ATS Resume Checker",
-    blurb: "60+ UAE-tuned checks in about a minute.",
+    blurb: "40+ UAE-tuned checks in about a minute.",
   },
   {
     href: "/jd-match",

@@ -17,7 +17,7 @@ const differentiators = [
   },
   {
     claim: "Your CV stays on your device.",
-    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI bullet rewriter sends only the text you ask it to improve, nothing else. Nothing to leak, nothing to sell.",
+    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI helpers — bullet rewriter, cover letter, ATS checker — send only the text each one needs, listed on our privacy page, nothing else. Nothing to leak, nothing to sell.",
   },
 ];
 
@@ -49,7 +49,20 @@ export function FeatureGrid() {
 
         <p className="mt-8 text-center text-sm text-muted">
           Also included: live preview as you type · instant PDF &amp; DOCX
-          export · free AI bullet rewriter · no watermark, ever.
+          export · free AI bullet rewriter · a cover letter written from your
+          CV · no watermark, ever.
+        </p>
+        {/* Honest-AI claim (backlog B4). Backed by code in makemycv-app: the
+            ai-improve, cover-letter and linkedin-message prompts forbid invented
+            figures and ask for the literal {{number}} token instead;
+            lib/ai/placeholders.ts normalises every variant to that token and
+            hasPlaceholder() blocks insert/copy/export while one remains. Keep
+            this sentence in step with those prompts. */}
+        <p className="mt-3 text-center text-sm text-muted">
+          The AI helpers are built not to invent figures: they are instructed to
+          use only what is in your CV, and any number they would otherwise add
+          is turned into a placeholder for you to fill in. Read every draft
+          before you send it.
         </p>
       </Reveal>
     </section>

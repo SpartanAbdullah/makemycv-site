@@ -97,8 +97,6 @@ export const TipJar = ({
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleKofiClick}
-        data-event="tipjar_kofi_click"
-        data-context={context}
         className={`mt-6 inline-flex w-full items-center justify-center gap-2.5 btn-primary text-center font-semibold text-white transition-all duration-200 ${
           isCompact ? "px-5 py-3 text-base" : "px-6 py-4 text-lg"
         }`}
@@ -114,8 +112,6 @@ export const TipJar = ({
           target="_blank"
           rel="noopener noreferrer"
           onClick={handlePaypalClick}
-          data-event="tipjar_paypal_click"
-          data-context={context}
           className="text-sm font-medium text-muted underline-offset-4 hover:text-accent hover:underline"
         >
           Prefer PayPal? Tip via PayPal instead &rarr;

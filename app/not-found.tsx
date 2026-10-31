@@ -30,6 +30,9 @@ export default function NotFound() {
           <a
             href="https://app.makemycv.ae"
             className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08]"
+            data-event="cta_click"
+            data-cta-id="not_found_build_cv"
+            data-cta-location="404"
           >
             Build My CV — Free
           </a>

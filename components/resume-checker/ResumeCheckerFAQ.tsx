@@ -5,11 +5,15 @@ export const faqItems = [
   },
   {
     q: "What happens to my CV after I upload it?",
-    a: "Your CV is parsed on our servers to produce the report, and the file is permanently deleted after 24 hours. It's never shared with recruiters, employers or third parties, and never used to train AI models.",
+    a: "Your file never leaves your browser — the text is extracted locally and only that plain text is sent to our server, and on to Anthropic (the AI provider behind Claude, which under its commercial API terms does not train on it) to produce the report. The report and the extracted text are stored under a random, unguessable link for 24 hours and then deleted automatically. They're never shared with recruiters, employers or third parties.",
   },
   {
     q: "How is this different from other resume checkers?",
-    a: "Most generic checkers are tuned for US/UK hiring. Ours is built around UAE recruiting reality — visa status, nationality, Arabic-name handling, GCC-specific recruiter norms, and the single-column, parser-safe structure that ATS software reads reliably.",
+    a: "Most generic checkers are tuned for US/UK hiring. Ours is built around UAE recruiting reality — visa status, notice period and driving-licence fields, GCC-specific recruiter norms, and the single-column, parser-safe structure that ATS software reads reliably.",
+  },
+  {
+    q: "What does the checker check?",
+    a: "Four categories, 44 individual checks in the current rule engine. Content: a professional summary that is present, 40–200 words and quantified; bullets that open with action verbs and state measurable outcomes; bullet length; spelling issues and filler phrases. Sections: location, LinkedIn or website, complete experience entries (role, company, start date), education and skills. ATS essentials: a valid email and a phone number; no tables, images, scrambled formatting or emojis in the extracted text; dates a parser can read; a headline, a company on every role and a complete current role; UAE fields written as plain lines — visa status, notice period, driving licence. Design and length: 150–1,200 words, 5–30 skills of 40 characters or fewer, school and degree on each education entry, three or more bullets per role. It does not match your CV against a specific job ad — that is JD Match — and it does not check nationality.",
   },
   {
     q: "Does this work for non-English CVs?",
@@ -21,7 +25,7 @@ export const faqItems = [
   },
   {
     q: "Can I use this if I'm not in the UAE?",
-    a: "You can — the ATS checks for parseability, structure and scannability are universal. The UAE-specific checks (visa status, nationality fields) will surface as suggestions you can safely ignore if you're applying elsewhere.",
+    a: "You can — the ATS checks for parseability, structure and scannability are universal. The UAE-specific checks (visa status, notice period, driving licence) will surface as suggestions you can safely ignore if you're applying elsewhere.",
   },
   {
     q: "Should I upload my CV as a PDF or DOCX for UAE jobs?",

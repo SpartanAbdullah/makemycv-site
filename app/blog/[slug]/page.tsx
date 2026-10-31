@@ -141,7 +141,7 @@ export default async function PostPage({ params }: Props) {
               </>
             )}
             <span>&middot;</span>
-            <span>{post.readingTime ?? 5} min read</span>
+            <span>{post.readingTime ?? post.metadata?.readingTime ?? 5} min read</span>
           </div>
         </div>
       </section>
@@ -208,6 +208,9 @@ export default async function PostPage({ params }: Props) {
                 <a
                   href="https://app.makemycv.ae"
                   className="btn-primary block text-center text-white font-semibold py-3 text-sm"
+                  data-event="cta_click"
+                  data-cta-id="blog_sidebar_build_cv"
+                  data-cta-location="blog_body"
                 >
                   Build My CV Free &rarr;
                 </a>
@@ -234,7 +237,7 @@ export default async function PostPage({ params }: Props) {
                             {related.title}
                           </p>
                           <p className="text-xs text-muted mt-1">
-                            {related.readingTime ?? 5} min read
+                            {related.readingTime ?? related.metadata?.readingTime ?? 5} min read
                           </p>
                         </div>
                       </Link>
@@ -266,6 +269,9 @@ export default async function PostPage({ params }: Props) {
           <a
             href="https://app.makemycv.ae"
             className="inline-block bg-white text-accent-deep font-semibold text-lg px-10 py-4 rounded-full shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper"
+            data-event="cta_click"
+            data-cta-id="blog_end_build_cv"
+            data-cta-location="blog_end"
           >
             Build My CV Free &rarr;
           </a>

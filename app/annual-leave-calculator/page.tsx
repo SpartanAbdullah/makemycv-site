@@ -3,6 +3,7 @@ import { Calculator, FileCheck2, ArrowRight, Banknote, Timer } from "lucide-reac
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { LeaveCalculator } from "@/components/tools/LeaveCalculator";
 import {
@@ -356,12 +357,23 @@ export default function AnnualLeaveCalculatorPage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                60+ UAE-tuned checks, free.
+                40+ UAE-tuned checks, free.
               </span>
             </span>
           </Link>
         </div>
       </section>
+      {/* B5 — leave-payout readers are often weighing a move: market and
+          career-change guides. */}
+      <ReadNext
+        className="bg-paper-2"
+        title="Thinking about a move? Start here."
+        slugs={[
+          "why-cv-ignored-dubai",
+          "uae-sectors-hiring-2026",
+          "career-change-cv-uae",
+        ]}
+      />
     </>
   );
 }

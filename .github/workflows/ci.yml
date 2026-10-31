@@ -67,3 +67,26 @@ jobs:
       - name: Test
         if: '!cancelled()'
         run: npm test
+
+  # Non-blocking: checker-count drift between the two repos (Mission 8,
+  # 2026-10-31). /resume-checker states "44 checks" and the per-category
+  # counts statically (lib/checkerChecklist.ts); the app serves the real list
+  # at /api/resume-checker/checklist. scripts/check-checklist-contract.mjs
+  # compares the two and exits 1 on a mismatch. It prints "skipped: endpoint
+  # 404" and exits 0 while the route is not yet on production, and it is
+  # continue-on-error because a network blip or an app deploy mid-run must not
+  # block a content merge — the failure is still visible on the run.
+  checklist-contract:
+    name: checker count vs app (non-blocking)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check:checklist

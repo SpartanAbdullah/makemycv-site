@@ -13,6 +13,7 @@ import { faqPageSchema } from "@/lib/seo-schema";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { CvMakerHero } from "@/components/cv-maker-dubai/CvMakerHero";
@@ -44,7 +45,7 @@ const faqItems = [
   },
   {
     q: "Will my CV pass ATS filters used in Dubai?",
-    a: "Yes. Every MakeMyCV template uses a single-column, parser-safe layout tested against ATS systems used by major UAE employers including Emaar, ADNOC, and Chalhoub Group.",
+    a: "Yes. Every MakeMyCV.ae template uses a single-column, parser-safe layout built on the rules mainstream ATS parsers share: real text (no text-as-image), standard section headings, no tables or sidebars, UAE fields written as plain lines. Our own checker verifies every template export.",
   },
   {
     q: "Can I make a CV on my phone?",
@@ -143,7 +144,7 @@ const steps = [
   {
     number: "1",
     title: "Pick a template",
-    body: "Choose from 14 templates designed for UAE hiring. Every layout is ATS-parseable and tested against the filters at ENOC, Emaar, and Majid Al Futtaim.",
+    body: "Choose from 14 templates designed for UAE hiring. Every layout is parser-safe and checked by our own ATS checker before release.",
   },
   {
     number: "2",
@@ -209,7 +210,7 @@ const features = [
   {
     icon: ShieldCheck,
     title: "ATS-safe formatting",
-    body: "Single-column, parser-safe layouts that pass automated screening at UAE companies. We test against the same filters recruiters use.",
+    body: "Single-column, parser-safe layouts built on the rules mainstream ATS parsers share — real text, standard headings, no tables or sidebars. Every template export is verified with our own ATS checker.",
   },
   {
     icon: MapPin,
@@ -391,6 +392,15 @@ export default function CvMakerDubaiPage() {
       <MakerFeatures />
       <CareerToolLinks currentPath="/free-cv-maker-dubai" />
       <CvMakerFAQ />
+      {/* B5 — Dubai-specific how-to, the photo question, and summary copy. */}
+      <ReadNext
+        className="bg-paper-2"
+        slugs={[
+          "how-to-make-cv-for-job-in-dubai",
+          "should-cv-have-photo-uae",
+          "professional-summary-examples-uae-cv",
+        ]}
+      />
       <CvMakerFinalCTA />
     </>
   );

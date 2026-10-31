@@ -154,15 +154,18 @@ export default function PrivacyPage() {
           <Section title="AI features">
             <p>
               When you use an AI feature — the bullet-point rewriter, JD Match,
-              the ATS checker or the cover letter writer — the text you submit
+              the ATS checker, the cover letter writer or the LinkedIn message writer — the text you submit
               is sent to our server and on to Anthropic (the AI provider behind
               Claude) to generate the result. The cover letter writer sends an
               excerpt of your CV (headline, summary, your latest role, up to
               twelve skills, and your visa and availability lines) together
               with the job details you type — never your contact details or
-              photo. Under Anthropic&apos;s commercial API terms, content sent
+              photo. The LinkedIn message writer sends a smaller excerpt
+              (headline, your latest role with up to two bullets, three
+              skills, and your visa and availability lines) with the job or
+              recruiter text you paste. Under Anthropic&apos;s commercial API terms, content sent
               this way is not used to train their models. We do not log or store
-              the text you submit to the rewriter, JD Match or the cover letter writer.
+              the text you submit to the rewriter, JD Match, the cover letter writer or the LinkedIn message writer.
             </p>
             <p>
               To keep these features free, we rate-limit them by IP address.

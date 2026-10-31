@@ -111,14 +111,14 @@ export const steps: Step[] = [
     num: "00",
     title: "Upload your PDF or DOCX",
     body: "Drop in the CV you'd send today. PDF or Word (.docx) — no sign-up, no email field.",
-    detail: "Parsed in our backend. Your file is deleted after 24 hours.",
+    detail: "Text is extracted in your browser; the report is deleted after 24 hours.",
     Visual: UploadVisual,
   },
   {
     num: "01",
-    title: "We scan 60+ UAE-tuned checks",
-    body: "Every issue across content, structure, ATS compatibility and design — including UAE-specific gaps like visa status and nationality.",
-    detail: "Same rule engine as our builder. Deterministic, no AI hallucination.",
+    title: "We run 40+ UAE-tuned checks",
+    body: "Every issue across content, structure, ATS compatibility and design — including UAE-specific gaps like visa status and notice period.",
+    detail: "Same rule engine as our builder: fixed, deterministic scoring rules. AI only reads the text into fields.",
     Visual: ScanVisual,
   },
   {

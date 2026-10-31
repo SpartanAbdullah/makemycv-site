@@ -48,7 +48,11 @@ if (!svgs.length) {
 }
 
 const chromium = loadChromium();
-const browser = await chromium.launch();
+// Prefer the bundled Chromium; fall back to the installed Chrome when the
+// pinned Playwright browser is not downloaded on this machine.
+const browser = await chromium
+  .launch()
+  .catch(() => chromium.launch({ channel: "chrome" }));
 const page = await browser.newPage({
   viewport: { width: 1200, height: 630 },
   deviceScaleFactor: 1,

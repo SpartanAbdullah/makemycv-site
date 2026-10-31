@@ -1,48 +1,18 @@
-import type { Metadata } from 'next'
 import { getAllPosts, categories as ALL_CATEGORIES, formatDate } from '@/lib/blog'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { breadcrumbSchema } from '@/lib/seo-schema'
-import {
-  SITE_NAME,
-  absoluteUrl,
-  canonicalUrl,
-  indexableRobots,
-} from '@/lib/seo'
+import { buildPageMetadata, canonicalUrl } from '@/lib/seo'
 import { BlogIndexClient, type CardPost } from '@/components/blog/BlogIndexClient'
 
-export const metadata: Metadata = {
-  // Layout template appends " | MakeMyCV" — don't include it here.
+// One helper, one title: <title>, og:title and twitter:title stay identical
+// (the hand-written block they replace had drifted to two different titles).
+export const metadata = buildPageMetadata({
   title: 'UAE CV & Career Advice',
   description:
-    'Expert CV writing tips, ATS guides, and UAE job market advice from the team at MakeMyCV. Free resources for Dubai and Gulf job seekers.',
-  keywords: 'cv tips uae, dubai cv format, ats cv guide, uae job market, cv writing advice dubai',
-  alternates: {
-    canonical: canonicalUrl('/blog'),
-  },
-  openGraph: {
-    title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
-    description: 'Expert CV writing tips, ATS guides, and UAE job market advice.',
-    url: canonicalUrl('/blog'),
-    siteName: SITE_NAME,
-    locale: 'en_AE',
-    type: 'website',
-    images: [
-      {
-        url: absoluteUrl('/og-image.png'),
-        width: 1200,
-        height: 630,
-        alt: 'MakeMyCV Blog - UAE CV Tips',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'CV Tips & UAE Career Advice | MakeMyCV Blog',
-    description: 'Expert CV writing tips, ATS guides, and UAE job market advice.',
-    images: [absoluteUrl('/og-image.png')],
-  },
-  robots: indexableRobots,
-}
+    'Expert CV writing tips, ATS guides, and UAE job market advice from the team at MakeMyCV.ae. Free resources for Dubai and Gulf job seekers.',
+  path: '/blog',
+  keywords: ['cv tips uae', 'dubai cv format', 'ats cv guide', 'uae job market', 'cv writing advice dubai'],
+})
 
 export default function BlogPage() {
   const posts = getAllPosts()

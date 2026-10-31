@@ -3,6 +3,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { faqPageSchema } from "@/lib/seo-schema";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { HeroSection } from "@/components/home/HeroSection";
 import { homepageFaqs, HomepageFAQ } from "@/components/home/FAQ";
 import { TemplateShowcase } from "@/components/home/TemplateShowcase";
@@ -99,6 +100,15 @@ export default function HomePage() {
           checker, examples) get a visible home from the homepage, not just
           the footer. Same component the tool pages use for cross-linking. */}
       <CareerToolLinks currentPath="/" />
+      {/* B5 — three guides that answer the questions a first-time visitor
+          brings to a UAE CV builder: format, how-to, and whether ATS is real. */}
+      <ReadNext
+        slugs={[
+          "cv-format-uae-2026",
+          "how-to-make-cv-for-job-in-uae",
+          "does-dubai-use-ats",
+        ]}
+      />
       <HomepageFAQ />
       {/* Social follow — the one intentionally-client section on the page
           (framer-motion floating icons). LinkedIn + Instagram only for now. */}

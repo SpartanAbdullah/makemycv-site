@@ -17,8 +17,13 @@ const pageLinks = [
   { href: "/support", label: "Support This Project" },
 ];
 
-const toolLinks = [
-  { href: "/resume-checker", label: "ATS Checker" },
+/* `ctaId` marks the tool links the GA4 `cta_click` report follows; the
+   delegated [data-event] dispatcher in app/layout.tsx reads the data-*
+   attributes (GA4 audit §8, 2026-10-31). */
+const toolLinks: { href: string; label: string; ctaId?: string }[] = [
+  { href: "/free-cv-maker-dubai", label: "Free CV Maker Dubai" },
+  { href: "/resume-checker", label: "ATS Checker", ctaId: "footer_ats_checker" },
+  { href: "https://app.makemycv.ae/cover-letter", label: "Cover Letter", ctaId: "footer_cover_letter" },
   { href: "/gratuity-calculator", label: "Gratuity Calculator" },
   { href: "/notice-period-calculator", label: "Notice Period Calculator" },
   { href: "/annual-leave-calculator", label: "Annual Leave Calculator" },
@@ -113,6 +118,9 @@ export const Footer = () => (
             <Link
               key={link.href}
               href={link.href}
+              {...(link.ctaId
+                ? { "data-event": "cta_click", "data-cta-id": link.ctaId, "data-cta-location": "footer" }
+                : undefined)}
               className="text-sm text-white/60 transition-colors duration-150 hover:text-gold-light"
             >
               {link.label}
@@ -129,6 +137,9 @@ export const Footer = () => (
         <a
           href="https://app.makemycv.ae"
           className="btn-primary inline-block px-5 py-2.5 text-sm font-semibold text-white"
+          data-event="cta_click"
+          data-cta-id="footer_start_free"
+          data-cta-location="footer"
         >
           Start Free &rarr;
         </a>

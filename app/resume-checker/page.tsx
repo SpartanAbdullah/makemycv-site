@@ -16,6 +16,7 @@ import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
+import { ReadNext } from "@/components/seo/ReadNext";
 
 // TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
 // Today all CTAs carry data-event="resume_checker_cta_click" which already routes
@@ -29,7 +30,7 @@ const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
 const checkerAiAnswer = {
   q: "What is the best free ATS CV checker for UAE jobs?",
   lead: "MakeMyCV provides a free ATS CV checker built for the UAE job market.",
-  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about a minute.",
+  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, notice period, structure and wording. No sign-up, results in about a minute.",
 };
 
 /* Rewritten 2026-08-10 (Search Console audit): `ats checker uae` earns 29
@@ -77,16 +78,16 @@ const softwareSchema = {
   // (was USD, a stray from the original template).
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
   description:
-    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about a minute.",
+    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 40+ UAE-tuned checks — no sign-up, results in about a minute.",
   audience: {
     "@type": "Audience",
     audienceType: "Job seekers in the UAE and GCC",
   },
   featureList: [
-    "60+ UAE-tuned ATS checks",
-    "Visa status and nationality checks",
+    "40+ UAE-tuned ATS checks",
+    "UAE field checks: visa status, notice period, driving licence",
     "Formatting and parseability report",
-    "Keyword and content feedback",
+    "Content and wording feedback",
     "No sign-up, no email gate",
     "Results in about a minute",
   ],
@@ -104,7 +105,7 @@ const howToSchema = {
   "@type": "HowTo",
   name: "How to check if your CV passes UAE ATS filters",
   description:
-    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 60+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
+    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 40+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
   totalTime: "PT1M",
   step: howItWorksSteps.map((s, i) => ({
     "@type": "HowToStep",
@@ -212,7 +213,7 @@ export default function ResumeCheckerPage() {
 
             <div className="mt-8 flex flex-wrap items-center gap-2">
               <TrustChip icon={Shield} label="No sign-up" />
-              <TrustChip icon={FileCheck2} label="PDF only" />
+              <TrustChip icon={FileCheck2} label="PDF or DOCX" />
               <TrustChip icon={Zap} label="About a minute" />
               <TrustChip icon={MapPin} label="Deleted after 24h" />
             </div>
@@ -238,8 +239,10 @@ export default function ResumeCheckerPage() {
       />
 
       {/* Answer-first definition — designed to be extractable verbatim by
-          AI answer engines. Names real UAE employers and the rejection rate
-          so the citation has UAE-specific information gain. */}
+          AI answer engines. Owner decision B02 (2026-10, Option A): no named
+          employers and no "same parsing logic" claim — we have not tested
+          against any employer's ATS, so the copy describes what the checker
+          genuinely does (plain-text extraction, top to bottom). */}
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
@@ -250,15 +253,13 @@ export default function ResumeCheckerPage() {
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-2">
             An <strong>Applicant Tracking System (ATS)</strong> is the software
-            UAE employers &mdash; including <strong>Emaar</strong>,{" "}
-            <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}
-            <strong>ADNOC</strong>, <strong>Majid Al Futtaim</strong>, and
-            international banks across DIFC &mdash; use to filter CVs before a
-            recruiter sees them. <strong>A large share of CVs are rejected at
-            this layer</strong>, almost always for formatting the parser
-            can&rsquo;t read (tables, columns, icons, image-based text). This
-            free checker runs your PDF against the same parsing logic and
-            flags every issue, in plain English, in about a minute.
+            most large UAE employers and recruitment agencies use to filter CVs
+            before a recruiter sees them. <strong>A large share of CVs are
+            rejected at this layer</strong>, almost always for formatting the
+            parser can&rsquo;t read (tables, columns, icons, image-based text).
+            This free checker extracts your PDF the way those parsers do
+            &mdash; plain text, top to bottom &mdash; and flags everything that
+            would be lost or misread.
           </p>
         </div>
       </section>
@@ -270,6 +271,14 @@ export default function ResumeCheckerPage() {
       <PricingClarity />
       <ResumeCheckerFAQ />
       <CareerToolLinks currentPath="/resume-checker" />
+      {/* B5 — the ATS-mechanics cluster (see CLAUDE.md collision clusters). */}
+      <ReadNext
+        slugs={[
+          "does-dubai-use-ats",
+          "ats-cv-checklist-uae",
+          "uae-cv-mistakes",
+        ]}
+      />
       <FinalCTA />
     </>
   );

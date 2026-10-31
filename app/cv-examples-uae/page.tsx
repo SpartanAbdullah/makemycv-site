@@ -3,6 +3,7 @@ import { ArrowRight, FileCheck2, ScanSearch, X, Check } from "lucide-react";
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
+import { ReadNext } from "@/components/seo/ReadNext";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 
 export const metadata = buildPageMetadata({
@@ -249,6 +250,19 @@ export default function CvExamplesUaePage() {
         </div>
       </section>
 
+      {/* Sector guides — the long-form counterparts to the bullets above
+          (hospitality and nursing are the two sector CV guides; the summary
+          post pairs with the bullet rewrites). */}
+      <ReadNext
+        eyebrow="Sector guides"
+        title="Writing for a specific UAE sector? Start here."
+        slugs={[
+          "hospitality-cv-uae",
+          "nursing-cv-uae",
+          "professional-summary-examples-uae-cv",
+        ]}
+      />
+
       {/* Internal links */}
       <section className="bg-paper py-14 md:py-16">
         <div className="mx-auto grid max-w-3xl gap-4 px-6 sm:grid-cols-2">
@@ -283,7 +297,7 @@ export default function CvExamplesUaePage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                Free ATS checker — 60+ UAE-tuned checks in about a minute.
+                Free ATS checker — 40+ UAE-tuned checks in about a minute.
               </span>
             </span>
           </Link>
