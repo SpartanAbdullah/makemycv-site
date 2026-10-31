@@ -19,7 +19,8 @@ export function FinalCTA() {
             href="https://app.makemycv.ae/resume-checker"
             size="lg"
             withArrow
-            data-event="resume_checker_cta_click"
+            data-event="cta_click"
+            data-cta-id="checker_final_check_cv"
             data-cta-location="final"
           >
             Check my CV — Free

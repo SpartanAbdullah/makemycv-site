@@ -19,9 +19,10 @@ import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 import { ReadNext } from "@/components/seo/ReadNext";
 
-// TODO: Wire Plausible/PostHog events on data-cta-location clicks. See ROADMAP.md.
-// Today all CTAs carry data-event="resume_checker_cta_click" which already routes
-// through the GA4 delegated dispatcher in app/layout.tsx.
+// Every CTA here uses the lib/inline-cta.ts convention (data-event="cta_click" +
+// data-cta-id + data-cta-location), read by the [data-event] dispatcher in
+// app/layout.tsx. Until 2026-10-31 they pushed "resume_checker_cta_click", which
+// no GTM trigger forwarded to GA4.
 
 const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
 
@@ -202,7 +203,8 @@ export default function ResumeCheckerPage() {
                 rel="noopener noreferrer"
                 size="lg"
                 withArrow
-                data-event="resume_checker_cta_click"
+                data-event="cta_click"
+                data-cta-id="checker_hero_check_cv"
                 data-cta-location="hero"
               >
                 Check my CV — Free
@@ -282,7 +284,7 @@ export default function ResumeCheckerPage() {
       <HowItWorks />
       <PricingClarity />
       <ResumeCheckerFAQ />
-      <CareerToolLinks currentPath="/resume-checker" />
+      <CareerToolLinks currentPath="/resume-checker" ctaIdPrefix="checker" />
       {/* B5 — the ATS-mechanics cluster (see CLAUDE.md collision clusters). */}
       <ReadNext
         slugs={[

@@ -2,9 +2,10 @@ import { CreditCard, Lock, Zap } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function FinalCTA({
-  eventName = "home_final_cta_click",
+  ctaId = "home_final_build_cv",
 }: {
-  eventName?: string;
+  /** Stable cta_click id (lib/inline-cta.ts convention); location is always "final". */
+  ctaId?: string;
 }) {
   return (
     <section className="bg-accent-deep text-white">
@@ -23,7 +24,9 @@ export function FinalCTA({
           <a
             href="https://app.makemycv.ae"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
-            data-event={eventName}
+            data-event="cta_click"
+            data-cta-id={ctaId}
+            data-cta-location="final"
           >
             Build My CV — Free
             <span aria-hidden="true" className="ml-2">

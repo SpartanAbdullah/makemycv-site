@@ -45,7 +45,9 @@ export function HeroSection() {
               size="lg"
               withArrow
               className="md:px-10 md:py-5 md:text-xl"
-              data-event="home_hero_cta_click"
+              data-event="cta_click"
+              data-cta-id="home_hero_build_cv"
+              data-cta-location="hero"
             >
               Build My CV — Free
             </Button>

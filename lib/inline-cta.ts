@@ -88,6 +88,24 @@ export type InlineCtaAttrs = {
   "data-cta-location": "blog_body";
 };
 
+export type CtaAttrs = {
+  "data-event": "cta_click";
+  "data-cta-id": string;
+  "data-cta-location": string;
+};
+
+/**
+ * The same convention for a hand-placed CTA (hero buttons, cards, calculator
+ * result blocks): one `cta_click` event name for every product CTA, the CTA
+ * itself named by a stable snake_case `cta_id` (`<page>_<placement>_<action>`)
+ * and its slot by `cta_location`. Until 2026-10-31 most of these carried
+ * their own event names (`home_hero_cta_click`, `*_cross_link_click`, ...),
+ * which no GTM trigger matched, so none of them ever reached GA4.
+ */
+export function ctaAttrs(id: string, location: string): CtaAttrs {
+  return { "data-event": "cta_click", "data-cta-id": id, "data-cta-location": location };
+}
+
 /**
  * The data-* attributes the [data-event] dispatcher reads, for a product href;
  * undefined for every other link so the caller can spread it unconditionally.

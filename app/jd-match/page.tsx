@@ -174,7 +174,8 @@ export default function JdMatchPage() {
                 href="https://app.makemycv.ae"
                 size="lg"
                 withArrow
-                data-event="jd_match_cta_click"
+                data-event="cta_click"
+                data-cta-id="jd_match_hero_build_cv"
                 data-cta-location="hero"
               >
                 Build &amp; match my CV — Free
@@ -212,7 +213,7 @@ export default function JdMatchPage() {
       <JdMatchSteps />
       <HonestMatching />
       <JdMatchFAQ />
-      <CareerToolLinks currentPath="/jd-match" />
+      <CareerToolLinks currentPath="/jd-match" ctaIdPrefix="jd_match" />
       {/* B5 — tailoring guides: the checklist, why CVs get ignored, summaries. */}
       <ReadNext
         slugs={[

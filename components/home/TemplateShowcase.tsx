@@ -119,7 +119,9 @@ export function TemplateShowcase() {
                   <a
                     href="https://app.makemycv.ae"
                     className="rounded-full bg-accent px-3 py-2 text-xs font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
-                    data-event="home_template_card_click"
+                    data-event="cta_click"
+                    data-cta-id="home_template_card_use"
+                    data-cta-location="template_showcase"
                     data-template-id={t.slug}
                   >
                     Use This Template

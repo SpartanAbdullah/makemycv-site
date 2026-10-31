@@ -1,0 +1,101 @@
+# Weekly competitor watch (2026-10-31, session 6 ops).
+#
+# Fetches the public home/pricing pages listed in scripts/competitor-urls.json
+# once each, sequentially and 1.5 s apart, and compares price strings and
+# feature terms with the previous run (scripts/competitor-check.mjs). The state
+# travels between runs as the `competitor-state` artifact of the last
+# successful run (90-day retention), so nothing is committed by the workflow.
+#
+# Output: a job summary every week; an issue labelled `competitor-watch` only
+# when at least one page that answered 200 both times changed. Bot walls and
+# timeouts are listed as unreachable and never count as a change. The job does
+# not fail on a change — it is news, not an outage.
+#
+# Scheduling caveat: `schedule:` fires only from the default branch (main);
+# on `staging` it runs by hand: `gh workflow run competitor-watch.yml --ref staging`,
+# and on the push trigger below.
+
+name: Competitor watch
+
+on:
+  schedule:
+    - cron: "0 5 * * 1" # Mondays 05:00 UTC = 09:00 UAE
+  workflow_dispatch:
+  # Validate the watch whenever it changes on the working branch (this also
+  # registers the workflow so it can be dispatched from `staging`).
+  push:
+    branches: [staging]
+    paths:
+      - ".github/workflows/competitor-watch.yml"
+      - "scripts/competitor-check.mjs"
+      - "scripts/competitor-urls.json"
+
+permissions:
+  contents: read
+  issues: write
+  actions: read # download the previous run's state artifact
+
+concurrency:
+  group: competitor-watch
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  watch:
+    name: competitor pricing + feature terms
+    runs-on: ubuntu-latest
+    timeout-minutes: 30 # 53 pages, sequential, ≤ 20 s each in the worst case
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore the previous state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          mkdir -p state
+          prev=$(gh run list --workflow competitor-watch.yml --status success --limit 1 \
+            --json databaseId --jq '.[0].databaseId // empty')
+          if [ -n "$prev" ]; then
+            gh run download "$prev" -n competitor-state -D state || echo "no state artifact on run $prev"
+          fi
+          ls -la state
+
+      - name: Check competitor pages
+        id: check
+        run: |
+          node scripts/competitor-check.mjs --state state/competitor-state.json --report report.md | tee check.log
+          echo "changed=$(sed -n 's/^changed=//p' check.log | tail -n 1)" >> "$GITHUB_OUTPUT"
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save state for next week
+        uses: actions/upload-artifact@v4
+        with:
+          name: competitor-state
+          path: state/competitor-state.json
+          retention-days: 90
+
+      - name: Open or update the competitor-watch issue
+        if: steps.check.outputs.changed != '' && steps.check.outputs.changed != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh label create competitor-watch --color 5319E7 \
+            --description "Competitor pricing or feature change detected" 2>/dev/null || true
+          { cat report.md; echo; echo "Run: $RUN_URL"; } > issue-body.md
+          open=$(gh issue list --label competitor-watch --state open --json number --jq '.[0].number // empty')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body-file issue-body.md
+          else
+            gh issue create --title "Competitor changes detected" --label competitor-watch --body-file issue-body.md
+          fi

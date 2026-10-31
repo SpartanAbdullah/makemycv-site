@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
 import { ResignationLetterGenerator } from "@/components/tools/ResignationLetterGenerator";
-import { TrustBadge } from "@/components/tools/CalculatorShared";
+import { TrustBadge, NextRoleCta } from "@/components/tools/CalculatorShared";
 
 export const metadata = buildPageMetadata({
   title: "UAE Resignation Letter Generator",
@@ -179,6 +179,7 @@ export default function ResignationLetterGeneratorPage() {
         <div className="mx-auto max-w-3xl px-6">
           <TrustBadge />
           <ResignationLetterGenerator />
+          <NextRoleCta tool="resignation" />
         </div>
       </section>
 
@@ -318,8 +319,9 @@ export default function ResignationLetterGeneratorPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-start gap-3 rounded-2xl bg-paper-2 p-6 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
-            data-event="resignation_cross_link_click"
-            data-cta-location="builder"
+            data-event="cta_click"
+            data-cta-id="resignation_related_build_cv"
+            data-cta-location="related_tools"
           >
             <FileCheck2 className="mt-0.5 shrink-0 text-accent" size={22} />
             <span>

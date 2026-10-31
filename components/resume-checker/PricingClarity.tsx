@@ -28,6 +28,9 @@ export function PricingClarity() {
             <a
               href="https://app.makemycv.ae"
               className="font-semibold text-accent underline-offset-4 hover:underline"
+              data-event="cta_click"
+              data-cta-id="checker_pricing_build_cv"
+              data-cta-location="pricing"
             >
               MakeMyCV builder
             </a>
@@ -46,7 +49,8 @@ export function PricingClarity() {
           <a
             href="https://app.makemycv.ae/resume-checker"
             className="font-semibold text-accent underline-offset-4 hover:underline"
-            data-event="resume_checker_cta_click"
+            data-event="cta_click"
+            data-cta-id="checker_pricing_check_cv"
             data-cta-location="pricing"
           >
             Try it free &rarr;
