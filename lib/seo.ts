@@ -44,6 +44,10 @@ export const ORG_SAME_AS: readonly string[] = [
   // medium.com/feed/@makemycv.ae returns 200, "Stories by MakeMyCV.ae".
   // Re-check this URL resolves before changing it again.
   "https://medium.com/@makemycv.ae",
+  // Org-owned Facebook page (numeric profile id — no vanity URL claimed yet).
+  // Verified as ours on 2026-10-31 alongside the LinkedIn and Instagram
+  // entries above. If a vanity URL is claimed, swap this for it.
+  "https://www.facebook.com/profile.php?id=61596108358844",
 ];
 
 function normalizePath(pathname: string): string {

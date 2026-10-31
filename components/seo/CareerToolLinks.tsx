@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { inlineCtaTarget } from "@/lib/inline-cta";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import {
   ArrowRight,
@@ -71,8 +72,33 @@ const tools = [
   },
 ];
 
-export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
+/**
+ * `ctaIdPrefix` opts a page into `cta_click` tracking on the cards (the
+ * data-* convention of lib/inline-cta.ts, read by the [data-event] dispatcher
+ * in app/layout.tsx). Ids are `<prefix>_tools_<target>`, the target derived
+ * from the href by inlineCtaTarget(), so they stay stable and snake_case;
+ * cards that are not a product surface (e.g. /cv-examples-uae) stay untracked.
+ * Without the prop nothing is emitted, so pages that never opted in are
+ * unchanged.
+ */
+export function CareerToolLinks({
+  currentPath,
+  ctaIdPrefix,
+}: {
+  currentPath?: string;
+  ctaIdPrefix?: string;
+}) {
   const visible = tools.filter((t) => t.href !== currentPath);
+  const ctaAttrs = (href: string) => {
+    const target = ctaIdPrefix ? inlineCtaTarget(href) : null;
+    return target
+      ? {
+          "data-event": "cta_click",
+          "data-cta-id": `${ctaIdPrefix}_tools_${target}`,
+          "data-cta-location": "free_tools",
+        }
+      : {};
+  };
   // On tool pages 6 cards render (3/3 at lg); the homepage shows all 7,
   // where 4 columns give 4/3 instead of an orphaned 3/3/1.
   const lgCols = visible.length >= 7 ? "lg:grid-cols-4" : "lg:grid-cols-3";
@@ -89,6 +115,7 @@ export function CareerToolLinks({ currentPath }: { currentPath?: string }) {
             <Link
               key={t.href}
               href={t.href}
+              {...ctaAttrs(t.href)}
               className="group flex items-start gap-3 rounded-2xl bg-sheet p-5 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
             >
               <t.icon className="mt-0.5 shrink-0 text-accent" size={20} />

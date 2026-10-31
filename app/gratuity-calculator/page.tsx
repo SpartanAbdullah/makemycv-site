@@ -19,11 +19,19 @@ import {
    The description drops the "(Federal Decree-Law No. 33 of 2021)" citation only
    because at ~200 chars it was cut off before ever being displayed. The
    citation still ships in the visible body, the quick answer and the FAQPage
-   schema, which is what actually carries it for AI citation. */
+   schema, which is what actually carries it for AI citation.
+
+   Rewritten again 2026-10-31 (first authenticated GSC read, last 3 months):
+   18,575 impressions at avg position 8.6 but a 0.3 % CTR. The dominant queries
+   are "gratuity calculator" / "uae gratuity calculator" (pos ~10) and the
+   end-of-service intent, so the title now carries "UAE Gratuity Calculator"
+   contiguously plus "End of Service" (59 chars rendered with the suffix), and
+   the description adds the two-year cap the tool applies. Every legal figure
+   is copied from the body/FAQ below — change them there first, never here. */
 export const metadata = buildPageMetadata({
-  title: "UAE Gratuity Calculator — Free",
+  title: "Free UAE Gratuity Calculator — End of Service",
   description:
-    "Free UAE gratuity calculator. Estimate your end-of-service benefit under UAE Labour Law — 21 days' basic pay per year for years 1–5, 30 after.",
+    "Free UAE gratuity calculator for end-of-service pay: 21 days' basic pay per year for years 1–5, 30 after, capped at two years' salary. No sign-up.",
   path: "/gratuity-calculator",
 });
 
