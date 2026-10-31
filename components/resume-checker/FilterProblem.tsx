@@ -68,7 +68,8 @@ export function FilterProblem() {
           <a
             href="https://app.makemycv.ae/resume-checker"
             className="font-semibold text-accent underline-offset-4 hover:underline"
-            data-event="resume_checker_cta_click"
+            data-event="cta_click"
+            data-cta-id="checker_problem_check_cv"
             data-cta-location="problem"
           >
             See what we&apos;d find in yours &rarr;

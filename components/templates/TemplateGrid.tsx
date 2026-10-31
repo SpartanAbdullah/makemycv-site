@@ -111,7 +111,9 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
               <a
                 href="https://app.makemycv.ae"
                 className="tpl-cta relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
-                data-event="templates_page_use_template_click"
+                data-event="cta_click"
+                data-cta-id="templates_card_use"
+                data-cta-location="template_grid"
                 data-template-id={t.slug}
                 aria-label={`Use the ${t.name} template in the free builder`}
               >
@@ -228,7 +230,9 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
           href="https://app.makemycv.ae"
           className="flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-line-strong bg-sheet/60 p-6 text-center transition-colors duration-150 hover:border-accent hover:bg-accent-soft/40"
           style={{ aspectRatio: "1 / 1.414" }}
-          data-event="templates_page_endcap_click"
+          data-event="cta_click"
+          data-cta-id="templates_endcap_build_cv"
+          data-cta-location="template_grid"
         >
           <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft text-accent">
             <ArrowRight size={20} aria-hidden="true" />

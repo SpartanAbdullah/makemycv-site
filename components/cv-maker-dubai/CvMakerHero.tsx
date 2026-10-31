@@ -38,7 +38,8 @@ export function CvMakerHero() {
             rel="noopener noreferrer"
             size="lg"
             withArrow
-            data-event="cv_maker_dubai_cta_click"
+            data-event="cta_click"
+            data-cta-id="cv_maker_dubai_hero_build_cv"
             data-cta-location="hero"
           >
             Start Building — Free

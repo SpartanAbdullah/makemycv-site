@@ -91,7 +91,9 @@ export default function BlogPage() {
           </p>
           <a
             href="https://app.makemycv.ae"
-            data-event="blog_cta_click"
+            data-event="cta_click"
+            data-cta-id="blog_index_build_cv"
+            data-cta-location="blog_index"
             className="btn-primary mt-7 inline-block px-8 py-3.5 text-lg font-semibold text-white"
           >
             Build My CV Free &rarr;

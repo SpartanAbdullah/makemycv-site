@@ -22,8 +22,9 @@ export function JdMatchFinalCTA() {
             href="https://app.makemycv.ae"
             size="lg"
             withArrow
-            data-event="jd_match_cta_click"
-            data-cta-location="page-final"
+            data-event="cta_click"
+            data-cta-id="jd_match_final_build_cv"
+            data-cta-location="final"
           >
             Build &amp; match my CV — Free
           </Button>

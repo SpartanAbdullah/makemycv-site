@@ -129,8 +129,9 @@ function DubaiDifference() {
             rel="noopener noreferrer"
             size="md"
             withArrow
-            data-event="cv_maker_dubai_cta_click"
-            data-cta-location="dubai-difference"
+            data-event="cta_click"
+            data-cta-id="cv_maker_dubai_difference_build_cv"
+            data-cta-location="dubai_difference"
           >
             Build your Dubai CV now
           </Button>
@@ -195,8 +196,9 @@ function MakerHowItWorks() {
             rel="noopener noreferrer"
             size="lg"
             withArrow
-            data-event="cv_maker_dubai_cta_click"
-            data-cta-location="how-it-works"
+            data-event="cta_click"
+            data-cta-id="cv_maker_dubai_how_it_works_build_cv"
+            data-cta-location="how_it_works"
           >
             Start now &mdash; it&rsquo;s free
           </Button>
@@ -341,7 +343,8 @@ function CvMakerFinalCTA() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-semibold text-accent-deep shadow-md transition-all duration-200 hover:-translate-y-px hover:bg-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-accent-deep"
-            data-event="cv_maker_dubai_final_cta_click"
+            data-event="cta_click"
+            data-cta-id="cv_maker_dubai_final_build_cv"
             data-cta-location="final"
           >
             Build My Dubai CV &mdash; Free
