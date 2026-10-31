@@ -16,6 +16,30 @@ Format:
 
 ---
 
+## [2026-10-31 14:30] Dubai CV post restructured as an 8-step procedure (FEATURE_BACKLOG B9)
+
+**Goal:** Perplexity answers "How do I create a resume for Dubai jobs?" from pikaresume / resumemate /
+visualcv / bayut, all of which expose numbered steps plus a plain-text "quick template" block; our
+`/blog/how-to-make-cv-for-job-in-dubai` was prose and ranked nowhere for that query
+(PERPLEXITY_VISIBILITY.md Q2, backlog B9). Same slug, title, excerpt, tags and `date`; the body is now
+answer-first intro, Step 1–8 H2s, a fenced `text` template with square-bracket placeholders, a
+"Dubai-Specific Rules" list, the pre-existing "Where to Actually Make the CV" section and the FAQ.
+**Files:**
+- edited: `content/blog/how-to-make-cv-for-job-in-dubai.mdx` — restructure; `dateModified: 2026-10-31`;
+  two new FAQs (notice period + visa status on the CV; file format + filename) mirrored in body and
+  `faqs:`; new internal links to `/notice-period-calculator` and `/jd-match`; anchor text "ATS Resume
+  Checker" → "ATS checker". All existing facts kept (four Dubai hiring markets, WhatsApp test, salary off
+  the CV, driving licence, Dubai vocabulary, typing-centre AED 20–100 range). No new statistics; the one
+  figure-like flourish the reviewer caught ("hundreds of CVs a week") was removed before commit.
+**Notes / risks / follow-up:** seo-reviewer: PASS, no BLOCKER / SHOULD FIX. NICE left open: the title
+still says "(What's Different in 2026)" while the body is a full build procedure; if GSC shows this post
+and `how-to-make-cv-for-job-in-uae` trading impressions, shorten Steps 5–6 here and push weight into
+"Dubai-Specific Rules" (the section the UAE guide lacks). Re-run the Perplexity Q2 query at the next
+monthly AI-citation check. Gates: `npx velite` clean, tsc clean, lint 2 warnings (pre-existing).
+**Suggested commit:** content(blog): restructure the Dubai CV guide as an 8-step procedure with a plain-text template
+
+---
+
 ## [2026-10-31 12:45] Inbound links for the two 2026-10-31 posts (Mission 6 check)
 
 **Goal:** `/blog/uae-cv-mistakes` had 2 inbound links (cv-format-uae-2026 and the hospitality post) and
