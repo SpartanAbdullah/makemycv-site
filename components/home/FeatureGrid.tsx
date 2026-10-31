@@ -52,6 +52,17 @@ export function FeatureGrid() {
           export · free AI bullet rewriter · a cover letter written from your
           CV · no watermark, ever.
         </p>
+        {/* Honest-AI claim (backlog B4). Backed by code in makemycv-app: the
+            ai-improve, cover-letter and linkedin-message prompts forbid invented
+            figures and ask for the literal {{number}} token instead;
+            lib/ai/placeholders.ts normalises every variant to that token and
+            hasPlaceholder() blocks insert/copy/export while one remains. Keep
+            this sentence in step with those prompts. */}
+        <p className="mt-3 text-center text-sm text-muted">
+          The AI helpers never invent numbers: any figure you did not supply
+          comes back as a placeholder for you to fill in, so nothing made up
+          reaches an employer.
+        </p>
       </Reveal>
     </section>
   );
