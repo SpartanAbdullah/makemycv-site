@@ -238,8 +238,10 @@ export default function ResumeCheckerPage() {
       />
 
       {/* Answer-first definition — designed to be extractable verbatim by
-          AI answer engines. Names real UAE employers and the rejection rate
-          so the citation has UAE-specific information gain. */}
+          AI answer engines. Owner decision B02 (2026-10, Option A): no named
+          employers and no "same parsing logic" claim — we have not tested
+          against any employer's ATS, so the copy describes what the checker
+          genuinely does (plain-text extraction, top to bottom). */}
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-3xl px-6">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
@@ -250,15 +252,13 @@ export default function ResumeCheckerPage() {
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-2">
             An <strong>Applicant Tracking System (ATS)</strong> is the software
-            UAE employers &mdash; including <strong>Emaar</strong>,{" "}
-            <strong>ADCB</strong>, <strong>ENOC</strong>,{" "}
-            <strong>ADNOC</strong>, <strong>Majid Al Futtaim</strong>, and
-            international banks across DIFC &mdash; use to filter CVs before a
-            recruiter sees them. <strong>A large share of CVs are rejected at
-            this layer</strong>, almost always for formatting the parser
-            can&rsquo;t read (tables, columns, icons, image-based text). This
-            free checker runs your PDF against the same parsing logic and
-            flags every issue, in plain English, in about a minute.
+            most large UAE employers and recruitment agencies use to filter CVs
+            before a recruiter sees them. <strong>A large share of CVs are
+            rejected at this layer</strong>, almost always for formatting the
+            parser can&rsquo;t read (tables, columns, icons, image-based text).
+            This free checker extracts your PDF the way those parsers do
+            &mdash; plain text, top to bottom &mdash; and flags everything that
+            would be lost or misread.
           </p>
         </div>
       </section>

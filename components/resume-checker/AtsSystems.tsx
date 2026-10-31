@@ -76,9 +76,9 @@ export function AtsSystems() {
             Which ATS systems UAE employers use — and how they read your CV.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-2">
-            MakeMyCV&rsquo;s free checker runs your PDF against the parsing
-            behaviour of the applicant tracking systems UAE employers actually
-            deploy, then reports every issue across{" "}
+            MakeMyCV&rsquo;s free checker extracts your PDF the way these
+            parsers do &mdash; plain text, top to bottom &mdash; then reports
+            every issue across{" "}
             <strong>60+ UAE-tuned checks</strong> &mdash; content, structure,
             ATS-compatibility, design, and UAE-specific fields like visa status
             and nationality. It is <strong>deterministic</strong>: the same CV
