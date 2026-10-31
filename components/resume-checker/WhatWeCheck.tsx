@@ -1,72 +1,30 @@
 import Link from "next/link";
 import { FileText, LayoutList, ScanSearch, Ruler, Lock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import {
+  CHECK_COUNT,
+  checkFamilies,
+  type CheckFamilyId,
+} from "@/lib/checkerChecklist";
 
 /**
  * B2 — the itemised "what the checker looks at" section, server-rendered.
  *
- * Every line below is a rule family that genuinely exists in the app's
- * scoring engine (makemycv-app lib/scoreEngine.ts, run by
- * app/api/resume-checker/parse/route.ts in `checker` mode). Sub-signal ids
- * are noted per family so the copy can be audited against the code:
- *   Content C1–C14 · Sections S4, S5, S7–S11 · ATS essentials A1–A14 ·
- *   Design & length D1–D9  →  44 checks in the current engine.
- * If a rule is added or removed in the app, update CHECK_COUNT and the list.
- *
- * Things the engine does NOT check (so this page must not claim them):
- * nationality, keyword match against a job ad (that is JD Match), fonts,
- * colours or page layout — the engine only sees extracted text.
+ * The count and the rule families come from lib/checkerChecklist.ts — the one
+ * place on this site that states what the app's scoring engine checks. That
+ * module documents the contract with the app
+ * (GET app.makemycv.ae/api/resume-checker/checklist) and the CI script that
+ * catches drift (`npm run check:checklist`). Edit the numbers and the wording
+ * there, not here; this file only decides how they look.
  */
 
-export const CHECK_COUNT = 44;
-
-export const checkFamilies = [
-  {
-    icon: FileText,
-    name: "Content",
-    count: 14,
-    items: [
-      "Professional summary: present, 40–200 words, with at least one number or metric",
-      "Bullet points that open with action verbs (at least half, ideally 70%)",
-      "Bullets that state a measurable outcome — numbers, %, AED, scale (at least a quarter, ideally half)",
-      "Bullet length: every bullet 40 words or fewer, none over 60, at least one bullet per role",
-      "Spelling issues the parser spotted, and filler phrases like “responsible for” or “team player”",
-    ],
-  },
-  {
-    icon: LayoutList,
-    name: "Sections",
-    count: 7,
-    items: [
-      "Location stated, plus a LinkedIn URL or personal website",
-      "At least one experience entry (two or more preferred), each with role, company and start date",
-      "At least one education entry and at least one skill",
-    ],
-  },
-  {
-    icon: ScanSearch,
-    name: "ATS essentials",
-    count: 14,
-    items: [
-      "A valid email format and a phone number the parser can find",
-      "No tables, images or scrambled formatting in the extracted text, and no emojis",
-      "Experience dates in a format a parser can read (at least half, ideally all)",
-      "A headline or job title, a company on every role, and a current role with both role and company",
-      "UAE fields written as plain lines: visa status, availability or notice period, UAE driving licence",
-    ],
-  },
-  {
-    icon: Ruler,
-    name: "Design & length",
-    count: 9,
-    items: [
-      "Overall length: at least 150 words (300+ preferred) and no more than 1,200",
-      "A skills list sized for keyword matching: 5–30 skills (10+ preferred), each 40 characters or fewer",
-      "Education entries that carry both school and degree",
-      "Three or more bullets per role on average",
-    ],
-  },
-] as const;
+const familyIcons: Record<CheckFamilyId, LucideIcon> = {
+  content: FileText,
+  sections: LayoutList,
+  atsEssentials: ScanSearch,
+  design: Ruler,
+};
 
 export function WhatWeCheck() {
   return (
@@ -89,32 +47,35 @@ export function WhatWeCheck() {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2">
-          {checkFamilies.map((c) => (
-            <article
-              key={c.name}
-              className="group relative rounded-2xl bg-paper p-8 shadow-float"
-            >
-              <div className="flex items-center justify-between">
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-soft text-accent">
-                  <c.icon size={22} strokeWidth={2.25} />
-                </span>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
-                  {c.count} checks
-                </span>
-              </div>
-              <h3 className="mt-5 font-display text-2xl font-semibold tracking-[-0.015em] text-ink">
-                {c.name}
-              </h3>
-              <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-muted">
-                {c.items.map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+          {checkFamilies.map((c) => {
+            const Icon = familyIcons[c.id];
+            return (
+              <article
+                key={c.id}
+                className="group relative rounded-2xl bg-paper p-8 shadow-float"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-accent-soft text-accent">
+                    <Icon size={22} strokeWidth={2.25} />
+                  </span>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                    {c.count} checks
+                  </span>
+                </div>
+                <h3 className="mt-5 font-display text-2xl font-semibold tracking-[-0.015em] text-ink">
+                  {c.name}
+                </h3>
+                <ul className="mt-4 space-y-2.5 text-[15px] leading-relaxed text-muted">
+                  {c.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
         </div>
 
         <p className="mt-8 max-w-3xl text-[15px] leading-relaxed text-muted">
