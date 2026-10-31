@@ -161,7 +161,7 @@ jobs:
               echo
               echo '```'
               if [ -f "$ART/$log" ]; then
-                { grep -E 'FAIL|skipped|failing' "$ART/$log" || tail -n 20 "$ART/$log"; } | head -n 30
+                { grep -E 'FAIL|skipped|failing' "$ART/$log" || tail -n 20 "$ART/$log"; } | head -n 30 || true
               else
                 echo "(no log: the step did not run)"
               fi
