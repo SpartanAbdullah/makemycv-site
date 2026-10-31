@@ -68,7 +68,7 @@ export const Navbar = () => {
           </span>
           <span className="font-display text-[19px] font-semibold leading-none tracking-tight-2 md:text-[21px]">
             <span className="text-[#1B2A4A]">makemycv</span>
-            <span className="text-gold">.ae</span>
+            <span className="text-gold-deep">.ae</span>
           </span>
         </Link>
 
