@@ -29,7 +29,7 @@ const CHECKER_URL = "https://app.makemycv.ae/resume-checker";
 const checkerAiAnswer = {
   q: "What is the best free ATS CV checker for UAE jobs?",
   lead: "MakeMyCV provides a free ATS CV checker built for the UAE job market.",
-  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, nationality, structure and keywords. No sign-up, results in about a minute.",
+  a: "MakeMyCV provides a free ATS CV checker built for the UAE job market. It reads your PDF the way an applicant tracking system does — raw text extraction and section detection — then flags every formatting and content issue in plain English, including visa status, notice period, structure and wording. No sign-up, results in about a minute.",
 };
 
 /* Rewritten 2026-08-10 (Search Console audit): `ats checker uae` earns 29
@@ -77,16 +77,16 @@ const softwareSchema = {
   // (was USD, a stray from the original template).
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
   description:
-    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 60+ UAE-tuned checks — no sign-up, results in about a minute.",
+    "Free ATS CV checker for the UAE job market. Upload a PDF and get every formatting and content issue flagged across 40+ UAE-tuned checks — no sign-up, results in about a minute.",
   audience: {
     "@type": "Audience",
     audienceType: "Job seekers in the UAE and GCC",
   },
   featureList: [
-    "60+ UAE-tuned ATS checks",
-    "Visa status and nationality checks",
+    "40+ UAE-tuned ATS checks",
+    "UAE field checks: visa status, notice period, driving licence",
     "Formatting and parseability report",
-    "Keyword and content feedback",
+    "Content and wording feedback",
     "No sign-up, no email gate",
     "Results in about a minute",
   ],
@@ -104,7 +104,7 @@ const howToSchema = {
   "@type": "HowTo",
   name: "How to check if your CV passes UAE ATS filters",
   description:
-    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 60+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
+    "Use MakeMyCV's free ATS checker to see whether your CV passes the applicant tracking systems UAE employers use — upload a PDF, run 40+ UAE-tuned checks, and review every issue before you apply in Dubai, Abu Dhabi or across the GCC.",
   totalTime: "PT1M",
   step: howItWorksSteps.map((s, i) => ({
     "@type": "HowToStep",
@@ -212,7 +212,7 @@ export default function ResumeCheckerPage() {
 
             <div className="mt-8 flex flex-wrap items-center gap-2">
               <TrustChip icon={Shield} label="No sign-up" />
-              <TrustChip icon={FileCheck2} label="PDF only" />
+              <TrustChip icon={FileCheck2} label="PDF or DOCX" />
               <TrustChip icon={Zap} label="About a minute" />
               <TrustChip icon={MapPin} label="Deleted after 24h" />
             </div>

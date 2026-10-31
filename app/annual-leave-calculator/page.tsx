@@ -356,7 +356,7 @@ export default function AnnualLeaveCalculatorPage() {
                 <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
               </span>
               <span className="mt-1 block text-sm text-muted">
-                60+ UAE-tuned checks, free.
+                40+ UAE-tuned checks, free.
               </span>
             </span>
           </Link>
