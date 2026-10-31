@@ -67,6 +67,9 @@ export const PARAM_KEYS = [
   // value from one event can never ride along on the next
   "step_number", "step_id", "file_type", "error_reason", "merge_mode", "sections_filled",
   "outcome", "with_job_text", "placeholders", "cta_location", "template_id", "cups",
+  // cta_click (2026-10-31, GA4 audit §8): stable per-CTA id, read by the
+  // [data-event] dispatcher from data-cta-id. Needs `DLV - cta_id` in GTM.
+  "cta_id",
 ] as const;
 const PARAM_RESET: Record<(typeof PARAM_KEYS)[number], undefined> = Object.fromEntries(
   PARAM_KEYS.map((k) => [k, undefined]),

@@ -100,6 +100,9 @@ export const Navbar = () => {
           <a
             href="https://app.makemycv.ae"
             className="btn-primary px-5 py-2.5 text-sm font-semibold text-white"
+            data-event="cta_click"
+            data-cta-id="navbar_build_cv"
+            data-cta-location="navbar"
           >
             Start Building Free &rarr;
           </a>
@@ -164,6 +167,9 @@ export const Navbar = () => {
             <a
               href="https://app.makemycv.ae"
               className="btn-primary px-5 py-2.5 text-center text-sm font-semibold text-white"
+              data-event="cta_click"
+              data-cta-id="navbar_build_cv_mobile"
+              data-cta-location="navbar"
             >
               Start Building Free &rarr;
             </a>

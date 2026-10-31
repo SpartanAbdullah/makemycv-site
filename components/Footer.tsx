@@ -131,6 +131,9 @@ export const Footer = () => (
         <a
           href="https://app.makemycv.ae"
           className="btn-primary inline-block px-5 py-2.5 text-sm font-semibold text-white"
+          data-event="cta_click"
+          data-cta-id="footer_start_free"
+          data-cta-location="footer"
         >
           Start Free &rarr;
         </a>
