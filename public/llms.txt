@@ -10,7 +10,7 @@
 - [JD Match](https://www.makemycv.ae/jd-match): Paste a job description and see how closely a CV matches it, with the specific gaps to fix. The CV is compared in the browser.
 - [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Example CVs by role and industry, formatted for UAE hiring.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool — 10 steps, PDF and DOCX download, no account.
-- [Cover Letter (app)](https://app.makemycv.ae/cover-letter): Drafts a cover letter from an excerpt of the user's CV and a pasted job description; numbers are left as placeholders for the user to fill, never invented.
+- [Cover Letter (app)](https://app.makemycv.ae/cover-letter): Drafts a cover letter from an excerpt of the user's CV and a pasted job description; the model is instructed not to add figures, and any number it would add is replaced by a placeholder for the user to fill.
 
 ## Free tools
 - [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under UAE Labour Law (resignation vs termination, service length).

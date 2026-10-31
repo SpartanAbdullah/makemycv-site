@@ -59,9 +59,10 @@ export function FeatureGrid() {
             hasPlaceholder() blocks insert/copy/export while one remains. Keep
             this sentence in step with those prompts. */}
         <p className="mt-3 text-center text-sm text-muted">
-          The AI helpers never invent numbers: any figure you did not supply
-          comes back as a placeholder for you to fill in, so nothing made up
-          reaches an employer.
+          The AI helpers are built not to invent figures: they are instructed to
+          use only what is in your CV, and any number they would otherwise add
+          is turned into a placeholder for you to fill in. Read every draft
+          before you send it.
         </p>
       </Reveal>
     </section>

@@ -18,7 +18,7 @@ import { APP_URL, SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 const jdAiAnswer = {
   q: "How do I check if my CV matches a UAE job description?",
   lead: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss.",
-  a: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss. Build or import your CV, paste the job ad, and close each gap. Built for Dubai, Abu Dhabi and GCC hiring, it never invents experience — your draft stays in your browser while matching runs server-side. Free, no sign-up.",
+  a: "MakeMyCV's JD Match compares your CV against any UAE job description and returns a match score plus a green/amber heatmap of every requirement you cover or miss. Build or import your CV, paste the job ad, and close each gap. Built for Dubai, Abu Dhabi and GCC hiring, it matches the words in your CV against the ad rather than inventing experience, and your draft stays in your browser while matching runs server-side. Free, no sign-up.",
 };
 
 /* Call buildPageMetadata directly — do NOT spread-and-override. This block used
@@ -56,7 +56,7 @@ const softwareSchema = {
   url: APP_URL,
   offers: { "@type": "Offer", price: "0", priceCurrency: "AED" },
   description:
-    "Free CV-to-job-description matcher for the UAE job market. Paste any Dubai, Abu Dhabi or GCC job ad and get a match score plus a green/amber requirement heatmap — with honest keyword matching that never invents experience. No sign-up.",
+    "Free CV-to-job-description matcher for the UAE job market. Paste any Dubai, Abu Dhabi or GCC job ad and get a match score plus a green/amber requirement heatmap — with keyword matching that only uses what your CV already says. No sign-up.",
   audience: {
     "@type": "Audience",
     audienceType: "Job seekers in the UAE and GCC",
@@ -185,7 +185,7 @@ export default function JdMatchPage() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2 lg:justify-start">
-              <TrustChip icon={ShieldCheck} label="Honest AI — never invents" />
+              <TrustChip icon={ShieldCheck} label="Matches, never adds, by design" />
               <TrustChip icon={Lock} label="Draft saved in your browser" />
               <TrustChip icon={Highlighter} label="Heatmap on the real JD" />
             </div>
