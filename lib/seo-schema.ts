@@ -133,6 +133,10 @@ export function websiteSchema() {
     "@id": WEBSITE_ID,
     url: SITE_URL,
     name: SITE_NAME,
+    // Google's site-name system reads WebSite.alternateName on the home page.
+    // "MakeMyCV" is the short form used across the site's copy; it mirrors the
+    // Organization node so both nodes name the same entity.
+    alternateName: ["MakeMyCV"],
     inLanguage: "en-AE",
     publisher: { "@id": ORGANIZATION_ID },
   } as const;
