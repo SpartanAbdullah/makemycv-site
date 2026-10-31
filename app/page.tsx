@@ -99,7 +99,7 @@ export default function HomePage() {
       {/* Free-tools discovery strip — the GEO landing pages (calculators,
           checker, examples) get a visible home from the homepage, not just
           the footer. Same component the tool pages use for cross-linking. */}
-      <CareerToolLinks currentPath="/" />
+      <CareerToolLinks currentPath="/" ctaIdPrefix="home" />
       {/* B5 — three guides that answer the questions a first-time visitor
           brings to a UAE CV builder: format, how-to, and whether ATS is real. */}
       <ReadNext

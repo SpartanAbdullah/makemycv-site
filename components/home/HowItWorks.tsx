@@ -24,7 +24,9 @@ export function HowItWorks() {
             href="https://app.makemycv.ae"
             size="lg"
             withArrow
-            data-event="home_how_it_works_cta_click"
+            data-event="cta_click"
+            data-cta-id="home_how_it_works_build_cv"
+            data-cta-location="how_it_works"
           >
             Start building — Free
           </Button>

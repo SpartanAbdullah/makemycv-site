@@ -173,7 +173,7 @@ export default function TemplatesPage() {
           "uae-cv-mistakes",
         ]}
       />
-      <FinalCTA eventName="templates_final_cta_click" />
+      <FinalCTA ctaId="templates_final_build_cv" />
     </>
   );
 }

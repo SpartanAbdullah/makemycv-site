@@ -98,8 +98,9 @@ export const Navbar = () => {
           <Link
             href="/resume-checker"
             className="inline-flex items-center gap-1.5 rounded-full bg-sheet px-5 py-2.5 text-sm font-semibold text-ink shadow-float transition-all duration-200 hover:-translate-y-px hover:text-accent hover:shadow-float-hover"
-            data-cta-location="navbar-ats-checker"
-            data-event="navbar_ats_checker_click"
+            data-event="cta_click"
+            data-cta-id="navbar_ats_checker"
+            data-cta-location="navbar"
           >
             <span
               aria-hidden="true"
@@ -166,8 +167,9 @@ export const Navbar = () => {
               href="/resume-checker"
               onClick={() => setMenuOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-full bg-sheet px-5 py-2.5 text-center text-sm font-semibold text-ink shadow-float transition-all duration-200 hover:text-accent hover:shadow-float-hover"
-              data-cta-location="navbar-ats-checker"
-              data-event="navbar_ats_checker_click"
+              data-event="cta_click"
+              data-cta-id="navbar_ats_checker_mobile"
+              data-cta-location="navbar"
             >
               <span
                 aria-hidden="true"
