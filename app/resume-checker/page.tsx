@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MapPin, Shield, Zap, FileCheck2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TrustChip } from "@/components/ui/TrustChip";
@@ -260,6 +261,17 @@ export default function ResumeCheckerPage() {
             This free checker extracts your PDF the way those parsers do
             &mdash; plain text, top to bottom &mdash; and flags everything that
             would be lost or misread.
+          </p>
+          <p className="mt-4 text-[15px] leading-relaxed text-ink-2">
+            Searched for a resume checker? In the UAE a resume and a CV are the
+            same 1&ndash;2 page document &mdash;{" "}
+            <Link
+              href="/blog/cv-vs-resume-uae"
+              className="font-semibold text-accent hover:underline"
+            >
+              CV vs resume in the UAE
+            </Link>{" "}
+            explains which term employers use.
           </p>
         </div>
       </section>
