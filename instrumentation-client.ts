@@ -3,7 +3,9 @@
 //
 // The SDK itself is loaded lazily from lib/sentry-client.ts (2026-11-02): a
 // static import here put it in the main chunk every page parses before the
-// hero paints. This file only schedules the load once the page is idle.
+// hero paints. This file only schedules the load: on the visitor's first
+// interaction, or 10 s after `load`, whichever comes first, so the SDK's
+// startup work stays out of the page's initial blocking time.
 //
 // Session Replay is OFF here too. The site itself carries little PII, but
 // /contact collects name, email and message, and the calculators take salary
@@ -14,12 +16,19 @@
 import { loadSentry } from "./lib/sentry-client";
 
 if (typeof window !== "undefined") {
+  const triggers = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
+  let timer: ReturnType<typeof setTimeout> | undefined;
   const start = () => {
-    const idle = window.requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1));
-    idle(() => void loadSentry());
+    clearTimeout(timer);
+    triggers.forEach((t) => window.removeEventListener(t, start));
+    void loadSentry();
   };
-  if (document.readyState === "complete") start();
-  else window.addEventListener("load", start, { once: true });
+  triggers.forEach((t) => window.addEventListener(t, start, { once: true, passive: true }));
+  const arm = () => {
+    timer = setTimeout(start, 10_000);
+  };
+  if (document.readyState === "complete") arm();
+  else window.addEventListener("load", arm, { once: true });
 }
 
 // CSP observation (2026-10-24): the Report-Only policy in next.config.ts

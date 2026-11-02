@@ -3,10 +3,11 @@
 // The SDK used to be imported statically by instrumentation-client.ts, which
 // put it in the main client chunk that every page parses before the hero can
 // paint. PageSpeed (mobile, Lighthouse 13.6) traced the late LCP to that chunk.
-// It now lives in its own async chunk: instrumentation-client.ts loads it once
-// the page is idle, and the error boundaries load it the moment they catch
-// something. The trade-off is that an error thrown in the first idle-wait after
-// load is not captured; the boundaries still report theirs.
+// It now lives in its own async chunk: instrumentation-client.ts loads it on
+// the visitor's first interaction (or 10 s after load), and the error
+// boundaries load it the moment they catch something. The trade-off is that an
+// error thrown before that point is not captured; the boundaries still report
+// theirs.
 //
 // Posture unchanged from the original init (read instrumentation.ts first):
 // Session Replay is OFF — /contact collects name, email and message, and the

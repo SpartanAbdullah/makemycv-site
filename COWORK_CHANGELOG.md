@@ -22,7 +22,7 @@ Format:
 **Files:**
 - created: `lib/sentry-client.ts` - `loadSentry()` dynamic-imports the SDK once and runs the same `Sentry.init` as before (replay off, PII stripping unchanged); `reportError()` for the boundaries.
 - created: `lib/sentry-client-impl.ts` - the only client module that imports `@sentry/nextjs`, with named re-exports so the async chunk tree-shakes (155 KB to 48 KB compressed).
-- edited: `instrumentation-client.ts` - no static Sentry import; loads it on `requestIdleCallback` after `load`; CSP-violation reporting goes through `loadSentry()`. `onRouterTransitionStart` dropped (tracesSampleRate is 0, so it recorded nothing).
+- edited: `instrumentation-client.ts` - no static Sentry import; loads it on the first pointerdown, keydown, scroll or touchstart, or 10 s after `load`; CSP-violation reporting goes through `loadSentry()`. `onRouterTransitionStart` dropped (tracesSampleRate is 0, so it recorded nothing).
 - edited: `app/error.tsx`, `app/global-error.tsx` - report via `reportError()`.
 - edited: `app/fonts/site.ts` - JetBrains Mono `preload: false` (used only by below-the-fold labels).
 **Notes / risks / follow-up:** Home-page initial JS falls from 295 KB to 240 KB compressed (main chunk 115 KB to 74 KB). Trade-off: an error thrown between page load and the first idle callback is not captured unless a boundary catches it. Lighthouse also picked the consent banner's paragraph as the LCP element on some runs: it appears only after hydration. Fixing that means server-rendering the banner in `components/consent/*`, which is byte-identical with the app, so both repos change together (not done here).
