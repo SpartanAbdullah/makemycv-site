@@ -16,6 +16,20 @@ Format:
 
 ---
 
+## [2026-11-02 21:30] Mobile performance: Sentry off the critical path, mono font not preloaded
+
+**Goal:** PageSpeed Insights mobile (2026-11-02 20:48, Lighthouse 13.6) scored the home page 85 with a lab LCP of 4.2 s. Field data (CrUX, 28 days) passes: LCP 1.9 s, INP 132 ms, CLS 0. The lab LCP waited on the 115 KB (compressed) main chunk, which bundled the whole Sentry browser SDK, while a second web font was preloaded at high priority on every page.
+**Files:**
+- created: `lib/sentry-client.ts` - `loadSentry()` dynamic-imports the SDK once and runs the same `Sentry.init` as before (replay off, PII stripping unchanged); `reportError()` for the boundaries.
+- created: `lib/sentry-client-impl.ts` - the only client module that imports `@sentry/nextjs`, with named re-exports so the async chunk tree-shakes (155 KB to 48 KB compressed).
+- edited: `instrumentation-client.ts` - no static Sentry import; loads it on `requestIdleCallback` after `load`; CSP-violation reporting goes through `loadSentry()`. `onRouterTransitionStart` dropped (tracesSampleRate is 0, so it recorded nothing).
+- edited: `app/error.tsx`, `app/global-error.tsx` - report via `reportError()`.
+- edited: `app/fonts/site.ts` - JetBrains Mono `preload: false` (used only by below-the-fold labels).
+**Notes / risks / follow-up:** Home-page initial JS falls from 295 KB to 240 KB compressed (main chunk 115 KB to 74 KB). Trade-off: an error thrown between page load and the first idle callback is not captured unless a boundary catches it. Lighthouse also picked the consent banner's paragraph as the LCP element on some runs: it appears only after hydration. Fixing that means server-rendering the banner in `components/consent/*`, which is byte-identical with the app, so both repos change together (not done here).
+**Suggested commit:** perf(mobile): load Sentry after idle and stop preloading the mono font
+
+---
+
 ## [2026-11-02 19:55] Technical SEO audit fixes: dates, sitemap, robots, breadcrumb schema, MOHRE links
 
 **Goal:** first-weekend fixes from the 2026-11-02 technical SEO audit (`../_cowork/seo-audit-2026-11/TECHNICAL-SEO-AUDIT-2026-11-02.md`, findings E5, A3, H3, G8). Search Central: lastmod/dateModified should reflect significant changes only; markup must describe what the page shows.

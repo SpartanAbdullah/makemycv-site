@@ -20,7 +20,7 @@ import localFont from "next/font/local";
  *
  * ── KEEP ROUTE-SCOPED FACES OUT OF THIS FILE ───────────────────────────────
  * next/font registers a <link rel="preload"> for every face declared in a
- * module that a route pulls in. When five faces lived in one module, every
+ * module that a route pulls in (unless the face sets `preload: false`). When five faces lived in one module, every
  * page preloaded the two blog-only faces as well — 4 extra files, ~72 KiB, on
  * pages that never rendered them. (The blog faces were retired with the
  * 2026-08 blog-index reskin.) Adding a face here means every route pays for it.
@@ -55,6 +55,9 @@ export const jetbrainsMono = localFont({
   style: "normal",
   variable: "--font-jetbrains-mono",
   display: "swap",
+  // Not preloaded (2026-11-02): only a few below-the-fold labels use it, and a
+  // high-priority preload on every page competed with Outfit for the hero.
+  preload: false,
   adjustFontFallback: false,
   fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 });
