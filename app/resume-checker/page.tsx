@@ -13,7 +13,7 @@ import {
   faqItems,
 } from "@/components/resume-checker/ResumeCheckerFAQ";
 import { FinalCTA } from "@/components/resume-checker/FinalCTA";
-import { SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
@@ -135,32 +135,12 @@ const faqSchema = {
   ),
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: SITE_URL,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Resume Checker",
-      item: canonicalUrl("/resume-checker"),
-    },
-  ],
-};
-
 export default function ResumeCheckerPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
-      <JsonLd data={breadcrumbSchema} />
 
       {/* HERO — warm-paper skin (Part 3 reskin, 2026-08-03): same layout
           rhythm as the homepage hero (1400px container, green wash, one

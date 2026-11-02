@@ -2,120 +2,33 @@ import type { MetadataRoute } from 'next'
 import { canonicalUrl } from '@/lib/seo'
 import { getAllPosts } from '@/lib/blog'
 
-type SitemapEntry = {
-  path: string
-  sourceFile: string
-  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>
-  priority: number
-}
-
-const staticRoutes: SitemapEntry[] = [
-  {
-    path: '/',
-    sourceFile: 'app/page.tsx',
-    changeFrequency: 'weekly',
-    priority: 1,
-  },
-  {
-    path: '/jd-match',
-    sourceFile: 'app/jd-match/page.tsx',
-    changeFrequency: 'weekly',
-    priority: 0.95,
-  },
-  {
-    path: '/templates',
-    sourceFile: 'app/templates/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.9,
-  },
-  {
-    path: '/resume-checker',
-    sourceFile: 'app/resume-checker/page.tsx',
-    changeFrequency: 'weekly',
-    priority: 0.9,
-  },
-  {
-    path: '/gratuity-calculator',
-    sourceFile: 'app/gratuity-calculator/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  },
-  {
-    path: '/notice-period-calculator',
-    sourceFile: 'app/notice-period-calculator/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  },
-  {
-    path: '/annual-leave-calculator',
-    sourceFile: 'app/annual-leave-calculator/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  },
-  {
-    path: '/resignation-letter-generator',
-    sourceFile: 'app/resignation-letter-generator/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  },
-  {
-    path: '/cv-examples-uae',
-    sourceFile: 'app/cv-examples-uae/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  },
-  {
-    path: '/free-cv-maker-dubai',
-    sourceFile: 'app/free-cv-maker-dubai/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.85,
-  },
-  {
-    path: '/blog',
-    sourceFile: 'app/blog/page.tsx',
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  },
-  {
-    path: '/about',
-    sourceFile: 'app/about/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  },
-  {
-    path: '/support',
-    sourceFile: 'app/support/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  },
-  {
-    path: '/contact',
-    sourceFile: 'app/contact/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  },
-  {
-    path: '/author/makemycv-team',
-    sourceFile: 'app/author/makemycv-team/page.tsx',
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  },
-  {
-    path: '/privacy',
-    sourceFile: 'app/privacy/page.tsx',
-    changeFrequency: 'yearly',
-    priority: 0.3,
-  },
+// Google ignores <changefreq> and <priority>, so entries carry only the URL
+// and, where we know it, a real lastmod.
+const staticPaths = [
+  '/',
+  '/jd-match',
+  '/templates',
+  '/resume-checker',
+  '/gratuity-calculator',
+  '/notice-period-calculator',
+  '/annual-leave-calculator',
+  '/resignation-letter-generator',
+  '/cv-examples-uae',
+  '/free-cv-maker-dubai',
+  '/blog',
+  '/about',
+  '/support',
+  '/contact',
+  '/author/makemycv-team',
+  '/privacy',
 ]
 
 // No lastModified for static routes: the previous value was the source
 // file's mtime at build time, which every fresh clone/CI build resets, so it
 // told crawlers "changed today" on every deploy. Posts keep their real dates.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticEntries: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: canonicalUrl(route.path),
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
+  const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
+    url: canonicalUrl(path),
   }))
 
   // Only published posts — reuse getAllPosts(), the same published filter the
@@ -125,8 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Mirror the article metadata's freshness fallback so updated evergreen
     // posts report their real dateModified, not just the original publish date.
     lastModified: new Date(post.dateModified ?? post.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
   }))
 
   return [

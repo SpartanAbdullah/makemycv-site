@@ -1,7 +1,5 @@
 import { getAllPosts, categories as ALL_CATEGORIES, formatDate } from '@/lib/blog'
-import { JsonLd } from '@/components/seo/JsonLd'
-import { breadcrumbSchema } from '@/lib/seo-schema'
-import { buildPageMetadata, canonicalUrl } from '@/lib/seo'
+import { buildPageMetadata } from '@/lib/seo'
 import { BlogIndexClient, type CardPost } from '@/components/blog/BlogIndexClient'
 
 // One helper, one title: <title>, og:title and twitter:title stay identical
@@ -41,12 +39,6 @@ export default function BlogPage() {
 
   return (
     <div className="bg-paper text-ink">
-      <JsonLd
-        data={breadcrumbSchema([
-          { name: 'Home', item: canonicalUrl('/') },
-          { name: 'Blog', item: canonicalUrl('/blog') },
-        ])}
-      />
 
       {/* Hero — light paper, green gradient on the accent words */}
       <section className="relative overflow-hidden">

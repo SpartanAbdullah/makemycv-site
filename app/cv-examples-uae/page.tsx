@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArrowRight, FileCheck2, ScanSearch, X, Check } from "lucide-react";
-import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
+import { buildPageMetadata, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { ReadNext } from "@/components/seo/ReadNext";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
+import { faqPageSchema } from "@/lib/seo-schema";
 
 export const metadata = buildPageMetadata({
   title: "UAE CV Examples by Sector",
@@ -128,17 +128,11 @@ const howToSchema = {
   ],
 };
 
-const breadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "UAE CV Examples", item: canonicalUrl("/cv-examples-uae") },
-]);
-
 export default function CvExamplesUaePage() {
   return (
     <>
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
-      <JsonLd data={breadcrumb} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-20">

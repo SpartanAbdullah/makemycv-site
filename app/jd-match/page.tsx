@@ -9,7 +9,7 @@ import { JdMatchFinalCTA } from "@/components/jd-match/JdMatchFinalCTA";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { CareerToolLinks } from "@/components/seo/CareerToolLinks";
 import { ReadNext } from "@/components/seo/ReadNext";
-import { APP_URL, SITE_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { APP_URL, buildPageMetadata, canonicalUrl } from "@/lib/seo";
 
 // Phase B0 — branded "Quick Answer" for AI search. Answers Q6 ("tool to check
 // if my CV matches a job description UAE"), leads with the brand name, ~63
@@ -104,20 +104,6 @@ const faqSchema = {
   ),
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "JD Match",
-      item: canonicalUrl("/jd-match"),
-    },
-  ],
-};
-
 export default function JdMatchPage() {
   return (
     <>
@@ -132,10 +118,6 @@ export default function JdMatchPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* HERO — warm-paper skin (Part 3 reskin): the last navy hero on a

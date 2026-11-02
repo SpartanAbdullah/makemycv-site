@@ -3,7 +3,7 @@ import { FileSignature, Timer, Banknote, ArrowRight, FileCheck2 } from "lucide-r
 import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
+import { faqPageSchema } from "@/lib/seo-schema";
 import { ResignationLetterGenerator } from "@/components/tools/ResignationLetterGenerator";
 import { TrustBadge, NextRoleCta } from "@/components/tools/CalculatorShared";
 
@@ -123,21 +123,12 @@ const webAppSchema = {
   ],
 };
 
-const breadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  {
-    name: "Resignation Letter Generator",
-    item: canonicalUrl("/resignation-letter-generator"),
-  },
-]);
-
 export default function ResignationLetterGeneratorPage() {
   return (
     <>
       <JsonLd data={webAppSchema} />
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
-      <JsonLd data={breadcrumb} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-20">

@@ -578,7 +578,7 @@ export function GratuityCalculator() {
         <a
           href="https://www.mohre.gov.ae/"
           target="_blank"
-          rel="noopener noreferrer nofollow"
+          rel="noopener noreferrer"
           className="font-medium text-accent hover:underline"
         >
           MOHRE

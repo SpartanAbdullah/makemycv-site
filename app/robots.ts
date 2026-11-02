@@ -15,7 +15,8 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Google-Extended", allow: "/" },
       { userAgent: "Applebot-Extended", allow: "/" },
     ],
+    // No `host`: Google ignores it; the canonical host comes from the
+    // apex → www redirect and the canonical tags.
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
   };
 }
