@@ -16,6 +16,19 @@ Format:
 
 ---
 
+## [2026-11-02 23:00] Resignation letter downloads as an A4 PDF, not .txt
+
+**Goal:** owner request. A .txt download is not how a professional resignation letter is handed in. The generator now produces a print-ready PDF, still built entirely in the browser (the page and the privacy policy promise nothing typed leaves the device).
+**Files:**
+- created: `components/tools/resignationPdf.ts` - `buildLetterPdf()` lays the preview's exact `letter` string onto A4 with jsPDF (Times 11.5 pt, 25 mm margins, wrapped, multi-page safe, signature space under "Yours sincerely,"). `downloadLetterPdf()` saves it. `pdfUnsupportedText()` detects text the built-in font cannot draw.
+- edited: `components/tools/ResignationLetterGenerator.tsx` - "Download .txt" is now "Download PDF". jsPDF is dynamic-imported on click, so it never ships in the page's first load. When the details contain Arabic or other non-Latin script, the PDF is refused with an inline note to use Copy letter; the note clears as soon as the letter changes.
+- edited: `app/resignation-letter-generator/page.tsx` - FAQ answer and featureList now say PDF.
+- edited: `package.json`, `package-lock.json` - `jspdf` ^4.2.1.
+**Notes / risks / follow-up:** Verified: a sample letter rendered to a one-page A4 PDF whose extracted text equals the preview text (PyMuPDF); in the browser the button creates an `application/pdf` blob, the Arabic guard shows and clears, and there are no console errors. tsc, lint (2 pre-existing warnings), `npm test`, `npm run build`. Arabic letters in the PDF would need an embedded Arabic font with shaping (the app's `lib/pdf/arabicText.ts` approach); not done here.
+**Suggested commit:** feat(resignation): download the letter as an A4 PDF
+
+---
+
 ## [2026-11-02 22:30] Consent banner painted with the server HTML (LCP)
 
 **Goal:** PageSpeed mobile picked the consent banner's paragraph as the Largest Contentful Paint. The banner rendered nothing until hydration and then appeared, so the page's LCP waited on the JS bundle.

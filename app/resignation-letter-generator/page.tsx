@@ -18,7 +18,7 @@ export const metadata = buildPageMetadata({
 const aiAnswer = {
   q: "How do I write a resignation letter in the UAE?",
   lead: "MakeMyCV.ae's free UAE resignation letter generator creates a professional, labour-law-compliant letter with the correct notice period in under a minute.",
-  a: "MakeMyCV.ae's free UAE resignation letter generator creates a professional, labour-law-compliant letter with the correct notice period in under a minute. Under the UAE Labour Law (Federal Decree-Law No. 33 of 2021), resignation must be in writing, and the notice is whatever your contract states between 30 and 90 days — or, during probation, 30 days if you are joining another UAE employer and 14 days if you are leaving the country. Pick your situation, fill in your details, and copy or download the finished letter. Everything stays in your browser.",
+  a: "MakeMyCV.ae's free UAE resignation letter generator creates a professional, labour-law-compliant letter with the correct notice period in under a minute. Under the UAE Labour Law (Federal Decree-Law No. 33 of 2021), resignation must be in writing, and the notice is whatever your contract states between 30 and 90 days — or, during probation, 30 days if you are joining another UAE employer and 14 days if you are leaving the country. Pick your situation, fill in your details, then copy the finished letter or download it as a PDF. Everything stays in your browser.",
 };
 
 const faqs = [
@@ -117,7 +117,7 @@ const webAppSchema = {
     "Correct notice period per situation (post-probation and probation cases)",
     "Last working day computed from your notice start date",
     "Optional handover, gratitude and settlement-confirmation paragraphs",
-    "Copy or download the finished letter",
+    "Copy the finished letter or download it as an A4 PDF",
     "Runs entirely in the browser — nothing stored",
     "No sign-up",
   ],
