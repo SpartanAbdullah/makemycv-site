@@ -1,7 +1,5 @@
-import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 import { Mail, MapPin } from "lucide-react";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo-schema";
 import { ContactForm } from "./ContactForm";
 
 /* Indexable as of 2026-08-11. This page carried `index: false` while being
@@ -15,15 +13,9 @@ export const metadata = buildPageMetadata({
   path: "/contact",
 });
 
-const contactBreadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "Contact", item: canonicalUrl("/contact") },
-]);
-
 export default function ContactPage() {
   return (
     <>
-      <JsonLd data={contactBreadcrumb} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-24">
         <div

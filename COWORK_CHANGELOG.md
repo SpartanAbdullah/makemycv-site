@@ -16,6 +16,21 @@ Format:
 
 ---
 
+## [2026-11-02 19:55] Technical SEO audit fixes: dates, sitemap, robots, breadcrumb schema, MOHRE links
+
+**Goal:** first-weekend fixes from the 2026-11-02 technical SEO audit (`../_cowork/seo-audit-2026-11/TECHNICAL-SEO-AUDIT-2026-11-02.md`, findings E5, A3, H3, G8). Search Central: lastmod/dateModified should reflect significant changes only; markup must describe what the page shows.
+**Files:**
+- edited: `content/blog/{cv-for-freshers-uae,cv-format-uae-2026,how-to-get-a-job-in-dubai-2026,how-to-make-cv-for-job-in-uae,why-cv-ignored-dubai}.mdx` - `dateModified` restored to the previous value; the 2026-10-31 bumps were for 1-4-line internal-link edits. `dubai-cv-vs-abu-dhabi-cv.mdx` - set to 2026-08-04 (1a436ec changed the photo advice from "virtually mandatory" to "commonly included"), and its "Last updated" footer now says August 2026 (seo-reviewer SHOULD FIX). `cv-maker-dubai` and `how-to-make-cv-for-job-in-dubai` keep 2026-10-31 (real rewrites).
+- edited: `content/blog/how-to-get-a-job-in-dubai-2026.mdx` - visible "Last updated: March 2026" now says August 2026, matching its dateModified 2026-08-11.
+- edited: `app/sitemap.ts` - entries carry only `url` (+ real `lastModified` on posts); `changeFrequency`/`priority` dropped because Google ignores them.
+- edited: `app/robots.ts` - removed the unsupported `Host:` line.
+- edited: 14 `app/*/page.tsx` (about, annual-leave, author, blog, contact, cv-examples-uae, gratuity, jd-match, notice-period, privacy, resignation-letter, resume-checker, support, templates) + `lib/seo-schema.ts` - removed the two-level BreadcrumbList JSON-LD from pages that show no visible breadcrumb, and the now-unused `breadcrumbSchema()` helper. Blog posts keep theirs (visible crumb, emitted by `postSchema()`).
+- edited: `components/tools/{Gratuity,Leave,NoticePeriod}Calculator.tsx` - dropped `nofollow` on the mohre.gov.ae citation link.
+**Notes / risks / follow-up:** Rule for future edits: link-only or wording tweaks do NOT bump `dateModified`. Deliberately not changed: the site-wide WebApplication node (documented design; RatingsProof attaches aggregateRating to its @id) and the "MakeMyCV Team" Person author (needs an owner decision on a named author). Verified: tsc, lint (2 pre-existing warnings), `npm test`, `npm run build`; built robots.txt/sitemap.xml (51 URLs, 0 changefreq/priority) and JSON-LD checked in `.next/server/app`.
+**Suggested commit:** seo: honest dateModified, leaner sitemap and robots, drop invisible breadcrumb schema
+
+---
+
 ## [2026-10-31 15:40] Ops: daily production monitor + weekly competitor watch (session 6)
 
 **Goal:** a real scheduler for the post-release checks that so far ran only when someone remembered

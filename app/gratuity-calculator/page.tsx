@@ -4,7 +4,7 @@ import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { ReadNext } from "@/components/seo/ReadNext";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
+import { faqPageSchema } from "@/lib/seo-schema";
 import { GratuityCalculator } from "@/components/tools/GratuityCalculator";
 import {
   TrustBadge,
@@ -144,11 +144,6 @@ const webAppSchema = {
   ],
 };
 
-const breadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "Gratuity Calculator", item: canonicalUrl("/gratuity-calculator") },
-]);
-
 // Illustrative worked examples (not real user data). Numbers verified against
 // the pure computeGratuity logic in components/tools/gratuity.ts.
 const examples = [
@@ -177,7 +172,6 @@ export default function GratuityCalculatorPage() {
       <JsonLd data={webAppSchema} />
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
-      <JsonLd data={breadcrumb} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-20">

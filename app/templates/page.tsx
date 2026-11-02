@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPageMetadata } from "@/lib/seo";
 import { AiAnswer } from "@/components/seo/AiAnswer";
-import { breadcrumbSchema } from "@/lib/seo-schema";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { getAllTemplates } from "@/lib/templates";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -30,21 +28,11 @@ export const metadata = buildPageMetadata({
   path: "/templates",
 });
 
-// The builder's WebApplication node is emitted site-wide from app/layout.tsx,
-// so an AI agent landing here already resolves the page to the builder it
-// advertises. Only the Breadcrumb is page-specific.
-const templatesBreadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "Templates", item: canonicalUrl("/templates") },
-]);
-
 export default function TemplatesPage() {
   const templates = getAllTemplates();
 
   return (
     <>
-      <JsonLd data={templatesBreadcrumb} />
-
       {/* Hero */}
       <section className="bg-paper py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-6 text-center">

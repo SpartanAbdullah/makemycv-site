@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
-import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo-schema";
+import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
   title: "Privacy Policy",
@@ -10,11 +8,6 @@ export const metadata = buildPageMetadata({
     "How MakeMyCV.ae handles your data: CVs stay in your browser, ATS reports auto-delete after 24 hours, and we never sell your information.",
   path: "/privacy",
 });
-
-const privacyBreadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "Privacy Policy", item: canonicalUrl("/privacy") },
-]);
 
 /**
  * Every claim on this page was verified against the actual code paths on
@@ -68,7 +61,6 @@ function Section({
 export default function PrivacyPage() {
   return (
     <>
-      <JsonLd data={privacyBreadcrumb} />
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-20">
         <div

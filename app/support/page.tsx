@@ -1,9 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
-import { buildPageMetadata, canonicalUrl } from "@/lib/seo";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { breadcrumbSchema } from "@/lib/seo-schema";
+import { buildPageMetadata } from "@/lib/seo";
 import { KarakPicker } from "@/components/KarakPicker";
 
 /* The URL stays /support deliberately — it has inbound internal links and
@@ -19,11 +17,6 @@ export const metadata = buildPageMetadata({
     "MakeMyCV is free for everyone. If it helped you, buy me a karak — it covers hosting and AI costs. No paywall, no Pro tier, no subscription.",
   path: "/support",
 });
-
-const supportBreadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  { name: "Support This Project", item: canonicalUrl("/support") },
-]);
 
 const CONTACT_EMAIL = "hello@makemycv.ae";
 
@@ -90,7 +83,6 @@ export default function SupportPage() {
 
   return (
     <>
-      <JsonLd data={supportBreadcrumb} />
 
       {/* 1. Hero + CTA */}
       <section className="relative overflow-hidden bg-paper px-6 pt-[88px] pb-[104px]">

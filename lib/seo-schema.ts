@@ -216,23 +216,9 @@ export function faqPageSchema(items: ReadonlyArray<FaqItem>) {
   } as const;
 }
 
-type BreadcrumbItem = { name: string; item?: string };
-
-export function breadcrumbSchema(items: ReadonlyArray<BreadcrumbItem>) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((entry, index) => {
-      const listItem: Record<string, unknown> = {
-        "@type": "ListItem",
-        position: index + 1,
-        name: entry.name,
-      };
-      if (entry.item) listItem.item = entry.item;
-      return listItem;
-    }),
-  } as const;
-}
+// No standalone breadcrumb helper: Google's structured-data guidelines want
+// markup to describe what the page shows, and only blog posts render a
+// visible breadcrumb. Their BreadcrumbList lives in postSchema() below.
 
 /* ──────────────────────────────────────────────────────────────────── */
 /* Blog post schema graph                                               */

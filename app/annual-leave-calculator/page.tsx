@@ -4,7 +4,7 @@ import { buildPageMetadata, canonicalUrl, APP_URL } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { ReadNext } from "@/components/seo/ReadNext";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/seo-schema";
+import { faqPageSchema } from "@/lib/seo-schema";
 import { LeaveCalculator } from "@/components/tools/LeaveCalculator";
 import {
   TrustBadge,
@@ -119,14 +119,6 @@ const webAppSchema = {
   ],
 };
 
-const breadcrumb = breadcrumbSchema([
-  { name: "Home", item: canonicalUrl("/") },
-  {
-    name: "Annual Leave Calculator",
-    item: canonicalUrl("/annual-leave-calculator"),
-  },
-]);
-
 // Illustrative worked examples (not real user data). Numbers verified against
 // the pure logic in components/tools/leave.ts.
 const examples = [
@@ -154,7 +146,6 @@ export default function AnnualLeaveCalculatorPage() {
       <JsonLd data={webAppSchema} />
       <JsonLd data={howToSchema} />
       <JsonLd data={faqSchema} />
-      <JsonLd data={breadcrumb} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
       <section className="relative overflow-hidden bg-paper py-16 md:py-20">
