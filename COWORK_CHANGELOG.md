@@ -16,6 +16,16 @@ Format:
 
 ---
 
+## [2026-11-02 22:30] Consent banner painted with the server HTML (LCP)
+
+**Goal:** PageSpeed mobile picked the consent banner's paragraph as the Largest Contentful Paint. The banner rendered nothing until hydration and then appeared, so the page's LCP waited on the JS bundle.
+**Files:**
+- edited: `components/consent/ConsentBanner.tsx` (byte-identical copy in makemycv-app) - the server always sends the bar. An inline PREPAINT script parsed just before it adds a `<style>` to `<head>` that hides `#mmcv-consent-ssr` when `mmcv_consent` is set and swaps in the EU wording when `mmcv_geo=eu`. Both wordings stay in the DOM in every render, so hydration only flips `display` and never repaints the text as a new, later element.
+**Notes / risks / follow-up:** Verified on a local build with a dummy `NEXT_PUBLIC_GTM_ID` (so no hits reached GA): first visit shows the bar with no hydration errors; a stored choice hides it before paint; EU wording swaps; "Cookie settings" reopens it; choosing closes it. Lighthouse mobile: the banner is still the LCP element but now paints in the first frame (observed LCP = FCP, about 0.5 s).
+**Suggested commit:** perf(consent): paint the banner with the server HTML
+
+---
+
 ## [2026-11-02 21:30] Mobile performance: Sentry off the critical path, mono font not preloaded
 
 **Goal:** PageSpeed Insights mobile (2026-11-02 20:48, Lighthouse 13.6) scored the home page 85 with a lab LCP of 4.2 s. Field data (CrUX, 28 days) passes: LCP 1.9 s, INP 132 ms, CLS 0. The lab LCP waited on the 115 KB (compressed) main chunk, which bundled the whole Sentry browser SDK, while a second web font was preloaded at high priority on every page.
