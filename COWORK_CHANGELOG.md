@@ -16,6 +16,43 @@ Format:
 
 ---
 
+## [2026-11-02 23:00] Resignation letter downloads as an A4 PDF, not .txt
+
+**Goal:** owner request. A .txt download is not how a professional resignation letter is handed in. The generator now produces a print-ready PDF, still built entirely in the browser (the page and the privacy policy promise nothing typed leaves the device).
+**Files:**
+- created: `components/tools/resignationPdf.ts` - `buildLetterPdf()` lays the preview's exact `letter` string onto A4 with jsPDF (Times 11.5 pt, 25 mm margins, wrapped, multi-page safe, signature space under "Yours sincerely,"). `downloadLetterPdf()` saves it. `pdfUnsupportedText()` detects text the built-in font cannot draw.
+- edited: `components/tools/ResignationLetterGenerator.tsx` - "Download .txt" is now "Download PDF". jsPDF is dynamic-imported on click, so it never ships in the page's first load. When the details contain Arabic or other non-Latin script, the PDF is refused with an inline note to use Copy letter; the note clears as soon as the letter changes.
+- edited: `app/resignation-letter-generator/page.tsx` - FAQ answer and featureList now say PDF.
+- edited: `package.json`, `package-lock.json` - `jspdf` ^4.2.1.
+**Notes / risks / follow-up:** Verified: a sample letter rendered to a one-page A4 PDF whose extracted text equals the preview text (PyMuPDF); in the browser the button creates an `application/pdf` blob, the Arabic guard shows and clears, and there are no console errors. tsc, lint (2 pre-existing warnings), `npm test`, `npm run build`. Arabic letters in the PDF would need an embedded Arabic font with shaping (the app's `lib/pdf/arabicText.ts` approach); not done here.
+**Suggested commit:** feat(resignation): download the letter as an A4 PDF
+
+---
+
+## [2026-11-02 22:30] Consent banner painted with the server HTML (LCP)
+
+**Goal:** PageSpeed mobile picked the consent banner's paragraph as the Largest Contentful Paint. The banner rendered nothing until hydration and then appeared, so the page's LCP waited on the JS bundle.
+**Files:**
+- edited: `components/consent/ConsentBanner.tsx` (byte-identical copy in makemycv-app) - the server always sends the bar. An inline PREPAINT script parsed just before it adds a `<style>` to `<head>` that hides `#mmcv-consent-ssr` when `mmcv_consent` is set and swaps in the EU wording when `mmcv_geo=eu`. Both wordings stay in the DOM in every render, so hydration only flips `display` and never repaints the text as a new, later element.
+**Notes / risks / follow-up:** Verified on a local build with a dummy `NEXT_PUBLIC_GTM_ID` (so no hits reached GA): first visit shows the bar with no hydration errors; a stored choice hides it before paint; EU wording swaps; "Cookie settings" reopens it; choosing closes it. Lighthouse mobile: the banner is still the LCP element but now paints in the first frame (observed LCP = FCP, about 0.5 s).
+**Suggested commit:** perf(consent): paint the banner with the server HTML
+
+---
+
+## [2026-11-02 21:30] Mobile performance: Sentry off the critical path, mono font not preloaded
+
+**Goal:** PageSpeed Insights mobile (2026-11-02 20:48, Lighthouse 13.6) scored the home page 85 with a lab LCP of 4.2 s. Field data (CrUX, 28 days) passes: LCP 1.9 s, INP 132 ms, CLS 0. The lab LCP waited on the 115 KB (compressed) main chunk, which bundled the whole Sentry browser SDK, while a second web font was preloaded at high priority on every page.
+**Files:**
+- created: `lib/sentry-client.ts` - `loadSentry()` dynamic-imports the SDK once and runs the same `Sentry.init` as before (replay off, PII stripping unchanged); `reportError()` for the boundaries.
+- created: `lib/sentry-client-impl.ts` - the only client module that imports `@sentry/nextjs`, with named re-exports so the async chunk tree-shakes (155 KB to 48 KB compressed).
+- edited: `instrumentation-client.ts` - no static Sentry import; loads it on the first pointerdown, keydown, scroll or touchstart, or 10 s after `load`; CSP-violation reporting goes through `loadSentry()`. `onRouterTransitionStart` dropped (tracesSampleRate is 0, so it recorded nothing).
+- edited: `app/error.tsx`, `app/global-error.tsx` - report via `reportError()`.
+- edited: `app/fonts/site.ts` - JetBrains Mono `preload: false` (used only by below-the-fold labels).
+**Notes / risks / follow-up:** Home-page initial JS falls from 295 KB to 240 KB compressed (main chunk 115 KB to 74 KB). Trade-off: an error thrown between page load and the first idle callback is not captured unless a boundary catches it. Lighthouse also picked the consent banner's paragraph as the LCP element on some runs: it appears only after hydration. Fixing that means server-rendering the banner in `components/consent/*`, which is byte-identical with the app, so both repos change together (not done here).
+**Suggested commit:** perf(mobile): load Sentry after idle and stop preloading the mono font
+
+---
+
 ## [2026-11-02 19:55] Technical SEO audit fixes: dates, sitemap, robots, breadcrumb schema, MOHRE links
 
 **Goal:** first-weekend fixes from the 2026-11-02 technical SEO audit (`../_cowork/seo-audit-2026-11/TECHNICAL-SEO-AUDIT-2026-11-02.md`, findings E5, A3, H3, G8). Search Central: lastmod/dateModified should reflect significant changes only; markup must describe what the page shows.

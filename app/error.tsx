@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import * as Sentry from "@sentry/nextjs";
+import { reportError } from "@/lib/sentry-client";
 
 /* Root error boundary for the marketing site (audit 2026-06-12, gap #2).
  * A marketing page crash should never strand a visitor — recover in
@@ -15,7 +15,7 @@ export default function Error({
 }) {
   useEffect(() => {
     console.error("[site/error]", error);
-    Sentry.captureException(error);
+    reportError(error);
   }, [error]);
 
   // A <div>, not <main>: the root layout already provides the page's main

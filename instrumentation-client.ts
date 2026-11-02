@@ -1,52 +1,40 @@
 // Sentry — browser runtime for the marketing site.
 // Same posture as instrumentation.ts; read that header first.
 //
+// The SDK itself is loaded lazily from lib/sentry-client.ts (2026-11-02): a
+// static import here put it in the main chunk every page parses before the
+// hero paints. This file only schedules the load: on the visitor's first
+// interaction, or 10 s after `load`, whichever comes first, so the SDK's
+// startup work stays out of the page's initial blocking time.
+//
 // Session Replay is OFF here too. The site itself carries little PII, but
 // /contact collects name, email and message, and the calculators take salary
 // figures — none of which belongs in a third-party screen recording. Keeping
 // both repos on the same rule also means nobody has to remember which one is
 // "the safe one".
 
-import * as Sentry from "@sentry/nextjs";
+import { loadSentry } from "./lib/sentry-client";
 
-const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
-
-if (dsn) {
-  Sentry.init({
-    dsn,
-    tracesSampleRate: 0,
-    sendDefaultPii: false,
-    maxValueLength: 2000,
-    enabled: process.env.NODE_ENV === "production",
-    environment: process.env.VERCEL_ENV ?? process.env.NODE_ENV,
-
-    replaysSessionSampleRate: 0,
-    replaysOnErrorSampleRate: 0,
-
-    beforeSend(event) {
-      delete event.user;
-      if (event.request) {
-        delete event.request.data;
-        delete event.request.cookies;
-        delete event.request.query_string;
-      }
-      return event;
-    },
-
-    beforeBreadcrumb(breadcrumb) {
-      if (breadcrumb.category === "console") return null;
-      if (breadcrumb.data) delete breadcrumb.data.body;
-      return breadcrumb;
-    },
-  });
+if (typeof window !== "undefined") {
+  const triggers = ["pointerdown", "keydown", "scroll", "touchstart"] as const;
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const start = () => {
+    clearTimeout(timer);
+    triggers.forEach((t) => window.removeEventListener(t, start));
+    void loadSentry();
+  };
+  triggers.forEach((t) => window.addEventListener(t, start, { once: true, passive: true }));
+  const arm = () => {
+    timer = setTimeout(start, 10_000);
+  };
+  if (document.readyState === "complete") arm();
+  else window.addEventListener("load", arm, { once: true });
 }
-
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
 
 // CSP observation (2026-10-24): the Report-Only policy in next.config.ts
 // fires this event for anything it WOULD have blocked. First three per page
 // go to Sentry so the allow-list can be completed before enforcement.
-if (typeof window !== "undefined" && dsn) {
+if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_SENTRY_DSN) {
   let reported = 0;
   window.addEventListener("securitypolicyviolation", (e) => {
     if (reported >= 3) return;
@@ -57,10 +45,12 @@ if (typeof window !== "undefined" && dsn) {
     } catch {
       /* "inline", "eval", "data" and friends have no host */
     }
-    Sentry.captureMessage(`CSP violation: ${e.violatedDirective} blocked ${host}`, {
-      level: "warning",
-      tags: { csp_directive: e.violatedDirective, csp_host: host, csp_mode: e.disposition },
-      fingerprint: ["csp", e.violatedDirective, host],
-    });
+    void loadSentry().then((Sentry) =>
+      Sentry?.captureMessage(`CSP violation: ${e.violatedDirective} blocked ${host}`, {
+        level: "warning",
+        tags: { csp_directive: e.violatedDirective, csp_host: host, csp_mode: e.disposition },
+        fingerprint: ["csp", e.violatedDirective, host],
+      }),
+    );
   });
 }

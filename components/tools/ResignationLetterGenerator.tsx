@@ -65,18 +65,21 @@ export function ResignationLetterGenerator() {
     includeSettlementRequest,
   });
 
-  function downloadTxt() {
-    const blob = new Blob([result.letter], {
-      type: "text/plain;charset=utf-8",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `resignation-letter-${startDate || "draft"}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+  // The letter text a PDF was refused for; the warning shows only while the
+  // letter is unchanged, so fixing the details clears it.
+  const [pdfBlockedFor, setPdfBlockedFor] = useState<string | null>(null);
+
+  async function downloadPdf() {
+    // Loaded on click so jsPDF stays out of the page's first load.
+    const { downloadLetterPdf, pdfUnsupportedText } = await import(
+      "@/components/tools/resignationPdf"
+    );
+    if (pdfUnsupportedText(result.letter)) {
+      setPdfBlockedFor(result.letter);
+      return;
+    }
+    setPdfBlockedFor(null);
+    downloadLetterPdf(result.letter, `resignation-letter-${startDate || "draft"}.pdf`);
   }
 
   const inputCls =
@@ -293,14 +296,21 @@ export function ResignationLetterGenerator() {
         <CopyBreakdownButton getText={() => result.letter} label="Copy letter" />
         <button
           type="button"
-          onClick={downloadTxt}
+          onClick={downloadPdf}
           data-event="resignation_download_click"
           className="inline-flex items-center gap-2 rounded-full bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
         >
           <Download size={15} />
-          Download .txt
+          Download PDF
         </button>
       </div>
+      {pdfBlockedFor === result.letter && (
+        <p role="status" className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          The PDF can only show Latin characters, so it would garble Arabic or
+          other scripts in your details. Use Copy letter and paste it into Word
+          or Google Docs instead.
+        </p>
+      )}
 
       <p className="mt-4 text-xs leading-relaxed text-muted">
         Your letter is built entirely in your browser — nothing you type here
