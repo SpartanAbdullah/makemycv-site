@@ -66,8 +66,30 @@ export default function proxy(request: NextRequest) {
   return res;
 }
 
+/*
+ * Matcher (narrowed 2026-11-04). In Next 16 the proxy runs as a Vercel
+ * function, so every match spends Fluid Active CPU — and the old catch-all
+ * ran on every image, font and icon (~9.6K runs a day, the site's whole CPU
+ * line, with the free team at its 4-hour limit). Two kinds of entry now:
+ *   1. the bot sweeps, always: their probes often carry file extensions
+ *      (`/static/js/main.js`, `/personashttp:/x.nl`), so they are listed
+ *      explicitly rather than reached through the page pattern;
+ *   2. page paths (no dot in the path) ONLY while the region cookie is
+ *      missing — once a visitor has it there is nothing left to stamp.
+ * A new BOT_PATHS prefix needs an entry in (1) as well, or its dotted probes
+ * fall through to the React not-found page again.
+ */
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)",
+    "/static/js/:path*",
+    "/static/media/:path*",
+    "/(personas.*)",
+    "/(ingresa-tus-datos|autenticacion|assets|en|home|login|groups|article)",
+    "/(ingresa-tus-datos|autenticacion|assets|en|home|login|groups|article)/:path*",
+    {
+      source: "/((?!api|_next/static|_next/image|.*\\..*).*)",
+      // = GEO_COOKIE; Next reads `config` statically, so it must be a literal.
+      missing: [{ type: "cookie", key: "mmcv_geo" }],
+    },
   ],
 };

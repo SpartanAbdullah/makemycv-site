@@ -16,6 +16,16 @@ Format:
 
 ---
 
+## [2026-11-04 16:30] Proxy runs only on bot sweeps and a visitor's first page view
+
+**Goal:** Vercel warned the free team was at its limits: Fluid Active CPU ≈ 3h59m of 4h over the last 30 days (this site 2h41m of it) and CDN requests 755K of 1M. In Next 16 `proxy.ts` is a function, and its catch-all matcher ran ~9.6K times a day, on every page, image, font and icon, to stamp a cookie most requests already had. That is the site's CPU line.
+**Files:**
+- edited: `proxy.ts` - matcher only. The bot-sweep prefixes are listed explicitly (their probes carry file extensions), and page paths without a dot match only while `mmcv_geo` is missing (`missing` cookie condition). The proxy body is unchanged.
+**Notes / risks / follow-up:** Verified with `next start` + curl: `/` and `/blog` set the cookie without one and are untouched with one; `/logos/*`, `/static/cv-photo-amira.jpg` skip the proxy; `/static/js/main.js`, `/personashttp:/x.nl`, `/home/index.php`, `/en`, `/login` still get the bare 404 with or without the cookie; `/nope.php` renders the normal not-found as before. tsc, lint (2/2), `npm run build`. A new `BOT_PATHS` prefix now needs a matcher entry too (comment in the file). The app's proxy got the same change. Check the Fluid Active CPU chart on Vercel a day after deploy.
+**Suggested commit:** perf(proxy): run only on bot sweeps and first page views
+
+---
+
 ## [2026-11-02 23:00] Resignation letter downloads as an A4 PDF, not .txt
 
 **Goal:** owner request. A .txt download is not how a professional resignation letter is handed in. The generator now produces a print-ready PDF, still built entirely in the browser (the page and the privacy policy promise nothing typed leaves the device).
