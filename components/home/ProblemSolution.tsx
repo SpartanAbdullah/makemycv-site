@@ -5,7 +5,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 const problems = [
   {
     title: "Software reads your CV before a person does.",
-    body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software first. Fancy columns, headers, and icons break the parser. Your CV never reaches a human.",
+    body: "Many large UAE employers screen with software first. Fancy columns, headers, and icons can break the parser, and a misread CV may never reach a human.",
   },
   {
     title: "Generic templates scream “expat import”.",

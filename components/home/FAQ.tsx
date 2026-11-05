@@ -18,7 +18,7 @@ export const homepageFaqs = [
   },
   {
     q: "Will my CV pass ATS filters used by UAE employers?",
-    a: "Yes. MakeMyCV templates use the structure ATS software parses reliably — single-column layout, standard section headers, no image-based text or broken multi-column layouts. The same templates feed the free /resume-checker so you can verify it yourself.",
+    a: "No tool can guarantee that, because each employer sets up its ATS differently. MakeMyCV's ATS-Friendly templates use the structure ATS software generally parses reliably — single-column layout, standard section headers, no image-based text. Design-led templates suit emailing a recruiter directly. You can check how your file reads with the free /resume-checker.",
   },
   {
     q: "Should a UAE CV include visa status and nationality?",

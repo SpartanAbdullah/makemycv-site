@@ -33,7 +33,7 @@ const cvMakerAiAnswer = {
 const faqItems = [
   {
     q: "Is MakeMyCV really free?",
-    a: "Yes. You can build, edit, and download your CV as a PDF without paying, signing up, or removing a watermark. A Pro tier with advanced features is available but not required.",
+    a: "Yes. You can build, edit, and download your CV as a PDF without paying, signing up, or removing a watermark. Tips are optional.",
   },
   {
     q: "What format should a CV for Dubai follow?",
@@ -45,7 +45,7 @@ const faqItems = [
   },
   {
     q: "Will my CV pass ATS filters used in Dubai?",
-    a: "Yes. Every MakeMyCV.ae template uses a single-column, parser-safe layout built on the rules mainstream ATS parsers share: real text (no text-as-image), standard section headings, no tables or sidebars, UAE fields written as plain lines. Our own checker verifies every template export.",
+    a: "No tool can promise that, because each employer sets up its ATS differently. MakeMyCV.ae's ATS-Friendly templates use a single-column, parser-safe layout built on the rules mainstream ATS parsers share: real text (no text-as-image), standard section headings, no tables or sidebars, UAE fields written as plain lines. Design-led templates suit emailing a recruiter directly. You can check how your file reads with our free ATS checker.",
   },
   {
     q: "Can I make a CV on my phone?",
@@ -145,7 +145,7 @@ const steps = [
   {
     number: "1",
     title: "Pick a template",
-    body: "Choose from 14 templates designed for UAE hiring. Every layout is parser-safe and checked by our own ATS checker before release.",
+    body: "Choose from 14 templates designed for UAE hiring. For online portals, pick one with the ATS-Friendly badge; design-led layouts suit emailing a recruiter directly.",
   },
   {
     number: "2",
@@ -211,8 +211,8 @@ function MakerHowItWorks() {
 const features = [
   {
     icon: ShieldCheck,
-    title: "ATS-safe formatting",
-    body: "Single-column, parser-safe layouts built on the rules mainstream ATS parsers share — real text, standard headings, no tables or sidebars. Every template export is verified with our own ATS checker.",
+    title: "ATS-friendly formatting",
+    body: "ATS-Friendly templates use single-column, parser-safe layouts built on the rules mainstream ATS parsers share — real text, standard headings, no tables or sidebars. Run any export through our free ATS checker to see how it reads.",
   },
   {
     icon: MapPin,
@@ -232,12 +232,12 @@ const features = [
   {
     icon: FileDown,
     title: "Free PDF & DOCX export",
-    body: "Download a clean A4 document. No watermark on the free tier. No account required.",
+    body: "Download a clean A4 document. No watermark. No account required.",
   },
   {
     icon: Lock,
     title: "Browser-local privacy",
-    body: "Your CV draft stays in your browser, not on a server. No sign-up means no data collection.",
+    body: "Your CV draft stays in your browser, not on a server, and you don't need an account. The site uses analytics, and optional AI tools send the text they need. Our privacy policy has the details.",
   },
 ] as const;
 
