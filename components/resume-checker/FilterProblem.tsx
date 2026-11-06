@@ -33,10 +33,10 @@ export function FilterProblem() {
             Why so many UAE CVs get filtered out before a human reads them.
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
-            ENOC, Emaar, Majid Al Futtaim, ADCB and most DIFC firms run every
-            application through an applicant tracking system first. Your CV is
-            software-filtered long before a recruiter opens it — and three
-            specific issues kill most qualified candidates.
+            Many large UAE employers run applications through an applicant
+            tracking system first, so your CV may be software-filtered before a
+            recruiter opens it — and three common issues can cost qualified
+            candidates an interview.
           </p>
         </div>
 

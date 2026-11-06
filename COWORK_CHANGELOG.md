@@ -16,6 +16,17 @@ Format:
 
 ---
 
+## [2026-11-05 14:30] Remove false and unsupported claims from public copy
+
+**Goal:** the 2026-11-05 viability audit found live statements the product cannot back up. Fix them so the public copy is true before any commercial test.
+**Files:**
+- edited: `app/free-cv-maker-dubai/page.tsx` - removed "A Pro tier ... is available" and "No sign-up means no data collection" (both false); "Every template ... no sidebars" and "checker verifies every template" (design-led sidebar templates exist; no such check exists); "free tier" wording.
+- edited: `components/home/FAQ.tsx`, `app/templates/page.tsx` - no more unconditional "Yes" or "Passes ATS" (no test against any real ATS exists); answers now separate ATS-Friendly from design-led templates.
+- edited: `components/home/FeatureGrid.tsx`, `components/home/ProblemSolution.tsx`, `components/resume-checker/FilterProblem.tsx` - dropped named employers and absolutes ("every major UAE employer", "never reaches a human"); "Nothing to leak" narrowed to the builder.
+- edited: 11 `content/blog/*.mdx` - "ATS-tested" to "ATS-friendly" (19 places); seo-reviewer SHOULD FIX items applied in `cv-maker-dubai` and `hospitality-cv-uae`; "parse-tested" removed from `should-cv-have-photo-uae`. `dateModified` deliberately not bumped (wording tweak rule).
+**Notes / risks / follow-up:** companion app PR changes `app/resume-checker/page.tsx`. Not changed, for owner decision: "free and always will be" lines (bind future pricing), hero "Your CV stays on your device", employer names in `app/templates/page.tsx` and five blog posts, Medium copies, and FAQ text AI engines have already quoted. Removing employer names may lose a little keyword relevance.
+**Suggested commit:** fix(copy): remove false and unsupported public claims
+
 ## [2026-11-04 16:30] Proxy runs only on bot sweeps and a visitor's first page view
 
 **Goal:** Vercel warned the free team was at its limits: Fluid Active CPU ≈ 3h59m of 4h over the last 30 days (this site 2h41m of it) and CDN requests 755K of 1M. In Next 16 `proxy.ts` is a function, and its catch-all matcher ran ~9.6K times a day, on every page, image, font and icon, to stamp a cookie most requests already had. That is the site's CPU line.

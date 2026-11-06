@@ -124,7 +124,7 @@ export default function TemplatesPage() {
             <div className="grid gap-4">
               <div className="rounded-xl border border-red-200/70 bg-red-50/50 p-6">
                 <p className="mb-3 flex items-center gap-2 font-bold text-red-600">
-                  <XCircle size={18} className="text-red-500" /> Rejected by ATS
+                  <XCircle size={18} className="text-red-500" /> Can trip up ATS
                 </p>
                 <ul className="space-y-1 text-xs text-red-700/90">
                   <li>&bull; Tables and multi-column layouts</li>
@@ -135,7 +135,7 @@ export default function TemplatesPage() {
               </div>
               <div className="rounded-xl border border-accent/25 bg-accent-soft p-6">
                 <p className="mb-3 flex items-center gap-2 font-bold text-accent-deep">
-                  <CheckCircle2 size={18} className="text-accent" /> Passes ATS
+                  <CheckCircle2 size={18} className="text-accent" /> Parses cleanly
                 </p>
                 <ul className="space-y-1 text-xs text-ink-2">
                   <li>&bull; Clean text formatting</li>

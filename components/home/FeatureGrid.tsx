@@ -13,11 +13,11 @@ const differentiators = [
   },
   {
     claim: "Structured to survive the ATS filter.",
-    body: "ENOC, Emaar, Majid Al Futtaim, ADCB — every major UAE employer screens with software before a human reads anything. Our templates keep single-column, parser-safe structure so your CV arrives intact, and you can verify it with the free ATS checker.",
+    body: "Many large UAE employers screen with software before a human reads anything. Our ATS-Friendly templates keep a single-column, parser-safe structure to help your CV arrive intact, and you can check it with the free ATS checker.",
   },
   {
     claim: "Your CV stays on your device.",
-    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI helpers — bullet rewriter, cover letter, ATS checker — send only the text each one needs, listed on our privacy page, nothing else. Nothing to leak, nothing to sell.",
+    body: "No account, no CV database on our side — your CV is built and saved locally in your browser, and the PDF downloads straight from your device. The optional AI helpers — bullet rewriter, cover letter, ATS checker — send only the text each one needs, listed on our privacy page, nothing else. The builder keeps no server copy of your CV to leak or sell.",
   },
 ];
 
