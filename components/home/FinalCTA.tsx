@@ -17,7 +17,7 @@ export function FinalCTA({
           Your next UAE job starts with the right CV.
         </h2>
         <p className="mt-5 text-lg text-white/75">
-          Free to build. Free to download. No paywall, no account, no upsell.
+          Free to build. Free to download. No paywall, no account.
         </p>
 
         <div className="mt-10">

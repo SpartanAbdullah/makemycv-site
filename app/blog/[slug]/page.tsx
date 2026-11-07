@@ -65,8 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.excerpt,
       images: [absoluteUrl(ogImageUrl)],
-      site: '@makemycvae',
-      creator: '@makemycvae',
+      site: '@makemycv_ae',
+      creator: '@makemycv_ae',
     },
     robots: indexableRobots,
   }

@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { outfit, jetbrainsMono } from "@/app/fonts/site";
 import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ConsentBanner } from "@/components/consent/ConsentBanner";
+import { ExitFollowCard } from "@/components/ExitFollowCard";
 import { CONSENT_DEFAULT_SCRIPT } from "@/lib/consent";
 import { PARAM_KEYS } from "@/lib/analytics";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -236,8 +236,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <main>{children}</main>
         <Footer />
         {GTM_ID && <ConsentBanner />}
+        <ExitFollowCard consentBanner={!!GTM_ID} />
         <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );

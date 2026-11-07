@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
 import { buildPageMetadata } from "@/lib/seo";
 import { KarakPicker } from "@/components/KarakPicker";
@@ -9,12 +7,12 @@ import { KarakPicker } from "@/components/KarakPicker";
    (2026-08-11). Do not rename the route; that would need a 301 for no gain.
 
    2026-10-24 redesign (design_handoff_support_karak): the ask comes first.
-   Hero → tip picker → Why support → About me → What you get → FAQ → footer.
+   Hero → tip picker → Why support → About → What you get → FAQ → footer.
    The standalone TipJar section is gone; its content lives in the hero card. */
 export const metadata = buildPageMetadata({
   title: "Support This Project",
   description:
-    "MakeMyCV is free for everyone. If it helped you, buy me a karak — it covers hosting and AI costs. No paywall, no Pro tier, no subscription.",
+    "The MakeMyCV builder is free for everyone. If it helped you, buy us a karak — it covers hosting and AI costs. No paywall, no subscription.",
   path: "/support",
 });
 
@@ -38,11 +36,11 @@ const whySupport = [
 const faq = [
   {
     q: "Is the tool actually free?",
-    a: "Yes, completely. No paid tier, no premium features, no hidden export fees.",
+    a: "Yes. The builder has no paid tier, no premium features and no export fees.",
   },
   {
     q: "Where does my tip go?",
-    a: "Ko-fi forwards your tip directly to my PayPal Business account. You'll see Ko-fi's secure checkout, with “MakeMyCV” as the recipient name. Cards work without a Ko-fi account.",
+    a: "Ko-fi forwards your tip directly to our PayPal Business account. You'll see Ko-fi's secure checkout, with “MakeMyCV” as the recipient name. Cards work without a Ko-fi account.",
   },
   {
     q: "Can I tip in AED?",
@@ -50,37 +48,22 @@ const faq = [
   },
   {
     q: "Will there be a paid version later?",
-    a: "Maybe. If MakeMyCV grows significantly, optional premium features may launch in the future. The current free tool will remain free regardless.",
+    a: "The builder will stay free. If we ever offer paid extras, they will be separate from it.",
   },
   {
     q: "Can I get a refund?",
-    a: `Yes — email me at ${CONTACT_EMAIL} and I'll refund any tip, no questions asked. Tipping should feel good, not regretted.`,
+    a: `Yes — email us at ${CONTACT_EMAIL} and we'll refund any tip, no questions asked. Tipping should feel good, not regretted.`,
   },
   {
-    q: "How do I contact you for anything else?",
-    a: `Same email: ${CONTACT_EMAIL}. I read everything personally.`,
+    q: "How do I contact you about anything else?",
+    a: `Same email: ${CONTACT_EMAIL}. A real person reads every message.`,
   },
 ];
-
-function getAbdullahPhotoPath(): string | null {
-  const candidates = ["abdullah.jpg", "abdullah.jpeg", "abdullah.png", "abdullah.webp"];
-  const imagesDir = path.join(process.cwd(), "public", "images");
-  for (const name of candidates) {
-    try {
-      if (fs.existsSync(path.join(imagesDir, name))) return `/images/${name}`;
-    } catch {
-      // ignore
-    }
-  }
-  return null;
-}
 
 const EYEBROW =
   "text-[11px] font-semibold uppercase tracking-[0.14em] text-accent";
 
 export default function SupportPage() {
-  const photoPath = getAbdullahPhotoPath();
-
   return (
     <>
 
@@ -103,13 +86,13 @@ export default function SupportPage() {
             Tip jar &middot; Built by one person in Dubai
           </span>
           <h1 className="mt-6 font-display text-[clamp(44px,6vw,80px)] font-bold leading-[1.02] tracking-[-0.03em] text-ink [text-wrap:balance]">
-            Buy me a <span className="text-accent">karak</span>
+            Buy us a <span className="text-accent">karak</span>
           </h1>
           {/* Plain-language subline: "karak" is everyday UAE vocabulary but not
               universal, and this page is read by people who have just arrived.
               The ask has to be legible without knowing the term. */}
           <p className="mx-auto mt-5 max-w-[560px] text-xl leading-[1.55] text-muted [text-wrap:pretty]">
-            MakeMyCV is free and always will be &mdash; a karak keeps it running.
+            The builder is free and always will be &mdash; a karak keeps it running.
           </p>
         </div>
         <div className="relative">
@@ -153,33 +136,22 @@ export default function SupportPage() {
         </div>
       </section>
 
-      {/* 3. About me */}
+      {/* 3. About */}
       <section className="bg-paper px-6 py-24">
         <div className="mx-auto flex max-w-[960px] flex-wrap items-start gap-12">
           <div className="flex flex-[0_0_220px] flex-col gap-4">
             <p className={EYEBROW}>Who&apos;s behind it</p>
-            {photoPath ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={photoPath}
-                alt="Abdullah"
-                width={120}
-                height={120}
-                className="h-[120px] w-[120px] rounded-full object-cover shadow-[0_0_0_4px_var(--color-paper),0_0_0_6px_var(--color-gold)]"
-              />
-            ) : (
-              <div
-                aria-hidden="true"
-                className="flex h-[120px] w-[120px] items-center justify-center rounded-full bg-accent-soft text-[40px] font-bold text-accent shadow-[0_0_0_4px_var(--color-paper),0_0_0_6px_var(--color-gold)]"
-              >
-                A
-              </div>
-            )}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logos/logo-mark.svg"
+              alt=""
+              width={120}
+              height={120}
+              className="h-[120px] w-[120px] rounded-3xl"
+            />
             <div>
-              <p className="text-xl font-semibold text-ink">Abdullah</p>
-              <p className="mt-1 text-sm text-muted">
-                Solo developer &middot; Dubai
-              </p>
+              <p className="text-xl font-semibold text-ink">The MakeMyCV team</p>
+              <p className="mt-1 text-sm text-muted">Dubai, UAE</p>
             </div>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
@@ -190,23 +162,22 @@ export default function SupportPage() {
           </div>
           <div className="min-w-0 flex-[1_1_420px] rounded-3xl bg-sheet p-10 shadow-sheet">
             <h2 className="font-display text-[clamp(28px,3vw,36px)] font-bold tracking-tight-2 text-ink">
-              Hi, I&apos;m Abdullah.
+              Made by one developer in Dubai who cares.
             </h2>
             <div className="mt-5 flex flex-col gap-4 text-[17px] leading-[1.7] text-ink-2 [text-wrap:pretty]">
               <p>
-                I&apos;m a solo developer based in Dubai. I built MakeMyCV
-                because every CV builder I tried was either built for the US
-                market, charged $5 per download, or just didn&apos;t
-                understand the UAE job market. So I made my own &mdash; and
-                made it free.
+                MakeMyCV started because every CV builder tried was either built
+                for the US market, charged $5 per download, or just didn&apos;t
+                understand the UAE job market. So a solo developer here made one
+                for UAE job seekers &mdash; and made it free.
               </p>
               <p>
-                If it helped you, a small tip helps me cover hosting and AI
+                If it helped you, a small tip helps cover the hosting and AI
                 costs that keep it running. No pressure either way.
               </p>
             </div>
             <p className="mt-7 font-mono text-[13px] font-medium text-gold-deep">
-              &mdash; Abdullah, Dubai
+              &mdash; The MakeMyCV team, Dubai
             </p>
           </div>
         </div>
@@ -220,8 +191,8 @@ export default function SupportPage() {
           </h2>
           <p className="mt-5 text-lg leading-relaxed text-muted">
             Honestly? Nothing extra. This is a tip jar, not a paywall. Every
-            feature is free for everyone, tip or no tip. Tipping just means
-            more sleep for me and a longer runway for the tool.
+            builder feature is free for everyone, tip or no tip. A tip just
+            buys a longer runway for the tool and a little more sleep.
           </p>
         </div>
       </section>

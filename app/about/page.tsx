@@ -20,8 +20,8 @@ const values = [
   },
   {
     icon: "\uD83D\uDC9A",
-    title: "Free, Always",
-    desc: "MakeMyCV is fully free. We accept voluntary tips from people who find it useful \u2014 never a paywall.",
+    title: "Builder Free, Always",
+    desc: "The builder is fully free. We accept voluntary tips from people who find it useful \u2014 never a paywall.",
   },
 ];
 

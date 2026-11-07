@@ -28,8 +28,7 @@ export const LOGO_ID = `${SITE_URL}/#logo`;
  * a sameAs we don't control is an entity-merge risk.
  *
  * Claim order (each becomes another UAE-scoped citation):
- * Google Business Profile > Crunchbase > Trustpilot > X/Instagram
- * (@makemycvae) > Product Hunt > UAE directories.
+ * Google Business Profile > Crunchbase > Trustpilot > Product Hunt > UAE directories.
  */
 export const ORG_SAME_AS: readonly string[] = [
   "https://www.linkedin.com/company/makemycv-ae",
@@ -37,8 +36,8 @@ export const ORG_SAME_AS: readonly string[] = [
   // Medium syndication profile, org-owned: display name "MakeMyCV.ae",
   // publishes only this site's content, every story canonicals back here.
   //
-  // Replaced @abdullahportfolio5 on 2026-09-18. That handle was DEAD —
-  // medium.com/feed/@abdullahportfolio5 returned 404 — so the entity graph
+  // Replaced an older personal handle on 2026-09-18. That handle was DEAD —
+  // its Medium feed returned 404 — so the entity graph
   // was shipping a broken sameAs, which is worse than omitting one: it is a
   // citation that cannot be corroborated. Verified before the swap:
   // medium.com/feed/@makemycv.ae returns 200, "Stories by MakeMyCV.ae".
@@ -48,6 +47,10 @@ export const ORG_SAME_AS: readonly string[] = [
   // Verified as ours on 2026-10-31 alongside the LinkedIn and Instagram
   // entries above. If a vanity URL is claimed, swap this for it.
   "https://www.facebook.com/profile.php?id=61596108358844",
+  // Org-owned X and Threads accounts, confirmed 2026-11-07. The X handle is
+  // @makemycv_ae; an older note here had it wrong.
+  "https://x.com/makemycv_ae",
+  "https://www.threads.com/@makemycv.ae",
 ];
 
 function normalizePath(pathname: string): string {

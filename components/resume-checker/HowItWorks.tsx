@@ -142,7 +142,7 @@ export function HowItWorks() {
             How it works.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-muted">
-            No account. No email. No upsell between you and your report.
+            No account. No email. Nothing between you and your report.
           </p>
         </div>
 
