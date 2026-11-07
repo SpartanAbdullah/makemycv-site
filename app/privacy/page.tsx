@@ -27,8 +27,9 @@ export const metadata = buildPageMetadata({
  *   into KV permanently with no TTL (audit A-W3-001) and made the "held
  *   briefly" wording below false. That flag is now off in all eight limiters.
  * - Contact form posts to Formspree (form id mqeykryy).
- * - Analytics: GA4 via GTM + Vercel Analytics/Speed Insights on this site;
- *   Vercel Analytics/Speed Insights added to app.makemycv.ae on 2026-08-02.
+ * - Analytics: GA4 via GTM + Vercel Analytics on this site; Vercel Analytics
+ *   added to app.makemycv.ae on 2026-08-02. Speed Insights removed from both
+ *   on 2026-11-07.
  * - Error monitoring: Sentry on BOTH repos as of 2026-08-02, EU region
  *   (ingest host *.ingest.de.sentry.io). Configured with sendDefaultPii:false,
  *   request bodies stripped in beforeSend, and session replay hard-disabled
