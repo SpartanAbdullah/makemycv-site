@@ -32,7 +32,7 @@ export default function ThanksPage() {
         </p>
         <p className="mt-4 text-base italic text-muted">
           If you have a moment, sharing the tool with someone job-hunting in
-          the UAE helps just as much as a tip. &mdash; Abdullah
+          the UAE helps just as much as a tip. &mdash; The MakeMyCV team
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a

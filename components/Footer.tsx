@@ -1,8 +1,24 @@
 import Link from "next/link";
 import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
 import { Heart, MapPin } from "lucide-react";
-import { LINKEDIN_URL, INSTAGRAM_URL } from "@/lib/social";
-import { IconLinkedInGlyph, IconInstagramGlyph } from "@/components/SocialIcons";
+import { SOCIAL_PROFILES, type SocialId } from "@/lib/social";
+import {
+  IconFacebookGlyph,
+  IconInstagramGlyph,
+  IconLinkedInGlyph,
+  IconMediumGlyph,
+  IconThreadsGlyph,
+  IconXGlyph,
+} from "@/components/SocialIcons";
+
+const SOCIAL_GLYPHS: Record<SocialId, typeof IconLinkedInGlyph> = {
+  linkedin: IconLinkedInGlyph,
+  instagram: IconInstagramGlyph,
+  facebook: IconFacebookGlyph,
+  x: IconXGlyph,
+  threads: IconThreadsGlyph,
+  medium: IconMediumGlyph,
+};
 
 /* Two columns by intent: Pages = the site itself; Free Tools = the GEO
    utility pages (kept out of Pages so the footer never reads as link soup). */
@@ -64,29 +80,29 @@ export const Footer = () => (
             href="/support"
             className="transition-colors duration-150 hover:text-gold-light"
           >
-            Built by Abdullah in Dubai.
+            Built in Dubai by a solo developer who cares.
           </Link>
         </p>
-        {/* Social — LinkedIn + Instagram only for now */}
-        <div className="mt-4 flex items-center gap-3">
-          <a
-            href={LINKEDIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="MakeMyCV on LinkedIn"
-            className="text-white/60 transition-colors duration-150 hover:text-gold-light"
-          >
-            <IconLinkedInGlyph className="h-[18px] w-[18px]" />
-          </a>
-          <a
-            href={INSTAGRAM_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="MakeMyCV on Instagram"
-            className="text-white/60 transition-colors duration-150 hover:text-gold-light"
-          >
-            <IconInstagramGlyph className="h-[18px] w-[18px]" />
-          </a>
+        {/* Social: every owned profile, from lib/social.ts */}
+        <div className="mt-4 flex flex-wrap items-center gap-1">
+          {SOCIAL_PROFILES.map(({ id, label, url }) => {
+            const Glyph = SOCIAL_GLYPHS[id];
+            return (
+              <a
+                key={id}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`MakeMyCV on ${label}`}
+                data-event="cta_click"
+                data-cta-id={`social_${id}`}
+                data-cta-location="footer"
+                className="-ml-1 flex h-9 w-9 items-center justify-center text-white/60 transition-colors duration-150 hover:text-gold-light"
+              >
+                <Glyph className="h-[18px] w-[18px]" />
+              </a>
+            );
+          })}
         </div>
       </div>
 

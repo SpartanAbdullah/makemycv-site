@@ -70,7 +70,7 @@ export const TipJar = ({
             isCompact ? "text-lg" : "text-2xl md:text-3xl"
           }`}
         >
-          {/* Deliberately NOT "Buy me a karak" — that is the button copy
+          {/* Deliberately NOT "Buy us a karak" — that is the button copy
               directly below, and the page H1 above. Three identical CTAs in one
               viewport reads as a glitch. */}
           Support a free tool
@@ -87,7 +87,7 @@ export const TipJar = ({
           isCompact ? "text-sm" : "text-base"
         }`}
       >
-        MakeMyCV is free and always will be — a karak covers hosting and AI
+        The builder is free and always will be — a karak covers hosting and AI
         costs.
       </p>
 
@@ -102,7 +102,7 @@ export const TipJar = ({
         }`}
       >
         <KofiIcon size={isCompact ? 20 : 22} />
-        <span>Buy me a karak</span>
+        <span>Buy us a karak</span>
       </a>
 
       {/* Secondary — PayPal */}
@@ -120,8 +120,8 @@ export const TipJar = ({
 
       {/* Reassurance */}
       <p className="mt-5 text-center text-xs leading-relaxed text-muted">
-        Built by Abdullah, a solo developer in Dubai. Ko-fi accepts cards
-        without a PayPal account; tips go directly to him.
+        Built by a solo developer in Dubai who cares. Ko-fi accepts cards
+        without a PayPal account; tips go directly to us.
       </p>
     </div>
   );

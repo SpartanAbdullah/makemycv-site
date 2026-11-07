@@ -63,17 +63,16 @@ const GCC_AREA_SERVED = [
  */
 function authorPerson(name = "MakeMyCV Team") {
   return {
-    "@type": "Person",
+    "@type": "Organization",
     "@id": `${canonicalUrl(AUTHOR_PAGE_PATH)}#author`,
     name,
     url: canonicalUrl(AUTHOR_PAGE_PATH),
-    description:
-      "MakeMyCV editorial team writing about UAE and Gulf job market CV strategy.",
-    worksFor: { "@id": ORGANIZATION_ID },
+    description: "MakeMyCV writes practical CV guides for the UAE and Gulf job market.",
+    parentOrganization: { "@id": ORGANIZATION_ID },
   };
 }
 
-/** Standalone Person node for /author/makemycv-team. */
+/** Standalone author node for /author/makemycv-team. */
 export function authorPageSchema() {
   return { "@context": "https://schema.org", ...authorPerson() };
 }
@@ -113,7 +112,6 @@ export function organizationSchema() {
       "GCC hiring standards",
       "Visa status on a CV",
     ],
-    founder: { "@type": "Person", name: "Abdullah" },
     contactPoint: {
       "@type": "ContactPoint",
       email: CONTACT_EMAIL,

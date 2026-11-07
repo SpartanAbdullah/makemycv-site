@@ -16,6 +16,18 @@ Format:
 
 ---
 
+## [2026-11-07 21:35] Track A: owner name removed, six social profiles, exit follow card
+
+**Goal:** owner decisions in docs/human-review-launch-2026-11/PLAN.md: no personal name on the site, all social profiles listed, and a follow ask when a desktop visitor leaves. Wording that said no paid tier or no upsell now refers to the builder, so it stays true if a paid review is offered later. Nothing here sells anything.
+**Files:**
+- edited: app/support/page.tsx, app/thanks/page.tsx, components/Footer.tsx, components/KarakPicker.tsx, components/TipJar.tsx: name and first person removed; photo lookup removed.
+- edited: lib/seo-schema.ts: founder node removed; blog author is now an Organization. app/author/makemycv-team/page.tsx, components/blog/AuthorBlock.tsx: specialist and editorial-team claims replaced; How we write section added.
+- edited: lib/social.ts, components/SocialIcons.tsx, components/Footer.tsx, lib/seo.ts: six profiles, with X and Threads in sameAs. app/blog/[slug]/page.tsx: twitter handle corrected to @makemycv_ae.
+- created: components/ExitFollowCard.tsx, mounted in app/layout.tsx. components/blog/AuthorBlock.tsx: follow line.
+- edited: components/home/FAQ.tsx, components/home/FinalCTA.tsx, components/resume-checker/HowItWorks.tsx, components/resume-checker/ResumeCheckerFAQ.tsx, app/about/page.tsx: free wording scoped to the builder.
+**Notes/risks:** exit_prompt_shown needs adding to the GTM trigger regex and publishing, or the stop rule has no denominator. The card rule that avoids the consent banner could not run locally because the banner needs a GTM id; check it on the preview. paypal.me/Abdullah2431 still shows the first name: the owner keeps PayPal and needs a new handle set through NEXT_PUBLIC_PAYPAL_ME_HANDLE.
+**Suggested commit:** feat: remove owner name, list all social profiles, add exit follow card
+
 ## [2026-11-07 15:15] Stop named crawlers running the proxy; remove Speed Insights
 
 **Goal:** the free Vercel team is at 3h 57m of its 4h CPU limit, with a safe daily rate of only about 420 s until about 24 Nov. Crawlers keep no cookies, so each of their page requests ran the proxy for nothing.

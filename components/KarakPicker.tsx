@@ -35,7 +35,7 @@ const OPTIONS: ReadonlyArray<{
     cups: 5,
     label: "5 karaks",
     note: "A late-night shift",
-    reaction: "Five?! Abdullah might actually sleep before 2am this week.",
+    reaction: "Five?! Someone here might actually sleep before 2am this week.",
   },
 ];
 
@@ -138,7 +138,7 @@ export function KarakPicker({ context = "support-page" }: { context?: string }) 
   const [cups, setCups] = useState<Cups>(3);
   const selectedIndex = OPTIONS.findIndex((o) => o.cups === cups);
   const current = OPTIONS[selectedIndex];
-  const ctaLabel = cups === 1 ? "Buy me a karak" : `Buy me ${cups} karaks`;
+  const ctaLabel = cups === 1 ? "Buy us a karak" : `Buy us ${cups} karaks`;
 
   // Radiogroup keyboard contract: arrows move and select, Home/End jump.
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -265,7 +265,7 @@ export function KarakPicker({ context = "support-page" }: { context?: string }) 
 
       <p className="mt-5 border-t border-line pt-4 text-center text-xs leading-relaxed text-muted">
         Ko-fi accepts cards without a PayPal account; tips go directly to
-        Abdullah. No pressure either way &mdash; the tool stays free.
+        the team. No pressure either way &mdash; the tool stays free.
       </p>
     </div>
   );

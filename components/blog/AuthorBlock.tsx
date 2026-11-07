@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { INSTAGRAM_URL, LINKEDIN_URL } from '@/lib/social'
 
 export function AuthorBlock() {
   return (
@@ -22,11 +23,10 @@ export function AuthorBlock() {
             MakeMyCV Team
           </Link>
           <span className="text-xs font-medium px-2.5 py-0.5 rounded-full bg-accent-soft text-accent-deep">
-            UAE CV Specialists
+            UAE CV guides
           </span>
         </div>
         <p className="text-sm text-muted leading-relaxed">
-          The MakeMyCV editorial team specialises in UAE and Gulf job market careers.
           We write practical, ATS-focused CV guides for students, fresh graduates,
           and professionals navigating Dubai and Abu Dhabi&apos;s hiring landscape.
         </p>
@@ -36,6 +36,32 @@ export function AuthorBlock() {
         >
           More articles by this author →
         </Link>
+        <p className="mt-2 text-xs text-muted">
+          Follow us for UAE job tips:{' '}
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-event="cta_click"
+            data-cta-id="social_linkedin"
+            data-cta-location="author_block"
+            className="font-semibold text-accent hover:underline"
+          >
+            LinkedIn
+          </a>
+          {' · '}
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-event="cta_click"
+            data-cta-id="social_instagram"
+            data-cta-location="author_block"
+            className="font-semibold text-accent hover:underline"
+          >
+            Instagram
+          </a>
+        </p>
       </div>
     </div>
   )

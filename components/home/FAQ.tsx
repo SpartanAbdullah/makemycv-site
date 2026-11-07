@@ -14,7 +14,7 @@ import { Reveal } from "@/components/ui/Reveal";
 export const homepageFaqs = [
   {
     q: "Is MakeMyCV free?",
-    a: "Yes. MakeMyCV is completely free — no sign-up, no paywall, no watermark on exports. You can build and download a CV in about five minutes. If it helped you, you can leave a voluntary tip on the support page toward hosting and AI costs, but the tool itself stays free.",
+    a: "Yes. The MakeMyCV builder is completely free — no sign-up, no paywall, no watermark on exports. You can build and download a CV in about five minutes. If it helped you, you can leave a voluntary tip on the support page toward hosting and AI costs, but the tool itself stays free.",
   },
   {
     q: "Will my CV pass ATS filters used by UAE employers?",

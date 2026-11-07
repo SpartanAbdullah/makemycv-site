@@ -5,9 +5,9 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { authorPageSchema } from '@/lib/seo-schema'
 
 export const metadata = buildPageMetadata({
-  title: 'MakeMyCV Team — UAE CV Specialists',
+  title: 'MakeMyCV Team — UAE CV Guides',
   description:
-    'The MakeMyCV editorial team writes practical, ATS-focused CV guides for UAE and Gulf job seekers.',
+    'The MakeMyCV team writes practical, ATS-focused CV guides for UAE and Gulf job seekers.',
   path: '/author/makemycv-team',
 })
 
@@ -44,17 +44,21 @@ export default function AuthorPage() {
                 MakeMyCV Team
               </h1>
               <p className="text-muted text-sm">
-                UAE CV &amp; Career Specialists · Based in Dubai
+                UAE CV guides · Based in Dubai
               </p>
             </div>
           </div>
 
           <div className="mt-8 max-w-2xl">
             <p className="text-ink-2 text-lg leading-relaxed">
-              The MakeMyCV editorial team specialises in CV writing, ATS optimisation,
-              and career strategy for the UAE and Gulf job market. Our guides are written
-              specifically for students, fresh graduates, expats, and professionals
+              MakeMyCV writes practical guides on CVs and ATS software for the UAE and
+              Gulf job market, for students, fresh graduates, expats, and professionals
               navigating hiring in Dubai, Abu Dhabi, and Sharjah.
+            </p>
+            <h2 className="mt-6 font-semibold text-ink">How we write</h2>
+            <p className="mt-2 text-ink-2 leading-relaxed">
+              We name and date our sources, label which market a figure comes from, and
+              update a guide when the facts change. Examples are fictional and labelled.
             </p>
           </div>
 
