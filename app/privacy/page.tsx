@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
+import { HUMAN_REVIEW_ON } from "@/lib/features";
 import { buildPageMetadata } from "@/lib/seo";
 
 export const metadata = buildPageMetadata({
@@ -132,6 +133,18 @@ export default function PrivacyPage() {
               </a>
               .
             </p>
+            {HUMAN_REVIEW_ON && (
+              <p>
+                Paid CV review has its own notice at{" "}
+                <a
+                  href="/human-cv-review"
+                  className="font-semibold text-accent underline underline-offset-2"
+                >
+                  /human-cv-review
+                </a>
+                .
+              </p>
+            )}
           </Section>
 
           <Section title="Your CV in the builder">

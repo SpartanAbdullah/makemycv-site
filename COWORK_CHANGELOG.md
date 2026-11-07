@@ -16,6 +16,15 @@ Format:
 
 ---
 
+## [2026-11-07 21:58] Track B: human CV review page, built and switched off
+
+**Goal:** have the paid review ready to launch when the gate in docs/human-review-launch-2026-11/PLAN.md opens. With NEXT_PUBLIC_HUMAN_REVIEW unset nothing about it renders and /human-cv-review is a 404.
+**Files:**
+- created: lib/features.ts, app/human-cv-review/page.tsx, components/human-review/CopyMessageButton.tsx.
+- edited: lib/social.ts (SERVICE_PAGE_URL), next.config.ts (/pricing redirect by flag), app/sitemap.ts, components/Footer.tsx, app/support/page.tsx, app/privacy/page.tsx (one pointer line), .env.example: all gated on the flag.
+**Notes/risks:** the page makes no licence claim, by owner decision. Before turning on: set LAST_UPDATED on /privacy, edit public/llms.txt, cv-maker-dubai.mdx:85, support/page.tsx:223,266, and best-cv-writers-uae.mdx (dateModified, seo-reviewer); add human_review_view to the GTM regex. See the plan's launch list.
+**Suggested commit:** feat: add human CV review page behind a flag
+
 ## [2026-11-07 21:35] Track A: owner name removed, six social profiles, exit follow card
 
 **Goal:** owner decisions in docs/human-review-launch-2026-11/PLAN.md: no personal name on the site, all social profiles listed, and a follow ask when a desktop visitor leaves. Wording that said no paid tier or no upsell now refers to the builder, so it stays true if a paid review is offered later. Nothing here sells anything.

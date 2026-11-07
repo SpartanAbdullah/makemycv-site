@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HUMAN_REVIEW_ON } from "@/lib/features";
 import { buildPageMetadata } from "@/lib/seo";
 import { KarakPicker } from "@/components/KarakPicker";
 
@@ -48,7 +49,9 @@ const faq = [
   },
   {
     q: "Will there be a paid version later?",
-    a: "The builder will stay free. If we ever offer paid extras, they will be separate from it.",
+    a: HUMAN_REVIEW_ON
+      ? "The builder stays free. We also offer a separate paid human CV review."
+      : "The builder will stay free. If we ever offer paid extras, they will be separate from it.",
   },
   {
     q: "Can I get a refund?",
