@@ -16,6 +16,33 @@ Format:
 
 ---
 
+## [2026-11-22 01:44] Nurse page and nursing post: Sharjah Health Authority added
+
+**Goal:** the automated (Codex) review of release pull request #45 said the nurse example page and the nursing post tell nurses which authority licenses them and leave out the Sharjah Health Authority (SHA). Checked against official pages on 22 Nov 2026: it holds. The owner approved checking and fixing it ("Yes, check and fix").
+**Files:**
+- edited: lib/cv-role-examples.ts (nurse only): the quick answer names "SHA for Sharjah"; the licence essential names SHA and gives Sharjah's two steps; the verification essential says what SHA's assessment service asks for; the licence skill chip reads "DHA / DOH / SHA / MOHAP Licence"; the first FAQ answer names SHA and the second FAQ question lists it. Three sources added (`SRC.sha`, `SRC.shaAssessment`, `SRC.sharjahDecision`).
+- edited: content/blog/nursing-cv-uae.mdx: `dateModified: 2026-11-22` (`date` untouched). New SHA row in the authority table, one sentence on who SHA's rules cover, the short answer, the portals note, the verification paragraph, structure item 2, one example stage, and two FAQ answers (frontmatter and body, identical text).
+- edited: public/llms.txt: the nurse page line and the nursing post line name SHA.
+**Sources (all read 22 Nov 2026) and what each supports:**
+- SHA issues the professional licence, nursing included, "authorizing them to work in a healthcare facility licensed by SHA"; the healthcare facility applies; "a valid professional assessment certificate is required": sha.shj.ae, "Request for Healthcare Professional License".
+- The professional obtains the assessment certificate from SHA; the service asks for "recent data flow reports (if available)": sha.shj.ae, "Request for Healthcare Professional Assessment".
+- The Sharjah Executive Council decision of 15 July 2025 applies to local health establishments of the Government of Sharjah and private health facilities in the emirate and free zones, and the professionals working in them; it does not apply to federal government health facilities operating in the emirate: ec.shj.ae news item of that date (the same text is on wam.ae).
+- Sharjah Health Authority is the local health authority for Sharjah: u.ae "health regulatory authorities".
+- MOHAP, DOH, DHA and SHA present the unified qualification requirements jointly: doh.gov.ae/en/pqr.
+**Source corrections (do not reintroduce):**
+- "DHA, DOH or MOHAP" as the full list of nurse licensing authorities. Sharjah has its own.
+- SHA's site is sha.shj.ae. `sha.gov.ae` does not open (the address survives only in the authority's email).
+- Not stated, because no official page read says it: that SHA "covers Sharjah" without qualification (federal facilities there are outside the decision), that SHA names DataFlow as its verification agency (its page says "data flow reports", lower case, "if available"), and that the assessment certificate alone lets a nurse practise.
+**Notes / risks / follow-up:**
+- seo-reviewer: no blockers. Its one SHOULD FIX (the verification paragraph read as covering Sharjah without saying anything about it) was applied, with four of its polish items: the circular FAQ sentence, the split sentence, "SHA-licensed facility", and the list of emirates in the short answer.
+- Left as they are, on purpose: the post's title, excerpt and tags still say "DHA, DOH & MOHAP". The reviewer judged that acceptable; an "SHA" tag is an option.
+- Not checked, and possibly the same kind of gap: Dubai Healthcare City has its own regulator, so "DHA for Dubai" may be incomplete for that free zone. No official page was read for it. Follow-up.
+- Other posts that mention DHA (cv-format-uae-2026, first-time-ofw-cv-uae and six more) were not reviewed.
+- The SHA service addresses contain Arabic letters and are written percent-encoded. If SHA moves its services to portal-sha.shj.ae (its home page already links there), these three links need updating.
+- The review thread on GitHub was not replied to.
+**Verification:** `npm run build`, tsc, lint (2 warnings, the cap), `npm run test` (102 calculator checks, resignation letter, `test:roles`) all pass. A script confirmed all five FAQ pairs are word-for-word identical in frontmatter and body, and the table has six rows of three cells. Against `next start`: both pages show the new wording, the FAQPage data carries it, the post's dateModified reads 2026-11-22 with datePublished unchanged, every new link points at the page read, and neither page overflows sideways at 375 or 1440 px.
+**Suggested commit:** fix(cv-examples, blog): add Sharjah Health Authority to the nurse licensing guidance
+
 ## [2026-11-21 21:35] Audit batch B: links carry the template and the upload intent; three claims reworded; consent update fixed
 
 **Goal:** the site half of batch B of the 21 Nov product audit (`docs/makemycv-uae-audit.md` in the parent folder: Q3, Q4, Q13, Q17 and defect P4), approved by the owner on 21 Nov. Ships with the app entry of the same time (`makemycv-app`, branch `audit-batch-b`) — deploy the two together: the app reads `?template=` and `?import=1`, stamps the new consent-text version, and carries the identical `lib/consent.ts`.
