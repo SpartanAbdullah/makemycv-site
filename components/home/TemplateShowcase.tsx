@@ -117,7 +117,7 @@ export function TemplateShowcase() {
                     Preview
                   </Link>
                   <a
-                    href="https://app.makemycv.ae"
+                    href={`https://app.makemycv.ae/builder?template=${t.slug}`}
                     className="rounded-full bg-accent px-3 py-2 text-xs font-semibold text-white shadow-cta transition-all duration-200 hover:-translate-y-px hover:shadow-cta-hover hover:brightness-[1.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink/50"
                     data-event="cta_click"
                     data-cta-id="home_template_card_use"

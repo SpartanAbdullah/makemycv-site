@@ -7,13 +7,21 @@ const problems = [
     title: "Software reads your CV before a person does.",
     body: "Many large UAE employers screen with software first. Fancy columns, headers, and icons can break the parser, and a misread CV may never reach a human.",
   },
+  // Reworded 2026-11 (product audit, owner-approved). The old body said a CV
+  // with "no nationality" "signals you don't understand the market": the
+  // builder treats nationality as the candidate's choice, so the site must
+  // not present leaving it out as a mistake.
   {
     title: "Generic templates scream “expat import”.",
-    body: "Gulf recruiters spot a Canva/Word template in one glance. Missing visa status, no nationality, no notice period — it signals you don’t understand the market.",
+    body: "A generic template leaves out what UAE recruiters look for first: your visa status, your notice period and where you are based. When those are missing, a recruiter has to ask before they can shortlist you.",
   },
+  // Reworded 2026-11: this card said "UAE recruiters average about 7
+  // seconds". The figure is from a US eye-tracking study (CLAUDE.md, content
+  // guardrails), so it is not attributed to UAE recruiters here. The hero
+  // keeps its "7-second scan" brand line.
   {
-    title: "Walls of text lose the 7-second scan.",
-    body: "UAE recruiters average about 7 seconds on a first pass. If your impact isn’t scannable in bullet points with numbers, you’re filtered out before your degree is read.",
+    title: "Walls of text lose the first skim.",
+    body: "Recruiters skim a CV before they read it. If your impact isn’t scannable in short bullet points with numbers, the strongest parts of your experience may never be read.",
   },
 ];
 

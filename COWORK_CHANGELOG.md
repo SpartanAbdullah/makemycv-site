@@ -16,6 +16,26 @@ Format:
 
 ---
 
+## [2026-11-21 21:35] Audit batch B: links carry the template and the upload intent; three claims reworded; consent update fixed
+
+**Goal:** the site half of batch B of the 21 Nov product audit (`docs/makemycv-uae-audit.md` in the parent folder: Q3, Q4, Q13, Q17 and defect P4), approved by the owner on 21 Nov. Ships with the app entry of the same time (`makemycv-app`, branch `audit-batch-b`) — deploy the two together: the app reads `?template=` and `?import=1`, stamps the new consent-text version, and carries the identical `lib/consent.ts`.
+**Files:**
+- edited: components/templates/TemplateGrid.tsx, components/home/TemplateShowcase.tsx: "Use This Template" links to `https://app.makemycv.ae/builder?template=<slug>`. They linked to the app root, so the choice was dropped and the visitor landed on Classic. The slugs already match the app's template ids.
+- edited: components/home/HeroSection.tsx: the primary button goes straight to `/builder`; a second, quieter link under it, "Already have a CV? Upload it and edit it here", goes to `/builder?import=1` (`data-cta-id="home_hero_upload_cv"`). The audit read 61% of builder starters as importing a CV; the home page never mentioned it.
+- edited: components/home/ProblemSolution.tsx: two cards reworded. Removed "UAE recruiters average about 7 seconds" (this repo's own content rules say the figure is from a US study) and "no nationality … signals you don't understand the market". The cards now say what a generic template leaves out (visa status, notice period, location) and that recruiters skim before they read. The hero's "7-second scan" brand line was left alone, by owner decision.
+- edited: app/templates/page.tsx: "every layout is available with or without a photo" was not true; it now says most layouts are, and that Harvard and Professional never print one (FAQ answer and intro).
+- edited: components/EmailSignup.tsx, app/thanks/ThanksMessage.tsx: "about twice a month" removed. Nothing sends on a schedule. The form says "Sent occasionally."
+- edited: app/privacy/page.tsx: the cover letter's list of what is sent now names the first name, which has been sent since the feature launched, and says the surname is not.
+- edited: lib/consent.ts: the consent choice is pushed as an `arguments` object, which is the only form Google Tag Manager treats as a command. Checked on production: the Array the code pushed left the consent state unchanged, so "Opt out" and "Accept" took effect only on the next full page load. Byte-identical with the app's copy.
+**Notes / risks / follow-up:**
+- Other pages still link to the bare app root (`APP_URL`: calculators, cv-maker-dubai, cv-examples). They work, and after the app release their query strings survive the redirect; they were not changed here.
+- `home_hero_upload_cv` is a new `cta_id` value on the existing click tracking; no new event name.
+- GA4 from the release date: EU visitors who accept are counted from the click, and visitors who opt out stop being counted at once.
+- The privacy page's "Last updated" already reads 21 November 2026.
+- Not checked: real phones.
+**Verification:** `npm run build`, tsc, lint (2 warnings, the cap), `npm run test` all pass. In Chrome against `next start`: the hero links and all template links carry the right addresses; neither removed claim is on the home page; no horizontal overflow at 375 px. `lib/consent.ts` compared byte for byte with the app's.
+**Suggested commit:** fix: audit batch B (template and upload links, three claims reworded, consent update)
+
 ## [2026-11-21 20:30] Nursing post refreshed to the sourced licensing wording
 
 **Goal:** follow-up to the role pages (tracker item 16). `content/blog/nursing-cv-uae.mdx` and the new `/cv-examples-uae/nurse` page gave two different answers to "which licence", and the post's version (in `faqs`, so in FAQPage schema) rested on claims no official page confirmed.

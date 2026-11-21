@@ -38,10 +38,14 @@ export function HeroSection() {
             </span>
           </h1>
 
-          {/* One CTA. Nothing competes with it. */}
-          <div className="mt-8 md:mt-10">
+          {/* One button. The line under it is a quiet text link, not a second
+              button: 61% of people who start a CV import an existing one
+              (GA4, 1–12 Nov 2026), and until 2026-11 the page never said
+              that was possible. `?import=1` puts focus on the builder's
+              import control; the file is still picked there, by the user. */}
+          <div className="mt-8 flex flex-col items-center gap-3 md:mt-10 lg:items-start">
             <Button
-              href="https://app.makemycv.ae"
+              href="https://app.makemycv.ae/builder"
               size="lg"
               withArrow
               className="md:px-10 md:py-5 md:text-xl"
@@ -51,6 +55,15 @@ export function HeroSection() {
             >
               Build My CV — Free
             </Button>
+            <a
+              href="https://app.makemycv.ae/builder?import=1"
+              className="rounded text-sm font-medium text-ink-2 underline decoration-line-strong underline-offset-4 transition-colors duration-150 hover:text-accent hover:decoration-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              data-event="cta_click"
+              data-cta-id="home_hero_upload_cv"
+              data-cta-location="hero"
+            >
+              Already have a CV? Upload it and edit it here
+            </a>
           </div>
 
           {/* Trust woven in below the button — facts, not badges. The
