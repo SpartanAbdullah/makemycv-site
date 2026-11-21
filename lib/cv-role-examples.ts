@@ -130,6 +130,18 @@ const SRC = {
     label: "Ministry of Health and Prevention, licensing of health professionals",
     url: "https://mohap.gov.ae/en/w/licensing-or-re-licensing-of-health-professional",
   },
+  sha: {
+    label: "Sharjah Health Authority, request for healthcare professional licence",
+    url: "https://sha.shj.ae/services_en/%D8%AA%D8%B1%D8%A7%D8%AE%D9%8A%D8%B5%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D9%8A%D9%86%20%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D9%8A%D9%86%204_en.html",
+  },
+  shaAssessment: {
+    label: "Sharjah Health Authority, request for healthcare professional assessment",
+    url: "https://sha.shj.ae/services_en/%D8%AA%D8%B1%D8%A7%D8%AE%D9%8A%D8%B5%20%D8%A7%D9%84%D9%85%D9%87%D9%86%D9%8A%D9%8A%D9%86%20%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D9%8A%D9%86%201_en.html",
+  },
+  sharjahDecision: {
+    label: "Sharjah Executive Council, decision on health activities and professions (15 July 2025)",
+    url: "https://ec.shj.ae/en/news/sec-issues-decision-to-regulate-health-activities-and-professions/",
+  },
   healthAuthorities: {
     label: "UAE Government portal, health authorities",
     url: "https://u.ae/en/information-and-services/health-and-fitness/Policy-and-governance/health-authorities",
@@ -501,7 +513,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
       "The licence line first, then unit, patient ratio and outcomes: clinical bullets rewritten the way a UAE nursing recruiter reads them.",
     answer: {
       lead: "A nurse CV for the UAE should open with your licence status for the emirate you are applying in",
-      text: "A nurse CV for the UAE should open with your licence status for the emirate you are applying in: DHA for Dubai, DOH for Abu Dhabi, or MOHAP, the federal health ministry. Then give your unit and specialty, bed count and nurse-to-patient ratio, life-support certificates with expiry dates, years of post-registration experience, and your visa status.",
+      text: "A nurse CV for the UAE should open with your licence status for the emirate you are applying in: DHA for Dubai, DOH for Abu Dhabi, SHA for Sharjah, or MOHAP, the federal health ministry. Then give your unit and specialty, bed count and nurse-to-patient ratio, life-support certificates with expiry dates, years of post-registration experience, and your visa status.",
     },
     bullets: [
       {
@@ -545,13 +557,13 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     essentials: [
       {
         label: "Licence status, by emirate",
-        text: "Nurses are licensed by the health authority where they will work, not once for the whole country. Dubai has the Dubai Health Authority (DHA) and Abu Dhabi the Department of Health (DOH, previously known as HAAD); the Ministry of Health and Prevention (MOHAP) is the federal authority and runs its own licensing service. Ask the employer which authority its facility falls under. In Dubai the process has two steps: you obtain a DHA registration through the Sheryan portal, and the hiring facility activates it into a licence. So write the authority and your exact stage, for example \"DHA registration issued, licence to be activated by employer\" or \"DOH-licensed Registered Nurse\", and never write one authority's licence as if it covered another emirate.",
-        sources: [SRC.dha, SRC.dohManual, SRC.mohap, SRC.healthAuthorities],
+        text: "Nurses are licensed by the health authority where they will work, not once for the whole country. Dubai has the Dubai Health Authority (DHA), Abu Dhabi the Department of Health (DOH, previously known as HAAD) and Sharjah the Sharjah Health Authority (SHA), which issues the licence for work in the facilities it licenses; the Ministry of Health and Prevention (MOHAP) is the federal authority and runs its own licensing service. Ask the employer which authority its facility falls under. In Dubai the process has two steps: you obtain a DHA registration through the Sheryan portal, and the hiring facility activates it into a licence. In Sharjah you obtain a professional assessment certificate from SHA, and the hiring facility then applies for the licence. So write the authority and your exact stage, for example \"DHA registration issued, licence to be activated by employer\" or \"DOH-licensed Registered Nurse\", and never write one authority's licence as if it covered another emirate.",
+        sources: [SRC.dha, SRC.dohManual, SRC.sha, SRC.shaAssessment, SRC.sharjahDecision, SRC.mohap, SRC.healthAuthorities],
       },
       {
         label: "Verification and home registration",
-        text: "The health authorities' unified qualification requirements say licensing documents are verified directly with the primary source, and they list a bachelor's degree in nursing for the Registered Nurse title. DHA, DOH and MOHAP each name DataFlow as a verification agency on their own pages. State where your verification stands (\"completed\" or \"in progress\", with the month) and your home-country registration, such as PRC for the Philippines or your State Nursing Council for India. Recruiters plan start dates around how far along you are.",
-        sources: [SRC.pqr, SRC.dha, SRC.doh, SRC.mohap],
+        text: "The health authorities' unified qualification requirements say licensing documents are verified directly with the primary source, and they list a bachelor's degree in nursing for the Registered Nurse title. DHA, DOH and MOHAP each name DataFlow as a verification agency on their own pages, and SHA's assessment service asks for recent data flow reports where available. State where your verification stands (\"completed\" or \"in progress\", with the month) and your home-country registration, such as PRC for the Philippines or your State Nursing Council for India. Recruiters plan start dates around how far along you are.",
+        sources: [SRC.pqr, SRC.dha, SRC.doh, SRC.mohap, SRC.shaAssessment],
       },
       {
         label: "Life-support certificates",
@@ -565,7 +577,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     ],
     skills: {
       must: [
-        "DHA / DOH / MOHAP Licence (whichever you hold)",
+        "DHA / DOH / SHA / MOHAP Licence (whichever you hold)",
         "BLS",
         "Patient Care",
         "Infection Control",
@@ -580,10 +592,10 @@ export const ROLE_EXAMPLES: RoleExample[] = [
     faqs: [
       {
         q: "Which nursing licence do I put on my CV for UAE jobs?",
-        a: "The one issued by the health authority where the job is. The Dubai Health Authority (DHA) covers Dubai and the Department of Health (DOH) covers Abu Dhabi; the Ministry of Health and Prevention (MOHAP) is the federal authority with its own licensing service. Write the authority and your exact stage, such as registered, exam passed or licensed. Check which authority the employer's facility falls under, and confirm current requirements on that authority's website.",
+        a: "The one issued by the health authority where the job is. The Dubai Health Authority (DHA) covers Dubai, the Department of Health (DOH) covers Abu Dhabi, and the Sharjah Health Authority (SHA) licenses professionals in the local-government and private health facilities it regulates in Sharjah; the Ministry of Health and Prevention (MOHAP) is the federal authority with its own licensing service. Write the authority and your exact stage, such as registered, exam passed or licensed. Check which authority the employer's facility falls under, and confirm current requirements on that authority's website.",
       },
       {
-        q: "Can I apply for UAE nursing jobs before I have a DHA, DOH or MOHAP licence?",
+        q: "Can I apply for UAE nursing jobs before I have a DHA, DOH, SHA or MOHAP licence?",
         a: "You can apply, but say exactly where you are in the process: verification in progress, exam booked, exam passed or registration issued. In Dubai, the DHA describes two steps: the nurse obtains a registration, and the hiring healthcare facility activates it into a licence. So \"DHA registration issued, licence to be activated by employer\" is an accurate line, while \"DHA licensed\" is not until a facility has activated it.",
       },
       {
