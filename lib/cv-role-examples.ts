@@ -122,6 +122,10 @@ const SRC = {
     label: "Department of Health Abu Dhabi, FAQ",
     url: "https://www.doh.gov.ae/en/faq",
   },
+  dohManual: {
+    label: "Department of Health Abu Dhabi, Healthcare Professionals Manual",
+    url: "https://www.doh.gov.ae/-/media/A47D9907918943438EDB512BE9347AB8.ashx",
+  },
   mohap: {
     label: "Ministry of Health and Prevention, licensing of health professionals",
     url: "https://mohap.gov.ae/en/w/licensing-or-re-licensing-of-health-professional",
@@ -542,7 +546,7 @@ export const ROLE_EXAMPLES: RoleExample[] = [
       {
         label: "Licence status, by emirate",
         text: "Nurses are licensed by the health authority where they will work, not once for the whole country. Dubai has the Dubai Health Authority (DHA) and Abu Dhabi the Department of Health (DOH, previously known as HAAD); the Ministry of Health and Prevention (MOHAP) is the federal authority and runs its own licensing service. Ask the employer which authority its facility falls under. In Dubai the process has two steps: you obtain a DHA registration through the Sheryan portal, and the hiring facility activates it into a licence. So write the authority and your exact stage, for example \"DHA registration issued, licence to be activated by employer\" or \"DOH-licensed Registered Nurse\", and never write one authority's licence as if it covered another emirate.",
-        sources: [SRC.dha, SRC.doh, SRC.mohap, SRC.healthAuthorities],
+        sources: [SRC.dha, SRC.dohManual, SRC.mohap, SRC.healthAuthorities],
       },
       {
         label: "Verification and home registration",

@@ -16,6 +16,18 @@ Format:
 
 ---
 
+## [2026-11-21 20:30] Nursing post refreshed to the sourced licensing wording
+
+**Goal:** follow-up to the role pages (tracker item 16). `content/blog/nursing-cv-uae.mdx` and the new `/cv-examples-uae/nurse` page gave two different answers to "which licence", and the post's version (in `faqs`, so in FAQPage schema) rested on claims no official page confirmed.
+**Files:**
+- edited: content/blog/nursing-cv-uae.mdx: `dateModified: 2026-11-21` (`date` untouched). Authority table, short answer, sample licensing block and three FAQ answers (frontmatter and body, identical text) rewritten; two links to /cv-examples-uae/nurse; each authority row links its own official page.
+- edited: lib/cv-role-examples.ts: the DOH statement on the nurse page now cites the DOH Healthcare Professionals Manual, which is where it was read, not the DOH FAQ.
+**Source corrections (do not reintroduce):**
+- Removed: MOHAP "covers Sharjah, Ajman, UAQ, RAK, Fujairah"; "three regulators"; exam vendors and portals not verified on official pages (Prometric, Pearson VUE, Mawared, Mumaris+); "DataFlow is mandatory for all non-UAE applicants"; "DHA Eligibility Letter" as the stage name; "many hospitals consider candidates mid-process".
+- Now stated, with sources read 21 Nov 2026: DHA registration through Sheryan, activated into a licence by the hiring facility (DHA Sheryan FAQ); professionals must be licensed by DOH, previously known as HAAD, to practise in Abu Dhabi (DOH Healthcare Professionals Manual); MOHAP is the federal authority with its own licensing service that facilities apply through (MOHAP service page); documents verified at primary source and Registered Nurse needs a bachelor's degree in nursing (Unified PQR, April 2025); DataFlow named as a verification agency by all three.
+**Notes / risks / follow-up:** seo-reviewer: passes, no blockers; its three polish items were applied. `npm run build`, tsc, lint and tests pass. The post's title still says "DHA, DOH & MOHAP Guide (2026)" and was left alone. hospitality-cv-uae.mdx still has no link to the hotel front desk page and uses a similar upsell example; not touched.
+**Suggested commit:** fix(blog): nursing post licensing wording matched to official sources
+
 ## [2026-11-21 19:30] Ten role-specific UAE CV example pages (pilot)
 
 **Goal:** tracker item 16 (docs/growth-roadmap-2026-11/TRACKER.md). The site had one examples page for six sectors and no page per job title, while the home page earns 78% of search clicks. This is a ten-page PILOT to be read in Search Console 28 days after it reaches production, not a content programme: 35 blog posts earn about 55 clicks a month and the five nationality guides earn almost nothing, so more pages are only justified if these ten earn impressions.
