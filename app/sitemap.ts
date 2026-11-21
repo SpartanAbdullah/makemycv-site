@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next'
 import { canonicalUrl } from '@/lib/seo'
 import { getAllPosts } from '@/lib/blog'
 import { HUMAN_REVIEW_ON } from '@/lib/features'
+import { ROLE_EXAMPLES, rolePath } from '@/lib/cv-role-examples'
 
 // Google ignores <changefreq> and <priority>, so entries carry only the URL
 // and, where we know it, a real lastmod.
@@ -15,6 +16,7 @@ const staticPaths = [
   '/annual-leave-calculator',
   '/resignation-letter-generator',
   '/cv-examples-uae',
+  ...ROLE_EXAMPLES.map((r) => rolePath(r.slug)),
   '/free-cv-maker-dubai',
   '/blog',
   '/about',

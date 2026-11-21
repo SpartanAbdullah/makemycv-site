@@ -215,8 +215,10 @@ export function faqPageSchema(items: ReadonlyArray<FaqItem>) {
 }
 
 // No standalone breadcrumb helper: Google's structured-data guidelines want
-// markup to describe what the page shows, and only blog posts render a
-// visible breadcrumb. Their BreadcrumbList lives in postSchema() below.
+// markup to describe what the page shows. Blog posts render a visible
+// breadcrumb and get their BreadcrumbList from postSchema() below; the role
+// CV example pages build theirs next to their own visible trail in
+// app/cv-examples-uae/[role]/page.tsx.
 
 /* ──────────────────────────────────────────────────────────────────── */
 /* Blog post schema graph                                               */

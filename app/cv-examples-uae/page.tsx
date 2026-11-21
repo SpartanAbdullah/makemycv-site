@@ -5,11 +5,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { AiAnswer } from "@/components/seo/AiAnswer";
 import { ReadNext } from "@/components/seo/ReadNext";
 import { faqPageSchema } from "@/lib/seo-schema";
+import { ROLE_EXAMPLES, rolePath } from "@/lib/cv-role-examples";
 
 export const metadata = buildPageMetadata({
   title: "UAE CV Examples by Sector",
   description:
-    "Before/after CV bullet rewrites for six UAE sectors — banking, executive, tech, healthcare, oil & gas and sales. See how to add AED figures and scale.",
+    "Before/after CV bullet rewrites for six UAE sectors and ten job titles, from accountant to nurse. See how to add AED figures, scale and UAE context.",
   path: "/cv-examples-uae",
 });
 
@@ -215,6 +216,43 @@ export default function CvExamplesUaePage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Role pages (2026-11 pilot): one page per job title, each with its own
+          bullets, UAE Essentials and ATS skills. Source: lib/cv-role-examples.ts */}
+      <section className="bg-paper pb-16 md:pb-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="font-display text-2xl font-bold tracking-[-0.015em] text-ink">
+            CV examples by job title
+          </h2>
+          <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-muted">
+            Ten roles with their own bullet rewrites, the UAE Essentials that
+            matter for the job, and the skills an ATS matches.
+          </p>
+          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            {ROLE_EXAMPLES.map((r) => (
+              <li key={r.slug}>
+                <Link
+                  href={rolePath(r.slug)}
+                  className="group flex items-center justify-between rounded-2xl bg-paper-2 px-5 py-4 shadow-float transition-all duration-200 hover:-translate-y-0.5 hover:shadow-float-hover"
+                >
+                  <span>
+                    <span className="block font-display font-bold text-ink">
+                      {r.role} CV example
+                    </span>
+                    <span className="mt-0.5 block text-sm text-muted">
+                      {r.sector}
+                    </span>
+                  </span>
+                  <ArrowRight
+                    size={16}
+                    className="shrink-0 text-accent transition group-hover:translate-x-0.5"
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

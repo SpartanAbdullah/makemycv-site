@@ -23,6 +23,51 @@ Format:
 - edited: package.json, package-lock.json: `next` pinned to 16.4.6. Nothing else bumped.
 **Notes/risks:** patch release in the same minor line; no code change needed. Checked: tsc, lint (2 warnings), `npm run test`, `npm run build` twice with no advisory stop. Still open in `npm audit` and not touched here: high-severity entries in `sharp`, `velite`, `zod`, `js-yaml`, `picomatch`, `flatted` and `brace-expansion` (build-time and tooling dependencies), plus moderate ones.
 **Suggested commit:** chore(deps): next 16.4.6 for security advisories
+## [2026-11-21 19:30] Ten role-specific UAE CV example pages (pilot)
+
+**Goal:** tracker item 16 (docs/growth-roadmap-2026-11/TRACKER.md). The site had one examples page for six sectors and no page per job title, while the home page earns 78% of search clicks. This is a ten-page PILOT to be read in Search Console 28 days after it reaches production, not a content programme: 35 blog posts earn about 55 clicks a month and the five nationality guides earn almost nothing, so more pages are only justified if these ten earn impressions.
+**Roles and why:** each is one job title from a domain the app already carries curated skills and bullet topics for (makemycv-app `lib/data/domainSkills.ts`, `ideaSuggestions.ts`), so nothing was invented from scratch. No keyword-volume tool was available; the choice rests on the app's domain list and on spreading across UAE employment sectors, and the 28-day read is what tests it.
+- accountant (accounting): VAT and Corporate Tax give a UAE-specific angle no generic example has.
+- sales-executive (sales): targets in AED, driving licence, territory.
+- customer-service-agent (customerservice): metrics-led, languages and shifts.
+- nurse (healthcare): the licence line is the single most UAE-specific CV fact.
+- civil-engineer (engineering): project value, Dubai registration rule.
+- hr-officer (hr): WPS, Decree-Law 33, Emiratisation.
+- logistics-coordinator (logistics): customs documents, ports, free zones.
+- receptionist (admin): visa status is the screen; family sponsorship and visit visa rules.
+- real-estate-agent (realestate): broker card.
+- hotel-front-desk-agent (hospitality): Opera PMS, languages, upselling.
+**Files:**
+- created: lib/cv-role-examples.ts: the one typed data file (answer, five weak/strong bullets, UAE Essentials with sources, ATS skills, four or five FAQs, guides) plus `getRoleExample`, `rolePath`, `roleQuestion`.
+- created: app/cv-examples-uae/[role]/page.tsx: static route (`generateStaticParams`, `dynamicParams = false`), metadata through `buildPageMetadata`, one FAQPage (quick answer + visible FAQs), BreadcrumbList matching a visible breadcrumb, builder CTA with `ctaAttrs("cv_example_<role>_build_cv", "role_example_cta")`.
+- created: scripts/check-role-examples.ts, wired into `npm run test` as `test:roles`: counts, length limits, answer/lead prefix, banned wording ("resume", the seconds claim, 92%, em dashes), guide slugs exist, sources are official .ae pages, llms.txt coverage, and no sentence repeated across two roles.
+- edited: lib/seo-schema.ts (comment only: role pages now also render a breadcrumb).
+- edited: app/cv-examples-uae/page.tsx (new "CV examples by job title" section; meta description now mentions the ten job titles), app/sitemap.ts (ten URLs), public/llms.txt (new section; the hub line now describes what the hub really is).
+- edited (outside this repo): ../.claude/launch.json gained `site-prod-preview` (`next start` on 3107) so the built pages can be opened in the preview pane.
+**Sources (all fetched and read 21 Nov 2026) and what each supports:**
+- Notice period 30 to 90 days, Article 43: u.ae "terminating employment contracts".
+- Federal Decree-Law No. 33 of 2021 in effect 2 Feb 2022: u.ae "employment laws and regulations in the private sector".
+- WPS (establishments registered with MOHRE must pay wages through it): u.ae "payment of wages". Emiratisation / Nafis (named only, no figures): u.ae "Emiratis' employment in private sector".
+- Family-sponsored residents can be hired on a work permit the employer obtains; a visit or tourist visa gives no right to work: u.ae "work permits", u.ae "tips to avoid labour and visa fraud".
+- VAT 1 Jan 2018 at 5%; Corporate Tax 9% on income above AED 375,000 for financial years starting on or after 1 June 2023; EmaraTax: u.ae VAT and Corporate Tax pages, tax.gov.ae/en/emaratax.aspx.
+- DHA registration through Sheryan, activated into a licence by the hiring facility: services.dha.gov.ae Sheryan FAQ. DOH (previously HAAD): doh.gov.ae FAQ and Healthcare Professionals Manual. MOHAP licensing service: mohap.gov.ae. Federal role and Sharjah Health Authority: u.ae "health authorities". DataFlow named as a verification agency: the DHA, DOH and MOHAP pages above. Primary source verification and "Registered Nurse: bachelor's degree in nursing": Unified Healthcare Professional Qualification Requirements, April 2025 (MOHAP PDF).
+- Dubai brokers must be in the brokers registry and hold a RERA broker card; applicants must have passed the test: dubailand.gov.ae FAQ and the "real estate professional practice card" service page.
+- Dubai contracting-company engineers must be Society of Engineers members and pass technical competency exams: Administrative Resolution No. (253) of 2021, dlp.dubai.gov.ae.
+**Source corrections made while writing (do not reintroduce):**
+- "MOHAP licenses nurses in Sharjah, Ajman, UAQ, RAK and Fujairah" could NOT be confirmed on any official page; u.ae names a separate Sharjah Health Authority and the 2025 PQR is co-issued by it. The new nurse page says only that MOHAP is the federal authority with its own licensing service. **content/blog/nursing-cv-uae.mdx still states the five-emirate version (body, table and `faqs`) and was not touched here: follow-up.**
+- A nurse does not obtain a DHA licence alone: registration first, then the facility activates it. The PQR lists no minimum experience for Registered Nurse ("2 years" applies to Nurse Practitioner); no experience rule is stated on the page.
+- "RERA certified" is not used; DLD's page does not name DREI or a "RERA exam", and card validity follows the trade licence, so no course name or validity period is stated.
+- The Society of Engineers rule is Dubai-only and, as verified, for contracting companies (consultancy criteria sit in Resolution 51 of 1998, not read). Not stated as UAE-wide.
+- Dropped as unverifiable on official pages: JAFZA / Jebel Ali "operated by DP World", Tasheel as the name of MOHRE centres, RTA licence exchange "without tests", any Emiratisation percentage (the 10% target ends 31 Dec 2026).
+**Notes / risks / follow-up:**
+- All bullets are illustrative with placeholder numbers and say so on the page; no employer is named. Market-frequency wording ("adverts commonly ask", "employers often screen") was removed after the seo-reviewer pass; the advice is conditional ("if the advert asks for it").
+- The quick answer leads with the answer itself, not with "MakeMyCV" as the AiAnswer comment asks: a direct answer was the brief.
+- Cannibalisation to watch at the 28-day read: /cv-examples-uae/nurse against /blog/nursing-cv-uae, and the hotel page against /blog/hospitality-cv-uae. Each role page links to its guide.
+- www.doh.gov.ae fails TLS for command-line clients (curl, WebFetch) and opened only by direct download; check the link in a browser when next reviewing.
+- seo-reviewer pass applied (no blockers). Left as follow-ups because they need the blog pipeline: refresh nursing-cv-uae.mdx to match the sourced licensing wording and link it to /cv-examples-uae/nurse; link hospitality-cv-uae.mdx to the hotel page.
+- The role pages share the default og-image.png.
+- Not released. The 28-day Search Console read starts on the day `staging` is merged to `main`, not on 21 Nov.
+**Suggested commit:** feat(cv-examples): ten role-specific UAE CV example pages (pilot)
 
 ## [2026-11-21 17:05] Tool pages: calculator first, per-tool CV line, header link, cv-maker-dubai retired, llms.txt, comparison table
 
