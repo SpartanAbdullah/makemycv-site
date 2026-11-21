@@ -28,6 +28,7 @@ export const metadata = buildPageMetadata({
   description:
     "Free UAE notice period calculator: notice to give or receive (30–90 days after probation, 14 or 30 during it), your last working day and pay in lieu.",
   path: "/notice-period-calculator",
+  image: "/og/notice-period-calculator.png",
 });
 
 // Branded quick answer (B0 pattern), folded into the page FAQPage below.

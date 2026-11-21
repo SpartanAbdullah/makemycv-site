@@ -16,6 +16,15 @@ Format:
 
 ---
 
+## [2026-11-21 16:00] Per-tool share images
+
+**Goal:** tracker item 4 (docs/growth-roadmap-2026-11/TRACKER.md). All 12 non-blog pages shared one generic og-image.png, so a calculator link pasted into WhatsApp looked like the home page.
+**Files:**
+- created: scripts/generate-tool-og.mjs and public/og/*.png (gratuity, notice, annual leave, resignation letter, resume checker, JD Match).
+- edited: the six page.tsx files pass `image: "/og/<page>.png"` to buildPageMetadata; the stale 404 comment on /resume-checker is gone.
+**Notes/risks:** re-run the script after changing a card's copy; never hand-edit the PNGs. WhatsApp and LinkedIn cache previews, so old shares keep the old card.
+**Suggested commit:** feat(seo): a share image for each tool page
+
 ## [2026-11-21 15:40] WhatsApp share on calculator results; blog share clicks tracked
 
 **Goal:** tracker item 3 (docs/growth-roadmap-2026-11/TRACKER.md). The calculators bring search traffic but had no way to pass a result on, and blog share clicks were invisible in GA4.

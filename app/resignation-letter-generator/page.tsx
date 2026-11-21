@@ -12,6 +12,7 @@ export const metadata = buildPageMetadata({
   description:
     "Generate a professional UAE resignation letter in a minute — correct notice period under UAE Labour Law, last working day included. Free, no sign-up.",
   path: "/resignation-letter-generator",
+  image: "/og/resignation-letter-generator.png",
 });
 
 // Branded quick answer (B0 pattern), folded into the page FAQPage below.

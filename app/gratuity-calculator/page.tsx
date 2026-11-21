@@ -34,6 +34,7 @@ export const metadata = buildPageMetadata({
   description:
     "Free UAE gratuity calculator for end-of-service pay: 21 days' basic pay per year for years 1–5, 30 after, capped at two years' salary. No sign-up.",
   path: "/gratuity-calculator",
+  image: "/og/gratuity-calculator.png",
 });
 
 // Branded quick answer (Phase B0 pattern). Folded into the page FAQPage below

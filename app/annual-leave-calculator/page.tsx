@@ -23,6 +23,7 @@ export const metadata = buildPageMetadata({
   description:
     "Free UAE annual leave calculator. Check your entitlement — 30 days a year after one year — and what unused days are worth at end of service.",
   path: "/annual-leave-calculator",
+  image: "/og/annual-leave-calculator.png",
 });
 
 // Branded quick answer (B0 pattern), folded into the page FAQPage below.
