@@ -16,6 +16,14 @@ Format:
 
 ---
 
+## [2026-11-21 18:50] Next.js 16.4.3 to 16.4.6 (security advisories)
+
+**Goal:** clear the Next.js advisories `npm audit` reports for 16.0.0-16.4.4. `npm run build` was stopping about every other run with a SecurityFatalError.
+**Files:**
+- edited: package.json, package-lock.json: `next` pinned to 16.4.6. Nothing else bumped.
+**Notes/risks:** patch release in the same minor line; no code change needed. Checked: tsc, lint (2 warnings), `npm run test`, `npm run build` twice with no advisory stop. Still open in `npm audit` and not touched here: high-severity entries in `sharp`, `velite`, `zod`, `js-yaml`, `picomatch`, `flatted` and `brace-expansion` (build-time and tooling dependencies), plus moderate ones.
+**Suggested commit:** chore(deps): next 16.4.6 for security advisories
+
 ## [2026-11-21 17:05] Tool pages: calculator first, per-tool CV line, header link, cv-maker-dubai retired, llms.txt, comparison table
 
 **Goal:** tracker items 5-10 (docs/growth-roadmap-2026-11/TRACKER.md). Tool pages earn about a third of search impressions and produced 1 CV export from 166 landings in 1-12 Nov.
