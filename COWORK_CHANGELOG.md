@@ -16,6 +16,28 @@ Format:
 
 ---
 
+## [2026-11-21 14:30] Human CV review: launch copy for switching the flag on
+
+**Goal:** tracker item 1 (docs/growth-roadmap-2026-11/TRACKER.md). The owner decided on 2026-11-21 to switch the AED 79 offer on while still on Vercel's free plan; these are the launch-list edits from docs/human-review-launch-2026-11/PLAN.md section 9.
+**Files:**
+- edited: lib/mdx.tsx: new flag-gated `HumanReviewNote` MDX component (renders nothing with the flag off, so no post links to a 404).
+- edited: content/blog/best-cv-writers-uae.mdx: disclosed mention through `HumanReviewNote`, "spend the AED 400+" reworded to "pay for a writer", dateModified.
+- edited: content/blog/cv-maker-dubai.mdx: "that's the whole model" removed, "entire product" is now "entire builder", dateModified.
+- edited: app/support/page.tsx ("The builder is free, always."), app/privacy/page.tsx (LAST_UPDATED 21 November 2026), public/llms.txt (Human CV Review line).
+**Notes/risks:** the llms.txt line is not flag-gated: remove it by hand if the flag is ever turned off. seo-reviewer run on both posts, both SHOULD FIX items applied. `npm run build` stopped once on a Next.js security-advisory notice for 16.4.3 and passed on retry; the upgrade is still to do. Turning the offer on needs NEXT_PUBLIC_HUMAN_REVIEW=1 in Vercel on both projects and a redeploy.
+**Suggested commit:** feat(human-review): launch copy and a gated blog mention
+
+---
+
+## [2026-11-07 21:58] Track B: human CV review page, built and switched off
+
+**Goal:** have the paid review ready to launch when the gate in docs/human-review-launch-2026-11/PLAN.md opens. With NEXT_PUBLIC_HUMAN_REVIEW unset nothing about it renders and /human-cv-review is a 404.
+**Files:**
+- created: lib/features.ts, app/human-cv-review/page.tsx, components/human-review/CopyMessageButton.tsx.
+- edited: lib/social.ts (SERVICE_PAGE_URL), next.config.ts (/pricing redirect by flag), app/sitemap.ts, components/Footer.tsx, app/support/page.tsx, app/privacy/page.tsx (one pointer line), .env.example: all gated on the flag.
+**Notes/risks:** the page makes no licence claim, by owner decision. Before turning on: set LAST_UPDATED on /privacy, edit public/llms.txt, cv-maker-dubai.mdx:85, support/page.tsx:223,266, and best-cv-writers-uae.mdx (dateModified, seo-reviewer); add human_review_view to the GTM regex. See the plan's launch list.
+**Suggested commit:** feat: add human CV review page behind a flag
+
 ## [2026-11-07 21:35] Track A: owner name removed, six social profiles, exit follow card
 
 **Goal:** owner decisions in docs/human-review-launch-2026-11/PLAN.md: no personal name on the site, all social profiles listed, and a follow ask when a desktop visitor leaves. Wording that said no paid tier or no upsell now refers to the builder, so it stays true if a paid review is offered later. Nothing here sells anything.

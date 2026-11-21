@@ -3,6 +3,7 @@
 
 import * as runtime from "react/jsx-runtime";
 import { useMemo, type ComponentPropsWithoutRef } from "react";
+import { HUMAN_REVIEW_ON } from "@/lib/features";
 import { inlineCtaAttrs } from "@/lib/inline-cta";
 
 function useMDXComponent(code: string) {
@@ -24,7 +25,32 @@ export function TrackedLink(props: ComponentPropsWithoutRef<"a">) {
   return <a {...props} {...inlineCtaAttrs(props.href)} />;
 }
 
-const components = { a: TrackedLink };
+/**
+ * Disclosed mention of our own paid review inside an article. Renders nothing
+ * while NEXT_PUBLIC_HUMAN_REVIEW is off, so a post never links to a 404.
+ */
+export function HumanReviewNote() {
+  if (!HUMAN_REVIEW_ON) return null;
+  return (
+    <p>
+      <em>
+        Disclosure: MakeMyCV also offers its own paid{" "}
+        <a
+          href="/human-cv-review"
+          data-event="cta_click"
+          data-cta-id="human_review_blog"
+          data-cta-location="blog_inline"
+        >
+          human CV review, from AED 79
+        </a>
+        . It is a review of the CV you wrote, not a writing service, and it is separate from the
+        free builder.
+      </em>
+    </p>
+  );
+}
+
+const components = { a: TrackedLink, HumanReviewNote };
 
 export function MDXContent({ code }: { code: string }) {
   const Component = useMDXComponent(code);

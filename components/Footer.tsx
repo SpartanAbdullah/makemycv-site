@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CookieSettingsLink } from "@/components/consent/CookieSettingsLink";
 import { Heart, MapPin } from "lucide-react";
+import { HUMAN_REVIEW_ON } from "@/lib/features";
 import { SOCIAL_PROFILES, type SocialId } from "@/lib/social";
 import {
   IconFacebookGlyph,
@@ -31,6 +32,7 @@ const pageLinks = [
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: "/support", label: "Support This Project" },
+  ...(HUMAN_REVIEW_ON ? [{ href: "/human-cv-review", label: "Human CV Review" }] : []),
 ];
 
 /* `ctaId` marks the tool links the GA4 `cta_click` report follows; the

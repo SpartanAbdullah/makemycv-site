@@ -56,11 +56,11 @@ const nextConfig: NextConfig = {
         destination: '/sitemap.xml',
         permanent: true,
       },
-      {
-        source: '/pricing',
-        destination: '/support',
-        permanent: true,
-      },
+      // Temporary while the human review can still be switched off, so a
+      // browser never caches a redirect that later points at a 404.
+      process.env.NEXT_PUBLIC_HUMAN_REVIEW === "1"
+        ? { source: '/pricing', destination: '/human-cv-review', permanent: false }
+        : { source: '/pricing', destination: '/support', permanent: true },
       // Old blog slugs (published briefly, then consolidated in 9350db9 and
       // 404ing since). 301 to their successors so any lingering index entries
       // and backlinks land on the live equivalents instead of a 404.

@@ -5,6 +5,9 @@
 export const LINKEDIN_URL = "https://www.linkedin.com/company/makemycv-ae";
 export const INSTAGRAM_URL = "https://www.instagram.com/makemycv.ae/";
 
+/* Where service enquiries go. Not a follow link: never use it in follow prompts. */
+export const SERVICE_PAGE_URL = "https://www.linkedin.com/services/page/54251034612b7b5391";
+
 export const SOCIAL_PROFILES = [
   { id: "linkedin", label: "LinkedIn", url: LINKEDIN_URL },
   { id: "instagram", label: "Instagram", url: INSTAGRAM_URL },

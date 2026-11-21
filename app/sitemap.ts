@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { canonicalUrl } from '@/lib/seo'
 import { getAllPosts } from '@/lib/blog'
+import { HUMAN_REVIEW_ON } from '@/lib/features'
 
 // Google ignores <changefreq> and <priority>, so entries carry only the URL
 // and, where we know it, a real lastmod.
@@ -21,6 +22,7 @@ const staticPaths = [
   '/contact',
   '/author/makemycv-team',
   '/privacy',
+  ...(HUMAN_REVIEW_ON ? ['/human-cv-review'] : []),
 ]
 
 // No lastModified for static routes: the previous value was the source
