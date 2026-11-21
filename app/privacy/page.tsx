@@ -39,7 +39,7 @@ export const metadata = buildPageMetadata({
  * - Tips: Ko-fi → PayPal, external checkout only.
  */
 
-const LAST_UPDATED = "24 October 2026";
+const LAST_UPDATED = "21 November 2026";
 
 function Section({
   title,

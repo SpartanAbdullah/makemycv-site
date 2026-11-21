@@ -60,6 +60,7 @@
 
 ## About
 - [About MakeMyCV.ae](https://www.makemycv.ae/about): Who built it and why.
+- [Human CV Review](https://www.makemycv.ae/human-cv-review): A separate paid service, from AED 79: a person reads the CV and sends written notes on what to cut, move and add. The builder, checker and calculators stay free.
 - [Support](https://www.makemycv.ae/support): How to support the project.
 - [Privacy](https://www.makemycv.ae/privacy): What is stored, what is not, and where CV data lives.
 - [Contact](https://www.makemycv.ae/contact): hello@makemycv.ae
