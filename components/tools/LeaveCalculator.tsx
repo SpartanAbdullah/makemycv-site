@@ -7,7 +7,7 @@ import {
 } from "@/components/tools/leave";
 import { formatAed, formatAedPrecise } from "@/components/tools/gratuity";
 import { BasicSalaryInput } from "@/components/tools/BasicSalaryInput";
-import { CopyBreakdownButton } from "@/components/tools/CopyBreakdownButton";
+import { CopyBreakdownButton, WhatsAppShareButton } from "@/components/tools/CopyBreakdownButton";
 
 /**
  * Interactive UAE annual-leave calculator (client island), v2 — upgraded from
@@ -258,6 +258,7 @@ export function LeaveCalculator() {
       <div className="lg:col-span-2">
         <div className="flex flex-wrap gap-3">
           <CopyBreakdownButton getText={buildBreakdown} />
+          <WhatsAppShareButton getText={buildBreakdown} tool="leave" />
         </div>
 
         <p className="mt-4 text-xs leading-relaxed text-muted">

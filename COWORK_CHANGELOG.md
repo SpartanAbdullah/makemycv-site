@@ -16,6 +16,16 @@ Format:
 
 ---
 
+## [2026-11-21 15:40] WhatsApp share on calculator results; blog share clicks tracked
+
+**Goal:** tracker item 3 (docs/growth-roadmap-2026-11/TRACKER.md). The calculators bring search traffic but had no way to pass a result on, and blog share clicks were invisible in GA4.
+**Files:**
+- edited: components/tools/CopyBreakdownButton.tsx: new `WhatsAppShareButton` (opens wa.me with the same breakdown text the copy button produces; that text already carries the calculator URL).
+- edited: components/tools/GratuityCalculator.tsx, LeaveCalculator.tsx, NoticePeriodCalculator.tsx: button added beside "Copy breakdown". Not added to the resignation letter.
+- edited: components/blog/SharePost.tsx: every share control carries `cta_click` attributes (`blog_share_whatsapp|linkedin|x|native|copy`, location `blog_share`).
+**Notes/risks:** uses the existing `cta_click` event, so no GTM change is needed. Nothing is sent to us; the text goes only to the chat the person picks.
+**Suggested commit:** feat(share): WhatsApp share on calculator results, track blog shares
+
 ## [2026-11-21 14:30] Human CV review: launch copy for switching the flag on
 
 **Goal:** tracker item 1 (docs/growth-roadmap-2026-11/TRACKER.md). The owner decided on 2026-11-21 to switch the AED 79 offer on while still on Vercel's free plan; these are the launch-list edits from docs/human-review-launch-2026-11/PLAN.md section 9.

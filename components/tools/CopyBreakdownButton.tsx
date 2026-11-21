@@ -3,6 +3,8 @@
 import { useRef, useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { copyText } from "@/components/tools/copyText";
+import { IconWhatsAppGlyph } from "@/components/SocialIcons";
+import { ctaAttrs } from "@/lib/inline-cta";
 
 /**
  * "Copy breakdown" button shared by the three calculators. Clipboard access
@@ -67,5 +69,38 @@ export function CopyBreakdownButton({
         </div>
       )}
     </>
+  );
+}
+
+/**
+ * "Send on WhatsApp" beside the copy button (2026-11-21). A settlement figure
+ * is something people forward to a spouse or a colleague, and in the UAE that
+ * happens on WhatsApp. Opens wa.me with the same breakdown text the copy
+ * button produces; nothing is sent anywhere unless the person picks a chat
+ * and presses send. Tracked as `cta_click` (`<tool>_share_whatsapp`).
+ */
+export function WhatsAppShareButton({
+  getText,
+  tool,
+}: {
+  getText: () => string;
+  tool: "gratuity" | "notice" | "leave";
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() =>
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(getText())}`,
+          "_blank",
+          "noopener,noreferrer",
+        )
+      }
+      className="inline-flex items-center gap-2 rounded-full bg-sheet px-4 py-2.5 text-sm font-semibold text-ink-2 shadow-float transition-all duration-200 hover:-translate-y-px hover:shadow-float-hover"
+      {...ctaAttrs(`${tool}_share_whatsapp`, "calculator_result")}
+    >
+      <IconWhatsAppGlyph className="h-[15px] w-[15px]" aria-hidden="true" />
+      Send on WhatsApp
+    </button>
   );
 }

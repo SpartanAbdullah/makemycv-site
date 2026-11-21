@@ -10,7 +10,7 @@ import {
   formatAedPrecise,
 } from "@/components/tools/gratuity";
 import { BasicSalaryInput } from "@/components/tools/BasicSalaryInput";
-import { CopyBreakdownButton } from "@/components/tools/CopyBreakdownButton";
+import { CopyBreakdownButton, WhatsAppShareButton } from "@/components/tools/CopyBreakdownButton";
 import Link from "next/link";
 
 /**
@@ -549,6 +549,7 @@ export function GratuityCalculator() {
       {hasInput && (jurisdiction === "difc" || result.eligible) && (
         <div className="mt-4 flex flex-wrap gap-3">
           <CopyBreakdownButton getText={buildBreakdown} />
+          <WhatsAppShareButton getText={buildBreakdown} tool="gratuity" />
           <button
             type="button"
             onClick={() => window.print()}
