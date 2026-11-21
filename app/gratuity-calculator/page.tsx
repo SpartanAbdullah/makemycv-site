@@ -34,6 +34,7 @@ export const metadata = buildPageMetadata({
   description:
     "Free UAE gratuity calculator for end-of-service pay: 21 days' basic pay per year for years 1–5, 30 after, capped at two years' salary. No sign-up.",
   path: "/gratuity-calculator",
+  image: "/og/gratuity-calculator.png",
 });
 
 // Branded quick answer (Phase B0 pattern). Folded into the page FAQPage below
@@ -174,7 +175,7 @@ export default function GratuityCalculatorPage() {
       <JsonLd data={faqSchema} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
-      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+      <section className="relative overflow-hidden bg-paper pb-8 pt-12 md:pb-10 md:pt-14">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
@@ -197,14 +198,6 @@ export default function GratuityCalculatorPage() {
         </div>
       </section>
 
-      {/* Branded quick answer (schema folded into faqSchema) */}
-      <AiAnswer
-        question={aiAnswer.q}
-        lead={aiAnswer.lead}
-        answer={aiAnswer.a}
-        emitSchema={false}
-        className="bg-paper py-12 md:py-14"
-      />
 
       {/* Calculator island */}
       <section className="bg-paper pb-8">
@@ -214,6 +207,16 @@ export default function GratuityCalculatorPage() {
           <NextRoleCta tool="gratuity" />
         </div>
       </section>
+
+      {/* Quick answer sits under the tool since 2026-11-21: the first input used to be
+          a full screen down (1,018px on a 735px viewport). */}
+      <AiAnswer
+        question={aiAnswer.q}
+        lead={aiAnswer.lead}
+        answer={aiAnswer.a}
+        emitSchema={false}
+        className="bg-paper py-10 md:py-12"
+      />
 
       <WageBasisExplainer />
       <SettlementFooter currentPath="/gratuity-calculator" />

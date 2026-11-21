@@ -33,6 +33,7 @@ export const metadata = buildPageMetadata({
   description:
     "Paste any UAE job description and see how your CV matches — a score plus a heatmap of every requirement you cover or miss. Free, no sign-up.",
   path: "/jd-match",
+  image: "/og/jd-match.png",
   keywords: [
     "JD match",
     "CV job match UAE",

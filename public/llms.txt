@@ -13,10 +13,10 @@
 - [Cover Letter (app)](https://app.makemycv.ae/cover-letter): Drafts a cover letter from an excerpt of the user's CV and a pasted job description; the model is instructed not to add figures, and any number it would add is replaced by a placeholder for the user to fill.
 
 ## Free tools
-- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under UAE Labour Law (resignation vs termination, service length).
-- [Notice Period Calculator](https://www.makemycv.ae/notice-period-calculator): Notice period and last working day under UAE Labour Law.
-- [Annual Leave Calculator](https://www.makemycv.ae/annual-leave-calculator): Accrued annual leave days and leave salary in the UAE.
-- [Resignation Letter Generator](https://www.makemycv.ae/resignation-letter-generator): Generates a UAE-appropriate resignation letter with the correct notice wording.
+- [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under Federal Decree-Law No. 33 of 2021: 21 days of basic pay per year for the first five years and 30 days per year after, capped at two years' pay. Since 2 February 2022 resignation and termination pay the same gratuity. Inputs: where you work (mainland and most free zones, DIFC, ADGM), basic monthly salary, service dates, reason for leaving. Shows the day-by-day breakdown.
+- [Notice Period Calculator](https://www.makemycv.ae/notice-period-calculator): Notice to give or receive under UAE Labour Law (30 to 90 days after probation, 14 or 30 days during it), the last working day, and pay in lieu of notice, which is calculated on the full wage.
+- [Annual Leave Calculator](https://www.makemycv.ae/annual-leave-calculator): Annual leave entitlement in the UAE (30 days a year after one year of service) and what unused leave days are worth at the end of service, calculated on basic pay.
+- [Resignation Letter Generator](https://www.makemycv.ae/resignation-letter-generator): Builds a resignation letter for a UAE employer with the notice period and last working day filled in; copy it or download it, no sign-up.
 
 ## Guides — UAE CV format and ATS
 - [CV Format UAE 2026](https://www.makemycv.ae/blog/cv-format-uae-2026): The complete format guide for Dubai and Gulf job seekers — structure, length, sections, file type.
@@ -43,16 +43,18 @@
 - [LinkedIn for UAE Job Seekers](https://www.makemycv.ae/blog/linkedin-profile-uae-jobs): How Dubai and Abu Dhabi recruiters source candidates on LinkedIn.
 - [Can ChatGPT Write Your CV?](https://www.makemycv.ae/blog/can-chatgpt-write-cv): Where AI helps CV writing and where raw AI output fails UAE screening.
 - [Best CV Writers in UAE](https://www.makemycv.ae/blog/best-cv-writers-uae): Typing centres to executive services — costs, checks, and free alternatives.
-- [Choosing a CV Maker for Dubai](https://www.makemycv.ae/blog/cv-maker-dubai): What generic CV builders miss on a Dubai CV (visa status, photo, attestation) and the layout mistakes that break ATS parsing.
 - [How UAE Recruiters Judge Your CV](https://www.makemycv.ae/blog/7-seconds-thats-it): What recruiters scan first and what gets a CV filtered instantly.
 
 ## Guides — applying from your country
 - [How to Adapt Your Indian CV for UAE Jobs](https://www.makemycv.ae/blog/adapt-indian-cv-for-uae-jobs): What to change moving from an Indian CV to a UAE one.
 - [First-Time OFW CV for UAE Jobs](https://www.makemycv.ae/blog/first-time-ofw-cv-uae): Philippine conventions to drop, PRC licences and CHED degrees, DMW agency route.
 - [CV for Dubai & Gulf Jobs from Kenya or Nigeria](https://www.makemycv.ae/blog/cv-for-dubai-jobs-from-kenya-nigeria): WAEC/KCSE handling, degree attestation, and recruitment-fraud warnings.
+- [How to Adapt Your Pakistani CV for Dubai & UAE Jobs](https://www.makemycv.ae/blog/adapt-pakistani-cv-for-uae-jobs): What to remove (CNIC, father's name, religion, domicile), what to add, HEC attestation and the licensed-agency route.
 - [CV for Dubai & UAE Jobs from Nepal](https://www.makemycv.ae/blog/cv-for-dubai-jobs-from-nepal): Bikram Sambat date conversion, labour approval, attestation chain, agency fee cap.
 
 ## Guides — UAE job market
+- [How to Put AI Skills on Your CV in 2026](https://www.makemycv.ae/blog/ai-skills-on-cv-uae): What a credible AI skill line looks like on a UAE CV and where the proof belongs.
+- [Nafis Salary Support Changes From September 2026](https://www.makemycv.ae/blog/nafis-salary-support-september-2026): What the restructured Nafis rules mean for Emirati candidates in the private sector.
 - [How to Get a Job in Dubai](https://www.makemycv.ae/blog/how-to-get-a-job-in-dubai-2026): Step-by-step from CV to job portals to visa processing.
 - [UAE Hiring in 2026: The Sectors Actually Growing](https://www.makemycv.ae/blog/uae-sectors-hiring-2026): Which sectors are hiring above trend, and how to rewrite a CV for them.
 - [UAE Hiring Restarted in July](https://www.makemycv.ae/blog/uae-hiring-season-september): Why September is the strongest application window and when shortlists are built.

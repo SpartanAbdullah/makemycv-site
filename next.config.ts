@@ -81,6 +81,13 @@ const nextConfig: NextConfig = {
         destination: '/blog/cv-format-uae-2026',
         permanent: true,
       },
+      // Retired 2026-11-21: same intent as /free-cv-maker-dubai, and Google had
+      // left it crawled-not-indexed since October.
+      {
+        source: '/blog/cv-maker-dubai',
+        destination: '/free-cv-maker-dubai',
+        permanent: true,
+      },
     ];
   },
 };

@@ -15,9 +15,12 @@ const links: { href: string; label: string; ctaId?: string }[] = [
   { href: "/", label: "Home" },
   { href: "/templates", label: "Templates" },
   { href: "/jd-match", label: "JD Match", ctaId: "navbar_jd_match" },
+  /* The calculators bring a third of search impressions but had no header
+     link (2026-11-21). Points at the tools grid on the home page; Contact
+     stays in the footer. */
+  { href: "/#free-tools", label: "Free Tools", ctaId: "navbar_free_tools" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
 ];
 
 /* Mobile menu ids carry a `_mobile` suffix, matching navbar_build_cv_mobile. */

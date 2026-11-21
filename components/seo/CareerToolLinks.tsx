@@ -103,7 +103,7 @@ export function CareerToolLinks({
   // where 4 columns give 4/3 instead of an orphaned 3/3/1.
   const lgCols = visible.length >= 7 ? "lg:grid-cols-4" : "lg:grid-cols-3";
   return (
-    <section className="bg-paper-2 py-14 md:py-16">
+    <section id="free-tools" className="scroll-mt-24 bg-paper-2 py-14 md:py-16">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
           align="left"

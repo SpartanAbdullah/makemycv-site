@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Link2, Check, Share2 } from "lucide-react";
 import { copyText } from "@/components/tools/copyText";
 import { IconLinkedInGlyph, IconWhatsAppGlyph, IconXGlyph } from "@/components/SocialIcons";
+import { ctaAttrs } from "@/lib/inline-cta";
 
 /**
  * Share row for blog posts. Deliberately built from plain anchors + the Web
@@ -99,7 +100,12 @@ export const SharePost = ({ url, title }: Props) => {
 
       <div className="flex flex-wrap items-center gap-2">
         {canNativeShare && (
-          <button type="button" onClick={onNativeShare} className={pill}>
+          <button
+            type="button"
+            onClick={onNativeShare}
+            className={pill}
+            {...ctaAttrs("blog_share_native", "blog_share")}
+          >
             <Share2 size={16} aria-hidden="true" />
             Share
           </button>
@@ -113,13 +119,19 @@ export const SharePost = ({ url, title }: Props) => {
             rel="noopener noreferrer"
             aria-label={`Share this guide on ${label}`}
             className={pill}
+            {...ctaAttrs(`blog_share_${label.toLowerCase()}`, "blog_share")}
           >
             <Icon className="h-4 w-4" aria-hidden="true" />
             {label}
           </a>
         ))}
 
-        <button type="button" onClick={onCopy} className={pill}>
+        <button
+          type="button"
+          onClick={onCopy}
+          className={pill}
+          {...ctaAttrs("blog_share_copy", "blog_share")}
+        >
           {copied ? (
             <Check size={16} aria-hidden="true" className="text-accent" />
           ) : (

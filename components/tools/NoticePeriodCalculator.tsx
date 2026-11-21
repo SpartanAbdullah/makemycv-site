@@ -7,7 +7,7 @@ import {
   type NoticeScenario,
 } from "@/components/tools/notice";
 import { formatAed, formatAedPrecise } from "@/components/tools/gratuity";
-import { CopyBreakdownButton } from "@/components/tools/CopyBreakdownButton";
+import { CopyBreakdownButton, WhatsAppShareButton } from "@/components/tools/CopyBreakdownButton";
 
 const scenarios: Array<{ value: NoticeScenario; label: string }> = [
   { value: "standard", label: "After probation (normal case)" },
@@ -287,6 +287,7 @@ export function NoticePeriodCalculator() {
       {/* Copy */}
       <div className="mt-4 flex flex-wrap gap-3">
         <CopyBreakdownButton getText={buildBreakdown} />
+        <WhatsAppShareButton getText={buildBreakdown} tool="notice" />
       </div>
 
       <p className="mt-4 text-xs leading-relaxed text-muted">
