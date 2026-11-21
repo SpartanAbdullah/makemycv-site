@@ -15,7 +15,7 @@ import { ReadNext } from "@/components/seo/ReadNext";
 const templatesAiAnswer = {
   q: "Which CV template should I use for UAE jobs?",
   lead: "MakeMyCV offers 14 free CV templates built for the UAE job market.",
-  a: "MakeMyCV offers 14 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean or Harvard for fresh graduates, Chronicle for a timeline of your career, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and every layout is available with or without a photo.",
+  a: "MakeMyCV offers 14 free CV templates built for the UAE job market. For online portals, pick an ATS-Friendly single-column layout — Classic for corporate, finance and government roles, ATS Clean or Harvard for fresh graduates, Chronicle for a timeline of your career, or Professional. Design-led layouts like Modern and Executive suit direct email to a recruiter. All include UAE fields such as visa status, and most layouts work with or without a photo (Harvard and Professional never print one).",
 };
 
 /* Rewritten 2026-08-10 (Search Console audit): `cv template uae` earns 14
@@ -46,8 +46,9 @@ export default function TemplatesPage() {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
             Real captures from the builder — the same templates you download,
-            all free, no watermark. Every layout is available with or without
-            a photo: upload once, choose per application.
+            all free, no watermark. Most layouts work with or without a
+            photo: upload once, choose per application. Harvard and
+            Professional never print one.
           </p>
           <p className="mx-auto mt-3 max-w-2xl text-sm text-muted">
             Single-column layouts carry the ATS-Friendly badge, design-led

@@ -63,7 +63,7 @@ export const EmailSignup = ({ source, compact = false }: { source: "blog" | "tha
         <form onSubmit={submit} className="flex flex-col gap-3">
           <p className="font-display text-lg font-bold text-ink">UAE job-search tips, by email</p>
           <label htmlFor={`email-${source}`} className="text-sm leading-relaxed text-muted">
-            About twice a month. Unsubscribe with one click, any time. We never share your address.
+            Sent occasionally. Unsubscribe with one click, any time. We never share your address.
           </label>
           <div className="flex flex-col gap-2 sm:flex-row">
             <input
