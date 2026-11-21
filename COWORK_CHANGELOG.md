@@ -16,6 +16,19 @@ Format:
 
 ---
 
+## [2026-11-21 17:05] Tool pages: calculator first, per-tool CV line, header link, cv-maker-dubai retired, llms.txt, comparison table
+
+**Goal:** tracker items 5-10 (docs/growth-roadmap-2026-11/TRACKER.md). Tool pages earn about a third of search impressions and produced 1 CV export from 166 landings in 1-12 Nov.
+**Files:**
+- edited: app/gratuity-calculator, notice-period-calculator, annual-leave-calculator, resignation-letter-generator page.tsx: the tool island now comes before the quick-answer block and the hero padding is tighter, so the first input is on the first screen (it was at 1,018px on a 735px viewport). Content and schema are unchanged, only the order.
+- edited: components/tools/CalculatorShared.tsx: `NextRoleCta` has one heading and line per tool (`NEXT_ROLE_COPY`).
+- edited: components/Navbar.tsx, components/seo/CareerToolLinks.tsx: header link "Free Tools" to `/#free-tools` (new section id); "Contact" leaves the header and stays in the footer.
+- deleted: content/blog/cv-maker-dubai.mdx; edited next.config.ts (301 to /free-cv-maker-dubai), cv-format-uae-2026.mdx and how-to-make-cv-for-job-in-uae.mdx (inbound links retargeted).
+- edited: public/llms.txt: fuller lines for the four tools, the three missing posts added, the retired post removed.
+- edited: app/free-cv-maker-dubai/page.tsx: `CvMakerComparison` table (MakeMyCV.ae, generic template, general AI chatbot).
+**Notes/risks:** the 13 Nov plan asked to hold page changes on the tool pages until 28 Nov so the 31 Oct title change gets a clean 28-day read; releasing earlier mixes the two effects. The comparison table names no competitor and no price on purpose: competitor data in docs/viability-audit-2026-11 was never verified hands-on. The CV line is per tool, not per result: making it read the calculated figure needs the client island to render it. `npm run build` stops on a Next.js 16.4.3 security-advisory notice about every other run and passes on retry.
+**Suggested commit:** feat(tools): calculator first, per-tool CV line, free-tools header link; retire cv-maker-dubai
+
 ## [2026-11-21 16:00] Per-tool share images
 
 **Goal:** tracker item 4 (docs/growth-roadmap-2026-11/TRACKER.md). All 12 non-blog pages shared one generic og-image.png, so a calculator link pasted into WhatsApp looked like the home page.

@@ -37,16 +37,35 @@ export function TrustBadge() {
  */
 export type CalculatorTool = "gratuity" | "notice" | "leave" | "resignation";
 
+/* One line per tool (2026-11-21). The single generic line ("Applying for your
+   next role?") produced 1 export from 166 tool landings in 1-12 Nov; each tool
+   now names the moment its visitor is in. Copy describes the CV fields, never
+   the person's situation as fact. */
+const NEXT_ROLE_COPY: Record<CalculatorTool, { heading: string; body: string }> = {
+  gratuity: {
+    heading: "Leaving, or planning to?",
+    body: "Your next employer will ask when you can start. A UAE-format CV has its own fields for notice period and visa status. Free, no sign-up.",
+  },
+  notice: {
+    heading: "Serving notice?",
+    body: "Recruiters filter on availability. A UAE-format CV puts your notice period and visa status where they look first. Free, no sign-up.",
+  },
+  leave: {
+    heading: "Working out what you are owed before a move?",
+    body: "Have the CV ready too. A UAE-format CV has its own fields for visa status and availability. Free, no sign-up.",
+  },
+  resignation: {
+    heading: "Letter done. Is your CV ready?",
+    body: "A UAE-format CV shows your notice period and visa status in their own fields, so a recruiter sees when you can start. Free, no sign-up.",
+  },
+};
+
 export function NextRoleCta({ tool }: { tool: CalculatorTool }) {
+  const copy = NEXT_ROLE_COPY[tool];
   return (
     <div className="mt-6 rounded-2xl border border-accent/20 bg-accent-soft p-5 md:p-6">
-      <p className="font-display text-lg font-bold text-ink">
-        Applying for your next role?
-      </p>
-      <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">
-        Build a UAE-format CV &mdash; free. Visa status and availability have
-        their own fields, and there is no sign-up.
-      </p>
+      <p className="font-display text-lg font-bold text-ink">{copy.heading}</p>
+      <p className="mt-1.5 text-[15px] leading-relaxed text-ink-2">{copy.body}</p>
       <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-3">
         <a
           href={APP_URL}

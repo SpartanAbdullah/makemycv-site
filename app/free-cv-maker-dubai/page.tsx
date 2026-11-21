@@ -275,6 +275,111 @@ function MakerFeatures() {
   );
 }
 
+/* Category comparison, not brand against brand (2026-11-21). Every MakeMyCV
+   cell is something the product does today; the other two columns describe a
+   kind of tool in general terms, with no named competitor and no prices,
+   because none of those were verified hands-on. Keep it that way. */
+const comparisonRows: { label: string; us: string; template: string; chatbot: string }[] = [
+  {
+    label: "UAE fields (visa status, notice period, driving licence, nationality)",
+    us: "A dedicated step asks for each one",
+    template: "You add and place them yourself",
+    chatbot: "Only if you ask for them",
+  },
+  {
+    label: "Layout an ATS can read",
+    us: "Every template exports real text; single-column options are marked ATS-friendly",
+    template: "Depends on the template; text boxes and columns often break parsing",
+    chatbot: "Gives you text; you still need to lay it out",
+  },
+  {
+    label: "Photo",
+    us: "On or off per download, in every template",
+    template: "Edit the layout by hand",
+    chatbot: "Not handled",
+  },
+  {
+    label: "Check against a job description",
+    us: "JD Match shows what the CV covers and misses",
+    template: "No",
+    chatbot: "Yes, if you paste both in",
+  },
+  {
+    label: "Invented achievements",
+    us: "AI suggestions leave a placeholder wherever a number is needed; you fill in the real figure",
+    template: "Not applicable",
+    chatbot: "Can add figures you never gave it; check every line",
+  },
+  {
+    label: "Where the CV is stored",
+    us: "In your browser; no account",
+    template: "In your files or the editor's cloud account",
+    chatbot: "In the chat history of your account",
+  },
+  {
+    label: "Download",
+    us: "PDF and Word, free, no watermark",
+    template: "Varies by editor",
+    chatbot: "Usually copy and paste into a document",
+  },
+];
+
+function CvMakerComparison() {
+  return (
+    <section className="bg-paper-2 py-20 md:py-28">
+      <Reveal className="mx-auto max-w-5xl px-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-accent">
+          Compared
+        </p>
+        <h2 className="mt-4 font-display text-[36px] font-bold leading-[1.05] tracking-tight-2 text-ink md:text-[48px]">
+          MakeMyCV.ae, a generic template, or an AI chatbot?
+        </h2>
+        <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-muted">
+          All three can produce a CV for a Dubai job. They differ in how much of the
+          UAE-specific work is left to you.
+        </p>
+        <div className="mt-10 overflow-x-auto rounded-[20px] bg-sheet shadow-float">
+          <table className="w-full min-w-[720px] border-collapse text-left text-[15px] leading-snug">
+            <thead>
+              <tr className="border-b border-line text-ink">
+                <th scope="col" className="p-4 font-semibold">
+                  <span className="sr-only">Feature</span>
+                </th>
+                <th scope="col" className="p-4 font-display font-bold text-accent">
+                  MakeMyCV.ae
+                </th>
+                <th scope="col" className="p-4 font-display font-bold">
+                  Generic template (Word, design tools)
+                </th>
+                <th scope="col" className="p-4 font-display font-bold">
+                  General AI chatbot
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {comparisonRows.map((row) => (
+                <tr key={row.label} className="border-b border-line align-top last:border-b-0">
+                  <th scope="row" className="p-4 font-semibold text-ink">
+                    {row.label}
+                  </th>
+                  <td className="p-4 text-ink-2">{row.us}</td>
+                  <td className="p-4 text-muted">{row.template}</td>
+                  <td className="p-4 text-muted">{row.chatbot}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-muted">
+          The template and chatbot columns describe those kinds of tool in general, not one
+          product. Many people use a chatbot to draft wording and a builder for the layout
+          and the UAE fields.
+        </p>
+      </Reveal>
+    </section>
+  );
+}
+
 function CvMakerFAQ() {
   return (
     <section className="bg-paper py-20 md:py-28">
@@ -398,6 +503,7 @@ export default function CvMakerDubaiPage() {
         currentPath="/free-cv-maker-dubai"
         ctaIdPrefix="cv_maker_dubai"
       />
+      <CvMakerComparison />
       <CvMakerFAQ />
       {/* B5 — Dubai-specific how-to, the photo question, and summary copy. */}
       <ReadNext

@@ -132,7 +132,7 @@ export default function ResignationLetterGeneratorPage() {
       <JsonLd data={faqSchema} />
 
       {/* Hero — warm-paper skin (Part 3 reskin) */}
-      <section className="relative overflow-hidden bg-paper py-16 md:py-20">
+      <section className="relative overflow-hidden bg-paper pb-8 pt-12 md:pb-10 md:pt-14">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
@@ -157,14 +157,6 @@ export default function ResignationLetterGeneratorPage() {
         </div>
       </section>
 
-      {/* Branded quick answer (schema folded into faqSchema) */}
-      <AiAnswer
-        question={aiAnswer.q}
-        lead={aiAnswer.lead}
-        answer={aiAnswer.a}
-        emitSchema={false}
-        className="bg-paper py-12 md:py-14"
-      />
 
       {/* Generator island */}
       <section className="bg-paper pb-8">
@@ -174,6 +166,16 @@ export default function ResignationLetterGeneratorPage() {
           <NextRoleCta tool="resignation" />
         </div>
       </section>
+
+      {/* Quick answer sits under the tool since 2026-11-21: the first input used to be
+          a full screen down (1,018px on a 735px viewport). */}
+      <AiAnswer
+        question={aiAnswer.q}
+        lead={aiAnswer.lead}
+        answer={aiAnswer.a}
+        emitSchema={false}
+        className="bg-paper py-10 md:py-12"
+      />
 
       {/* How to resign properly — SSR, crawlable */}
       <section className="bg-paper py-16 md:py-20">
