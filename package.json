@@ -7,7 +7,8 @@
     "build": "velite build && next build",
     "start": "next start",
     "lint": "eslint . --max-warnings=2",
-    "test": "npm run test:calculators && npm run test:resignation",
+    "test": "npm run test:calculators && npm run test:resignation && npm run test:roles",
+    "test:roles": "tsx scripts/check-role-examples.ts",
     "test:calculators": "tsx scripts/stress-test-calculators.ts",
     "test:resignation": "tsx scripts/test-resignation-letter.ts",
     "check:checklist": "tsx scripts/check-checklist-contract.mjs"

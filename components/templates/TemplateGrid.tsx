@@ -108,8 +108,12 @@ export function TemplateGrid({ templates }: { templates: TemplateCard[] }) {
                 {t.name}
               </h3>
 
+              {/* The slug travels with the click. Until 2026-11 this linked to
+                  the bare app, which opens on Classic: the template the
+                  visitor had just chosen was thrown away (audit O1). The
+                  slugs are the app's template ids, one to one. */}
               <a
-                href="https://app.makemycv.ae"
+                href={`https://app.makemycv.ae/builder?template=${t.slug}`}
                 className="tpl-cta relative block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-paper-2"
                 data-event="cta_click"
                 data-cta-id="templates_card_use"

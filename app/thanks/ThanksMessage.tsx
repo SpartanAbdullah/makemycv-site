@@ -15,7 +15,7 @@ const Inner = () => {
   const subscribed = q.get("subscribed");
   const unsubscribed = q.get("unsubscribed");
   let text: string | null = null;
-  if (subscribed === "1") text = "You're on the list. UAE job-search tips, about twice a month — and one click to leave whenever you like.";
+  if (subscribed === "1") text = "You're on the list. Occasional UAE job-search tips — and one click to leave whenever you like.";
   else if (subscribed === "expired") text = "That confirmation link has expired or was already used. Sign up again below and tap the new link within a week.";
   else if (unsubscribed === "1") text = "You're off the list. No more emails from us — and no hard feelings.";
   if (!text) return null;

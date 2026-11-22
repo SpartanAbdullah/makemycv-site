@@ -8,9 +8,22 @@
 - [Free CV Maker for Dubai](https://www.makemycv.ae/free-cv-maker-dubai): How the free Dubai CV maker works, the UAE fields it adds, and the template choices.
 - [ATS Resume Checker](https://www.makemycv.ae/resume-checker): Free check of whether a CV passes the applicant tracking systems UAE employers use.
 - [JD Match](https://www.makemycv.ae/jd-match): Paste a job description and see how closely a CV matches it, with the specific gaps to fix. The CV is compared in the browser.
-- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Example CVs by role and industry, formatted for UAE hiring.
+- [UAE CV Examples](https://www.makemycv.ae/cv-examples-uae): Weak-versus-strong CV bullet rewrites for six UAE sectors, with links to the ten role pages below. All examples are illustrative, not real CVs.
 - [Build a CV (app)](https://app.makemycv.ae): The free builder tool — 10 steps, PDF and DOCX download, no account.
 - [Cover Letter (app)](https://app.makemycv.ae/cover-letter): Drafts a cover letter from an excerpt of the user's CV and a pasted job description; the model is instructed not to add figures, and any number it would add is replaced by a placeholder for the user to fill.
+
+## CV examples by role
+Each page has a direct answer to what the CV should include, five illustrative weak-versus-strong bullets, the UAE Essentials for that role with official sources for the legal and licensing points, and the skills an ATS matches.
+- [Accountant CV Example](https://www.makemycv.ae/cv-examples-uae/accountant): Month-end close, VAT returns through EmaraTax, payables and receivables, audit support and Corporate Tax; how to state ACCA or CA status.
+- [Sales Executive CV Example](https://www.makemycv.ae/cv-examples-uae/sales-executive): Revenue against target in AED, new accounts, pipeline and territory; driving licence and languages.
+- [Customer Service Agent CV Example](https://www.makemycv.ae/cv-examples-uae/customer-service-agent): Daily contact volume, CSAT, handling time and escalations; languages and shift availability.
+- [Nurse CV Example](https://www.makemycv.ae/cv-examples-uae/nurse): How to write the DHA, DOH, SHA or MOHAP licence line (in Dubai, a DHA registration that the hiring facility activates into a licence), unit and patient ratio, life-support certificates.
+- [Civil Engineer CV Example](https://www.makemycv.ae/cv-examples-uae/civil-engineer): Projects by type, AED value and role; safety record; Dubai's rule (Administrative Resolution No. 253 of 2021) that contracting-company engineers hold Society of Engineers UAE membership.
+- [HR Officer CV Example](https://www.makemycv.ae/cv-examples-uae/hr-officer): Recruitment and onboarding numbers, Wage Protection System payroll, end-of-service under Federal Decree-Law No. 33 of 2021.
+- [Logistics Coordinator CV Example](https://www.makemycv.ae/cv-examples-uae/logistics-coordinator): Shipment volumes, customs documents, clearance time, freight savings and delivery performance.
+- [Receptionist CV Example](https://www.makemycv.ae/cv-examples-uae/receptionist): Visitor and call volumes, bookings and office admin; visa status, including family sponsorship and visit visas.
+- [Real Estate Agent CV Example](https://www.makemycv.ae/cv-examples-uae/real-estate-agent): Deals, listings and lead conversion; how to state the RERA broker card that Dubai brokers must hold.
+- [Hotel Front Desk Agent CV Example](https://www.makemycv.ae/cv-examples-uae/hotel-front-desk-agent): Room count, check-ins per shift, upselling revenue and guest scores; Opera PMS and languages.
 
 ## Free tools
 - [UAE Gratuity Calculator](https://www.makemycv.ae/gratuity-calculator): End-of-service gratuity under Federal Decree-Law No. 33 of 2021: 21 days of basic pay per year for the first five years and 30 days per year after, capped at two years' pay. Since 2 February 2022 resignation and termination pay the same gratuity. Inputs: where you work (mainland and most free zones, DIFC, ADGM), basic monthly salary, service dates, reason for leaving. Shows the day-by-day breakdown.
@@ -36,7 +49,7 @@
 - [How to Explain Employment Gaps on a UAE CV](https://www.makemycv.ae/blog/employment-gaps-uae-cv): Presenting career breaks — visa cancellation, relocation, family — honestly.
 - [Career-Change CV for the UAE](https://www.makemycv.ae/blog/career-change-cv-uae): Switching industries in Dubai — skills-forward format and translating past experience.
 - [How to Write a CV as an Expat in the UAE](https://www.makemycv.ae/blog/expat-cv-uae-guide): What to add and remove for the UAE market, with notes by nationality.
-- [Nursing & Healthcare CV for the UAE](https://www.makemycv.ae/blog/nursing-cv-uae): DHA/DOH/MOHAP licensing, DataFlow verification, and clinical CV structure.
+- [Nursing & Healthcare CV for the UAE](https://www.makemycv.ae/blog/nursing-cv-uae): DHA, DOH, SHA and MOHAP licensing, DataFlow verification, and clinical CV structure.
 - [Hospitality CV for UAE Hotels and F&B](https://www.makemycv.ae/blog/hospitality-cv-uae): What Dubai and Abu Dhabi hotel and F&B recruiters screen for — visa, availability and language lines, bullets with scale, food safety certificates, and a plan for freshers.
 - [Skills vs Degrees in 2026](https://www.makemycv.ae/blog/skills-vs-degrees-uae-cv): Why Gulf job seekers should not drop qualifications from a CV despite skills-based hiring.
 - [Do You Need a Cover Letter for UAE Jobs?](https://www.makemycv.ae/blog/cover-letter-for-uae-jobs): When a cover letter is worth writing for Dubai jobs, plus a short template.

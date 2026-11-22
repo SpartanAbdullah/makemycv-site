@@ -89,7 +89,10 @@ reintroduced next week.
 
 - `lib/consent.ts` and `components/consent/*` are **byte-identical copies** of the app's — change both
   repos together. The Consent Mode v2 default in `app/layout.tsx` must stay ahead of the GTM script;
-  `proxy.ts` stamps the `mmcv_geo` region bucket it reads.
+  `proxy.ts` stamps the `mmcv_geo` region bucket it reads. A consent command must reach the
+  dataLayer as a real `arguments` object (`pushConsentCommand`): GTM ignores a plain Array, which is
+  how "Opt out" did nothing until the next page load before 2026-11-21. The app repo's
+  `lib/consent.test.ts` pins the shape.
 - `next.config.ts` ships a **Report-Only** CSP; violations reach Sentry via `instrumentation-client.ts`.
   Flip it to `Content-Security-Policy` only after a few quiet weeks in Sentry.
 - `components/EmailSignup.tsx` posts to the app's `/api/subscribe`; the list, the double opt-in and the

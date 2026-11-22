@@ -163,10 +163,10 @@ export default function PrivacyPage() {
               the ATS checker, the cover letter writer or the LinkedIn message writer — the text you submit
               is sent to our server and on to Anthropic (the AI provider behind
               Claude) to generate the result. The cover letter writer sends an
-              excerpt of your CV (headline, summary, your latest role, up to
-              twelve skills, and your visa and availability lines) together
-              with the job details you type — never your contact details or
-              photo. The LinkedIn message writer sends a smaller excerpt
+              excerpt of your CV (your first name, headline, summary, your
+              latest role, up to twelve skills, and your visa and availability
+              lines) together with the job details you type — never your
+              surname, contact details or photo. The LinkedIn message writer sends a smaller excerpt
               (headline, your latest role with up to two bullets, three
               skills, and your visa and availability lines) with the job or
               recruiter text you paste. Under Anthropic&apos;s commercial API terms, content sent

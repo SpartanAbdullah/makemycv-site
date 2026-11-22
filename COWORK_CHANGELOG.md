@@ -16,6 +16,111 @@ Format:
 
 ---
 
+## [2026-11-22 01:44] Nurse page and nursing post: Sharjah Health Authority added
+
+**Goal:** the automated (Codex) review of release pull request #45 said the nurse example page and the nursing post tell nurses which authority licenses them and leave out the Sharjah Health Authority (SHA). Checked against official pages on 22 Nov 2026: it holds. The owner approved checking and fixing it ("Yes, check and fix").
+**Files:**
+- edited: lib/cv-role-examples.ts (nurse only): the quick answer names "SHA for Sharjah"; the licence essential names SHA and gives Sharjah's two steps; the verification essential says what SHA's assessment service asks for; the licence skill chip reads "DHA / DOH / SHA / MOHAP Licence"; the first FAQ answer names SHA and the second FAQ question lists it. Three sources added (`SRC.sha`, `SRC.shaAssessment`, `SRC.sharjahDecision`).
+- edited: content/blog/nursing-cv-uae.mdx: `dateModified: 2026-11-22` (`date` untouched). New SHA row in the authority table, one sentence on who SHA's rules cover, the short answer, the portals note, the verification paragraph, structure item 2, one example stage, and two FAQ answers (frontmatter and body, identical text).
+- edited: public/llms.txt: the nurse page line and the nursing post line name SHA.
+**Sources (all read 22 Nov 2026) and what each supports:**
+- SHA issues the professional licence, nursing included, "authorizing them to work in a healthcare facility licensed by SHA"; the healthcare facility applies; "a valid professional assessment certificate is required": sha.shj.ae, "Request for Healthcare Professional License".
+- The professional obtains the assessment certificate from SHA; the service asks for "recent data flow reports (if available)": sha.shj.ae, "Request for Healthcare Professional Assessment".
+- The Sharjah Executive Council decision of 15 July 2025 applies to local health establishments of the Government of Sharjah and private health facilities in the emirate and free zones, and the professionals working in them; it does not apply to federal government health facilities operating in the emirate: ec.shj.ae news item of that date (the same text is on wam.ae).
+- Sharjah Health Authority is the local health authority for Sharjah: u.ae "health regulatory authorities".
+- MOHAP, DOH, DHA and SHA present the unified qualification requirements jointly: doh.gov.ae/en/pqr.
+**Source corrections (do not reintroduce):**
+- "DHA, DOH or MOHAP" as the full list of nurse licensing authorities. Sharjah has its own.
+- SHA's site is sha.shj.ae. `sha.gov.ae` does not open (the address survives only in the authority's email).
+- Not stated, because no official page read says it: that SHA "covers Sharjah" without qualification (federal facilities there are outside the decision), that SHA names DataFlow as its verification agency (its page says "data flow reports", lower case, "if available"), and that the assessment certificate alone lets a nurse practise.
+**Notes / risks / follow-up:**
+- seo-reviewer: no blockers. Its one SHOULD FIX (the verification paragraph read as covering Sharjah without saying anything about it) was applied, with four of its polish items: the circular FAQ sentence, the split sentence, "SHA-licensed facility", and the list of emirates in the short answer.
+- Left as they are, on purpose: the post's title, excerpt and tags still say "DHA, DOH & MOHAP". The reviewer judged that acceptable; an "SHA" tag is an option.
+- Not checked, and possibly the same kind of gap: Dubai Healthcare City has its own regulator, so "DHA for Dubai" may be incomplete for that free zone. No official page was read for it. Follow-up.
+- Other posts that mention DHA (cv-format-uae-2026, first-time-ofw-cv-uae and six more) were not reviewed.
+- The SHA service addresses contain Arabic letters and are written percent-encoded. If SHA moves its services to portal-sha.shj.ae (its home page already links there), these three links need updating.
+- The review thread on GitHub was not replied to.
+**Verification:** `npm run build`, tsc, lint (2 warnings, the cap), `npm run test` (102 calculator checks, resignation letter, `test:roles`) all pass. A script confirmed all five FAQ pairs are word-for-word identical in frontmatter and body, and the table has six rows of three cells. Against `next start`: both pages show the new wording, the FAQPage data carries it, the post's dateModified reads 2026-11-22 with datePublished unchanged, every new link points at the page read, and neither page overflows sideways at 375 or 1440 px.
+**Suggested commit:** fix(cv-examples, blog): add Sharjah Health Authority to the nurse licensing guidance
+
+## [2026-11-21 21:35] Audit batch B: links carry the template and the upload intent; three claims reworded; consent update fixed
+
+**Goal:** the site half of batch B of the 21 Nov product audit (`docs/makemycv-uae-audit.md` in the parent folder: Q3, Q4, Q13, Q17 and defect P4), approved by the owner on 21 Nov. Ships with the app entry of the same time (`makemycv-app`, branch `audit-batch-b`) — deploy the two together: the app reads `?template=` and `?import=1`, stamps the new consent-text version, and carries the identical `lib/consent.ts`.
+**Files:**
+- edited: components/templates/TemplateGrid.tsx, components/home/TemplateShowcase.tsx: "Use This Template" links to `https://app.makemycv.ae/builder?template=<slug>`. They linked to the app root, so the choice was dropped and the visitor landed on Classic. The slugs already match the app's template ids.
+- edited: components/home/HeroSection.tsx: the primary button goes straight to `/builder`; a second, quieter link under it, "Already have a CV? Upload it and edit it here", goes to `/builder?import=1` (`data-cta-id="home_hero_upload_cv"`). The audit read 61% of builder starters as importing a CV; the home page never mentioned it.
+- edited: components/home/ProblemSolution.tsx: two cards reworded. Removed "UAE recruiters average about 7 seconds" (this repo's own content rules say the figure is from a US study) and "no nationality … signals you don't understand the market". The cards now say what a generic template leaves out (visa status, notice period, location) and that recruiters skim before they read. The hero's "7-second scan" brand line was left alone, by owner decision.
+- edited: app/templates/page.tsx: "every layout is available with or without a photo" was not true; it now says most layouts are, and that Harvard and Professional never print one (FAQ answer and intro).
+- edited: components/EmailSignup.tsx, app/thanks/ThanksMessage.tsx: "about twice a month" removed. Nothing sends on a schedule. The form says "Sent occasionally."
+- edited: app/privacy/page.tsx: the cover letter's list of what is sent now names the first name, which has been sent since the feature launched, and says the surname is not.
+- edited: lib/consent.ts: the consent choice is pushed as an `arguments` object, which is the only form Google Tag Manager treats as a command. Checked on production: the Array the code pushed left the consent state unchanged, so "Opt out" and "Accept" took effect only on the next full page load. Byte-identical with the app's copy.
+**Notes / risks / follow-up:**
+- Other pages still link to the bare app root (`APP_URL`: calculators, cv-maker-dubai, cv-examples). They work, and after the app release their query strings survive the redirect; they were not changed here.
+- `home_hero_upload_cv` is a new `cta_id` value on the existing click tracking; no new event name.
+- GA4 from the release date: EU visitors who accept are counted from the click, and visitors who opt out stop being counted at once.
+- The privacy page's "Last updated" already reads 21 November 2026.
+- Not checked: real phones.
+**Verification:** `npm run build`, tsc, lint (2 warnings, the cap), `npm run test` all pass. In Chrome against `next start`: the hero links and all template links carry the right addresses; neither removed claim is on the home page; no horizontal overflow at 375 px. `lib/consent.ts` compared byte for byte with the app's.
+**Suggested commit:** fix: audit batch B (template and upload links, three claims reworded, consent update)
+
+## [2026-11-21 20:30] Nursing post refreshed to the sourced licensing wording
+
+**Goal:** follow-up to the role pages (tracker item 16). `content/blog/nursing-cv-uae.mdx` and the new `/cv-examples-uae/nurse` page gave two different answers to "which licence", and the post's version (in `faqs`, so in FAQPage schema) rested on claims no official page confirmed.
+**Files:**
+- edited: content/blog/nursing-cv-uae.mdx: `dateModified: 2026-11-21` (`date` untouched). Authority table, short answer, sample licensing block and three FAQ answers (frontmatter and body, identical text) rewritten; two links to /cv-examples-uae/nurse; each authority row links its own official page.
+- edited: lib/cv-role-examples.ts: the DOH statement on the nurse page now cites the DOH Healthcare Professionals Manual, which is where it was read, not the DOH FAQ.
+**Source corrections (do not reintroduce):**
+- Removed: MOHAP "covers Sharjah, Ajman, UAQ, RAK, Fujairah"; "three regulators"; exam vendors and portals not verified on official pages (Prometric, Pearson VUE, Mawared, Mumaris+); "DataFlow is mandatory for all non-UAE applicants"; "DHA Eligibility Letter" as the stage name; "many hospitals consider candidates mid-process".
+- Now stated, with sources read 21 Nov 2026: DHA registration through Sheryan, activated into a licence by the hiring facility (DHA Sheryan FAQ); professionals must be licensed by DOH, previously known as HAAD, to practise in Abu Dhabi (DOH Healthcare Professionals Manual); MOHAP is the federal authority with its own licensing service that facilities apply through (MOHAP service page); documents verified at primary source and Registered Nurse needs a bachelor's degree in nursing (Unified PQR, April 2025); DataFlow named as a verification agency by all three.
+**Notes / risks / follow-up:** seo-reviewer: passes, no blockers; its three polish items were applied. `npm run build`, tsc, lint and tests pass. The post's title still says "DHA, DOH & MOHAP Guide (2026)" and was left alone. hospitality-cv-uae.mdx still has no link to the hotel front desk page and uses a similar upsell example; not touched.
+**Suggested commit:** fix(blog): nursing post licensing wording matched to official sources
+
+## [2026-11-21 19:30] Ten role-specific UAE CV example pages (pilot)
+
+**Goal:** tracker item 16 (docs/growth-roadmap-2026-11/TRACKER.md). The site had one examples page for six sectors and no page per job title, while the home page earns 78% of search clicks. This is a ten-page PILOT to be read in Search Console 28 days after it reaches production, not a content programme: 35 blog posts earn about 55 clicks a month and the five nationality guides earn almost nothing, so more pages are only justified if these ten earn impressions.
+**Roles and why:** each is one job title from a domain the app already carries curated skills and bullet topics for (makemycv-app `lib/data/domainSkills.ts`, `ideaSuggestions.ts`), so nothing was invented from scratch. No keyword-volume tool was available; the choice rests on the app's domain list and on spreading across UAE employment sectors, and the 28-day read is what tests it.
+- accountant (accounting): VAT and Corporate Tax give a UAE-specific angle no generic example has.
+- sales-executive (sales): targets in AED, driving licence, territory.
+- customer-service-agent (customerservice): metrics-led, languages and shifts.
+- nurse (healthcare): the licence line is the single most UAE-specific CV fact.
+- civil-engineer (engineering): project value, Dubai registration rule.
+- hr-officer (hr): WPS, Decree-Law 33, Emiratisation.
+- logistics-coordinator (logistics): customs documents, ports, free zones.
+- receptionist (admin): visa status is the screen; family sponsorship and visit visa rules.
+- real-estate-agent (realestate): broker card.
+- hotel-front-desk-agent (hospitality): Opera PMS, languages, upselling.
+**Files:**
+- created: lib/cv-role-examples.ts: the one typed data file (answer, five weak/strong bullets, UAE Essentials with sources, ATS skills, four or five FAQs, guides) plus `getRoleExample`, `rolePath`, `roleQuestion`.
+- created: app/cv-examples-uae/[role]/page.tsx: static route (`generateStaticParams`, `dynamicParams = false`), metadata through `buildPageMetadata`, one FAQPage (quick answer + visible FAQs), BreadcrumbList matching a visible breadcrumb, builder CTA with `ctaAttrs("cv_example_<role>_build_cv", "role_example_cta")`.
+- created: scripts/check-role-examples.ts, wired into `npm run test` as `test:roles`: counts, length limits, answer/lead prefix, banned wording ("resume", the seconds claim, 92%, em dashes), guide slugs exist, sources are official .ae pages, llms.txt coverage, and no sentence repeated across two roles.
+- edited: lib/seo-schema.ts (comment only: role pages now also render a breadcrumb).
+- edited: app/cv-examples-uae/page.tsx (new "CV examples by job title" section; meta description now mentions the ten job titles), app/sitemap.ts (ten URLs), public/llms.txt (new section; the hub line now describes what the hub really is).
+- edited (outside this repo): ../.claude/launch.json gained `site-prod-preview` (`next start` on 3107) so the built pages can be opened in the preview pane.
+**Sources (all fetched and read 21 Nov 2026) and what each supports:**
+- Notice period 30 to 90 days, Article 43: u.ae "terminating employment contracts".
+- Federal Decree-Law No. 33 of 2021 in effect 2 Feb 2022: u.ae "employment laws and regulations in the private sector".
+- WPS (establishments registered with MOHRE must pay wages through it): u.ae "payment of wages". Emiratisation / Nafis (named only, no figures): u.ae "Emiratis' employment in private sector".
+- Family-sponsored residents can be hired on a work permit the employer obtains; a visit or tourist visa gives no right to work: u.ae "work permits", u.ae "tips to avoid labour and visa fraud".
+- VAT 1 Jan 2018 at 5%; Corporate Tax 9% on income above AED 375,000 for financial years starting on or after 1 June 2023; EmaraTax: u.ae VAT and Corporate Tax pages, tax.gov.ae/en/emaratax.aspx.
+- DHA registration through Sheryan, activated into a licence by the hiring facility: services.dha.gov.ae Sheryan FAQ. DOH (previously HAAD): doh.gov.ae FAQ and Healthcare Professionals Manual. MOHAP licensing service: mohap.gov.ae. Federal role and Sharjah Health Authority: u.ae "health authorities". DataFlow named as a verification agency: the DHA, DOH and MOHAP pages above. Primary source verification and "Registered Nurse: bachelor's degree in nursing": Unified Healthcare Professional Qualification Requirements, April 2025 (MOHAP PDF).
+- Dubai brokers must be in the brokers registry and hold a RERA broker card; applicants must have passed the test: dubailand.gov.ae FAQ and the "real estate professional practice card" service page.
+- Dubai contracting-company engineers must be Society of Engineers members and pass technical competency exams: Administrative Resolution No. (253) of 2021, dlp.dubai.gov.ae.
+**Source corrections made while writing (do not reintroduce):**
+- "MOHAP licenses nurses in Sharjah, Ajman, UAQ, RAK and Fujairah" could NOT be confirmed on any official page; u.ae names a separate Sharjah Health Authority and the 2025 PQR is co-issued by it. The new nurse page says only that MOHAP is the federal authority with its own licensing service. **content/blog/nursing-cv-uae.mdx still states the five-emirate version (body, table and `faqs`) and was not touched here: follow-up.**
+- A nurse does not obtain a DHA licence alone: registration first, then the facility activates it. The PQR lists no minimum experience for Registered Nurse ("2 years" applies to Nurse Practitioner); no experience rule is stated on the page.
+- "RERA certified" is not used; DLD's page does not name DREI or a "RERA exam", and card validity follows the trade licence, so no course name or validity period is stated.
+- The Society of Engineers rule is Dubai-only and, as verified, for contracting companies (consultancy criteria sit in Resolution 51 of 1998, not read). Not stated as UAE-wide.
+- Dropped as unverifiable on official pages: JAFZA / Jebel Ali "operated by DP World", Tasheel as the name of MOHRE centres, RTA licence exchange "without tests", any Emiratisation percentage (the 10% target ends 31 Dec 2026).
+**Notes / risks / follow-up:**
+- All bullets are illustrative with placeholder numbers and say so on the page; no employer is named. Market-frequency wording ("adverts commonly ask", "employers often screen") was removed after the seo-reviewer pass; the advice is conditional ("if the advert asks for it").
+- The quick answer leads with the answer itself, not with "MakeMyCV" as the AiAnswer comment asks: a direct answer was the brief.
+- Cannibalisation to watch at the 28-day read: /cv-examples-uae/nurse against /blog/nursing-cv-uae, and the hotel page against /blog/hospitality-cv-uae. Each role page links to its guide.
+- www.doh.gov.ae fails TLS for command-line clients (curl, WebFetch) and opened only by direct download; check the link in a browser when next reviewing.
+- seo-reviewer pass applied (no blockers). Left as follow-ups because they need the blog pipeline: refresh nursing-cv-uae.mdx to match the sourced licensing wording and link it to /cv-examples-uae/nurse; link hospitality-cv-uae.mdx to the hotel page.
+- The role pages share the default og-image.png.
+- Not released. The 28-day Search Console read starts on the day `staging` is merged to `main`, not on 21 Nov.
+**Suggested commit:** feat(cv-examples): ten role-specific UAE CV example pages (pilot)
+
 ## [2026-11-21 18:50] Next.js 16.4.3 to 16.4.6 (security advisories)
 
 **Goal:** clear the Next.js advisories `npm audit` reports for 16.0.0-16.4.4. `npm run build` was stopping about every other run with a SecurityFatalError.
@@ -23,7 +128,6 @@ Format:
 - edited: package.json, package-lock.json: `next` pinned to 16.4.6. Nothing else bumped.
 **Notes/risks:** patch release in the same minor line; no code change needed. Checked: tsc, lint (2 warnings), `npm run test`, `npm run build` twice with no advisory stop. Still open in `npm audit` and not touched here: high-severity entries in `sharp`, `velite`, `zod`, `js-yaml`, `picomatch`, `flatted` and `brace-expansion` (build-time and tooling dependencies), plus moderate ones.
 **Suggested commit:** chore(deps): next 16.4.6 for security advisories
-
 ## [2026-11-21 17:05] Tool pages: calculator first, per-tool CV line, header link, cv-maker-dubai retired, llms.txt, comparison table
 
 **Goal:** tracker items 5-10 (docs/growth-roadmap-2026-11/TRACKER.md). Tool pages earn about a third of search impressions and produced 1 CV export from 166 landings in 1-12 Nov.
