@@ -98,7 +98,8 @@ export function WageBasisExplainer() {
             Why our calculators use different salaries on purpose:
           </strong>{" "}
           end-of-service gratuity and unused-leave encashment are paid on your{" "}
-          <strong>basic wage</strong> (Articles 51 &amp; 29), while notice
+          <strong>basic wage</strong> (Article 51; for leave, Cabinet
+          Resolution 1/2022, Article 19), while notice
           payment in lieu is paid on your <strong>full wage including
           allowances</strong> (Article 43). It&rsquo;s a legal distinction, not
           an inconsistency — enter the salary each tool asks for.
