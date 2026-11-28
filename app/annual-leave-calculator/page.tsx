@@ -17,11 +17,14 @@ import {
    from 48 to 41 chars so the rendered version clears 60 with the
    " | MakeMyCV.ae" suffix. "Leave Salary" compressed to "Salary" — the leave-
    salary intent is carried by the description and the H2s. Law citation stays
-   in the body, quick answer and FAQPage schema. */
+   in the body, quick answer and FAQPage schema.
+   2026-11-28: description names leave salary and both pay bases. Search Console
+   (30 Oct-26 Nov) showed ~2,000 impressions a month on leave-salary searches at
+   positions 5-10 for 15 clicks; the page answered them only for unused days. */
 export const metadata = buildPageMetadata({
   title: "UAE Annual Leave Calculator",
   description:
-    "Free UAE annual leave calculator. Check your entitlement — 30 days a year after one year — and what unused days are worth at end of service.",
+    "Free UAE annual leave and leave salary calculator. Leave you take is paid at full wage; unused days at end of service at basic salary ÷ 30.",
   path: "/annual-leave-calculator",
   image: "/og/annual-leave-calculator.png",
 });
@@ -30,7 +33,7 @@ export const metadata = buildPageMetadata({
 const aiAnswer = {
   q: "How is annual leave calculated in the UAE?",
   lead: "MakeMyCV's free UAE annual leave calculator covers both entitlement and leave salary under the UAE Labour Law (Federal Decree-Law No. 33 of 2021).",
-  a: "MakeMyCV's free UAE annual leave calculator covers both entitlement and leave salary under the UAE Labour Law (Federal Decree-Law No. 33 of 2021). Full-time private-sector employees earn 30 calendar days of paid leave per completed year, or 2 days per month once they pass six months of service. Unused days at end of service are paid at basic salary ÷ 30 per day. Free, no sign-up.",
+  a: "MakeMyCV's free UAE annual leave calculator covers both entitlement and leave salary under the UAE Labour Law (Federal Decree-Law No. 33 of 2021). Full-time private-sector employees earn 30 calendar days of paid leave per completed year, or 2 days per month once they pass six months of service. Leave you take is paid at your full wage; unused days at end of service are paid at basic salary ÷ 30 per day. Free, no sign-up.",
 };
 
 const faqs = [
@@ -40,7 +43,7 @@ const faqs = [
   },
   {
     q: "Is leave salary based on basic or full salary?",
-    a: "Both rules exist, for different situations. While you are actually on annual leave, you receive your normal full wage. But when unused leave is cashed out at the end of service, the allowance is calculated on your basic salary only — (basic ÷ 30) × unused days — unless your contract is more generous.",
+    a: "It depends on the situation. Days you take as annual leave are paid at your full wage: basic salary plus the allowances in your contract (Federal Decree-Law No. 33 of 2021, Articles 1 and 29). Unused days paid out when your service ends are calculated on your basic salary only, (basic ÷ 30) × unused days (Cabinet Resolution No. 1 of 2022, Article 19). Your contract can be more generous.",
   },
   {
     q: "What happens to my unused leave days when I leave the job?",
@@ -48,7 +51,7 @@ const faqs = [
   },
   {
     q: "Can I carry leave forward or encash it while still employed?",
-    a: "Partly. The law lets you carry forward up to half of your annual leave into the next year, and — by written agreement with your employer — receive a cash allowance for the carried-forward portion instead. The default position, though, is that leave should actually be taken.",
+    a: "Within limits. With your employer's approval you can carry forward up to half of a year's annual leave into the next year, or agree with your employer to be paid for it instead, at the wage you earn when the leave falls due (Cabinet Resolution No. 1 of 2022, Article 19). The default is that leave is taken in the year it is earned, and your employer cannot stop you taking leave you are owed for more than two years unless you choose to carry it forward or be paid for it (Article 29).",
   },
   {
     q: "Does my service before six months count for anything?",
@@ -56,7 +59,7 @@ const faqs = [
   },
   {
     q: "Can my employer decide when I take annual leave?",
-    a: "The employer can schedule annual leave according to work requirements and in coordination with you, and many companies set notice rules for booking it. What they cannot do is take away leave you have legally accrued — untaken days must either be carried forward within the legal limits or paid out.",
+    a: "The employer can set the dates of your annual leave according to work requirements, in agreement with you, and must tell you the dates at least one month in advance (Article 29). What they cannot do is take away leave you have legally accrued — untaken days must either be carried forward within the legal limits or paid out.",
   },
   {
     q: "Is this calculator free and is the figure official?",
@@ -124,12 +127,12 @@ const webAppSchema = {
 // the pure logic in components/tools/leave.ts.
 const examples = [
   {
-    label: "Leave salary — 15 unused days, AED 9,000 basic",
+    label: "Unused leave paid out — 15 days, AED 9,000 basic",
     steps: "Daily rate = 9,000 ÷ 30 = AED 300. 15 × 300.",
     result: "AED 4,500",
   },
   {
-    label: "Leave salary — 30 unused days, AED 12,000 basic",
+    label: "Unused leave paid out — 30 days, AED 12,000 basic",
     steps: "Daily rate = 12,000 ÷ 30 = AED 400. 30 × 400.",
     result: "AED 12,000",
   },
@@ -140,6 +143,62 @@ const examples = [
     result: "16 days (worth AED 3,200)",
   },
 ];
+
+/* Leave salary: the three situations and the pay basis of each (added 2026-11-28).
+   Sources read that day on uaelegislation.gov.ae (law consolidated to 29 Jul 2024):
+   - Decree-Law 33/2021 Art. 29(1) leave "with full pay"; Art. 29(6) "the wage for the
+     period of his annual leave"; Art. 1 "Wage" = basic wage plus the cash allowances
+     and benefits in kind in the contract; Art. 67 a month is 30 days.
+   - Cabinet Resolution 1/2022 Art. 19(1): carry forward up to half, or agree a cash
+     equivalent "according to his wage" at the time the leave is due (Arabic: أجره, not
+     الأجر الأساسي); Art. 19(2): balance at end of service "according to the basic wage".
+   The law sets no separate payment date for leave you take, so none is stated. */
+const leaveSalaryCases = [
+  {
+    title: "You take your annual leave",
+    paidOn: "Full wage: basic salary plus the allowances in your contract",
+    formula: "(full monthly wage ÷ 30) × leave days",
+    basis:
+      "Article 29 of Federal Decree-Law No. 33 of 2021 gives annual leave with full pay, and Article 1 defines the wage as the basic wage plus the cash allowances and benefits in your contract.",
+  },
+  {
+    title: "Your service ends with unused days",
+    paidOn: "Basic salary only",
+    formula: "(basic monthly salary ÷ 30) × unused days",
+    basis:
+      "Cabinet Resolution No. 1 of 2022, Article 19, says the leave balance at the end of service is paid according to the basic wage. This is what the calculator above works out.",
+  },
+  {
+    title: "You agree to cash in leave while still employed",
+    paidOn: "Your wage at the time the leave falls due",
+    formula: "(monthly wage ÷ 30) × days cashed in",
+    basis:
+      "The same Article 19 lets you carry forward up to half a year's leave, or agree with your employer to be paid for it instead, according to your wage when the leave falls due. Here the regulation says wage, not basic wage. It needs your employer's agreement.",
+  },
+];
+
+// One illustrative employee across the three cases (not real user data).
+const leaveSalaryExample = {
+  setup:
+    "Basic salary AED 9,000, housing allowance AED 3,000, transport allowance AED 1,500: full wage AED 13,500 a month.",
+  lines: [
+    {
+      label: "Takes 10 days of annual leave",
+      steps: "13,500 ÷ 30 = AED 450 a day. 10 × 450.",
+      result: "AED 4,500",
+    },
+    {
+      label: "Leaves the job with 12 unused days",
+      steps: "9,000 ÷ 30 = AED 300 a day. 12 × 300.",
+      result: "AED 3,600",
+    },
+    {
+      label: "Agrees to cash in 10 days while still employed",
+      steps: "Paid at the wage when the leave falls due: 10 × 450.",
+      result: "AED 4,500",
+    },
+  ],
+};
 
 export default function AnnualLeaveCalculatorPage() {
   return (
@@ -194,6 +253,82 @@ export default function AnnualLeaveCalculatorPage() {
       />
 
       <WageBasisExplainer />
+
+      {/* Leave salary — SSR, crawlable (2026-11-28). Answers the leave-salary searches
+          the page ranked 5-10 for; the three pay bases are in leaveSalaryCases. */}
+      <section className="bg-paper py-16 md:py-20">
+        <div className="mx-auto max-w-3xl px-6">
+          <h2 className="font-display font-bold text-ink text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2">
+            How is leave salary calculated in the UAE?
+          </h2>
+          <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-2 md:text-lg">
+            <p>
+              Leave salary in the UAE is not one rate: it depends on whether
+              you take the leave, leave the job with days unused, or cash leave
+              in while still employed. Days you take are paid at your{" "}
+              <strong>full wage</strong>: basic salary plus the allowances in
+              your contract. Unused days paid out when your service ends are
+              paid at your <strong>basic salary</strong> only. All three use a
+              30-day month, so the daily rate is the monthly figure divided by
+              30 (Article 67 of the UAE Labour Law).
+            </p>
+          </div>
+
+          <div className="mt-8 space-y-4">
+            {leaveSalaryCases.map((c) => (
+              <div key={c.title} className="rounded-2xl bg-paper-2 p-5 shadow-float">
+                <h3 className="font-display text-lg font-bold text-ink">
+                  {c.title}
+                </h3>
+                <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
+                  <strong className="text-ink">Paid on:</strong> {c.paidOn}
+                </p>
+                <p className="mt-1 text-[15px] leading-relaxed text-ink-2">
+                  <strong className="text-ink">Formula:</strong>{" "}
+                  <span className="font-semibold text-accent">{c.formula}</span>
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {c.basis}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mt-12 font-display text-[24px] font-semibold leading-[1.25] text-ink md:text-[30px]">
+            Worked example: the same employee, three situations
+          </h3>
+          <p className="mt-3 text-base leading-relaxed text-ink-2">
+            {leaveSalaryExample.setup}
+          </p>
+          <div className="mt-5 space-y-4">
+            {leaveSalaryExample.lines.map((line) => (
+              <div key={line.label} className="rounded-2xl bg-paper-2 p-5 shadow-float">
+                <p className="font-semibold text-ink">{line.label}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">
+                  {line.steps}
+                </p>
+                <p className="mt-2 font-display text-lg font-bold text-accent">
+                  = {line.result}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 space-y-2 text-sm leading-relaxed text-muted">
+            <p>
+              Taking leave should not reduce your monthly pay: the 10 days
+              above are paid at AED 450 a day, not at the AED 300 basic rate.
+              The law does not set a separate date for paying leave salary, so
+              check your contract or company policy for when it is paid.
+            </p>
+            <p>
+              Contracts can be more generous than the law, and some free zones
+              have their own employment rules. Confirm your exact figures with
+              MOHRE or your employer.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <SettlementFooter currentPath="/annual-leave-calculator" />
 
       {/* How it works — SSR, crawlable */}
@@ -202,7 +337,7 @@ export default function AnnualLeaveCalculatorPage() {
           <h2
             className="font-display font-bold text-ink text-[36px] md:text-[48px] leading-[1.05] tracking-tight-2"
           >
-            How UAE annual leave and leave salary are calculated
+            How UAE annual leave is calculated
           </h2>
           <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-2 md:text-lg">
             <p>
@@ -223,9 +358,10 @@ export default function AnnualLeaveCalculatorPage() {
               gratuity.
             </p>
             <p>
-              During employment, up to <strong>half</strong> of a year&rsquo;s
-              leave can be carried forward, and the carried-forward portion can
-              be encashed by written agreement. Subtract the days you have
+              During employment, with your employer&rsquo;s approval, up to{" "}
+              <strong>half</strong> of a year&rsquo;s leave can be carried
+              forward, or you can agree with your employer to be paid for it
+              instead. Subtract the days you have
               already taken from any entitlement figure — the calculator
               estimates what you have accrued, not what remains.
             </p>
@@ -257,9 +393,10 @@ export default function AnnualLeaveCalculatorPage() {
             figures with MOHRE.
           </p>
           <p className="mt-2 text-xs text-muted">
-            Legal basis last verified 12 July 2026 against Federal Decree-Law
-            33/2021, Article 29 and Cabinet Resolution 1/2022, Article 19
-            (unchanged by the 2022 and 2023 amendments).
+            Legal basis last verified 28 November 2026 against Federal
+            Decree-Law 33/2021, Articles 1, 29 and 67, and Cabinet Resolution
+            1/2022, Article 19, on the UAE Legislation portal (the law as last
+            updated there on 29 July 2024).
           </p>
         </div>
       </section>

@@ -16,6 +16,28 @@ Format:
 
 ---
 
+## [2026-11-28 14:32] Annual leave calculator: leave salary section (plan item P2)
+
+**Goal:** the 28 Nov 2026 Search Console read (`docs/analytics-seo-review-2026-11/2026-11-28-search-console.md` in the parent folder) found about 2,000 impressions a month on leave-salary searches ("leave salary calculation in uae", "how to calculate leave salary in uae" and 14 more) where this page ranks 5 to 10, for 15 clicks. The page explained only the end-of-service case. Google's AI answer for these searches gives both formulas and cites Payslip.ae and Yomly. The owner approved drafting it ("Yes, draft it", 28 Nov).
+**Files:**
+- edited: app/annual-leave-calculator/page.tsx. New section "How is leave salary calculated in the UAE?" under the wage-basis box: the three situations (leave you take, unused days at end of service, cash-in while employed), each with the pay basis, formula and source, and one worked employee across all three. Meta description names leave salary and both pay bases (139 characters). Quick answer gains one sentence on leave you take. FAQ answers corrected and sourced: basic or full salary; carry forward or encash; who decides leave dates (one month's notice replaces "many companies set notice rules"). The old "How ... annual leave and leave salary are calculated" heading is now "How UAE annual leave is calculated", and its worked examples say "Unused leave paid out" instead of "Leave salary". Legal-basis line re-dated.
+- edited: components/tools/CalculatorShared.tsx. The wage-basis box cited "Articles 51 & 29" for leave paid on basic wage; it now cites Cabinet Resolution 1/2022, Article 19 for leave. Shows on the gratuity, notice and leave pages.
+**Sources (all read 28 Nov 2026 on uaelegislation.gov.ae; the law page says it was last updated 29 Jul 2024):**
+- Federal Decree-Law No. 33 of 2021, Article 29(1): annual leave "with full pay"; 29(4): employer sets dates per work requirements in agreement with the worker and notifies at least one month in advance; 29(5): carrying forward needs the employer's approval; 29(6): "the wage for the period of his annual leave"; 29(8): employer may not prevent leave for more than two years unless the worker chooses to carry forward or take cash; 29(9): unused days are paid when service ends.
+- Same law, Article 1: "Basic Wage" excludes allowances and benefits in kind; "Wage" is the basic wage plus the cash allowances and benefits in kind in the contract. Article 67: a month is 30 days.
+- Cabinet Resolution No. 1 of 2022, Article 19(1): carry forward up to half of the annual leave, or agree a cash equivalent "according to his wage" when the leave is due (Arabic: وفقًا لأجره, the general word for wage); 19(2): the balance at end of service is paid according to the basic wage (Arabic: وفقًا للأجر الأساسي).
+**Source corrections (do not reintroduce):**
+- "By written agreement" for cashing in leave: the regulation says "agree", not "written".
+- "The carried-forward portion can be encashed": the regulation offers carrying forward up to half OR a cash equivalent; it does not limit the cash to the carried-forward part.
+- Leave paid on basic wage "(Article 29)": the basic-wage rule is Cabinet Resolution 1/2022, Article 19(2). Article 29 only says unused days are paid.
+- Not stated, because no text read says it: that leave salary must be paid before the leave starts (the old 1980 law's rule; Decree-Law 33/2021 sets no date).
+**Notes / risks / follow-up:**
+- Calculator logic unchanged: it still covers entitlement and end-of-service encashment only. A "leave you take" mode would be a separate change.
+- The HowTo schema still describes the end-of-service case only. The FAQ schema mirrors the visible FAQ as before.
+- Seen, not changed: the settlement box says unused leave has "no minimum service (Art. 29)"; Article 29 grants no statutory leave before six months of service, so the line may read as wider than the law. Worth a look.
+- Built on branch `leave-salary` in worktree `makemycv-site-wt-leave`, from `origin/staging` 775f1e7. Not merged into `staging`, not pushed.
+**Suggested commit:** feat(annual-leave): leave salary section with both pay bases, sourced FAQ fixes
+
 ## [2026-11-22 01:44] Nurse page and nursing post: Sharjah Health Authority added
 
 **Goal:** the automated (Codex) review of release pull request #45 said the nurse example page and the nursing post tell nurses which authority licenses them and leave out the Sharjah Health Authority (SHA). Checked against official pages on 22 Nov 2026: it holds. The owner approved checking and fixing it ("Yes, check and fix").
